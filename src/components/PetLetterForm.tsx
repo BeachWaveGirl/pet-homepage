@@ -16,10 +16,12 @@ const PetLetterForm = () => {
     petPersonality: "",
     sharedMemories: "",
     timeSincePassing: "",
-    tone: "nostalgic"
+    tone: "nostalgic",
+    photoUrl: ""
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [previewVisible, setPreviewVisible] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -30,9 +32,20 @@ const PetLetterForm = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      const url = URL.createObjectURL(file);
+      setFormData(prev => ({ ...prev, photoUrl: url }));
+    }
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    
+    // Show preview first
+    setPreviewVisible(true);
     
     // Simulate form submission
     setTimeout(() => {
@@ -41,7 +54,7 @@ const PetLetterForm = () => {
       });
       setIsSubmitting(false);
       
-      // Reset form
+      // Reset form after successful submission
       setFormData({
         petName: "",
         species: "",
@@ -49,10 +62,37 @@ const PetLetterForm = () => {
         petPersonality: "",
         sharedMemories: "",
         timeSincePassing: "",
-        tone: "nostalgic"
+        tone: "nostalgic",
+        photoUrl: ""
       });
+      setPreviewVisible(false);
     }, 1500);
   };
+
+  // Letter preview teaser component
+  const LetterPreviewTeaser = () => (
+    <div className="mt-4 p-4 bg-offwhite rounded-md border border-gray-200">
+      <div className="flex items-center gap-3 mb-3">
+        {formData.photoUrl && (
+          <div className="w-12 h-12 rounded-full overflow-hidden">
+            <img src={formData.photoUrl} alt={formData.petName} className="w-full h-full object-cover" />
+          </div>
+        )}
+        <div>
+          <p className="font-playfair text-lg">A letter from {formData.petName}</p>
+          <p className="text-sm text-gray-500">to {formData.ownerName || "their human"}</p>
+        </div>
+      </div>
+      <div className="font-playfair italic text-gray-700 mb-3">
+        <p>Dear {formData.ownerName || "my beloved human"},</p>
+        <p>It's me, {formData.petName}. I've been thinking about our time together...</p>
+        <div className="blur-sm my-2">
+          <p>I miss our {formData.sharedMemories} so much. Remember how we used to...</p>
+        </div>
+      </div>
+      <Button className="w-full mt-2 bg-black hover:bg-gray-800">Unlock Full Letter</Button>
+    </div>
+  );
 
   return (
     <section className="w-full py-16 px-4 md:py-20" id="letter-form">
@@ -67,6 +107,29 @@ const PetLetterForm = () => {
           
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="space-y-2">
+                <Label htmlFor="photo">Pet's Photo (Optional)</Label>
+                <Input
+                  id="photo"
+                  name="photo"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFileChange}
+                  className="cursor-pointer"
+                />
+                {formData.photoUrl && (
+                  <div className="mt-2 flex justify-center">
+                    <div className="w-32 h-32 rounded-lg overflow-hidden">
+                      <img 
+                        src={formData.photoUrl} 
+                        alt="Pet preview" 
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
+                )}
+              </div>
+              
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <Label htmlFor="petName">Pet's Name</Label>
@@ -144,7 +207,7 @@ const PetLetterForm = () => {
                 </div>
                 
                 <div className="space-y-2">
-                  <Label htmlFor="tone">Preferred Tone</Label>
+                  <Label htmlFor="tone">Letter Tone</Label>
                   <Select
                     value={formData.tone}
                     onValueChange={(value) => handleSelectChange("tone", value)}
@@ -153,15 +216,18 @@ const PetLetterForm = () => {
                       <SelectValue placeholder="Choose a tone" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="nostalgic">Nostalgic</SelectItem>
-                      <SelectItem value="heartwarming">Heartwarming</SelectItem>
-                      <SelectItem value="gentle">Gentle</SelectItem>
-                      <SelectItem value="playful">Playful</SelectItem>
-                      <SelectItem value="reflective">Reflective</SelectItem>
+                      <SelectItem value="classic">🕊️ Classic / Comforting</SelectItem>
+                      <SelectItem value="funny">🐾 Funny / Silly</SelectItem>
+                      <SelectItem value="gratitude">💌 Thank You / Gratitude</SelectItem>
+                      <SelectItem value="spiritual">🌈 Spiritual / Rainbow Bridge</SelectItem>
+                      <SelectItem value="poetic">✨ Poetic / Flowery</SelectItem>
+                      <SelectItem value="storybook">📜 Storybook / Formal</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
               </div>
+              
+              {previewVisible && <LetterPreviewTeaser />}
               
               <div className="pt-2">
                 <Button 
@@ -169,7 +235,7 @@ const PetLetterForm = () => {
                   className="w-full bg-black hover:bg-gray-800 text-white"
                   disabled={isSubmitting}
                 >
-                  {isSubmitting ? "Creating Your Letter..." : "Create My Letter"}
+                  {isSubmitting ? "Creating Your Letter..." : previewVisible ? "Confirm & Order Letter" : "Preview Your Letter"}
                 </Button>
               </div>
             </form>

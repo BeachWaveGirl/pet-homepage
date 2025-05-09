@@ -6,6 +6,7 @@ import LetterPreview from "@/components/LetterPreview";
 import HowItWorks from "@/components/HowItWorks";
 import Testimonials from "@/components/Testimonials";
 import Pricing from "@/components/Pricing";
+import LetterTonePreview from "@/components/LetterTonePreview";
 import { Button } from "@/components/ui/button";
 
 const Index = () => {
@@ -43,6 +44,9 @@ const Index = () => {
           </div>
         </div>
       </section>
+      
+      {/* Letter Tone Preview */}
+      <LetterTonePreview />
       
       {/* How It Works */}
       <HowItWorks />
