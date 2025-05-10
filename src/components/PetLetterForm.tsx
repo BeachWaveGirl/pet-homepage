@@ -8,6 +8,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { toast } from "sonner";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import LetterDisplay from "./LetterDisplay";
+import StarCertificate from "./StarCertificate";
+import { Checkbox } from "@/components/ui/checkbox";
 
 const PetLetterForm = () => {
   const [formData, setFormData] = useState({
@@ -18,13 +20,15 @@ const PetLetterForm = () => {
     sharedMemories: "",
     timeSincePassing: "",
     tone: "classic",
-    photoUrl: ""
+    photoUrl: "",
+    includeStar: false
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
   const [generatedLetter, setGeneratedLetter] = useState("");
   const [showFullLetter, setShowFullLetter] = useState(false);
+  const [showStarCertificate, setShowStarCertificate] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -33,6 +37,10 @@ const PetLetterForm = () => {
 
   const handleSelectChange = (name: string, value: string) => {
     setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleCheckboxChange = (checked: boolean) => {
+    setFormData(prev => ({ ...prev, includeStar: checked }));
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -163,21 +171,6 @@ ${formData.petName}`,
       setShowPreview(true);
       
       // In a real implementation, you would call your AI API here
-      // const response = await fetch('your-ai-api-endpoint', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({
-      //     petName: formData.petName,
-      //     species: formData.species,
-      //     ownerName: formData.ownerName,
-      //     petPersonality: formData.petPersonality,
-      //     sharedMemories: formData.sharedMemories,
-      //     timeSincePassing: formData.timeSincePassing,
-      //     tone: formData.tone
-      //   })
-      // });
-      // const data = await response.json();
-      // setGeneratedLetter(data.letter);
       
       toast.success("Letter generated successfully", {
         description: "Your letter is ready to view.",
@@ -202,6 +195,17 @@ ${formData.petName}`,
     toast.success("Letter downloaded", {
       description: "Your letter has been downloaded as a PDF.",
     });
+  };
+
+  const handleDownloadCertificate = () => {
+    // In a real implementation, you would generate a PDF and trigger download
+    toast.success("Star Certificate downloaded", {
+      description: "Your certificate has been downloaded as a PDF.",
+    });
+  };
+
+  const handleViewStarCertificate = () => {
+    setShowStarCertificate(true);
   };
 
   // Letter preview teaser component
@@ -366,6 +370,20 @@ ${formData.petName}`,
                   </Select>
                 </div>
               </div>
+
+              <div className="flex items-center space-x-2">
+                <Checkbox 
+                  id="includeStar" 
+                  checked={formData.includeStar}
+                  onCheckedChange={handleCheckboxChange}
+                />
+                <label 
+                  htmlFor="includeStar" 
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  Include a free Star Certificate naming a star after your pet
+                </label>
+              </div>
               
               {showPreview && <LetterPreviewTeaser />}
               
@@ -398,6 +416,18 @@ ${formData.petName}`,
           photoUrl={formData.photoUrl}
           onClose={() => setShowFullLetter(false)}
           onDownload={handleDownloadLetter}
+          showStarButton={formData.includeStar}
+          onStarClick={handleViewStarCertificate}
+        />
+      )}
+
+      {showStarCertificate && (
+        <StarCertificate 
+          petName={formData.petName}
+          ownerName={formData.ownerName}
+          photoUrl={formData.photoUrl}
+          onClose={() => setShowStarCertificate(false)}
+          onDownload={handleDownloadCertificate}
         />
       )}
     </section>

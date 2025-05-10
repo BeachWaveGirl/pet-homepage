@@ -10,6 +10,8 @@ interface LetterDisplayProps {
   photoUrl?: string;
   onClose: () => void;
   onDownload: () => void;
+  showStarButton?: boolean;
+  onStarClick?: () => void;
 }
 
 const LetterDisplay = ({
@@ -19,6 +21,8 @@ const LetterDisplay = ({
   photoUrl,
   onClose,
   onDownload,
+  showStarButton,
+  onStarClick,
 }: LetterDisplayProps) => {
   // Split the letter into paragraphs
   const paragraphs = letter.split("\n").filter((para) => para.trim() !== "");
@@ -60,6 +64,11 @@ const LetterDisplay = ({
             <Button className="bg-black text-white hover:bg-gray-800" onClick={onDownload}>
               Download Letter
             </Button>
+            {showStarButton && onStarClick && (
+              <Button className="bg-indigo-600 text-white hover:bg-indigo-700" onClick={onStarClick}>
+                View Star Certificate
+              </Button>
+            )}
           </div>
         </CardContent>
       </Card>

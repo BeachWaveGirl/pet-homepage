@@ -1,0 +1,92 @@
+
+import React from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+
+interface StarCertificateProps {
+  petName: string;
+  ownerName: string;
+  photoUrl?: string;
+  onClose: () => void;
+  onDownload: () => void;
+}
+
+const StarCertificate = ({
+  petName,
+  ownerName,
+  photoUrl,
+  onClose,
+  onDownload,
+}: StarCertificateProps) => {
+  // Generate a random star "designation"
+  const constellation = ["Canis Major", "Canis Minor", "Leo", "Orion", "Ursa Major", "Pegasus", "Lyra", "Hercules"][Math.floor(Math.random() * 8)];
+  const starDesignation = `PSR-${Math.floor(Math.random() * 999)}-${Math.floor(Math.random() * 99)}`;
+  const coordinates = `RA: ${Math.floor(Math.random() * 24)}h ${Math.floor(Math.random() * 60)}m, Dec: ${Math.floor(Math.random() * 90)}° ${Math.floor(Math.random() * 60)}'`;
+
+  const today = new Date();
+  const formattedDate = today.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+
+  return (
+    <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto animate-fade-in">
+      <Card className="w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-white">
+        <CardContent className="p-6 md:p-8">
+          <div className="text-center">
+            <h2 className="font-playfair text-2xl md:text-3xl mb-2">Star Registry Certificate</h2>
+            <p className="text-gray-600 mb-6">In loving memory</p>
+            
+            <div className="flex justify-center mb-6">
+              {photoUrl && (
+                <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-gray-200">
+                  <img
+                    src={photoUrl}
+                    alt={petName}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              )}
+              {!photoUrl && (
+                <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-gray-200 flex items-center justify-center bg-gray-100">
+                  <img 
+                    src="/placeholder.svg" 
+                    alt="Pet silhouette" 
+                    className="w-24 h-24 opacity-50"
+                  />
+                </div>
+              )}
+            </div>
+            
+            <div className="border-t border-b border-gray-200 py-6 my-6">
+              <h3 className="text-xl font-bold mb-2">This certifies that</h3>
+              <p className="text-2xl font-playfair mb-4">{petName}</p>
+              <p className="mb-4">has been named as a star in the</p>
+              <p className="text-xl font-playfair mb-4">{constellation} Constellation</p>
+              <p className="text-sm text-gray-500">{starDesignation}</p>
+              <p className="text-sm text-gray-500 mb-4">{coordinates}</p>
+              <p className="italic">Forever shining bright in the night sky</p>
+            </div>
+            
+            <div className="text-sm text-gray-600 mb-8">
+              <p>Registered to: {ownerName || "Loving Owner"}</p>
+              <p>Date: {formattedDate}</p>
+            </div>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button variant="outline" onClick={onClose}>
+                Close
+              </Button>
+              <Button className="bg-black text-white hover:bg-gray-800" onClick={onDownload}>
+                Download Certificate
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+};
+
+export default StarCertificate;
