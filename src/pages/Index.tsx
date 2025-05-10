@@ -26,7 +26,7 @@ const Index = () => {
             A Letter From Your Pet's Heart
           </h1>
           <p className="text-xl md:text-2xl text-gray-700 mb-10 max-w-2xl mx-auto">
-            Comforting AI-written messages inspired by your memories together
+            Instant AI-written messages inspired by your memories together
           </p>
           <Button 
             onClick={scrollToForm}
