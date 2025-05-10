@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,7 +10,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import LetterDisplay from "./LetterDisplay";
 import StarCertificate from "./StarCertificate";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Certificate } from "lucide-react";
+import { Award } from "lucide-react";
 
 const PetLetterForm = () => {
   const [formData, setFormData] = useState({
@@ -378,7 +379,7 @@ ${formData.petName}`,
 
               <div className="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
                 <div className="flex items-center space-x-2 mb-2">
-                  <Certificate className="h-5 w-5 text-indigo-600" />
+                  <Award className="h-5 w-5 text-indigo-600" />
                   <h3 className="font-medium text-lg">Free Star Certificate</h3>
                 </div>
                 <div className="flex items-center space-x-3 mb-2">
