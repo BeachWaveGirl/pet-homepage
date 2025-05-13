@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import FormHeader from "./FormHeader";
 import PetPhotoUpload from "./PetPhotoUpload";
 import PetInformationFields from "./PetInformationFields";
-import StarCertificateOption from "./StarCertificateOption";
+import PassingDatePicker from "./PassingDatePicker";
 import LetterPreviewTeaser from "./LetterPreviewTeaser";
 import FormFooter from "./FormFooter";
 import LetterDisplay from "../LetterDisplay";
@@ -20,10 +20,13 @@ const PetLetterFormContainer = () => {
     ownerName: "",
     petPersonality: "",
     sharedMemories: "",
-    timeSincePassing: "",
+    passingDate: undefined,
     tone: "classic",
     photoUrl: "",
-    includeStar: false
+    location: {
+      latitude: 37.7749,
+      longitude: -122.4194
+    }
   });
 
   const {
@@ -32,6 +35,7 @@ const PetLetterFormContainer = () => {
     generatedLetter,
     showFullLetter,
     showStarCertificate,
+    starChartUrl,
     setShowPreview,
     setShowFullLetter,
     setShowStarCertificate,
@@ -49,11 +53,11 @@ const PetLetterFormContainer = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleCheckboxChange = (checked: boolean) => {
-    setFormData(prev => ({ ...prev, includeStar: checked }));
-    if (checked) {
-      toast.success("Star Certificate added!", {
-        description: "A beautiful certificate will be created with your letter."
+  const handleDateChange = (date: Date | undefined) => {
+    setFormData(prev => ({ ...prev, passingDate: date }));
+    if (date) {
+      toast.success("Date selected", {
+        description: "We'll create a beautiful star chart for this date."
       });
     }
   };
@@ -61,6 +65,28 @@ const PetLetterFormContainer = () => {
   const handlePhotoChange = (url: string) => {
     setFormData(prev => ({ ...prev, photoUrl: url }));
   };
+
+  // Get user location for star chart
+  const getUserLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        setFormData(prev => ({
+          ...prev,
+          location: {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude
+          }
+        }));
+      }, () => {
+        console.log("Unable to get location, using default");
+      });
+    }
+  };
+
+  // Try to get user location when component mounts
+  useState(() => {
+    getUserLocation();
+  });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -77,7 +103,7 @@ const PetLetterFormContainer = () => {
   };
 
   return (
-    <section className="w-full py-16 px-4 md:py-20" id="letter-form">
+    <section className="w-full py-8 px-4" id="letter-form">
       <div className="container max-w-2xl mx-auto">
         <Card className="bg-white border border-gray-200 shadow-md">
           <FormHeader />
@@ -95,10 +121,10 @@ const PetLetterFormContainer = () => {
                 handleSelectChange={handleSelectChange}
               />
 
-              <StarCertificateOption
+              <PassingDatePicker
                 petName={formData.petName}
-                isChecked={formData.includeStar}
-                onCheckChange={handleCheckboxChange}
+                date={formData.passingDate}
+                onDateChange={handleDateChange}
               />
               
               {showPreview && (
@@ -132,7 +158,7 @@ const PetLetterFormContainer = () => {
           photoUrl={formData.photoUrl}
           onClose={() => setShowFullLetter(false)}
           onDownload={handleDownloadLetter}
-          showStarButton={formData.includeStar}
+          showStarButton={true}
           onStarClick={handleViewStarCertificate}
         />
       )}
@@ -142,6 +168,8 @@ const PetLetterFormContainer = () => {
           petName={formData.petName}
           ownerName={formData.ownerName}
           photoUrl={formData.photoUrl}
+          passingDate={formData.passingDate}
+          starChartUrl={starChartUrl}
           onClose={() => setShowStarCertificate(false)}
           onDownload={handleDownloadCertificate}
         />

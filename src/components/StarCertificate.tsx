@@ -7,6 +7,8 @@ interface StarCertificateProps {
   petName: string;
   ownerName: string;
   photoUrl?: string;
+  passingDate?: Date;
+  starChartUrl?: string;
   onClose: () => void;
   onDownload: () => void;
 }
@@ -15,6 +17,8 @@ const StarCertificate = ({
   petName,
   ownerName,
   photoUrl,
+  passingDate,
+  starChartUrl,
   onClose,
   onDownload,
 }: StarCertificateProps) => {
@@ -23,20 +27,17 @@ const StarCertificate = ({
   const starDesignation = `PSR-${Math.floor(Math.random() * 999)}-${Math.floor(Math.random() * 99)}`;
   const coordinates = `RA: ${Math.floor(Math.random() * 24)}h ${Math.floor(Math.random() * 60)}m, Dec: ${Math.floor(Math.random() * 90)}° ${Math.floor(Math.random() * 60)}'`;
 
-  const today = new Date();
-  const formattedDate = today.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  });
+  const formattedDate = passingDate 
+    ? passingDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+    : new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
   return (
     <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto animate-fade-in">
       <Card className="w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-white">
         <CardContent className="p-6 md:p-8">
           <div className="text-center">
-            <h2 className="font-playfair text-2xl md:text-3xl mb-2">Star Registry Certificate</h2>
-            <p className="text-gray-600 mb-6">In loving memory</p>
+            <h2 className="font-playfair text-2xl md:text-3xl mb-2">A Star For {petName}</h2>
+            <p className="text-gray-600 mb-6">The night they became part of the sky</p>
             
             <div className="flex justify-center mb-6">
               {photoUrl && (
@@ -58,6 +59,17 @@ const StarCertificate = ({
                 </div>
               )}
             </div>
+            
+            {starChartUrl && (
+              <div className="mb-6 bg-black rounded-lg overflow-hidden">
+                <img 
+                  src={starChartUrl} 
+                  alt="Star Chart" 
+                  className="w-full h-auto max-h-[300px] object-cover opacity-80"
+                />
+                <p className="text-xs text-white py-2">The night sky on {formattedDate}</p>
+              </div>
+            )}
             
             <div className="border-t border-b border-gray-200 py-6 my-6">
               <h3 className="text-xl font-bold mb-2">This certifies that</h3>

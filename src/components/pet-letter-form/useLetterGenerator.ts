@@ -8,10 +8,13 @@ export interface FormData {
   ownerName: string;
   petPersonality: string;
   sharedMemories: string;
-  timeSincePassing: string;
+  passingDate: Date | undefined;
   tone: string;
   photoUrl: string;
-  includeStar: boolean;
+  location: {
+    latitude: number;
+    longitude: number;
+  };
 }
 
 export const useLetterGenerator = () => {
@@ -20,6 +23,7 @@ export const useLetterGenerator = () => {
   const [generatedLetter, setGeneratedLetter] = useState("");
   const [showFullLetter, setShowFullLetter] = useState(false);
   const [showStarCertificate, setShowStarCertificate] = useState(false);
+  const [starChartUrl, setStarChartUrl] = useState("");
 
   const generateLetter = async (formData: FormData) => {
     // This is a mock implementation - in a real app, you would call an AI API here
@@ -58,7 +62,7 @@ Though we may not share the same space anymore, our souls remain connected by th
 
 The energy of our bond remains unbroken. When you feel a gentle breeze against your face, know that my spirit is near, watching over you with the same devotion I always had.
 
-Time moves differently for me now, but the ${formData.timeSincePassing} since I left has been but a moment in the eternal connection we share. Your love continues to give me peace.
+Time moves differently for me now, but the time since I left has been but a moment in the eternal connection we share. Your love continues to give me peace.
 
 When you look at the stars, know that I am there in the light that reaches you. When you feel unexplained comfort in moments of sadness, that is me, still caring for you as I always did.
 
@@ -75,7 +79,7 @@ Thank you for our ${formData.sharedMemories.includes("walks") ? "long walks in t
 
 I'm grateful for how you understood me - my quirks, my ${formData.petPersonality.includes("silly") ? "silly antics" : "unique personality"}. You always knew just what I needed even when I couldn't ask for it.
 
-These past ${formData.timeSincePassing} may have separated us physically, but nothing could ever diminish my gratitude for the life we shared.
+These past days may have separated us physically, but nothing could ever diminish my gratitude for the life we shared.
 
 You were the best human a ${formData.species} could ask for. Thank you for choosing me, loving me, and making my life complete.
 
@@ -94,7 +98,7 @@ Time suspended in perfect contentment,
 My spirit wrapped in your kindness,
 Your hands gentle upon my fur.
 
-Though ${formData.timeSincePassing} have passed since I left your side,
+Though time has passed since I left your side,
 Love knows no measure of days or distance.
 In the spaces between heartbeats, I am there,
 In dreams and memories, ever faithful.
@@ -115,7 +119,7 @@ In our grand adventure together, we created a tale of joy and companionship. Cha
 
 I was known throughout our kingdom for being ${formData.petPersonality.includes("loyal") ? "fiercely loyal" : "uniquely special"}, and you were known for your kindness and care. Together, we wrote a story more beautiful than any fairy tale.
 
-Though our story entered a new chapter ${formData.timeSincePassing} ago when I had to journey onward, the book of our love remains open, with pages still turning in your heart.
+Though our story entered a new chapter when I had to journey onward, the book of our love remains open, with pages still turning in your heart.
 
 Every story has its ending, but in the tale of true companions, love continues beyond the final page. Keep telling our story, for in your words and memories, I live on.
 
@@ -128,19 +132,70 @@ ${formData.petName}`,
     return letterTemplates[formData.tone] || letterTemplates.classic;
   };
 
+  const fetchStarChart = async (formData: FormData) => {
+    // In a real implementation, this would call the astronomy API
+    // For now, returning a placeholder
+    try {
+      // Mock implementation of astronomy API call
+      const date = formData.passingDate ? new Date(formData.passingDate).toISOString().split('T')[0] : '2023-08-12';
+      const latitude = formData.location?.latitude || 37.7749;
+      const longitude = formData.location?.longitude || -122.4194;
+      
+      // In a real implementation, you would call the astronomy API here
+      // and get back an actual star chart image URL
+      // For now, just return a placeholder message
+      console.log(`Would fetch star chart for date: ${date}, lat: ${latitude}, long: ${longitude}`);
+      
+      // Mocked URL for demonstration
+      return "https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=1000";
+    } catch (error) {
+      console.error("Error fetching star chart:", error);
+      return "";
+    }
+  };
+
+  const calculateTimeSincePassing = (passingDate: Date | undefined) => {
+    if (!passingDate) return "";
+    
+    const now = new Date();
+    const passed = new Date(passingDate);
+    
+    const diffTime = Math.abs(now.getTime() - passed.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    const diffMonths = Math.floor(diffDays / 30);
+    const diffYears = Math.floor(diffDays / 365);
+    
+    if (diffYears > 0) {
+      return diffYears === 1 ? "1 year" : `${diffYears} years`;
+    } else if (diffMonths > 0) {
+      return diffMonths === 1 ? "1 month" : `${diffMonths} months`;
+    } else {
+      return diffDays === 1 ? "1 day" : `${diffDays} days`;
+    }
+  };
+
   const handleLetterGeneration = async (formData: FormData) => {
     setIsSubmitting(true);
 
     try {
-      // Generate a preview of the letter first
-      const letter = await generateLetter(formData);
+      // Calculate time since passing
+      const timeSincePassing = calculateTimeSincePassing(formData.passingDate);
+      
+      // Generate star chart
+      const chartUrl = await fetchStarChart(formData);
+      setStarChartUrl(chartUrl);
+      
+      // Generate a preview of the letter
+      const letter = await generateLetter({
+        ...formData,
+        // Add time since passing for letter generation
+      });
+      
       setGeneratedLetter(letter);
       setShowPreview(true);
       
-      // In a real implementation, you would call your AI API here
-      
       toast.success("Letter generated successfully", {
-        description: `Your letter is ready to view${formData.includeStar ? " with a Star Certificate!" : "."}`,
+        description: "Your letter is ready to view with a Star Certificate!",
       });
     } catch (error) {
       console.error("Error generating letter:", error);
@@ -172,6 +227,7 @@ ${formData.petName}`,
     generatedLetter,
     showFullLetter,
     showStarCertificate,
+    starChartUrl,
     setShowPreview,
     setShowFullLetter,
     setShowStarCertificate,
