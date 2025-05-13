@@ -1,5 +1,4 @@
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import FormHeader from "./FormHeader";
@@ -77,6 +76,10 @@ const PetLetterFormContainer = () => {
             longitude: position.coords.longitude
           }
         }));
+        
+        toast.success("Location detected", {
+          description: "Your local sky coordinates will be used for the star chart."
+        });
       }, () => {
         console.log("Unable to get location, using default");
       });
@@ -84,9 +87,9 @@ const PetLetterFormContainer = () => {
   };
 
   // Try to get user location when component mounts
-  useState(() => {
+  useEffect(() => {
     getUserLocation();
-  });
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

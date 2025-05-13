@@ -1,6 +1,6 @@
-
 import { useState } from "react";
 import { toast } from "sonner";
+import astronomyApiClient from "@/utils/astronomyApi";
 
 export interface FormData {
   petName: string;
@@ -26,7 +26,6 @@ export const useLetterGenerator = () => {
   const [starChartUrl, setStarChartUrl] = useState("");
 
   const generateLetter = async (formData: FormData) => {
-    // This is a mock implementation - in a real app, you would call an AI API here
     const letterTemplates: Record<string, string> = {
       classic: `Dear ${formData.ownerName || "my beloved human"},
 
@@ -128,26 +127,38 @@ Your faithful companion,
 ${formData.petName}`,
     };
 
-    // Select template based on tone, defaulting to classic if not found
     return letterTemplates[formData.tone] || letterTemplates.classic;
   };
 
   const fetchStarChart = async (formData: FormData) => {
-    // In a real implementation, this would call the astronomy API
-    // For now, returning a placeholder
     try {
-      // Mock implementation of astronomy API call
-      const date = formData.passingDate ? new Date(formData.passingDate).toISOString().split('T')[0] : '2023-08-12';
+      if (!formData.passingDate) {
+        return "";
+      }
+      
+      const date = formData.passingDate.toISOString().split('T')[0];
       const latitude = formData.location?.latitude || 37.7749;
       const longitude = formData.location?.longitude || -122.4194;
       
-      // In a real implementation, you would call the astronomy API here
-      // and get back an actual star chart image URL
-      // For now, just return a placeholder message
-      console.log(`Would fetch star chart for date: ${date}, lat: ${latitude}, long: ${longitude}`);
+      console.log(`Fetching star chart for date: ${date}, lat: ${latitude}, long: ${longitude}`);
       
-      // Mocked URL for demonstration
-      return "https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=1000";
+      const starChartUrl = await astronomyApiClient.getStarChart({
+        observer: {
+          latitude,
+          longitude,
+          date
+        },
+        style: {
+          backgroundStyle: "stars",
+          backgroundColor: "black",
+          starStyle: "default"
+        },
+        view: {
+          type: "constellation"
+        }
+      });
+      
+      return starChartUrl;
     } catch (error) {
       console.error("Error fetching star chart:", error);
       return "";
@@ -178,17 +189,13 @@ ${formData.petName}`,
     setIsSubmitting(true);
 
     try {
-      // Calculate time since passing
       const timeSincePassing = calculateTimeSincePassing(formData.passingDate);
       
-      // Generate star chart
       const chartUrl = await fetchStarChart(formData);
       setStarChartUrl(chartUrl);
       
-      // Generate a preview of the letter
       const letter = await generateLetter({
         ...formData,
-        // Add time since passing for letter generation
       });
       
       setGeneratedLetter(letter);
@@ -208,14 +215,12 @@ ${formData.petName}`,
   };
 
   const handleDownloadLetter = () => {
-    // In a real implementation, you would generate a PDF and trigger download
     toast.success("Letter downloaded", {
       description: "Your letter has been downloaded as a PDF.",
     });
   };
 
   const handleDownloadCertificate = () => {
-    // In a real implementation, you would generate a PDF and trigger download
     toast.success("Star Certificate downloaded", {
       description: "Your certificate has been downloaded as a PDF.",
     });

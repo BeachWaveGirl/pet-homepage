@@ -65,16 +65,22 @@ const StarCertificate = ({
                 <img 
                   src={starChartUrl} 
                   alt="Star Chart" 
-                  className="w-full h-auto max-h-[300px] object-cover opacity-80"
+                  className="w-full h-auto max-h-[300px] object-contain opacity-90"
                 />
                 <p className="text-xs text-white py-2">The night sky on {formattedDate}</p>
+              </div>
+            )}
+            
+            {!starChartUrl && (
+              <div className="mb-6 bg-black rounded-lg overflow-hidden h-[200px] flex items-center justify-center">
+                <p className="text-white">Star chart loading...</p>
               </div>
             )}
             
             <div className="border-t border-b border-gray-200 py-6 my-6">
               <h3 className="text-xl font-bold mb-2">This certifies that</h3>
               <p className="text-2xl font-playfair mb-4">{petName}</p>
-              <p className="mb-4">has been named as a star in the</p>
+              <p className="mb-4">has been honored with a star in the</p>
               <p className="text-xl font-playfair mb-4">{constellation} Constellation</p>
               <p className="text-sm text-gray-500">{starDesignation}</p>
               <p className="text-sm text-gray-500 mb-4">{coordinates}</p>
