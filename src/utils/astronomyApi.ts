@@ -35,11 +35,14 @@ class AstronomyAPI {
       // For now, we're using a mock implementation that returns a star field image
       // This would be replaced with an actual API call
       
+      // High-quality star chart images for better display
       const mockStarCharts = [
         "https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=1000",
         "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=1000",
         "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?q=80&w=1000",
-        "https://images.unsplash.com/photo-1543722530-d2c3201371e7?q=80&w=1000"
+        "https://images.unsplash.com/photo-1543722530-d2c3201371e7?q=80&w=1000",
+        "https://images.unsplash.com/photo-1475274047050-1d0c0975c63e?q=80&w=1000",
+        "https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?q=80&w=1000"
       ];
       
       // In a production app, we would make an actual API request:
@@ -50,9 +53,13 @@ class AstronomyAPI {
       //     'Content-Type': 'application/json'
       //   },
       //   body: JSON.stringify({
-      //     style: options.style?.backgroundStyle || "navy",
+      //     style: options.style || {
+      //       backgroundStyle: "dark",
+      //       backgroundColor: "#1a1f2c",
+      //       starStyle: "default"
+      //     },
       //     observer: options.observer,
-      //     view: options.view || { type: "constellation" }
+      //     view: options.view || { type: "area", parameters: { position: { constellation: "ori" } } }
       //   })
       // });
       // 
@@ -60,7 +67,10 @@ class AstronomyAPI {
       // return data.data.imageUrl;
       
       // For demo purposes, return a random star field image
-      return mockStarCharts[Math.floor(Math.random() * mockStarCharts.length)];
+      // To make the demo more realistic, use the same image for the same date
+      const dateHash = new Date(options.observer.date).getDate();
+      const imageIndex = dateHash % mockStarCharts.length;
+      return mockStarCharts[imageIndex];
     } catch (error) {
       console.error("Error fetching star chart:", error);
       return "";
@@ -90,6 +100,22 @@ class AstronomyAPI {
       
       callback(mockResult);
     }, 500);
+  }
+  
+  formatCoordinates(latitude: number, longitude: number): string {
+    // Format latitude
+    const latDegrees = Math.floor(Math.abs(latitude));
+    const latMinutes = Math.floor((Math.abs(latitude) - latDegrees) * 60);
+    const latSeconds = Math.floor(((Math.abs(latitude) - latDegrees) * 60 - latMinutes) * 60);
+    const latDirection = latitude >= 0 ? "N" : "S";
+    
+    // Format longitude
+    const longDegrees = Math.floor(Math.abs(longitude));
+    const longMinutes = Math.floor((Math.abs(longitude) - longDegrees) * 60);
+    const longSeconds = Math.floor(((Math.abs(longitude) - longDegrees) * 60 - longMinutes) * 60);
+    const longDirection = longitude >= 0 ? "E" : "W";
+    
+    return `${latDegrees}°${latMinutes}'${latSeconds}"${latDirection} | ${longDegrees}°${longMinutes}'${longSeconds}"${longDirection}`;
   }
 }
 

@@ -22,26 +22,60 @@ const StarCertificate = ({
   onClose,
   onDownload,
 }: StarCertificateProps) => {
-  // Generate a random star "designation"
-  const constellation = ["Canis Major", "Canis Minor", "Leo", "Orion", "Ursa Major", "Pegasus", "Lyra", "Hercules"][Math.floor(Math.random() * 8)];
-  const starDesignation = `PSR-${Math.floor(Math.random() * 999)}-${Math.floor(Math.random() * 99)}`;
-  const coordinates = `RA: ${Math.floor(Math.random() * 24)}h ${Math.floor(Math.random() * 60)}m, Dec: ${Math.floor(Math.random() * 90)}° ${Math.floor(Math.random() * 60)}'`;
-
+  // Generate location information
   const formattedDate = passingDate 
     ? passingDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
     : new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  
+  // Generate a city and state for display purposes
+  const cities = ["San Francisco", "New York", "Chicago", "Los Angeles", "Seattle"];
+  const states = ["California", "New York", "Illinois", "California", "Washington"];
+  const randomIndex = Math.floor(Math.random() * cities.length);
+  const city = cities[randomIndex];
+  const state = states[randomIndex];
+  
+  // Generate random coordinates for display purposes
+  const latitude = `${Math.floor(Math.random() * 90)}°${Math.floor(Math.random() * 60)}'${Math.floor(Math.random() * 60)}"N`;
+  const longitude = `${Math.floor(Math.random() * 180)}°${Math.floor(Math.random() * 60)}'${Math.floor(Math.random() * 60)}"W`;
 
   return (
     <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto animate-fade-in">
       <Card className="w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-white">
         <CardContent className="p-6 md:p-8">
           <div className="text-center">
-            <h2 className="font-playfair text-2xl md:text-3xl mb-2">A Star For {petName}</h2>
-            <p className="text-gray-600 mb-6">The night they became part of the sky</p>
+            {/* Star Chart Section */}
+            <div className="mb-8">
+              <div className="relative w-[240px] h-[240px] md:w-[320px] md:h-[320px] mx-auto mb-6 rounded-full overflow-hidden border-2 border-gray-800">
+                {starChartUrl ? (
+                  <img 
+                    src={starChartUrl} 
+                    alt="Night Sky Star Chart"
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center bg-gray-900">
+                    <p className="text-white">Loading star chart...</p>
+                  </div>
+                )}
+              </div>
+              
+              <h3 className="uppercase tracking-widest text-xl md:text-2xl font-bold mb-3">
+                THE NIGHT {petName} BECAME A STAR
+              </h3>
+              
+              <p className="text-sm mb-1">{formattedDate}</p>
+              <p className="text-sm mb-3">{city}, {state}</p>
+              
+              <p className="text-xs text-gray-500 mb-8">{latitude} | {longitude}</p>
+            </div>
             
-            <div className="flex justify-center mb-6">
+            {/* Certificate Content */}
+            <div className="border-t border-b border-gray-200 py-6 mb-6">
+              <h3 className="text-xl font-bold mb-2">This certifies that</h3>
+              <p className="text-2xl font-playfair mb-4">{petName}</p>
+              
               {photoUrl && (
-                <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-gray-200">
+                <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-gray-200 mx-auto mb-4">
                   <img
                     src={photoUrl}
                     alt={petName}
@@ -50,46 +84,17 @@ const StarCertificate = ({
                 </div>
               )}
               {!photoUrl && (
-                <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-gray-200 flex items-center justify-center bg-gray-100">
+                <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-gray-200 flex items-center justify-center bg-gray-100 mx-auto mb-4">
                   <img 
                     src="/placeholder.svg" 
                     alt="Pet silhouette" 
-                    className="w-24 h-24 opacity-50"
+                    className="w-16 h-16 opacity-50"
                   />
                 </div>
               )}
-            </div>
-            
-            {starChartUrl && (
-              <div className="mb-6 bg-black rounded-lg overflow-hidden">
-                <img 
-                  src={starChartUrl} 
-                  alt="Star Chart" 
-                  className="w-full h-auto max-h-[300px] object-contain opacity-90"
-                />
-                <p className="text-xs text-white py-2">The night sky on {formattedDate}</p>
-              </div>
-            )}
-            
-            {!starChartUrl && (
-              <div className="mb-6 bg-black rounded-lg overflow-hidden h-[200px] flex items-center justify-center">
-                <p className="text-white">Star chart loading...</p>
-              </div>
-            )}
-            
-            <div className="border-t border-b border-gray-200 py-6 my-6">
-              <h3 className="text-xl font-bold mb-2">This certifies that</h3>
-              <p className="text-2xl font-playfair mb-4">{petName}</p>
-              <p className="mb-4">has been honored with a star in the</p>
-              <p className="text-xl font-playfair mb-4">{constellation} Constellation</p>
-              <p className="text-sm text-gray-500">{starDesignation}</p>
-              <p className="text-sm text-gray-500 mb-4">{coordinates}</p>
-              <p className="italic">Forever shining bright in the night sky</p>
-            </div>
-            
-            <div className="text-sm text-gray-600 mb-8">
-              <p>Registered to: {ownerName || "Loving Owner"}</p>
-              <p>Date: {formattedDate}</p>
+              
+              <p className="mb-4">will forever shine bright in the night sky</p>
+              <p className="text-sm text-gray-500">Registered to: {ownerName || "Loving Owner"}</p>
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
