@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -9,7 +10,8 @@ import LetterPreviewTeaser from "./LetterPreviewTeaser";
 import FormFooter from "./FormFooter";
 import LetterDisplay from "../LetterDisplay";
 import StarCertificate from "../StarCertificate";
-import { useLetterGenerator, FormData } from "./useLetterGenerator";
+import { useLetterGenerator } from "./useLetterGenerator";
+import { FormData } from "./types";
 import { toast } from "sonner";
 
 const PetLetterFormContainer = () => {
