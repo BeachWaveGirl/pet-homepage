@@ -26,7 +26,12 @@ export const fetchStarChart = async (formData: FormData) => {
         starStyle: "default"
       },
       view: {
-        type: "constellation"
+        type: "constellation",
+        parameters: {
+          position: {
+            constellation: "ori" // Orion constellation as default view
+          }
+        }
       }
     });
     
