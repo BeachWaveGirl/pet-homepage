@@ -1,5 +1,6 @@
 
 import { Button } from "@/components/ui/button";
+import { calculateTimeSincePassing } from "./dateUtils";
 
 interface LetterPreviewTeaserProps {
   formData: {
@@ -7,11 +8,15 @@ interface LetterPreviewTeaserProps {
     petName: string;
     ownerName: string;
     sharedMemories: string;
+    passingDate?: Date;
   };
   onPreviewConfirm: () => void;
 }
 
 const LetterPreviewTeaser = ({ formData, onPreviewConfirm }: LetterPreviewTeaserProps) => {
+  // Get time since passing if available
+  const timeSincePassing = formData.passingDate ? calculateTimeSincePassing(formData.passingDate) : "";
+  
   return (
     <div className="mt-4 p-4 bg-offwhite rounded-md border border-gray-200">
       <div className="flex items-center gap-3 mb-3">
@@ -27,16 +32,16 @@ const LetterPreviewTeaser = ({ formData, onPreviewConfirm }: LetterPreviewTeaser
       </div>
       <div className="font-playfair italic text-gray-700 mb-3">
         <p>Dear {formData.ownerName || "my beloved human"},</p>
-        <p>It's me, {formData.petName}. I've been thinking about our time together...</p>
+        <p>It's me, {formData.petName}. I'm watching over you from the stars...</p>
         <div className="blur-sm my-2">
           <p>I miss our {formData.sharedMemories} so much. Remember how we used to...</p>
         </div>
       </div>
       <Button 
-        className="w-full mt-2 bg-black hover:bg-gray-800"
+        className="w-full mt-2 bg-indigo-700 hover:bg-indigo-800"
         onClick={onPreviewConfirm}
       >
-        Unlock Full Letter
+        See My Star Letter
       </Button>
     </div>
   );
