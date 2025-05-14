@@ -6,7 +6,8 @@ import { getLetterTemplate } from "./letterTemplates";
 import { calculateTimeSincePassing } from "./dateUtils";
 import { fetchStarChart } from "./starChartService";
 
-export { FormData } from "./types";
+// Change from "export { FormData }" to "export type { FormData }"
+export type { FormData } from "./types";
 
 export const useLetterGenerator = (): LetterGeneratorResult => {
   const [isSubmitting, setIsSubmitting] = useState(false);
