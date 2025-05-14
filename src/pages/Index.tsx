@@ -7,6 +7,8 @@ import HowItWorks from "@/components/HowItWorks";
 import Testimonials from "@/components/Testimonials";
 import Pricing from "@/components/Pricing";
 import LetterTonePreview from "@/components/LetterTonePreview";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 const Index = () => {
   return (
@@ -25,6 +27,15 @@ const Index = () => {
           
           {/* Letter Form moved to top */}
           <PetLetterForm />
+          
+          {/* Link to Star Map Demo */}
+          <div className="mt-8">
+            <Link to="/star-map">
+              <Button variant="outline" className="bg-transparent border-black text-black hover:bg-gray-100">
+                View Star Map Demo
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
       
