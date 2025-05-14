@@ -10,6 +10,7 @@ interface StarCertificateProps {
   photoUrl?: string;
   passingDate?: Date;
   starChartUrl: string;
+  letterText?: string;
   onClose: () => void;
   onDownload: () => void;
 }
@@ -20,6 +21,7 @@ const StarCertificate = ({
   photoUrl,
   passingDate,
   starChartUrl,
+  letterText,
   onClose,
   onDownload,
 }: StarCertificateProps) => {
@@ -35,12 +37,19 @@ const StarCertificate = ({
     });
   }
   
-  // Create a simple letter text
-  const letterText = [
+  // Create a simple letter text from the generated letter
+  const processedLetterText = letterText || [
     `Dear ${ownerName},`,
     `Thank you for all the love and joy we shared.`,
     `I'll always be watching over you from the stars.`
   ].join('\n');
+
+  // Extract 3 lines for the poster
+  const letterLines = processedLetterText
+    .split('\n')
+    .filter(line => line.trim() !== '')
+    .slice(0, 3)
+    .join('\n');
 
   return (
     <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto animate-fade-in">
@@ -53,7 +62,7 @@ const StarCertificate = ({
             title={`THE NIGHT ${petName.toUpperCase()} BECAME A STAR`}
             starMapUrl={starChartUrl}
             photoUrl={photoUrl}
-            letterText={letterText}
+            letterText={letterLines}
           />
           
           <div className="mt-6 flex flex-col sm:flex-row justify-center gap-3">

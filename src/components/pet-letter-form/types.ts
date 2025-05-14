@@ -16,15 +16,10 @@ export interface FormData {
 
 export interface LetterGeneratorResult {
   isSubmitting: boolean;
-  showPreview: boolean;
   generatedLetter: string;
-  showFullLetter: boolean;
   showStarCertificate: boolean;
   starChartUrl: string;
-  setShowPreview: (show: boolean) => void;
-  setShowFullLetter: (show: boolean) => void;
   setShowStarCertificate: (show: boolean) => void;
   handleLetterGeneration: (formData: FormData) => Promise<void>;
-  handleDownloadLetter: () => void;
   handleDownloadCertificate: () => void;
 }

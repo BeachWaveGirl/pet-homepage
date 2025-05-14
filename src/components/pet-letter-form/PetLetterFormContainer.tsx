@@ -6,9 +6,7 @@ import FormHeader from "./FormHeader";
 import PetPhotoUpload from "./PetPhotoUpload";
 import PetInformationFields from "./PetInformationFields";
 import PassingDatePicker from "./PassingDatePicker";
-import LetterPreviewTeaser from "./LetterPreviewTeaser";
 import FormFooter from "./FormFooter";
-import LetterDisplay from "../LetterDisplay";
 import StarCertificate from "../StarCertificate";
 import { useLetterGenerator } from "./useLetterGenerator";
 import { FormData } from "./types";
@@ -32,16 +30,11 @@ const PetLetterFormContainer = () => {
 
   const {
     isSubmitting,
-    showPreview,
-    generatedLetter,
-    showFullLetter,
-    showStarCertificate,
     starChartUrl,
-    setShowPreview,
-    setShowFullLetter,
+    generatedLetter,
+    showStarCertificate,
     setShowStarCertificate,
     handleLetterGeneration,
-    handleDownloadLetter,
     handleDownloadCertificate
   } = useLetterGenerator();
 
@@ -95,15 +88,9 @@ const PetLetterFormContainer = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Generate the letter and show star certificate directly
     await handleLetterGeneration(formData);
-  };
-
-  const handlePreviewConfirm = () => {
-    setShowPreview(false);
-    setShowFullLetter(true);
-  };
-
-  const handleViewStarCertificate = () => {
     setShowStarCertificate(true);
   };
 
@@ -132,20 +119,13 @@ const PetLetterFormContainer = () => {
                 onDateChange={handleDateChange}
               />
               
-              {showPreview && (
-                <LetterPreviewTeaser 
-                  formData={formData}
-                  onPreviewConfirm={handlePreviewConfirm} 
-                />
-              )}
-              
               <div className="pt-2">
                 <Button 
                   type="submit" 
                   className="w-full bg-black hover:bg-gray-800 text-white"
                   disabled={isSubmitting}
                 >
-                  {isSubmitting ? "Generating Your Letter..." : showPreview ? "Regenerate Letter" : "Generate Letter"}
+                  {isSubmitting ? "Generating Your Poster..." : "Generate Poster"}
                 </Button>
               </div>
             </form>
@@ -155,19 +135,6 @@ const PetLetterFormContainer = () => {
         </Card>
       </div>
       
-      {showFullLetter && (
-        <LetterDisplay 
-          letter={generatedLetter}
-          petName={formData.petName}
-          ownerName={formData.ownerName}
-          photoUrl={formData.photoUrl}
-          onClose={() => setShowFullLetter(false)}
-          onDownload={handleDownloadLetter}
-          showStarButton={true}
-          onStarClick={handleViewStarCertificate}
-        />
-      )}
-
       {showStarCertificate && (
         <StarCertificate 
           petName={formData.petName}
@@ -175,6 +142,7 @@ const PetLetterFormContainer = () => {
           photoUrl={formData.photoUrl}
           passingDate={formData.passingDate}
           starChartUrl={starChartUrl}
+          letterText={generatedLetter}
           onClose={() => setShowStarCertificate(false)}
           onDownload={handleDownloadCertificate}
         />

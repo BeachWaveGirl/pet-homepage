@@ -3,17 +3,13 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { FormData, LetterGeneratorResult } from "./types";
 import { getLetterTemplate } from "./letterTemplates";
-import { calculateTimeSincePassing } from "./dateUtils";
 import { fetchStarChart } from "./starChartService";
 
-// Change from "export { FormData }" to "export type { FormData }"
 export type { FormData } from "./types";
 
 export const useLetterGenerator = (): LetterGeneratorResult => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showPreview, setShowPreview] = useState(false);
   const [generatedLetter, setGeneratedLetter] = useState("");
-  const [showFullLetter, setShowFullLetter] = useState(false);
   const [showStarCertificate, setShowStarCertificate] = useState(false);
   const [starChartUrl, setStarChartUrl] = useState("");
 
@@ -25,33 +21,25 @@ export const useLetterGenerator = (): LetterGeneratorResult => {
     setIsSubmitting(true);
 
     try {
-      const timeSincePassing = calculateTimeSincePassing(formData.passingDate);
-      
+      // Fetch star chart
       const chartUrl = await fetchStarChart(formData);
       setStarChartUrl(chartUrl);
       
+      // Generate letter
       const letter = await generateLetter(formData);
-      
       setGeneratedLetter(letter);
-      setShowPreview(true);
       
-      toast.success("Letter generated successfully", {
-        description: "Your letter is ready to view with a Star Certificate!",
+      toast.success("Poster generated", {
+        description: "Your star certificate is ready to view!",
       });
     } catch (error) {
-      console.error("Error generating letter:", error);
-      toast.error("Failed to generate letter", {
+      console.error("Error generating poster:", error);
+      toast.error("Failed to generate poster", {
         description: "Please try again later.",
       });
     } finally {
       setIsSubmitting(false);
     }
-  };
-
-  const handleDownloadLetter = () => {
-    toast.success("Letter downloaded", {
-      description: "Your letter has been downloaded as a PDF.",
-    });
   };
 
   const handleDownloadCertificate = () => {
@@ -62,16 +50,11 @@ export const useLetterGenerator = (): LetterGeneratorResult => {
 
   return {
     isSubmitting,
-    showPreview,
     generatedLetter,
-    showFullLetter,
     showStarCertificate,
     starChartUrl,
-    setShowPreview,
-    setShowFullLetter,
     setShowStarCertificate,
     handleLetterGeneration,
-    handleDownloadLetter,
     handleDownloadCertificate
   };
 };
