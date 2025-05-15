@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { Candle } from "lucide-react";
+import { Bell } from "lucide-react"; // Changed from Candle to Bell
 import { toast } from "@/hooks/use-toast";
 
 const DigitalCandles = () => {
@@ -28,7 +28,7 @@ const DigitalCandles = () => {
       <main className="flex-1 py-8 px-4 md:py-12">
         <div className="container mx-auto max-w-4xl">
           <div className="flex items-center justify-center mb-2">
-            <Candle className="h-6 w-6 mr-2 text-amber-500" />
+            <Bell className="h-6 w-6 mr-2 text-amber-500" /> {/* Changed from Candle to Bell */}
             <h1 className="font-playfair text-3xl md:text-4xl font-bold text-center">
               Pet Remembrance Light
             </h1>
