@@ -119,19 +119,36 @@ const Index = () => {
         </div>
       </section>
       
-      {/* How Whisper Pet Letters Works */}
+      {/* How Petly Works */}
       <section className="w-full py-12 px-4">
         <div className="container mx-auto max-w-4xl">
-          <h2 className="text-3xl font-playfair font-bold mb-6 text-center">How Petly Works</h2>
+          <h2 className="text-3xl font-playfair font-bold mb-6 text-center">🐾 Welcome to Petly</h2>
           <div className="bg-gray-50 p-6 rounded-lg">
             <p className="mb-4">
-              Welcome to Petly — your digital pet memorial shop powered by AI. Here, you can create beautiful, personalized digital keepsakes to celebrate your beloved pet's life and memory.
+              Whether you're celebrating a new furry friend, cherishing everyday cuddles, or honoring a beloved memory — <strong>Petly</strong> is your AI-powered creative space for all things pet love.
             </p>
             <p className="mb-4">
-              Browse our trending digital categories, like custom pet portraits, heartfelt poems, memory stories, astrology art, and more. Click a category to start creating your unique tribute with the help of AI — no physical products, only beautiful digital art and memories.
+              Here, you can create beautiful, personalized <strong>digital keepsakes</strong> that capture your pet's spirit, quirks, and story — from day one to forever.
+            </p>
+            <p className="mb-4">
+              💌 Explore trending digital categories like:
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 my-3 ml-4">
+                <div>• Custom AI Pet Portraits</div>
+                <div>• Adorable Memory Stories</div>
+                <div>• Astrology-Inspired Pet Art</div>
+                <div>• Birthday Tributes</div>
+                <div>• Heartfelt Goodbye Letters</div>
+                <div>• ...and more</div>
+              </div>
+            </p>
+            <p className="mb-4">
+              Just pick a category, tell us a little about your pet, and let our AI create something magical — made just for you and your best friend.
+            </p>
+            <p className="mb-4">
+              ✨ No shipping. No clutter. Just meaningful, downloadable digital art you can save, share, and revisit anytime.
             </p>
             <p>
-              Simply choose your favorite category, enter a few details about your pet, and watch as AI generates heartfelt, personalized creations you can download, share, and cherish forever.
+              <strong>Petly</strong> is made for people who love their pets deeply — not just when they're gone, but in every silly, snuggly, unforgettable moment.
             </p>
           </div>
         </div>
