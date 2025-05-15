@@ -17,7 +17,7 @@ const Header = () => {
   return (
     <header className="w-full bg-white py-4 px-4 md:px-6 flex justify-center border-b">
       <div className="container flex justify-between items-center">
-        <Link to="/" className="text-xl font-playfair font-semibold">Letters From Beyond</Link>
+        <Link to="/" className="text-xl font-playfair font-semibold">Petly</Link>
         
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-6">
