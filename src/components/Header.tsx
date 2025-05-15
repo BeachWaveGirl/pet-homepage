@@ -4,6 +4,8 @@ import ProductNavigationMenu from "./NavigationMenu";
 import { Menu } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import LottieAnimation from "./LottieAnimation";
+import { pawPrintsAnimation } from "@/animations";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -17,7 +19,12 @@ const Header = () => {
   return (
     <header className="w-full bg-white py-4 px-4 md:px-6 flex justify-center border-b">
       <div className="container flex justify-between items-center">
-        <Link to="/" className="text-xl font-playfair font-semibold">Petly</Link>
+        <Link to="/" className="text-xl font-playfair font-semibold flex items-center">
+          <span>Petly</span>
+          <div className="w-12 h-8 ml-1">
+            <LottieAnimation animationData={pawPrintsAnimation} />
+          </div>
+        </Link>
         
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-6">

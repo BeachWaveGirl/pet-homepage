@@ -4,6 +4,8 @@ import Footer from "@/components/Footer";
 import CategoryCard from "@/components/CategoryCard";
 import PetLetterForm from "@/components/PetLetterForm";
 import { Button } from "@/components/ui/button";
+import LottieAnimation from "@/components/LottieAnimation";
+import { dogAnimation, catAnimation, pawPrintsAnimation, heartAnimation, starAnimation } from "@/animations";
 
 // Category data for the homepage
 const categories = [
@@ -104,8 +106,18 @@ const Index = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="w-full py-16 md:py-24 px-4 flex items-center justify-center bg-offwhite">
-        <div className="container max-w-4xl mx-auto text-center animate-fade-in-slow">
+      <section className="w-full py-16 md:py-24 px-4 flex items-center justify-center bg-offwhite relative overflow-hidden">
+        {/* Dog animation in top left corner */}
+        <div className="absolute top-0 left-0 w-36 h-36 opacity-70 pointer-events-none">
+          <LottieAnimation animationData={dogAnimation} />
+        </div>
+        
+        {/* Cat animation in top right corner */}
+        <div className="absolute top-0 right-0 w-36 h-36 opacity-70 pointer-events-none">
+          <LottieAnimation animationData={catAnimation} />
+        </div>
+        
+        <div className="container max-w-4xl mx-auto text-center animate-fade-in-slow relative z-10">
           <h1 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             Welcome to Petly
           </h1>
@@ -116,14 +128,23 @@ const Index = () => {
           <Button onClick={scrollToForm} className="bg-black text-white hover:bg-gray-800 transition-colors">
             Create a Memorial
           </Button>
+
+          {/* Paw prints animation beneath the button */}
+          <div className="w-full h-12 mt-8 opacity-50 pointer-events-none">
+            <LottieAnimation animationData={pawPrintsAnimation} />
+          </div>
         </div>
       </section>
       
       {/* How Petly Works */}
-      <section className="w-full py-12 px-4">
+      <section className="w-full py-12 px-4 relative">
         <div className="container mx-auto max-w-4xl">
           <h2 className="text-3xl font-playfair font-bold mb-6 text-center">🐾 Welcome to Petly</h2>
-          <div className="bg-gray-50 p-6 rounded-lg">
+          <div className="bg-gray-50 p-6 rounded-lg relative">
+            <div className="absolute top-0 right-0 w-20 h-20 opacity-70 transform -translate-y-1/2 translate-x-1/4 pointer-events-none">
+              <LottieAnimation animationData={heartAnimation} />
+            </div>
+
             <p className="mb-4">
               Whether you're celebrating a new furry friend, cherishing everyday cuddles, or honoring a beloved memory — <strong>Petly</strong> is your AI-powered creative space for all things pet love.
             </p>
@@ -155,9 +176,14 @@ const Index = () => {
       </section>
       
       {/* Categories Grid */}
-      <section className="w-full py-12 px-4 bg-white">
+      <section className="w-full py-12 px-4 bg-white relative">
         <div className="container mx-auto max-w-6xl">
-          <h2 className="text-3xl font-playfair font-bold mb-8 text-center">Trending Digital Pet Memorial Categories</h2>
+          <div className="flex items-center justify-center mb-8">
+            <h2 className="text-3xl font-playfair font-bold text-center">Trending Digital Pet Memorial Categories</h2>
+            <div className="w-16 h-16 ml-2">
+              <LottieAnimation animationData={starAnimation} />
+            </div>
+          </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {categories.map((category) => (
@@ -171,11 +197,20 @@ const Index = () => {
               />
             ))}
           </div>
+
+          {/* Paw prints animation at the bottom of the grid */}
+          <div className="w-full h-16 mt-8 opacity-50 pointer-events-none">
+            <LottieAnimation animationData={pawPrintsAnimation} />
+          </div>
         </div>
       </section>
       
       {/* Pet Letter Form */}
-      <section id="letter-form" className="w-full py-12 px-4 bg-offwhite">
+      <section id="letter-form" className="w-full py-12 px-4 bg-offwhite relative">
+        <div className="absolute bottom-0 right-0 w-36 h-36 opacity-70 pointer-events-none">
+          <LottieAnimation animationData={dogAnimation} />
+        </div>
+
         <div className="container mx-auto max-w-4xl">
           <h2 className="text-3xl font-playfair font-bold mb-8 text-center">Create a Letter From Your Pet's Heart</h2>
           <PetLetterForm />
