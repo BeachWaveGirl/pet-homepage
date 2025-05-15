@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { FileUpload } from "lucide-react";
+import { Upload } from "lucide-react";
 
 const PetPortrait = () => {
   const [petPhoto, setPetPhoto] = useState("");
@@ -69,7 +69,7 @@ const PetPortrait = () => {
                         </div>
                       ) : (
                         <div>
-                          <FileUpload className="mx-auto h-12 w-12 text-gray-400" />
+                          <Upload className="mx-auto h-12 w-12 text-gray-400" />
                           <p className="mt-2 text-sm text-gray-500">
                             Click to upload or drag and drop
                           </p>
