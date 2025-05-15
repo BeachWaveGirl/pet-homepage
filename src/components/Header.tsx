@@ -49,12 +49,18 @@ const Header = () => {
         <div className="fixed top-[60px] left-0 right-0 bg-white p-4 shadow-md z-50 md:hidden">
           <nav className="flex flex-col space-y-3">
             <Link to="/" className="py-2" onClick={() => setMobileMenuOpen(false)}>Home</Link>
+            <Link to="/star-map" className="py-2" onClick={() => setMobileMenuOpen(false)}>Star Map Letter</Link>
             <Link to="/pet-poems" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pet Poems</Link>
             <Link to="/pet-portrait" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pet Portrait</Link>
             <Link to="/memory-stories" className="py-2" onClick={() => setMobileMenuOpen(false)}>Memory Stories</Link>
+            <Link to="/digital-scrapbooks" className="py-2" onClick={() => setMobileMenuOpen(false)}>Digital Scrapbooks</Link>
+            <Link to="/pet-digital-art" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pet Digital Art</Link>
+            <Link to="/pet-zodiac" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pet Zodiac Portraits</Link>
             <Link to="/digital-candles" className="py-2" onClick={() => setMobileMenuOpen(false)}>Digital Candles</Link>
             <Link to="/grief-journal" className="py-2" onClick={() => setMobileMenuOpen(false)}>Grief Journal</Link>
-            <Link to="/how-it-works" className="py-2" onClick={() => setMobileMenuOpen(false)}>How It Works</Link>
+            <Link to="/pet-collage" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pet Collage Art</Link>
+            <Link to="/pet-typography" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pet Typography</Link>
+            <Link to="/quote-posters" className="py-2" onClick={() => setMobileMenuOpen(false)}>Quote Posters</Link>
             <Link to="/pricing" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pricing</Link>
             
             <Button 

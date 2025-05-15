@@ -16,10 +16,10 @@ const ProductNavigationMenu = () => {
     <NavigationMenu className="hidden md:flex">
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Memorial Products</NavigationMenuTrigger>
+          <NavigationMenuTrigger>Categories</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <div className="grid grid-cols-2 gap-3 p-4 md:w-[500px] lg:w-[600px]">
-              {memorialItems.map((item) => (
+            <div className="grid grid-cols-3 gap-3 p-4 md:w-[600px] lg:w-[800px]">
+              {categoryItems.map((item) => (
                 <Link
                   key={item.title}
                   to={item.href}
@@ -36,18 +36,6 @@ const ProductNavigationMenu = () => {
             </div>
           </NavigationMenuContent>
         </NavigationMenuItem>
-        
-        <NavigationMenuItem>
-          <Link to="/" className="block py-2 px-3">
-            Home
-          </Link>
-        </NavigationMenuItem>
-
-        <NavigationMenuItem>
-          <Link to="/how-it-works" className="block py-2 px-3">
-            How It Works
-          </Link>
-        </NavigationMenuItem>
 
         <NavigationMenuItem>
           <Link to="/pricing" className="block py-2 px-3">
@@ -59,12 +47,12 @@ const ProductNavigationMenu = () => {
   );
 };
 
-const memorialItems = [
+const categoryItems = [
   {
     title: "Star Map Letter",
-    href: "/",
+    href: "/star-map",
     description:
-      "A personalized letter from your pet with a star map showing the night sky when they became a star.",
+      "A personalized letter with a star map showing the night sky when your pet became a star.",
   },
   {
     title: "Pet Poems",
@@ -85,6 +73,24 @@ const memorialItems = [
       "Heartwarming stories from your pet's perspective, highlighting their favorite memories with you.",
   },
   {
+    title: "Digital Scrapbooks",
+    href: "/digital-scrapbooks",
+    description:
+      "Digital memory books featuring collages of photos and loving captions celebrating your pet's life.",
+  },
+  {
+    title: "Pet Digital Art",
+    href: "/pet-digital-art",
+    description:
+      "Vibrant digital art prints and illustrations capturing your pet's unique personality and spirit.",
+  },
+  {
+    title: "Pet Zodiac Portraits",
+    href: "/pet-zodiac",
+    description:
+      "Mystical astrological portraits incorporating your pet's zodiac sign, constellations, and cosmic elements.",
+  },
+  {
     title: "Digital Candles",
     href: "/digital-candles",
     description:
@@ -95,6 +101,24 @@ const memorialItems = [
     href: "/grief-journal",
     description:
       "Daily affirmations and journal prompts to help navigate the journey of pet loss.",
+  },
+  {
+    title: "Pet Collage Art",
+    href: "/pet-collage",
+    description:
+      "Digital mosaic artwork made from pet-related images forming a beautiful silhouette of your pet.",
+  },
+  {
+    title: "Pet Typography",
+    href: "/pet-typography",
+    description:
+      "Elegant calligraphy featuring your pet's name with decorative elements perfect for framing.",
+  },
+  {
+    title: "Quote Posters",
+    href: "/quote-posters",
+    description:
+      "Motivational and comforting pet quotes paired with simple illustrations for healing and remembrance.",
   },
 ];
 
