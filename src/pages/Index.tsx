@@ -4,8 +4,6 @@ import Footer from "@/components/Footer";
 import CategoryCard from "@/components/CategoryCard";
 import PetLetterForm from "@/components/PetLetterForm";
 import { Button } from "@/components/ui/button";
-import LottieAnimation from "@/components/LottieAnimation";
-import { dogAnimation, catAnimation, pawPrintsAnimation, heartAnimation, starAnimation } from "@/animations";
 
 // Category data for the homepage
 const categories = [
@@ -59,11 +57,11 @@ const categories = [
     link: "/pet-zodiac"
   },
   {
-    id: "digital-candles",
-    title: "Digital Candles",
-    description: "Virtual memorial candles that you can light digitally to remember your pet.",
+    id: "rainbow-bridge",
+    title: "Rainbow Bridge Poem",
+    description: "Beautiful customized Rainbow Bridge poems to honor your beloved pet's memory.",
     imageUrl: "https://images.unsplash.com/photo-1603315688742-9e2a66e2153c?w=600&h=400&fit=crop",
-    link: "/digital-candles"
+    link: "/rainbow-bridge"
   },
   {
     id: "grief-journal",
@@ -73,11 +71,11 @@ const categories = [
     link: "/grief-journal"
   },
   {
-    id: "pet-collage",
-    title: "Pet Collage Art",
-    description: "Digital mosaic artwork made from pet-related images forming a beautiful silhouette of your pet.",
+    id: "pet-bathroom",
+    title: "Pet Bathroom",
+    description: "Hilarious customized bathroom signs featuring your pet wrapped in a towel with clever bathroom humor.",
     imageUrl: "https://images.unsplash.com/photo-1598397421962-e65b21ee671d?w=600&h=400&fit=crop",
-    link: "/pet-collage"
+    link: "/pet-bathroom"
   },
   {
     id: "pet-typography",
@@ -92,6 +90,20 @@ const categories = [
     description: "Motivational and comforting pet quotes paired with simple illustrations for healing and remembrance.",
     imageUrl: "https://images.unsplash.com/photo-1501820488136-72669149e0d4?w=600&h=400&fit=crop",
     link: "/quote-posters"
+  },
+  {
+    id: "pet-party",
+    title: "Pet Party",
+    description: "Cute and fun digital pet party invitations for birthdays, adoptaversaries, and special celebrations.",
+    imageUrl: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&h=400&fit=crop",
+    link: "/pet-party"
+  },
+  {
+    id: "pet-funeral",
+    title: "Pet Funeral Mobile",
+    description: "Mobile-friendly memorial invitations to celebrate your pet's life with friends and family.",
+    imageUrl: "https://images.unsplash.com/photo-1516832877833-1bcb07a0e2a7?w=600&h=400&fit=crop",
+    link: "/pet-funeral"
   }
 ];
 
@@ -107,63 +119,26 @@ const Index = () => {
       
       {/* Hero Section */}
       <section className="w-full py-16 md:py-24 px-4 flex items-center justify-center bg-offwhite relative overflow-hidden">
-        {/* Dog animation in top left corner */}
-        <div className="absolute top-0 left-0 w-36 h-36 opacity-70 pointer-events-none">
-          <LottieAnimation animationData={dogAnimation} />
-        </div>
-        
-        {/* Cat animation in top right corner */}
-        <div className="absolute top-0 right-0 w-36 h-36 opacity-70 pointer-events-none">
-          <LottieAnimation animationData={catAnimation} />
-        </div>
-        
         <div className="container max-w-4xl mx-auto text-center animate-fade-in-slow relative z-10">
           <h1 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             Welcome to Petly
           </h1>
           <p className="text-xl md:text-2xl text-gray-700 mb-10 max-w-2xl mx-auto">
-            Your AI-powered digital pet memorial shop. Create beautiful, personalized digital keepsakes to celebrate your beloved pet's life.
+            Whether you're celebrating a new furry friend, cherishing everyday cuddles, or honoring a beloved memory — Petly is your AI-powered creative space for all things pet love.
           </p>
           
           <Button onClick={scrollToForm} className="bg-black text-white hover:bg-gray-800 transition-colors">
             Create a Memorial
           </Button>
-
-          {/* Paw prints animation beneath the button */}
-          <div className="w-full h-12 mt-8 opacity-50 pointer-events-none">
-            <LottieAnimation animationData={pawPrintsAnimation} />
-          </div>
         </div>
       </section>
       
       {/* How Petly Works */}
       <section className="w-full py-12 px-4 relative">
         <div className="container mx-auto max-w-4xl">
-          <h2 className="text-3xl font-playfair font-bold mb-6 text-center">🐾 Welcome to Petly</h2>
-          <div className="bg-gray-50 p-6 rounded-lg relative">
-            <div className="absolute top-0 right-0 w-20 h-20 opacity-70 transform -translate-y-1/2 translate-x-1/4 pointer-events-none">
-              <LottieAnimation animationData={heartAnimation} />
-            </div>
-
-            <p className="mb-4">
-              Whether you're celebrating a new furry friend, cherishing everyday cuddles, or honoring a beloved memory — <strong>Petly</strong> is your AI-powered creative space for all things pet love.
-            </p>
+          <div className="bg-gray-50 p-6 rounded-lg">
             <p className="mb-4">
               Here, you can create beautiful, personalized <strong>digital keepsakes</strong> that capture your pet's spirit, quirks, and story — from day one to forever.
-            </p>
-            <p className="mb-4">
-              💌 Explore trending digital categories like:
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 my-3 ml-4">
-                <div>• Custom AI Pet Portraits</div>
-                <div>• Adorable Memory Stories</div>
-                <div>• Astrology-Inspired Pet Art</div>
-                <div>• Birthday Tributes</div>
-                <div>• Heartfelt Goodbye Letters</div>
-                <div>• ...and more</div>
-              </div>
-            </p>
-            <p className="mb-4">
-              Just pick a category, tell us a little about your pet, and let our AI create something magical — made just for you and your best friend.
             </p>
             <p className="mb-4">
               ✨ No shipping. No clutter. Just meaningful, downloadable digital art you can save, share, and revisit anytime.
@@ -175,15 +150,30 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Categories Grid */}
-      <section className="w-full py-12 px-4 bg-white relative">
+      {/* Featured Categories Grid - Top Row */}
+      <section className="w-full py-8 px-4 bg-white">
         <div className="container mx-auto max-w-6xl">
-          <div className="flex items-center justify-center mb-8">
-            <h2 className="text-3xl font-playfair font-bold text-center">Trending Digital Pet Memorial Categories</h2>
-            <div className="w-16 h-16 ml-2">
-              <LottieAnimation animationData={starAnimation} />
-            </div>
+          <h2 className="text-3xl font-playfair font-bold text-center mb-8">Fun Pet Categories</h2>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {categories.slice(0, 4).map((category) => (
+              <CategoryCard
+                key={category.id}
+                id={category.id}
+                title={category.title}
+                description={category.description}
+                imageUrl={category.imageUrl}
+                link={category.link}
+              />
+            ))}
           </div>
+        </div>
+      </section>
+      
+      {/* Categories Grid - Rest */}
+      <section className="w-full py-12 px-4 bg-white">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-3xl font-playfair font-bold text-center mb-8">All Digital Pet Categories</h2>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {categories.map((category) => (
@@ -197,23 +187,6 @@ const Index = () => {
               />
             ))}
           </div>
-
-          {/* Paw prints animation at the bottom of the grid */}
-          <div className="w-full h-16 mt-8 opacity-50 pointer-events-none">
-            <LottieAnimation animationData={pawPrintsAnimation} />
-          </div>
-        </div>
-      </section>
-      
-      {/* Pet Letter Form */}
-      <section id="letter-form" className="w-full py-12 px-4 bg-offwhite relative">
-        <div className="absolute bottom-0 right-0 w-36 h-36 opacity-70 pointer-events-none">
-          <LottieAnimation animationData={dogAnimation} />
-        </div>
-
-        <div className="container mx-auto max-w-4xl">
-          <h2 className="text-3xl font-playfair font-bold mb-8 text-center">Create a Letter From Your Pet's Heart</h2>
-          <PetLetterForm />
         </div>
       </section>
       

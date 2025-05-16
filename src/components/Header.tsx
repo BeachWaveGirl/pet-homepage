@@ -4,8 +4,6 @@ import ProductNavigationMenu from "./NavigationMenu";
 import { Menu } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import LottieAnimation from "./LottieAnimation";
-import { pawPrintsAnimation } from "@/animations";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -21,9 +19,6 @@ const Header = () => {
       <div className="container flex justify-between items-center">
         <Link to="/" className="text-xl font-playfair font-semibold flex items-center">
           <span>Petly</span>
-          <div className="w-12 h-8 ml-1">
-            <LottieAnimation animationData={pawPrintsAnimation} />
-          </div>
         </Link>
         
         {/* Desktop Navigation */}
@@ -63,12 +58,13 @@ const Header = () => {
             <Link to="/digital-scrapbooks" className="py-2" onClick={() => setMobileMenuOpen(false)}>Digital Scrapbooks</Link>
             <Link to="/pet-digital-art" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pet Digital Art</Link>
             <Link to="/pet-zodiac" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pet Zodiac Portraits</Link>
-            <Link to="/digital-candles" className="py-2" onClick={() => setMobileMenuOpen(false)}>Digital Candles</Link>
+            <Link to="/rainbow-bridge" className="py-2" onClick={() => setMobileMenuOpen(false)}>Rainbow Bridge Poem</Link>
             <Link to="/grief-journal" className="py-2" onClick={() => setMobileMenuOpen(false)}>Grief Journal</Link>
-            <Link to="/pet-collage" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pet Collage Art</Link>
+            <Link to="/pet-bathroom" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pet Bathroom</Link>
             <Link to="/pet-typography" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pet Typography</Link>
             <Link to="/quote-posters" className="py-2" onClick={() => setMobileMenuOpen(false)}>Quote Posters</Link>
-            <Link to="/pricing" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pricing</Link>
+            <Link to="/pet-party" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pet Party</Link>
+            <Link to="/pet-funeral" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pet Funeral Mobile</Link>
             
             <Button 
               onClick={scrollToForm}
