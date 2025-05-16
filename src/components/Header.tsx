@@ -51,9 +51,11 @@ const Header = () => {
         <div className="fixed top-[60px] left-0 right-0 bg-white p-4 shadow-md z-50 md:hidden">
           <nav className="flex flex-col space-y-3">
             <Link to="/" className="py-2" onClick={() => setMobileMenuOpen(false)}>Home</Link>
+            <Link to="/pet-portrait" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pet Portrait</Link>
+            <Link to="/pet-badly-drawn" className="py-2" onClick={() => setMobileMenuOpen(false)}>Badly Drawn Pet Portrait</Link>
+            <Link to="/pet-health-record" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pet Health Record</Link>
             <Link to="/star-map" className="py-2" onClick={() => setMobileMenuOpen(false)}>Star Map Letter</Link>
             <Link to="/pet-poems" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pet Poems</Link>
-            <Link to="/pet-portrait" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pet Portrait</Link>
             <Link to="/memory-stories" className="py-2" onClick={() => setMobileMenuOpen(false)}>Memory Stories</Link>
             <Link to="/digital-scrapbooks" className="py-2" onClick={() => setMobileMenuOpen(false)}>Digital Scrapbooks</Link>
             <Link to="/pet-digital-art" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pet Digital Art</Link>
@@ -63,7 +65,7 @@ const Header = () => {
             <Link to="/pet-bathroom" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pet Bathroom</Link>
             <Link to="/pet-typography" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pet Typography</Link>
             <Link to="/quote-posters" className="py-2" onClick={() => setMobileMenuOpen(false)}>Quote Posters</Link>
-            <Link to="/pet-party" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pet Party</Link>
+            <Link to="/pet-party" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pet Party Invitation</Link>
             <Link to="/pet-funeral" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pet Funeral Mobile</Link>
             
             <Button 

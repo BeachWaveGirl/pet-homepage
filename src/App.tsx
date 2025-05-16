@@ -20,6 +20,8 @@ import PetTypography from "./pages/PetTypography";
 import QuotePosters from "./pages/QuotePosters";
 import PetParty from "./pages/PetParty";
 import PetFuneral from "./pages/PetFuneral";
+import PetHealthRecord from "./pages/PetHealthRecord";
+import PetBadlyDrawn from "./pages/PetBadlyDrawn";
 
 const queryClient = new QueryClient();
 
@@ -45,6 +47,8 @@ const App = () => (
           <Route path="/quote-posters" element={<QuotePosters />} />
           <Route path="/pet-party" element={<PetParty />} />
           <Route path="/pet-funeral" element={<PetFuneral />} />
+          <Route path="/pet-health-record" element={<PetHealthRecord />} />
+          <Route path="/pet-badly-drawn" element={<PetBadlyDrawn />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

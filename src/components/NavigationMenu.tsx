@@ -49,6 +49,24 @@ const ProductNavigationMenu = () => {
 
 const categoryItems = [
   {
+    title: "Pet Portrait",
+    href: "/pet-portrait",
+    description:
+      "Beautiful digital watercolor or artistic portraits of your pet to cherish and remember them.",
+  },
+  {
+    title: "Badly Drawn Pet Portrait",
+    href: "/pet-badly-drawn",
+    description:
+      "Cute doodle style one-line drawings of your pet with a whimsical, playful touch.",
+  },
+  {
+    title: "Pet Health Record",
+    href: "/pet-health-record",
+    description:
+      "Organized digital health records for your pet's medical history, vaccinations and appointments.",
+  },
+  {
     title: "Star Map Letter",
     href: "/star-map",
     description:
@@ -59,12 +77,6 @@ const categoryItems = [
     href: "/pet-poems",
     description:
       "Beautiful, custom poems that capture the unique bond you shared with your beloved pet.",
-  },
-  {
-    title: "Custom Pet Portrait",
-    href: "/pet-portrait",
-    description: 
-      "Beautiful digital watercolor or artistic portraits of your pet to cherish and remember them.",
   },
   {
     title: "Memory Stories",
@@ -91,10 +103,10 @@ const categoryItems = [
       "Mystical astrological portraits incorporating your pet's zodiac sign, constellations, and cosmic elements.",
   },
   {
-    title: "Digital Candles",
-    href: "/digital-candles",
+    title: "Rainbow Bridge Poem",
+    href: "/rainbow-bridge",
     description:
-      "Virtual memorial candles that you can light digitally to remember your pet.",
+      "Beautiful customized Rainbow Bridge poems to honor your beloved pet's memory.",
   },
   {
     title: "Grief Journal",
@@ -103,10 +115,10 @@ const categoryItems = [
       "Daily affirmations and journal prompts to help navigate the journey of pet loss.",
   },
   {
-    title: "Pet Collage Art",
-    href: "/pet-collage",
+    title: "Pet Bathroom",
+    href: "/pet-bathroom",
     description:
-      "Digital mosaic artwork made from pet-related images forming a beautiful silhouette of your pet.",
+      "Hilarious customized bathroom signs featuring your pet wrapped in a towel with clever bathroom humor.",
   },
   {
     title: "Pet Typography",
@@ -119,6 +131,18 @@ const categoryItems = [
     href: "/quote-posters",
     description:
       "Motivational and comforting pet quotes paired with simple illustrations for healing and remembrance.",
+  },
+  {
+    title: "Pet Party Invitation",
+    href: "/pet-party",
+    description:
+      "Cute and fun digital pet party invitations for birthdays, adoptaversaries, and special celebrations.",
+  },
+  {
+    title: "Pet Funeral Mobile",
+    href: "/pet-funeral",
+    description:
+      "Mobile-friendly memorial invitations to celebrate your pet's life with friends and family.",
   },
 ];
 

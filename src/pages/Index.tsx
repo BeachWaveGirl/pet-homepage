@@ -4,9 +4,32 @@ import Footer from "@/components/Footer";
 import CategoryCard from "@/components/CategoryCard";
 import PetLetterForm from "@/components/PetLetterForm";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 // Category data for the homepage
 const categories = [
+  {
+    id: "pet-portrait",
+    title: "Custom Pet Portrait",
+    description: "Beautiful digital watercolor or artistic portraits of your pet to cherish and remember them.",
+    imageUrl: "https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=600&h=400&fit=crop",
+    link: "/pet-portrait"
+  },
+  {
+    id: "pet-badly-drawn",
+    title: "Badly Drawn Pet Portrait",
+    description: "Cute doodle style one-line drawings of your pet with a whimsical, playful touch.",
+    imageUrl: "https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=600&h=400&fit=crop",
+    link: "/pet-badly-drawn"
+  },
+  {
+    id: "pet-health-record",
+    title: "Pet Health Record",
+    description: "Organized digital health records for your pet's medical history, vaccinations and appointments.",
+    imageUrl: "https://images.unsplash.com/photo-1542736667-069246bdbc6d?w=600&h=400&fit=crop",
+    link: "/pet-health-record"
+  },
   {
     id: "star-map",
     title: "Star Map Letter",
@@ -20,13 +43,6 @@ const categories = [
     description: "Beautiful, custom poems that capture the unique bond you shared with your beloved pet.",
     imageUrl: "https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=600&h=400&fit=crop",
     link: "/pet-poems"
-  },
-  {
-    id: "pet-portrait",
-    title: "Custom Pet Portrait",
-    description: "Beautiful digital watercolor or artistic portraits of your pet to cherish and remember them.",
-    imageUrl: "https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=600&h=400&fit=crop",
-    link: "/pet-portrait"
   },
   {
     id: "memory-stories",
@@ -93,7 +109,7 @@ const categories = [
   },
   {
     id: "pet-party",
-    title: "Pet Party",
+    title: "Pet Party Invitation",
     description: "Cute and fun digital pet party invitations for birthdays, adoptaversaries, and special celebrations.",
     imageUrl: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&h=400&fit=crop",
     link: "/pet-party"
@@ -113,6 +129,14 @@ const Index = () => {
     formElement?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  // Curated featured categories for the top section
+  const featuredCategories = [
+    categories.find(cat => cat.id === "pet-portrait"),
+    categories.find(cat => cat.id === "pet-badly-drawn"),
+    categories.find(cat => cat.id === "pet-health-record"),
+    categories.find(cat => cat.id === "pet-party")
+  ].filter(Boolean);
+
   return (
     <div className="min-h-screen flex flex-col bg-white font-inter">
       <Header />
@@ -130,6 +154,54 @@ const Index = () => {
           <Button onClick={scrollToForm} className="bg-black text-white hover:bg-gray-800 transition-colors">
             Create a Memorial
           </Button>
+        </div>
+      </section>
+      
+      {/* Sample Designs Section */}
+      <section className="w-full py-12 px-4 bg-gray-50">
+        <div className="container mx-auto max-w-4xl">
+          <h2 className="text-3xl font-playfair font-bold text-center mb-8">Our Pet Creations</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Card className="overflow-hidden">
+              <AspectRatio ratio={1/1}>
+                <img 
+                  src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=300" 
+                  alt="Pet Portrait Example" 
+                  className="object-cover w-full h-full"
+                />
+              </AspectRatio>
+              <CardContent className="p-3">
+                <p className="text-sm text-center">Custom Pet Portrait</p>
+              </CardContent>
+            </Card>
+            
+            <Card className="overflow-hidden">
+              <AspectRatio ratio={1/1}>
+                <img 
+                  src="https://images.unsplash.com/photo-1517849845537-4d257902454a?w=300" 
+                  alt="Pet Doodle Example" 
+                  className="object-cover w-full h-full"
+                />
+              </AspectRatio>
+              <CardContent className="p-3">
+                <p className="text-sm text-center">Badly Drawn Pet Portrait</p>
+              </CardContent>
+            </Card>
+            
+            <Card className="overflow-hidden">
+              <AspectRatio ratio={1/1}>
+                <img 
+                  src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=300" 
+                  alt="Pet Digital Art Example" 
+                  className="object-cover w-full h-full"
+                />
+              </AspectRatio>
+              <CardContent className="p-3">
+                <p className="text-sm text-center">Pet Digital Art</p>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </section>
       
@@ -153,11 +225,11 @@ const Index = () => {
       {/* Featured Categories Grid - Top Row */}
       <section className="w-full py-8 px-4 bg-white">
         <div className="container mx-auto max-w-6xl">
-          <h2 className="text-3xl font-playfair font-bold text-center mb-8">Fun Pet Categories</h2>
+          <h2 className="text-3xl font-playfair font-bold text-center mb-8">Popular Pet Categories</h2>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {categories.slice(0, 4).map((category) => (
-              <CategoryCard
+            {featuredCategories.map((category) => (
+              category && <CategoryCard
                 key={category.id}
                 id={category.id}
                 title={category.title}
