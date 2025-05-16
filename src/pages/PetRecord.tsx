@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { FileText, FileSearch, FileMedical } from "lucide-react";
+import { FileText, FileSearch, FileHeart } from "lucide-react";
 
 const PetRecord = () => {
   return (
@@ -32,7 +32,7 @@ const PetRecord = () => {
                       <span>Pet Info</span>
                     </TabsTrigger>
                     <TabsTrigger value="vaccination" className="flex items-center gap-2">
-                      <FileMedical className="h-4 w-4" />
+                      <FileHeart className="h-4 w-4" />
                       <span>Vaccinations</span>
                     </TabsTrigger>
                     <TabsTrigger value="health" className="flex items-center gap-2">
