@@ -4,6 +4,8 @@ import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { FileText, FileSearch, FileHeart } from "lucide-react";
 
 const PetRecord = () => {
@@ -41,52 +43,142 @@ const PetRecord = () => {
                     </TabsTrigger>
                   </TabsList>
                   
-                  <TabsContent value="info" className="space-y-4">
-                    <h2 className="text-2xl font-semibold mb-4">Pet Information</h2>
-                    <p className="text-gray-600">
-                      Track your pet's basic details including name, breed, birthdate, 
-                      microchip information, and emergency contacts.
-                    </p>
-                    <div className="my-6">
-                      <img 
-                        src="https://images.unsplash.com/photo-1542736667-069246bdbc6d?w=600" 
-                        alt="Pet Information Example" 
-                        className="mx-auto rounded-lg shadow-md"
-                      />
+                  <TabsContent value="info" className="space-y-6">
+                    <h2 className="text-2xl font-semibold mb-6 text-center">Pet Information</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-4">
+                        <div className="space-y-2">
+                          <label htmlFor="name" className="text-sm font-medium">NAME</label>
+                          <Input id="name" placeholder="" />
+                        </div>
+                        <div className="space-y-2">
+                          <label htmlFor="gender" className="text-sm font-medium">GENDER</label>
+                          <Input id="gender" placeholder="" />
+                        </div>
+                        <div className="space-y-2">
+                          <label htmlFor="breed" className="text-sm font-medium">BREED</label>
+                          <Input id="breed" placeholder="" />
+                        </div>
+                        <div className="space-y-2">
+                          <label htmlFor="medical" className="text-sm font-medium">MEDICAL CONDITIONS</label>
+                          <Input id="medical" placeholder="" />
+                        </div>
+                      </div>
+                      <div className="space-y-4">
+                        <div className="space-y-2">
+                          <label htmlFor="microchip" className="text-sm font-medium">MICROCHIP #</label>
+                          <Input id="microchip" placeholder="" />
+                        </div>
+                        <div className="space-y-2">
+                          <label htmlFor="birthday" className="text-sm font-medium">BIRTHDAY</label>
+                          <Input id="birthday" placeholder="" type="date" />
+                        </div>
+                        <div className="space-y-2">
+                          <label htmlFor="spay" className="text-sm font-medium">SPAY / NEUTER</label>
+                          <Input id="spay" placeholder="" />
+                        </div>
+                      </div>
                     </div>
-                    <Button className="w-full mt-4">Create Pet Information Record</Button>
+                    <div className="pt-4">
+                      <Button className="w-full">Save Pet Information</Button>
+                    </div>
                   </TabsContent>
                   
-                  <TabsContent value="vaccination" className="space-y-4">
-                    <h2 className="text-2xl font-semibold mb-4">Vaccination Record</h2>
-                    <p className="text-gray-600">
-                      Keep track of all your pet's vaccinations, including dates administered, 
-                      due dates for boosters, and the veterinarian information.
-                    </p>
-                    <div className="my-6">
-                      <img 
-                        src="https://images.unsplash.com/photo-1612531822296-6365264dca46?w=600" 
-                        alt="Pet Vaccination Example" 
-                        className="mx-auto rounded-lg shadow-md"
-                      />
+                  <TabsContent value="vaccination" className="space-y-6">
+                    <h2 className="text-2xl font-semibold mb-6 text-center">Vaccination Record</h2>
+                    
+                    <div className="space-y-8">
+                      <div className="space-y-4">
+                        <h3 className="text-xl font-medium text-center">VACCINATIONS</h3>
+                        <div className="border rounded-md overflow-hidden">
+                          <table className="w-full text-sm">
+                            <thead>
+                              <tr className="bg-gray-50 border-b">
+                                <th className="py-3 px-4 text-left font-medium w-1/3">DATE</th>
+                                <th className="py-3 px-4 text-left font-medium w-1/3">VACCINE</th>
+                                <th className="py-3 px-4 text-left font-medium w-1/3">NEXT</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {[...Array(8)].map((_, i) => (
+                                <tr key={i} className="border-b last:border-b-0">
+                                  <td className="py-3 px-4"><Input className="h-8" /></td>
+                                  <td className="py-3 px-4"><Input className="h-8" /></td>
+                                  <td className="py-3 px-4"><Input className="h-8" /></td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+
+                      <div className="space-y-4">
+                        <h3 className="text-xl font-medium text-center">FLEA & TICK PREVENTION</h3>
+                        <div className="border rounded-md overflow-hidden">
+                          <table className="w-full text-sm">
+                            <thead>
+                              <tr className="bg-gray-50 border-b">
+                                <th className="py-3 px-4 text-left font-medium w-1/3">DATE</th>
+                                <th className="py-3 px-4 text-left font-medium w-1/3">PRODUCT & DOSE</th>
+                                <th className="py-3 px-4 text-left font-medium w-1/3">NEXT</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {[...Array(5)].map((_, i) => (
+                                <tr key={i} className="border-b last:border-b-0">
+                                  <td className="py-3 px-4"><Input className="h-8" /></td>
+                                  <td className="py-3 px-4"><Input className="h-8" /></td>
+                                  <td className="py-3 px-4"><Input className="h-8" /></td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
                     </div>
-                    <Button className="w-full mt-4">Create Vaccination Record</Button>
+                    
+                    <div className="pt-4">
+                      <Button className="w-full">Save Vaccination Records</Button>
+                    </div>
                   </TabsContent>
                   
-                  <TabsContent value="health" className="space-y-4">
-                    <h2 className="text-2xl font-semibold mb-4">Health History</h2>
-                    <p className="text-gray-600">
-                      Document your pet's health history, including vet visits, 
-                      medications, allergies, and important medical events.
-                    </p>
-                    <div className="my-6">
-                      <img 
-                        src="https://images.unsplash.com/photo-1584130969499-78ea7c5a9c5f?w=600" 
-                        alt="Pet Health History Example" 
-                        className="mx-auto rounded-lg shadow-md"
-                      />
+                  <TabsContent value="health" className="space-y-6">
+                    <h2 className="text-2xl font-semibold mb-6 text-center">Health History</h2>
+                    
+                    <div className="space-y-8">
+                      <div className="space-y-4">
+                        <h3 className="text-xl font-medium text-center">DEWORMING</h3>
+                        <div className="border rounded-md overflow-hidden">
+                          <table className="w-full text-sm">
+                            <thead>
+                              <tr className="bg-gray-50 border-b">
+                                <th className="py-3 px-4 text-left font-medium w-1/3">DATE</th>
+                                <th className="py-3 px-4 text-left font-medium w-1/3">PRODUCT & DOSE</th>
+                                <th className="py-3 px-4 text-left font-medium w-1/3">NEXT</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {[...Array(5)].map((_, i) => (
+                                <tr key={i} className="border-b last:border-b-0">
+                                  <td className="py-3 px-4"><Input className="h-8" /></td>
+                                  <td className="py-3 px-4"><Input className="h-8" /></td>
+                                  <td className="py-3 px-4"><Input className="h-8" /></td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+
+                      <div className="space-y-4">
+                        <h3 className="text-xl font-medium text-center">NOTES</h3>
+                        <Textarea className="min-h-[200px]" placeholder="Add health notes here..." />
+                      </div>
                     </div>
-                    <Button className="w-full mt-4">Create Health History Record</Button>
+                    
+                    <div className="pt-4">
+                      <Button className="w-full">Save Health Records</Button>
+                    </div>
                   </TabsContent>
                 </Tabs>
               </CardContent>

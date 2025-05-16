@@ -24,6 +24,7 @@ import PetHealthRecord from "./pages/PetHealthRecord";
 import PetBadlyDrawn from "./pages/PetBadlyDrawn";
 import PetPhysicReading from "./pages/PetPhysicReading";
 import PetRecord from "./pages/PetRecord";
+import PetSittingService from "./pages/PetSittingService";
 
 const queryClient = new QueryClient();
 
@@ -53,6 +54,7 @@ const App = () => (
           <Route path="/pet-badly-drawn" element={<PetBadlyDrawn />} />
           <Route path="/pet-physic-reading" element={<PetPhysicReading />} />
           <Route path="/pet-record" element={<PetRecord />} />
+          <Route path="/pet-sitting-service" element={<PetSittingService />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

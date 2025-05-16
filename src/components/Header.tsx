@@ -55,6 +55,7 @@ const Header = () => {
             <Link to="/pet-badly-drawn" className="py-2" onClick={() => setMobileMenuOpen(false)}>Badly Drawn Pet Portrait</Link>
             <Link to="/pet-health-record" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pet Health Record</Link>
             <Link to="/pet-record" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pet Record</Link>
+            <Link to="/pet-sitting-service" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pet Sitting Service</Link>
             <Link to="/pet-physic-reading" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pet Physic Reading</Link>
             <Link to="/star-map" className="py-2" onClick={() => setMobileMenuOpen(false)}>Star Map Letter</Link>
             <Link to="/pet-poems" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pet Poems</Link>

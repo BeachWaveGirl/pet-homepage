@@ -73,6 +73,12 @@ const categoryItems = [
       "Pet Tracker, Pet Information, Vaccination and complete health records for your furry friend.",
   },
   {
+    title: "Pet Sitting Service",
+    href: "/pet-sitting-service",
+    description:
+      "Pet Sitting Service Agreement/Contract, Editable & Printable Pet Sitting Business New Client Intake Form, Invoice, Business Signs.",
+  },
+  {
     title: "Star Map Letter",
     href: "/star-map",
     description:
