@@ -4,8 +4,6 @@ import Footer from "@/components/Footer";
 import CategoryCard from "@/components/CategoryCard";
 import PetLetterForm from "@/components/PetLetterForm";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 // Category data for the homepage
 const categories = [
@@ -29,6 +27,13 @@ const categories = [
     description: "Organized digital health records for your pet's medical history, vaccinations and appointments.",
     imageUrl: "https://images.unsplash.com/photo-1542736667-069246bdbc6d?w=600&h=400&fit=crop",
     link: "/pet-health-record"
+  },
+  {
+    id: "pet-record",
+    title: "Pet Record",
+    description: "Pet Tracker, Pet Information, Vaccination and complete health records for your furry friend.",
+    imageUrl: "https://images.unsplash.com/photo-1512793988701-5f8e4a20fd92?w=600&h=400&fit=crop",
+    link: "/pet-record"
   },
   {
     id: "star-map",
@@ -64,6 +69,13 @@ const categories = [
     description: "Vibrant digital art prints and illustrations capturing your pet's unique personality and spirit.",
     imageUrl: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600&h=400&fit=crop",
     link: "/pet-digital-art"
+  },
+  {
+    id: "pet-physic-reading",
+    title: "Pet Physic Reading",
+    description: "Connect with your pet on a deeper level through personalized spiritual readings and insights.",
+    imageUrl: "/lovable-uploads/9d05b32e-74dd-48e3-8e8b-c2700cd3789e.png",
+    link: "/pet-physic-reading"
   },
   {
     id: "pet-zodiac",
@@ -129,14 +141,6 @@ const Index = () => {
     formElement?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // Curated featured categories for the top section
-  const featuredCategories = [
-    categories.find(cat => cat.id === "pet-portrait"),
-    categories.find(cat => cat.id === "pet-badly-drawn"),
-    categories.find(cat => cat.id === "pet-health-record"),
-    categories.find(cat => cat.id === "pet-party")
-  ].filter(Boolean);
-
   return (
     <div className="min-h-screen flex flex-col bg-white font-inter">
       <Header />
@@ -157,92 +161,7 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Sample Designs Section */}
-      <section className="w-full py-12 px-4 bg-gray-50">
-        <div className="container mx-auto max-w-4xl">
-          <h2 className="text-3xl font-playfair font-bold text-center mb-8">Our Pet Creations</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card className="overflow-hidden">
-              <AspectRatio ratio={1/1}>
-                <img 
-                  src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=300" 
-                  alt="Pet Portrait Example" 
-                  className="object-cover w-full h-full"
-                />
-              </AspectRatio>
-              <CardContent className="p-3">
-                <p className="text-sm text-center">Custom Pet Portrait</p>
-              </CardContent>
-            </Card>
-            
-            <Card className="overflow-hidden">
-              <AspectRatio ratio={1/1}>
-                <img 
-                  src="https://images.unsplash.com/photo-1517849845537-4d257902454a?w=300" 
-                  alt="Pet Doodle Example" 
-                  className="object-cover w-full h-full"
-                />
-              </AspectRatio>
-              <CardContent className="p-3">
-                <p className="text-sm text-center">Badly Drawn Pet Portrait</p>
-              </CardContent>
-            </Card>
-            
-            <Card className="overflow-hidden">
-              <AspectRatio ratio={1/1}>
-                <img 
-                  src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=300" 
-                  alt="Pet Digital Art Example" 
-                  className="object-cover w-full h-full"
-                />
-              </AspectRatio>
-              <CardContent className="p-3">
-                <p className="text-sm text-center">Pet Digital Art</p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-      
-      {/* How Petly Works */}
-      <section className="w-full py-12 px-4 relative">
-        <div className="container mx-auto max-w-4xl">
-          <div className="bg-gray-50 p-6 rounded-lg">
-            <p className="mb-4">
-              Here, you can create beautiful, personalized <strong>digital keepsakes</strong> that capture your pet's spirit, quirks, and story — from day one to forever.
-            </p>
-            <p className="mb-4">
-              ✨ No shipping. No clutter. Just meaningful, downloadable digital art you can save, share, and revisit anytime.
-            </p>
-            <p>
-              <strong>Petly</strong> is made for people who love their pets deeply — not just when they're gone, but in every silly, snuggly, unforgettable moment.
-            </p>
-          </div>
-        </div>
-      </section>
-      
-      {/* Featured Categories Grid - Top Row */}
-      <section className="w-full py-8 px-4 bg-white">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-3xl font-playfair font-bold text-center mb-8">Popular Pet Categories</h2>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {featuredCategories.map((category) => (
-              category && <CategoryCard
-                key={category.id}
-                id={category.id}
-                title={category.title}
-                description={category.description}
-                imageUrl={category.imageUrl}
-                link={category.link}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-      
-      {/* Categories Grid - Rest */}
+      {/* Categories Grid - All Categories */}
       <section className="w-full py-12 px-4 bg-white">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-3xl font-playfair font-bold text-center mb-8">All Digital Pet Categories</h2>
@@ -258,6 +177,23 @@ const Index = () => {
                 link={category.link}
               />
             ))}
+          </div>
+        </div>
+      </section>
+      
+      {/* How Petly Works */}
+      <section className="w-full py-12 px-4 relative">
+        <div className="container mx-auto max-w-4xl text-center">
+          <div className="bg-gray-50 p-6 rounded-lg">
+            <p className="mb-4">
+              Here, you can create beautiful, personalized <strong>digital keepsakes</strong> that capture your pet's spirit, quirks, and story — from day one to forever.
+            </p>
+            <p className="mb-4">
+              ✨ No shipping. No clutter. Just meaningful, downloadable digital art you can save, share, and revisit anytime.
+            </p>
+            <p>
+              <strong>Petly</strong> is made for people who love their pets deeply — not just when they're gone, but in every silly, snuggly, unforgettable moment.
+            </p>
           </div>
         </div>
       </section>

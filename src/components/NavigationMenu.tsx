@@ -67,6 +67,12 @@ const categoryItems = [
       "Organized digital health records for your pet's medical history, vaccinations and appointments.",
   },
   {
+    title: "Pet Record",
+    href: "/pet-record",
+    description:
+      "Pet Tracker, Pet Information, Vaccination and complete health records for your furry friend.",
+  },
+  {
     title: "Star Map Letter",
     href: "/star-map",
     description:
@@ -95,6 +101,12 @@ const categoryItems = [
     href: "/pet-digital-art",
     description:
       "Vibrant digital art prints and illustrations capturing your pet's unique personality and spirit.",
+  },
+  {
+    title: "Pet Physic Reading",
+    href: "/pet-physic-reading",
+    description:
+      "Connect with your pet on a deeper level through personalized spiritual readings and insights.",
   },
   {
     title: "Pet Zodiac Portraits",
