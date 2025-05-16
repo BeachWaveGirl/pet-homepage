@@ -18,7 +18,7 @@ const ProductNavigationMenu = () => {
         <NavigationMenuItem>
           <NavigationMenuTrigger>Categories</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <div className="grid grid-cols-3 gap-3 p-4 md:w-[600px] lg:w-[800px]">
+            <div className="grid grid-cols-3 gap-3 p-4 md:w-[600px] lg:w-[800px] absolute left-1/2 transform -translate-x-1/2">
               {categoryItems.map((item) => (
                 <Link
                   key={item.title}

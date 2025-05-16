@@ -11,127 +11,134 @@ const categories = [
     id: "pet-portrait",
     title: "Custom Pet Portrait",
     description: "Beautiful digital watercolor or artistic portraits of your pet to cherish and remember them.",
-    imageUrl: "https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=600&h=400&fit=crop",
+    imageUrl: "https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313_1280.jpg",
     link: "/pet-portrait"
   },
   {
     id: "pet-badly-drawn",
     title: "Badly Drawn Pet Portrait",
     description: "Cute doodle style one-line drawings of your pet with a whimsical, playful touch.",
-    imageUrl: "https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=600&h=400&fit=crop",
+    imageUrl: "https://cdn.pixabay.com/photo/2018/10/01/09/21/pets-3715733_1280.jpg",
     link: "/pet-badly-drawn"
   },
   {
     id: "pet-health-record",
     title: "Pet Health Record",
     description: "Organized digital health records for your pet's medical history, vaccinations and appointments.",
-    imageUrl: "https://images.unsplash.com/photo-1542736667-069246bdbc6d?w=600&h=400&fit=crop",
+    imageUrl: "https://cdn.pixabay.com/photo/2016/11/22/19/41/animal-1850276_1280.jpg",
     link: "/pet-health-record"
   },
   {
     id: "pet-record",
     title: "Pet Record",
     description: "Pet Tracker, Pet Information, Vaccination and complete health records for your furry friend.",
-    imageUrl: "https://images.unsplash.com/photo-1512793988701-5f8e4a20fd92?w=600&h=400&fit=crop",
+    imageUrl: "https://cdn.pixabay.com/photo/2019/08/19/07/45/dog-4415649_1280.jpg",
     link: "/pet-record"
   },
   {
     id: "star-map",
     title: "Star Map Letter",
     description: "A personalized letter with a star map showing the night sky when your pet became a star.",
-    imageUrl: "https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?w=600&h=400&fit=crop",
+    imageUrl: "https://cdn.pixabay.com/photo/2017/08/25/04/18/cat-2679478_1280.jpg",
     link: "/star-map"
   },
   {
     id: "pet-poems",
     title: "Pet Poems",
     description: "Beautiful, custom poems that capture the unique bond you shared with your beloved pet.",
-    imageUrl: "https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=600&h=400&fit=crop",
+    imageUrl: "https://cdn.pixabay.com/photo/2018/10/01/09/21/dogs-3715729_1280.jpg",
     link: "/pet-poems"
   },
   {
     id: "memory-stories",
     title: "Memory Stories",
     description: "Heartwarming stories from your pet's perspective, highlighting their favorite memories with you.",
-    imageUrl: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=600&h=400&fit=crop",
+    imageUrl: "https://cdn.pixabay.com/photo/2016/01/19/17/41/friends-1149924_1280.jpg",
     link: "/memory-stories"
   },
   {
     id: "digital-scrapbooks",
     title: "Digital Scrapbooks",
     description: "Digital memory books featuring collages of photos and loving captions celebrating your pet's life.",
-    imageUrl: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=600&h=400&fit=crop",
+    imageUrl: "https://cdn.pixabay.com/photo/2016/01/05/17/51/dog-1123016_1280.jpg",
     link: "/digital-scrapbooks"
   },
   {
     id: "pet-digital-art",
     title: "Pet Digital Art",
     description: "Vibrant digital art prints and illustrations capturing your pet's unique personality and spirit.",
-    imageUrl: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600&h=400&fit=crop",
+    imageUrl: "https://cdn.pixabay.com/photo/2017/07/24/19/57/tiger-2535888_1280.jpg",
     link: "/pet-digital-art"
   },
   {
     id: "pet-physic-reading",
     title: "Pet Physic Reading",
     description: "Connect with your pet on a deeper level through personalized spiritual readings and insights.",
-    imageUrl: "/lovable-uploads/9d05b32e-74dd-48e3-8e8b-c2700cd3789e.png",
+    imageUrl: "https://cdn.pixabay.com/photo/2016/11/29/10/22/dog-1868871_1280.jpg",
     link: "/pet-physic-reading"
   },
   {
     id: "pet-zodiac",
     title: "Pet Zodiac Portraits",
     description: "Mystical astrological portraits incorporating your pet's zodiac sign, constellations, and cosmic elements.",
-    imageUrl: "https://images.unsplash.com/photo-1528722828814-77b9b83aafb2?w=600&h=400&fit=crop",
+    imageUrl: "https://cdn.pixabay.com/photo/2016/12/04/21/58/rabbit-1882699_1280.jpg",
     link: "/pet-zodiac"
   },
   {
     id: "rainbow-bridge",
     title: "Rainbow Bridge Poem",
     description: "Beautiful customized Rainbow Bridge poems to honor your beloved pet's memory.",
-    imageUrl: "https://images.unsplash.com/photo-1603315688742-9e2a66e2153c?w=600&h=400&fit=crop",
+    imageUrl: "https://cdn.pixabay.com/photo/2019/03/15/12/44/rainbow-4057030_1280.jpg",
     link: "/rainbow-bridge"
   },
   {
     id: "grief-journal",
     title: "Grief Journal",
     description: "Daily affirmations and journal prompts to help navigate the journey of pet loss.",
-    imageUrl: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&h=400&fit=crop",
+    imageUrl: "https://cdn.pixabay.com/photo/2015/07/27/19/47/turtle-863336_1280.jpg",
     link: "/grief-journal"
   },
   {
     id: "pet-bathroom",
     title: "Pet Bathroom",
     description: "Hilarious customized bathroom signs featuring your pet wrapped in a towel with clever bathroom humor.",
-    imageUrl: "https://images.unsplash.com/photo-1598397421962-e65b21ee671d?w=600&h=400&fit=crop",
+    imageUrl: "https://cdn.pixabay.com/photo/2018/03/31/06/31/dog-3277416_1280.jpg",
     link: "/pet-bathroom"
   },
   {
     id: "pet-typography",
     title: "Pet Typography",
     description: "Elegant calligraphy featuring your pet's name with decorative elements perfect for framing.",
-    imageUrl: "https://images.unsplash.com/photo-1599909631215-4c19d381f5fe?w=600&h=400&fit=crop",
+    imageUrl: "https://cdn.pixabay.com/photo/2016/12/23/21/11/canine-1927742_1280.jpg",
     link: "/pet-typography"
   },
   {
     id: "quote-posters",
     title: "Quote Posters",
     description: "Motivational and comforting pet quotes paired with simple illustrations for healing and remembrance.",
-    imageUrl: "https://images.unsplash.com/photo-1501820488136-72669149e0d4?w=600&h=400&fit=crop",
+    imageUrl: "https://cdn.pixabay.com/photo/2017/09/25/13/12/dog-2785074_1280.jpg",
     link: "/quote-posters"
   },
   {
     id: "pet-party",
     title: "Pet Party Invitation",
     description: "Cute and fun digital pet party invitations for birthdays, adoptaversaries, and special celebrations.",
-    imageUrl: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&h=400&fit=crop",
+    imageUrl: "https://cdn.pixabay.com/photo/2020/03/31/11/03/crowd-4987227_1280.jpg",
     link: "/pet-party"
   },
   {
     id: "pet-funeral",
     title: "Pet Funeral Mobile",
     description: "Mobile-friendly memorial invitations to celebrate your pet's life with friends and family.",
-    imageUrl: "https://images.unsplash.com/photo-1516832877833-1bcb07a0e2a7?w=600&h=400&fit=crop",
+    imageUrl: "https://cdn.pixabay.com/photo/2016/11/23/00/32/candle-1851921_1280.jpg",
     link: "/pet-funeral"
+  },
+  {
+    id: "pet-sitting-service",
+    title: "Pet Sitting Service",
+    description: "Pet Sitting Service Agreement/Contract, Editable & Printable Pet Sitting Business New Client Intake Form, Invoice, Business Signs.",
+    imageUrl: "https://cdn.pixabay.com/photo/2019/11/18/00/38/dog-4633734_1280.jpg",
+    link: "/pet-sitting-service"
   }
 ];
 
@@ -184,17 +191,15 @@ const Index = () => {
       {/* How Petly Works */}
       <section className="w-full py-12 px-4 relative">
         <div className="container mx-auto max-w-4xl text-center">
-          <div className="bg-gray-50 p-6 rounded-lg">
-            <p className="mb-4">
-              Here, you can create beautiful, personalized <strong>digital keepsakes</strong> that capture your pet's spirit, quirks, and story — from day one to forever.
-            </p>
-            <p className="mb-4">
-              ✨ No shipping. No clutter. Just meaningful, downloadable digital art you can save, share, and revisit anytime.
-            </p>
-            <p>
-              <strong>Petly</strong> is made for people who love their pets deeply — not just when they're gone, but in every silly, snuggly, unforgettable moment.
-            </p>
-          </div>
+          <p className="mb-4">
+            Here, you can create beautiful, personalized <strong>digital keepsakes</strong> that capture your pet's spirit, quirks, and story — from day one to forever.
+          </p>
+          <p className="mb-4">
+            ✨ No shipping. No clutter. Just meaningful, downloadable digital art you can save, share, and revisit anytime.
+          </p>
+          <p>
+            <strong>Petly</strong> is made for people who love their pets deeply — not just when they're gone, but in every silly, snuggly, unforgettable moment.
+          </p>
         </div>
       </section>
       
