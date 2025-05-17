@@ -1,9 +1,19 @@
-
 import { Button } from "@/components/ui/button";
 import ProductNavigationMenu from "./NavigationMenu";
 import { Menu } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
+// Import categoryGroups to keep menu items consistent
+import { categoryGroups } from "./NavigationMenu";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -48,32 +58,32 @@ const Header = () => {
       
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="fixed top-[60px] left-0 right-0 bg-white p-4 shadow-md z-50 md:hidden">
-          <nav className="flex flex-col space-y-3">
-            <Link to="/" className="py-2" onClick={() => setMobileMenuOpen(false)}>Home</Link>
-            <Link to="/pet-portrait" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pet Portrait</Link>
-            <Link to="/pet-badly-drawn" className="py-2" onClick={() => setMobileMenuOpen(false)}>Badly Drawn Pet Portrait</Link>
-            <Link to="/pet-health-record" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pet Health Record</Link>
-            <Link to="/pet-record" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pet Record</Link>
-            <Link to="/pet-sitting-service" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pet Sitting Service</Link>
-            <Link to="/pet-physic-reading" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pet Physic Reading</Link>
-            <Link to="/star-map" className="py-2" onClick={() => setMobileMenuOpen(false)}>Star Map Letter</Link>
-            <Link to="/pet-poems" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pet Poems</Link>
-            <Link to="/memory-stories" className="py-2" onClick={() => setMobileMenuOpen(false)}>Memory Stories</Link>
-            <Link to="/digital-scrapbooks" className="py-2" onClick={() => setMobileMenuOpen(false)}>Digital Scrapbooks</Link>
-            <Link to="/pet-digital-art" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pet Digital Art</Link>
-            <Link to="/pet-zodiac" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pet Zodiac Portraits</Link>
-            <Link to="/rainbow-bridge" className="py-2" onClick={() => setMobileMenuOpen(false)}>Rainbow Bridge Poem</Link>
-            <Link to="/grief-journal" className="py-2" onClick={() => setMobileMenuOpen(false)}>Grief Journal</Link>
-            <Link to="/pet-bathroom" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pet Bathroom</Link>
-            <Link to="/pet-typography" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pet Typography</Link>
-            <Link to="/quote-posters" className="py-2" onClick={() => setMobileMenuOpen(false)}>Quote Posters</Link>
-            <Link to="/pet-party" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pet Party Invitation</Link>
-            <Link to="/pet-funeral" className="py-2" onClick={() => setMobileMenuOpen(false)}>Pet Funeral Mobile</Link>
+        <div className="fixed top-[60px] left-0 right-0 bg-white p-4 shadow-md z-50 md:hidden overflow-y-auto max-h-[80vh]">
+          <nav className="flex flex-col space-y-4">
+            {categoryGroups.map((group) => (
+              <div key={group.id} className="mb-2">
+                <h3 className="text-md font-medium mb-2 flex items-center">
+                  <span className="mr-2">{group.emoji}</span>
+                  <span>{group.title}</span>
+                </h3>
+                <div className="ml-6 space-y-1">
+                  {group.items.map((item) => (
+                    <Link 
+                      key={item.title} 
+                      to={item.href} 
+                      className="block py-1.5 hover:text-indigo-600"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {item.title}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ))}
             
             <Button 
               onClick={scrollToForm}
-              className="bg-black text-white hover:bg-gray-800 transition-colors w-full"
+              className="bg-black text-white hover:bg-gray-800 transition-colors w-full mt-2"
             >
               Create a Memorial
             </Button>
