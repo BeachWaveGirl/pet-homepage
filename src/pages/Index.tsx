@@ -2,20 +2,24 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CategoryCard from "@/components/CategoryCard";
-import PetLetterForm from "@/components/PetLetterForm";
 import { Button } from "@/components/ui/button";
 import { categoryGroups } from "@/components/NavigationMenu";
+import { Link } from "react-router-dom";
 
-// Flatten category groups into a single array of categories
-const categories = categoryGroups.flatMap(group => 
-  group.items.map(item => ({
+// Create a mapping of categories to display on the homepage
+const categoriesMapping = categoryGroups.map(group => ({
+  id: group.id,
+  emoji: group.emoji,
+  title: group.title,
+  description: group.description,
+  items: group.items.map(item => ({
     id: item.href.replace('/', ''),
     title: item.title,
     description: item.description,
     imageUrl: `https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313_1280.jpg`, // Default image
     link: item.href
   }))
-);
+}));
 
 // Update some images to ensure variety
 const categoryImages = {
@@ -41,10 +45,16 @@ const categoryImages = {
 };
 
 // Apply the custom images to our categories
-const categoriesWithImages = categories.map(category => ({
-  ...category,
-  imageUrl: categoryImages[category.id] || category.imageUrl
-}));
+const categoriesWithImages = categoriesMapping.map(category => {
+  const categoryWithImageItems = category.items.map(item => ({
+    ...item,
+    imageUrl: categoryImages[item.id] || item.imageUrl
+  }));
+  return {
+    ...category,
+    items: categoryWithImageItems
+  };
+});
 
 const Index = () => {
   const scrollToForm = () => {
@@ -72,28 +82,8 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Categories Grid - All Categories */}
-      <section className="w-full py-12 px-4 bg-white">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-3xl font-playfair font-bold text-center mb-8">All Digital Pet Categories</h2>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {categoriesWithImages.map((category) => (
-              <CategoryCard
-                key={category.id}
-                id={category.id}
-                title={category.title}
-                description={category.description}
-                imageUrl={category.imageUrl}
-                link={category.link}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-      
       {/* How Petly Works - simplified to 3 lines */}
-      <section className="w-full py-12 px-4">
+      <section className="w-full py-8 px-4">
         <div className="container mx-auto max-w-4xl text-center">
           <p className="text-lg mb-4">
             Here, you can create beautiful, personalized <strong>digital keepsakes</strong> that capture your pet's spirit, quirks, and story — from day one to forever.
@@ -106,6 +96,35 @@ const Index = () => {
           </p>
         </div>
       </section>
+      
+      {/* Category Sections - Display all 8 categories with their banners */}
+      {categoriesWithImages.map((category) => (
+        <section key={category.id} className="w-full py-12 px-4 bg-white border-b last:border-b-0">
+          <div className="container mx-auto max-w-6xl">
+            <div className="flex items-center mb-4">
+              <span className="text-2xl mr-2">{category.emoji}</span>
+              <h2 className="text-3xl font-playfair font-bold">{category.title}</h2>
+            </div>
+            
+            <p className="text-lg text-gray-700 mb-8 max-w-3xl">
+              {category.description}
+            </p>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {category.items.map((item) => (
+                <CategoryCard
+                  key={item.id}
+                  id={item.id}
+                  title={item.title}
+                  description={item.description}
+                  imageUrl={item.imageUrl}
+                  link={item.link}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+      ))}
       
       <Footer />
     </div>
