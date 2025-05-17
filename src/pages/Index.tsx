@@ -21,27 +21,44 @@ const categoriesMapping = categoryGroups.map(group => ({
   }))
 }));
 
-// Update some images to ensure variety
+// Update images to ensure variety and proper loading
 const categoryImages = {
-  "pet-portrait": "https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313_1280.jpg",
-  "pet-badly-drawn": "https://cdn.pixabay.com/photo/2018/10/01/09/21/pets-3715733_1280.jpg",
-  "pet-health-record": "https://cdn.pixabay.com/photo/2016/11/22/19/41/animal-1850276_1280.jpg",
-  "pet-record": "https://cdn.pixabay.com/photo/2019/08/19/07/45/dog-4415649_1280.jpg",
-  "star-map": "https://cdn.pixabay.com/photo/2017/08/25/04/18/cat-2679478_1280.jpg",
-  "pet-poems": "https://cdn.pixabay.com/photo/2018/10/01/09/21/dogs-3715729_1280.jpg",
-  "memory-stories": "https://cdn.pixabay.com/photo/2016/01/19/17/41/friends-1149924_1280.jpg",
-  "digital-scrapbooks": "https://cdn.pixabay.com/photo/2016/01/05/17/51/dog-1123016_1280.jpg",
-  "pet-digital-art": "https://cdn.pixabay.com/photo/2017/07/24/19/57/tiger-2535888_1280.jpg",
-  "pet-physic-reading": "https://cdn.pixabay.com/photo/2016/11/29/10/22/dog-1868871_1280.jpg",
-  "pet-zodiac": "https://cdn.pixabay.com/photo/2016/12/04/21/58/rabbit-1882699_1280.jpg",
-  "rainbow-bridge": "https://cdn.pixabay.com/photo/2019/03/15/12/44/rainbow-4057030_1280.jpg",
-  "grief-journal": "https://cdn.pixabay.com/photo/2015/07/27/19/47/turtle-863336_1280.jpg",
-  "pet-bathroom": "https://cdn.pixabay.com/photo/2018/03/31/06/31/dog-3277416_1280.jpg",
-  "pet-typography": "https://cdn.pixabay.com/photo/2016/12/23/21/11/canine-1927742_1280.jpg",
-  "quote-posters": "https://cdn.pixabay.com/photo/2017/09/25/13/12/dog-2785074_1280.jpg",
-  "pet-party": "https://cdn.pixabay.com/photo/2020/03/31/11/03/crowd-4987227_1280.jpg",
-  "pet-funeral": "https://cdn.pixabay.com/photo/2016/11/23/00/32/candle-1851921_1280.jpg",
-  "pet-sitting-service": "https://cdn.pixabay.com/photo/2019/11/18/00/38/dog-4633734_1280.jpg"
+  // Pet Personality & Destiny
+  "pet-physic-reading": "https://cdn.pixabay.com/photo/2018/05/07/10/48/husky-3380548_1280.jpg", // Mystic husky
+  "pet-zodiac": "https://cdn.pixabay.com/photo/2017/09/25/13/14/dog-2785077_1280.jpg", // Zodiac dog
+
+  // Pet Love & Communication
+  "pet-poems": "https://cdn.pixabay.com/photo/2016/01/19/17/41/friends-1149924_1280.jpg", // Pet love
+  "pet-typography": "https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313_1280.jpg", // Typography dog
+
+  // Pet Memorial & Afterlife
+  "star-map": "https://cdn.pixabay.com/photo/2015/03/27/13/16/maine-coon-694730_1280.jpg", // Cat stargazing
+  "rainbow-bridge": "https://cdn.pixabay.com/photo/2013/07/05/01/08/rainbow-143349_1280.jpg", // Rainbow image
+  "digital-scrapbooks": "https://cdn.pixabay.com/photo/2020/05/18/13/32/dog-5186030_1280.jpg", // Memory scrapbook
+
+  // Pet Life & Responsibility
+  "pet-health-record": "https://cdn.pixabay.com/photo/2016/11/22/19/41/animal-1850276_1280.jpg", // Vet record
+  "pet-sitting-service": "https://cdn.pixabay.com/photo/2019/11/18/00/38/dog-4633734_1280.jpg", // Pet sitting
+  "pet-record": "https://cdn.pixabay.com/photo/2019/08/19/07/45/dog-4415649_1280.jpg", // Pet record
+
+  // Pet Portraits & Artwork
+  "pet-portrait": "https://cdn.pixabay.com/photo/2016/02/19/15/46/labrador-retriever-1210559_1280.jpg", // Portrait
+  "pet-badly-drawn": "https://cdn.pixabay.com/photo/2018/10/01/09/21/pets-3715733_1280.jpg", // Fun pet
+  "pet-digital-art": "https://cdn.pixabay.com/photo/2017/07/24/19/57/tiger-2535888_1280.jpg", // Digital art
+
+  // Pet Celebrations & Fun Prints
+  "pet-party": "https://cdn.pixabay.com/photo/2016/11/29/02/07/animal-1866972_1280.jpg", // Party pet
+  "pet-achievement": "https://cdn.pixabay.com/photo/2016/11/22/23/13/dog-1850465_1280.jpg", // Achievement
+
+  // Pet Home & Decor
+  "pet-bathroom": "https://cdn.pixabay.com/photo/2018/03/31/06/31/dog-3277416_1280.jpg", // Bathroom
+  "quote-posters": "https://cdn.pixabay.com/photo/2017/09/25/13/12/dog-2785074_1280.jpg", // Quote poster
+  "pet-door-sign": "https://cdn.pixabay.com/photo/2016/11/21/00/47/dog-1844110_1280.jpg", // Door sign
+
+  // Pet Stories & Journals
+  "memory-stories": "https://cdn.pixabay.com/photo/2019/08/07/14/11/dog-4390885_1280.jpg", // Stories
+  "grief-journal": "https://cdn.pixabay.com/photo/2015/07/27/19/47/turtle-863336_1280.jpg", // Journal
+  "pet-adventure": "https://cdn.pixabay.com/photo/2018/05/11/08/11/dog-3389729_1280.jpg" // Adventure
 };
 
 // Apply the custom images to our categories
@@ -101,12 +118,12 @@ const Index = () => {
       {categoriesWithImages.map((category) => (
         <section key={category.id} className="w-full py-12 px-4 bg-white border-b last:border-b-0">
           <div className="container mx-auto max-w-6xl">
-            <div className="flex items-center mb-4">
+            <div className="flex items-center justify-center mb-4">
               <span className="text-2xl mr-2">{category.emoji}</span>
               <h2 className="text-3xl font-playfair font-bold">{category.title}</h2>
             </div>
             
-            <p className="text-lg text-gray-700 mb-8 max-w-3xl">
+            <p className="text-lg text-gray-700 mb-8 max-w-3xl mx-auto text-center">
               {category.description}
             </p>
             

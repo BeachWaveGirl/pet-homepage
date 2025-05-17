@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import ProductNavigationMenu from "./NavigationMenu";
 import { Menu } from "lucide-react";
@@ -31,8 +32,8 @@ const Header = () => {
           <span>Petly</span>
         </Link>
         
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-6">
+        {/* Desktop Navigation - centered */}
+        <div className="hidden md:flex items-center space-x-6 absolute left-1/2 transform -translate-x-1/2">
           <ProductNavigationMenu />
         </div>
         
