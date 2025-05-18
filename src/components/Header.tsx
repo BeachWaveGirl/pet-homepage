@@ -30,16 +30,15 @@ const Header = () => {
   return (
     <header className="w-full bg-white py-4 px-4 md:px-6 flex justify-center border-b">
       <div className="container flex justify-between items-center">
-        {/* Hamburger Menu - Made bigger */}
+        {/* Hamburger Menu */}
         <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
           <DrawerTrigger asChild>
             <Button variant="ghost" size="sm" className="p-1">
-              <Menu className="h-8 w-8" /> {/* Increased size from h-6 w-6 to h-8 w-8 */}
+              <Menu className="h-6 w-6" />
               <span className="sr-only">Open main menu</span>
             </Button>
           </DrawerTrigger>
-          <DrawerOverlay />
-          <DrawerContent className="fixed inset-y-0 left-0 h-full w-[80%] max-w-sm border-r shadow-lg">
+          <DrawerContent side="left" className="h-full w-[80%] max-w-sm">
             <div className="h-full flex flex-col">
               <div className="flex items-center justify-between p-4 border-b">
                 <Link 
@@ -60,7 +59,7 @@ const Header = () => {
                 <Accordion type="multiple" className="space-y-4">
                   {categoryGroups.map((group) => (
                     <AccordionItem key={group.id} value={group.id} className="border rounded-md">
-                      <AccordionTrigger className="px-4 py-3 flex items-center justify-start">
+                      <AccordionTrigger className="px-4 py-3 flex items-center">
                         <span className="mr-2">{group.emoji}</span>
                         <span>{group.title}</span>
                       </AccordionTrigger>
@@ -70,7 +69,7 @@ const Header = () => {
                             <Link
                               key={item.title}
                               to={item.href}
-                              className="block py-2 px-2 hover:text-indigo-600 transition-colors text-left"
+                              className="block py-2 px-2 hover:text-indigo-600 transition-colors"
                               onClick={() => setDrawerOpen(false)}
                             >
                               {item.title}
