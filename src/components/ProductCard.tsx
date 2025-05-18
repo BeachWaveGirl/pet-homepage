@@ -2,7 +2,7 @@
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Download, ShoppingCart } from "lucide-react";
+import { ArrowRight, ShoppingCart } from "lucide-react";
 import { useState } from "react";
 
 interface ProductCardProps {
@@ -83,8 +83,8 @@ const ProductCard = ({
               >
                 {digitalDownload ? (
                   <>
-                    <Download className="h-4 w-4" />
-                    <span>Download</span>
+                    <ArrowRight className="h-4 w-4" />
+                    <span>Start now</span>
                   </>
                 ) : (
                   <>

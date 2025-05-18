@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -55,8 +56,8 @@ const StarCertificate = ({
     .join('\n');
 
   return (
-    <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto animate-fade-in">
-      <Card className="w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-white">
+    <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 overflow-y-auto animate-fade-in backdrop-blur-sm">
+      <Card className="w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-gradient-to-br from-gray-900 to-black text-white">
         <CardContent className="p-6">
           <StarMapPoster
             date={formattedDate}
@@ -73,7 +74,7 @@ const StarCertificate = ({
             <Button
               onClick={() => setShowProducts(!showProducts)}
               variant="outline"
-              className="flex items-center gap-2 mx-auto border-indigo-400 text-indigo-700 hover:bg-indigo-50"
+              className="flex items-center gap-2 mx-auto border-indigo-400 text-indigo-300 hover:bg-indigo-900/30 bg-indigo-900/10"
             >
               <span>Would you like to keep this star close to your heart?</span>
               {showProducts ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
@@ -91,11 +92,11 @@ const StarCertificate = ({
           )}
           
           <div className="mt-6 flex flex-col sm:flex-row justify-center gap-3">
-            <Button variant="outline" onClick={onClose}>
+            <Button variant="outline" onClick={onClose} className="border-gray-700 text-gray-300 hover:bg-gray-800">
               Close
             </Button>
             <Button 
-              className="bg-black text-white hover:bg-gray-800"
+              className="bg-indigo-600 text-white hover:bg-indigo-700"
               onClick={onDownload}
             >
               Download Certificate

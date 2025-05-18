@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { useState } from "react";
-import { Download } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 interface CategoryCardProps {
   id: string;
@@ -65,8 +65,8 @@ const CategoryCard = ({ id, title, description, imageUrl, link }: CategoryCardPr
           <p className="text-sm text-gray-600 mb-3">{description}</p>
           
           <div className={`flex items-center text-sm text-indigo-600 transition-opacity ${isHovered ? 'opacity-100' : 'opacity-70'}`}>
-            <Download className="h-4 w-4 mr-1" />
-            <span>Download digital file</span>
+            <ArrowRight className="h-4 w-4 mr-1" />
+            <span>Start now</span>
           </div>
         </CardContent>
       </Link>

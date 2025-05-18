@@ -5,6 +5,13 @@ import CategoryCard from "@/components/CategoryCard";
 import { Button } from "@/components/ui/button";
 import { categoryGroups } from "@/components/NavigationMenu";
 import { Link } from "react-router-dom";
+import { 
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious
+} from "@/components/ui/carousel";
 
 // Create a mapping of categories to display on the homepage
 const categoriesMapping = categoryGroups.map(group => ({
@@ -21,44 +28,44 @@ const categoriesMapping = categoryGroups.map(group => ({
   }))
 }));
 
-// Update images to ensure variety and proper loading
+// Update images to more futuristic, AI-style images
 const categoryImages = {
   // Pet Personality & Destiny
-  "pet-physic-reading": "https://cdn.pixabay.com/photo/2018/05/07/10/48/husky-3380548_1280.jpg", // Mystic husky
-  "pet-zodiac": "https://cdn.pixabay.com/photo/2017/09/25/13/14/dog-2785077_1280.jpg", // Zodiac dog
+  "pet-physic-reading": "https://images.unsplash.com/photo-1608096299210-db7e38487075?q=80&w=1000&auto=format&fit=crop", // Mystical looking cat
+  "pet-zodiac": "https://images.unsplash.com/photo-1573865526739-10659fec78a5?q=80&w=1000&auto=format&fit=crop", // Cosmic dog
 
   // Pet Love & Communication
-  "pet-poems": "https://cdn.pixabay.com/photo/2016/01/19/17/41/friends-1149924_1280.jpg", // Pet love
-  "pet-typography": "https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313_1280.jpg", // Typography dog
+  "pet-poems": "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?q=80&w=1000&auto=format&fit=crop", // Dreamy dog
+  "pet-typography": "https://images.unsplash.com/photo-1561948955-570b270e7c36?q=80&w=1000&auto=format&fit=crop", // Artistic cat
 
   // Pet Memorial & Afterlife
-  "star-map": "https://cdn.pixabay.com/photo/2015/03/27/13/16/maine-coon-694730_1280.jpg", // Cat stargazing
-  "rainbow-bridge": "https://cdn.pixabay.com/photo/2013/07/05/01/08/rainbow-143349_1280.jpg", // Rainbow image
-  "digital-scrapbooks": "https://cdn.pixabay.com/photo/2020/05/18/13/32/dog-5186030_1280.jpg", // Memory scrapbook
+  "star-map": "https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0?q=80&w=1000&auto=format&fit=crop", // Cosmic night sky
+  "rainbow-bridge": "https://images.unsplash.com/photo-1604537466608-109fa2f16c3b?q=80&w=1000&auto=format&fit=crop", // Rainbow with silhouette
+  "digital-scrapbooks": "https://images.unsplash.com/photo-1535930891776-0c2dfb7fda1a?q=80&w=1000&auto=format&fit=crop", // Memory collage
 
   // Pet Life & Responsibility
-  "pet-health-record": "https://cdn.pixabay.com/photo/2016/11/22/19/41/animal-1850276_1280.jpg", // Vet record
-  "pet-sitting-service": "https://cdn.pixabay.com/photo/2019/11/18/00/38/dog-4633734_1280.jpg", // Pet sitting
-  "pet-record": "https://cdn.pixabay.com/photo/2019/08/19/07/45/dog-4415649_1280.jpg", // Pet record
+  "pet-health-record": "https://images.unsplash.com/photo-1576201836106-db1758fd1c97?q=80&w=1000&auto=format&fit=crop", // High-tech vet
+  "pet-sitting-service": "https://images.unsplash.com/photo-1601758177266-bc599de87707?q=80&w=1000&auto=format&fit=crop", // Modern pet sitting
+  "pet-record": "https://images.unsplash.com/photo-1553322396-0c9cd410975e?q=80&w=1000&auto=format&fit=crop", // Futuristic record
 
   // Pet Portraits & Artwork
-  "pet-portrait": "https://cdn.pixabay.com/photo/2016/02/19/15/46/labrador-retriever-1210559_1280.jpg", // Portrait
-  "pet-badly-drawn": "https://cdn.pixabay.com/photo/2018/10/01/09/21/pets-3715733_1280.jpg", // Fun pet
-  "pet-digital-art": "https://cdn.pixabay.com/photo/2017/07/24/19/57/tiger-2535888_1280.jpg", // Digital art
+  "pet-portrait": "https://images.unsplash.com/photo-1558236714-d1a6333fce68?q=80&w=1000&auto=format&fit=crop", // Modern portrait
+  "pet-badly-drawn": "https://images.unsplash.com/photo-1596854372943-a50bbbdf24a7?q=80&w=1000&auto=format&fit=crop", // Artistic style
+  "pet-digital-art": "https://images.unsplash.com/photo-1548247416-ec66f4900b2e?q=80&w=1000&auto=format&fit=crop", // Digital art style
 
   // Pet Celebrations & Fun Prints
-  "pet-party": "https://cdn.pixabay.com/photo/2016/11/29/02/07/animal-1866972_1280.jpg", // Party pet
-  "pet-achievement": "https://cdn.pixabay.com/photo/2016/11/22/23/13/dog-1850465_1280.jpg", // Achievement
+  "pet-party": "https://images.unsplash.com/photo-1563474993427-c7923146d8f0?q=80&w=1000&auto=format&fit=crop", // Party pet
+  "pet-achievement": "https://images.unsplash.com/photo-1503256207526-0d5d80fa2f47?q=80&w=1000&auto=format&fit=crop", // Achievement
 
   // Pet Home & Decor
-  "pet-bathroom": "https://cdn.pixabay.com/photo/2018/03/31/06/31/dog-3277416_1280.jpg", // Bathroom
-  "quote-posters": "https://cdn.pixabay.com/photo/2017/09/25/13/12/dog-2785074_1280.jpg", // Quote poster
-  "pet-door-sign": "https://cdn.pixabay.com/photo/2016/11/21/00/47/dog-1844110_1280.jpg", // Door sign
+  "pet-bathroom": "https://images.unsplash.com/photo-1543466835-00a7907e9de1?q=80&w=1000&auto=format&fit=crop", // Modern bathroom
+  "quote-posters": "https://images.unsplash.com/photo-1425082661705-1834bfd09dca?q=80&w=1000&auto=format&fit=crop", // Quote context
+  "pet-door-sign": "https://images.unsplash.com/photo-1494947665470-20322015e3a8?q=80&w=1000&auto=format&fit=crop", // Modern door
 
   // Pet Stories & Journals
-  "memory-stories": "https://cdn.pixabay.com/photo/2019/08/07/14/11/dog-4390885_1280.jpg", // Stories
-  "grief-journal": "https://cdn.pixabay.com/photo/2015/07/27/19/47/turtle-863336_1280.jpg", // Journal
-  "pet-adventure": "https://cdn.pixabay.com/photo/2018/05/11/08/11/dog-3389729_1280.jpg" // Adventure
+  "memory-stories": "https://images.unsplash.com/photo-1529429617124-95b109e86bb8?q=80&w=1000&auto=format&fit=crop", // Story moment
+  "grief-journal": "https://images.unsplash.com/photo-1491485880348-85d48a9e5312?q=80&w=1000&auto=format&fit=crop", // Reflective moment
+  "pet-adventure": "https://images.unsplash.com/photo-1477884213360-7e9d7dcc1e48?q=80&w=1000&auto=format&fit=crop" // Adventure scene
 };
 
 // Apply the custom images to our categories
@@ -80,43 +87,44 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white font-inter">
+    <div className="min-h-screen flex flex-col bg-background font-inter">
       <Header />
       
-      {/* Hero Section */}
-      <section className="w-full py-16 md:py-24 px-4 flex items-center justify-center bg-offwhite relative overflow-hidden">
+      {/* Hero Section with futuristic style */}
+      <section className="w-full py-16 md:py-24 px-4 flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-indigo-900 to-black">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=2000')] opacity-20 bg-cover bg-center"></div>
         <div className="container max-w-4xl mx-auto text-center animate-fade-in-slow relative z-10">
-          <h1 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+          <h1 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">
             Welcome to Petly
           </h1>
-          <p className="text-xl md:text-2xl text-gray-700 mb-10 max-w-2xl mx-auto">
+          <p className="text-xl md:text-2xl text-gray-200 mb-10 max-w-2xl mx-auto">
             Whether you're celebrating a new furry friend, cherishing everyday cuddles, or honoring a beloved memory — Petly is your AI-powered creative space for all things pet love.
           </p>
           
-          <Button onClick={scrollToForm} className="bg-black text-white hover:bg-gray-800 transition-colors">
+          <Button onClick={scrollToForm} className="bg-indigo-600 hover:bg-indigo-700 text-white transition-colors">
             Create a Memorial
           </Button>
         </div>
       </section>
       
-      {/* How Petly Works - simplified to 3 lines */}
-      <section className="w-full py-8 px-4">
+      {/* How Petly Works - simplified to 3 lines with futuristic style */}
+      <section className="w-full py-12 px-4 bg-gradient-to-r from-gray-900 to-gray-800 text-white">
         <div className="container mx-auto max-w-4xl text-center">
           <p className="text-lg mb-4">
-            Here, you can create beautiful, personalized <strong>digital keepsakes</strong> that capture your pet's spirit, quirks, and story — from day one to forever.
+            Here, you can create beautiful, personalized <strong className="text-indigo-300">digital keepsakes</strong> that capture your pet's spirit, quirks, and story — from day one to forever.
           </p>
           <p className="text-lg mb-4">
             ✨ No shipping. No clutter. Just meaningful, downloadable digital art you can save, share, and revisit anytime.
           </p>
           <p className="text-lg">
-            <strong>Petly</strong> is made for people who love their pets deeply — not just when they're gone, but in every silly, snuggly, unforgettable moment.
+            <strong className="text-indigo-300">Petly</strong> is made for people who love their pets deeply — not just when they're gone, but in every silly, snuggly, unforgettable moment.
           </p>
         </div>
       </section>
       
-      {/* Category Sections - Display all 8 categories with their banners */}
+      {/* Category Sections with Carousel Navigation */}
       {categoriesWithImages.map((category) => (
-        <section key={category.id} className="w-full py-12 px-4 bg-white border-b last:border-b-0">
+        <section key={category.id} className="w-full py-12 px-4 bg-gradient-to-br from-gray-50 to-gray-100 border-b last:border-b-0">
           <div className="container mx-auto max-w-6xl">
             <div className="flex items-center justify-center mb-4">
               <span className="text-2xl mr-2">{category.emoji}</span>
@@ -127,18 +135,44 @@ const Index = () => {
               {category.description}
             </p>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {category.items.map((item) => (
-                <CategoryCard
-                  key={item.id}
-                  id={item.id}
-                  title={item.title}
-                  description={item.description}
-                  imageUrl={item.imageUrl}
-                  link={item.link}
-                />
-              ))}
-            </div>
+            {category.items.length > 3 ? (
+              <div className="relative px-10">
+                <Carousel className="w-full">
+                  <CarouselContent>
+                    {category.items.map((item) => (
+                      <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/3">
+                        <CategoryCard
+                          id={item.id}
+                          title={item.title}
+                          description={item.description}
+                          imageUrl={item.imageUrl}
+                          link={item.link}
+                        />
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <div className="absolute inset-y-0 left-0 flex items-center">
+                    <CarouselPrevious className="relative left-0 opacity-80 hover:opacity-100" />
+                  </div>
+                  <div className="absolute inset-y-0 right-0 flex items-center">
+                    <CarouselNext className="relative right-0 opacity-80 hover:opacity-100" />
+                  </div>
+                </Carousel>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {category.items.map((item) => (
+                  <CategoryCard
+                    key={item.id}
+                    id={item.id}
+                    title={item.title}
+                    description={item.description}
+                    imageUrl={item.imageUrl}
+                    link={item.link}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         </section>
       ))}

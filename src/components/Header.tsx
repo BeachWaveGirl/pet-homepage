@@ -31,14 +31,14 @@ const Header = () => {
     <header className="w-full bg-white py-4 px-4 md:px-6 flex justify-center border-b">
       <div className="container flex justify-between items-center">
         {/* Hamburger Menu - Made slightly bigger */}
-        <Drawer open={drawerOpen} onOpenChange={setDrawerOpen} direction="left">
+        <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
           <DrawerTrigger asChild>
             <Button variant="ghost" size="sm" className="p-1">
-              <Menu className="h-7 w-7" /> {/* Increased from h-6 w-6 to h-7 w-7 */}
+              <Menu className="h-7 w-7" /> {/* Increased size */}
               <span className="sr-only">Open main menu</span>
             </Button>
           </DrawerTrigger>
-          <DrawerContent side="left" className="h-full w-[80%] max-w-sm">
+          <DrawerContent className="h-full w-[80%] max-w-sm left-0 right-auto">
             <div className="h-full flex flex-col">
               <div className="flex items-center justify-between p-4 border-b">
                 <Link 
@@ -59,17 +59,17 @@ const Header = () => {
                 <Accordion type="multiple" className="space-y-4">
                   {categoryGroups.map((group) => (
                     <AccordionItem key={group.id} value={group.id} className="border rounded-md">
-                      <AccordionTrigger className="px-4 py-3 flex items-center">
+                      <AccordionTrigger className="px-4 py-3 flex items-center text-left">
                         <span className="mr-2">{group.emoji}</span>
                         <span>{group.title}</span>
                       </AccordionTrigger>
                       <AccordionContent className="px-2 py-2">
-                        <div className="space-y-2 pl-8">
+                        <div className="space-y-2 pl-4">
                           {group.items.map((item) => (
                             <Link
                               key={item.title}
                               to={item.href}
-                              className="block py-2 px-2 hover:text-indigo-600 transition-colors"
+                              className="block py-2 px-2 text-left hover:text-indigo-600 transition-colors"
                               onClick={() => setDrawerOpen(false)}
                             >
                               {item.title}
@@ -84,7 +84,7 @@ const Header = () => {
                 <div className="mt-6 space-y-3">
                   <Link 
                     to="/pricing" 
-                    className="block py-2 px-4 hover:bg-gray-50 rounded-md transition-colors"
+                    className="block py-2 px-4 text-left hover:bg-gray-50 rounded-md transition-colors"
                     onClick={() => setDrawerOpen(false)}
                   >
                     Memorial Products
