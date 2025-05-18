@@ -1,3 +1,4 @@
+
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CategoryCard from "@/components/CategoryCard";
@@ -30,8 +31,8 @@ const categoriesMapping = categoryGroups.map(group => ({
 // Update images to more futuristic, AI-style images
 const categoryImages = {
   // Pet Personality & Destiny
-  "pet-physic-reading": "https://images.unsplash.com/photo-1608096299210-db7e38487075?q=80&w=1000&auto=format&fit=crop", // Mystical looking cat
-  "pet-zodiac": "https://images.unsplash.com/photo-1573865526739-10659fec78a5?q=80&w=1000&auto=format&fit=crop", // Cosmic dog
+  "pet-physic-reading": "/pet-psychic-reading.png", // Updated image
+  "pet-zodiac": "/pet-tarot-reading.png", // Updated image
 
   // Pet Love & Communication
   "pet-poems": "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?q=80&w=1000&auto=format&fit=crop", // Dreamy dog
