@@ -48,9 +48,14 @@ const CategoryCard = ({ id, title, description, imageUrl, link }: CategoryCardPr
           </h3>
           <p className="text-sm text-gray-600 mb-3">{description}</p>
           
-          <div className={`flex items-center text-sm text-indigo-600 transition-opacity ${isHovered ? 'opacity-100' : 'opacity-70'}`}>
-            <Download className="h-4 w-4 mr-1" />
-            <span>Download digital file</span>
+          <div 
+            className={`flex items-center text-sm font-medium text-indigo-600 mt-2 py-2 px-3 rounded-md transition-all ${isHovered ? 'bg-indigo-50' : ''}`}
+            style={{
+              opacity: isHovered ? 1 : 0.75,
+            }}
+          >
+            <Download className="h-4 w-4 mr-2" />
+            <span>Download Digital File</span>
           </div>
         </CardContent>
       </Link>
