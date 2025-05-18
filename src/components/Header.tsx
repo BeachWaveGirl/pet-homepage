@@ -28,28 +28,28 @@ const Header = () => {
   };
 
   return (
-    <header className="w-full bg-black py-4 px-4 md:px-6 flex justify-center border-b border-green-400">
+    <header className="w-full bg-white py-4 px-4 md:px-6 flex justify-center border-b">
       <div className="container flex justify-between items-center">
         {/* Hamburger Menu - Made slightly bigger */}
         <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
           <DrawerTrigger asChild>
-            <Button variant="ghost" size="sm" className="p-1 text-green-400 hover:text-pink-400 hover:bg-transparent">
+            <Button variant="ghost" size="sm" className="p-1">
               <Menu className="h-7 w-7" /> {/* Increased size */}
               <span className="sr-only">Open main menu</span>
             </Button>
           </DrawerTrigger>
-          <DrawerContent className="h-full w-[80%] max-w-sm left-0 right-auto bg-black border-r border-green-400">
+          <DrawerContent className="h-full w-[80%] max-w-sm left-0 right-auto">
             <div className="h-full flex flex-col">
-              <div className="flex items-center justify-between p-4 border-b border-green-400">
+              <div className="flex items-center justify-between p-4 border-b">
                 <Link 
                   to="/" 
-                  className="text-xl font-bold text-green-400"
+                  className="text-xl font-playfair font-semibold"
                   onClick={() => setDrawerOpen(false)}
                 >
                   Petly
                 </Link>
                 <DrawerClose asChild>
-                  <Button variant="ghost" size="sm" className="p-1 text-green-400 hover:text-pink-400 hover:bg-transparent">
+                  <Button variant="ghost" size="sm" className="p-1">
                     <X className="h-6 w-6" />
                     <span className="sr-only">Close menu</span>
                   </Button>
@@ -58,8 +58,8 @@ const Header = () => {
               <div className="flex-1 overflow-y-auto p-4">
                 <Accordion type="multiple" className="space-y-4">
                   {categoryGroups.map((group) => (
-                    <AccordionItem key={group.id} value={group.id} className="border rounded-md border-green-400 bg-zinc-900">
-                      <AccordionTrigger className="px-4 py-3 flex items-center text-left text-green-400 hover:text-pink-400">
+                    <AccordionItem key={group.id} value={group.id} className="border rounded-md">
+                      <AccordionTrigger className="px-4 py-3 flex items-center text-left">
                         <span className="mr-2">{group.emoji}</span>
                         <span>{group.title}</span>
                       </AccordionTrigger>
@@ -69,7 +69,7 @@ const Header = () => {
                             <Link
                               key={item.title}
                               to={item.href}
-                              className="block py-2 px-2 text-left text-gray-300 hover:text-pink-400 transition-colors"
+                              className="block py-2 px-2 text-left hover:text-indigo-600 transition-colors"
                               onClick={() => setDrawerOpen(false)}
                             >
                               {item.title}
@@ -84,7 +84,7 @@ const Header = () => {
                 <div className="mt-6 space-y-3">
                   <Link 
                     to="/pricing" 
-                    className="block py-2 px-4 text-left text-green-400 hover:text-pink-400 transition-colors"
+                    className="block py-2 px-4 text-left hover:bg-gray-50 rounded-md transition-colors"
                     onClick={() => setDrawerOpen(false)}
                   >
                     Memorial Products
@@ -94,7 +94,7 @@ const Header = () => {
                       scrollToForm();
                       setDrawerOpen(false);
                     }}
-                    className="w-full bg-gradient-to-r from-pink-500 to-green-400 hover:from-pink-600 hover:to-green-500 text-black font-bold transition-colors mt-4"
+                    className="w-full bg-black text-white hover:bg-gray-800 transition-colors mt-4"
                   >
                     Create a Memorial
                   </Button>
@@ -104,13 +104,13 @@ const Header = () => {
           </DrawerContent>
         </Drawer>
         
-        <Link to="/" className="text-xl font-bold text-green-400 flex items-center">
+        <Link to="/" className="text-xl font-playfair font-semibold flex items-center">
           <span>Petly</span>
         </Link>
         
         <Button 
           onClick={scrollToForm}
-          className="bg-gradient-to-r from-pink-500 to-green-400 hover:from-pink-600 hover:to-green-500 text-black font-bold hidden md:flex"
+          className="bg-black text-white hover:bg-gray-800 transition-colors hidden md:flex"
         >
           Create a Memorial
         </Button>
