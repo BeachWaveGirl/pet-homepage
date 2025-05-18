@@ -31,14 +31,14 @@ const categoriesMapping = categoryGroups.map(group => ({
 // Update images to more futuristic, AI-style images
 const categoryImages = {
   // Pet Personality & Destiny
-  "pet-physic-reading": "/lovable-uploads/ae4cb9db-7c24-479a-bd6b-bfdab9c1c6e2.png", // Updated image with cat on shark
-  "pet-zodiac": "/lovable-uploads/bbeee178-1311-4366-8650-1648c40df369.png", // Updated image with mouse
+  "pet-physic-reading": "/lovable-uploads/ae4cb9db-7c24-479a-bd6b-bfdab9c1c6e2.png", // Cat on shark
+  "pet-voice-chat": "/lovable-uploads/6f146f9a-c7c2-4e3e-8b41-df577ef5aa27.png", // Cat bread in space
   "pet-tarot-reading": "/lovable-uploads/f33432eb-d4f4-459a-9cba-6fdfdbacd6a0.png", // Cat on horse
 
   // Pet Memorial & Afterlife
   "star-map": "/lovable-uploads/efa73ad4-f753-493c-933e-d1ec4998656f.png", // Cats in space
-  "rainbow-bridge": "/lovable-uploads/c767ea95-f4d6-4875-aa3d-c9f854be9e40.png", // Rainbow bridge with UFO cat
-  "pet-funeral": "/lovable-uploads/c767ea95-f4d6-4875-aa3d-c9f854be9e40.png", // Rainbow bridge image
+  "rainbow-bridge": "/lovable-uploads/be74091f-4ccb-434e-88ac-0667651f253a.png", // Cat UFO rainbow bridge
+  "pet-funeral": "/lovable-uploads/c3857a85-d6ef-423a-a3bb-bd784cf7ac7d.png", // Dogs on rainbow bridge
 };
 
 // Apply the custom images to our categories
@@ -65,7 +65,7 @@ const Index = () => {
       
       {/* Hero Section with fairy cows image */}
       <section className="w-full py-16 md:py-24 px-4 flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-indigo-900 to-black">
-        <div className="absolute inset-0 bg-[url('/lovable-uploads/d2df99a1-71d4-4d47-999f-5159bfdf52be.png')] opacity-40 bg-cover bg-center"></div>
+        <div className="absolute inset-0 bg-[url('/lovable-uploads/be74091f-4ccb-434e-88ac-0667651f253a.png')] opacity-40 bg-cover bg-center"></div>
         <div className="container max-w-4xl mx-auto text-center animate-fade-in-slow relative z-10">
           <h1 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">
             Love Never Ends — It Just Glows Differently

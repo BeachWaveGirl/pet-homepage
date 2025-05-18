@@ -45,7 +45,7 @@ const RainbowBridge = () => {
           
           <div className="relative w-full h-64 md:h-80 lg:h-96 mb-10 rounded-xl overflow-hidden">
             <img 
-              src="/lovable-uploads/500de6cf-1ba5-4a1a-95dc-cee82a126210.png"
+              src="/lovable-uploads/be74091f-4ccb-434e-88ac-0667651f253a.png"
               alt="Rainbow Bridge" 
               className="w-full h-full object-cover"
             />

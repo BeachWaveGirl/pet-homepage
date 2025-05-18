@@ -25,14 +25,14 @@ export const categoryGroups = [
         description: "Connect with your pet on a deeper spiritual level.",
       },
       {
+        title: "Pet Voice Chat",
+        href: "/pet-voice-chat",
+        description: "Talk with your pet using our AI voice technology.",
+      },
+      {
         title: "Pet Tarot Reading",
         href: "/pet-tarot-reading",
         description: "Discover what the cards reveal about your pet's energy.",
-      },
-      {
-        title: "Pet Zodiac",
-        href: "/pet-zodiac",
-        description: "Mystical astrological portraits with your pet's zodiac sign.",
       },
     ],
   },

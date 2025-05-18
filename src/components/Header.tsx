@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { 
   Accordion,
   AccordionContent,
@@ -10,10 +10,11 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { categoryGroups } from "./NavigationMenu";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   
   const scrollToForm = () => {
     const formElement = document.getElementById('letter-form');
@@ -21,17 +22,29 @@ const Header = () => {
     setIsMenuOpen(false);
   };
 
+  // Add scroll event listener to detect when the page is scrolled
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <header className="w-full bg-white py-4 px-4 md:px-6 flex justify-center border-b">
+    <header className={`w-full bg-white py-4 px-4 md:px-6 flex justify-center border-b sticky top-0 z-50 ${isScrolled ? 'shadow-md' : ''}`}>
       <div className="container flex justify-between items-center">
         {/* Hamburger Menu with side slide effect */}
         <Dialog open={isMenuOpen} onOpenChange={setIsMenuOpen}>
-          <DialogTrigger asChild>
-            <Button variant="ghost" size="sm" className="p-1">
-              <Menu className="h-7 w-7" />
-              <span className="sr-only">Open main menu</span>
-            </Button>
-          </DialogTrigger>
+          <Button variant="ghost" size="sm" className="p-1" onClick={() => setIsMenuOpen(true)}>
+            <Menu className="h-7 w-7" />
+            <span className="sr-only">Open main menu</span>
+          </Button>
           <DialogContent className="p-0 sm:max-w-[280px] h-full fixed left-0 top-0 rounded-none border-r shadow-xl transform transition-transform duration-300 ease-in-out" 
             style={{transform: isMenuOpen ? 'translateX(0)' : 'translateX(-100%)'}}
             onInteractOutside={(e) => {e.preventDefault(); setIsMenuOpen(false);}}>

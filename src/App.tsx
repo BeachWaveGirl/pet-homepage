@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -13,7 +14,7 @@ import GriefJournal from "./pages/GriefJournal";
 import NotFound from "./pages/NotFound";
 import DigitalScrapbooks from "./pages/DigitalScrapbooks";
 import PetDigitalArt from "./pages/PetDigitalArt";
-import PetZodiac from "./pages/PetZodiac";
+import PetMemorial from "./pages/PetZodiac"; // Renamed component but same file
 import PetBathroom from "./pages/PetBathroom";
 import PetTypography from "./pages/PetTypography";
 import QuotePosters from "./pages/QuotePosters";
@@ -25,6 +26,7 @@ import PetPhysicReading from "./pages/PetPhysicReading";
 import PetRecord from "./pages/PetRecord";
 import PetSittingService from "./pages/PetSittingService";
 import PetTarotReading from "./pages/PetTarotReading";
+import PetVoiceChat from "./pages/PetVoiceChat";
 
 const queryClient = new QueryClient();
 
@@ -45,7 +47,7 @@ const App = () => {
             <Route path="/grief-journal" element={<GriefJournal />} />
             <Route path="/digital-scrapbooks" element={<DigitalScrapbooks />} />
             <Route path="/pet-digital-art" element={<PetDigitalArt />} />
-            <Route path="/pet-zodiac" element={<PetZodiac />} />
+            <Route path="/pet-zodiac" element={<PetMemorial />} /> {/* Keep original route but use new component */}
             <Route path="/pet-bathroom" element={<PetBathroom />} />
             <Route path="/pet-typography" element={<PetTypography />} />
             <Route path="/quote-posters" element={<QuotePosters />} />
@@ -57,6 +59,7 @@ const App = () => {
             <Route path="/pet-record" element={<PetRecord />} />
             <Route path="/pet-sitting-service" element={<PetSittingService />} />
             <Route path="/pet-tarot-reading" element={<PetTarotReading />} />
+            <Route path="/pet-voice-chat" element={<PetVoiceChat />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
