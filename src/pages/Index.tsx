@@ -63,15 +63,15 @@ const Index = () => {
     <div className="min-h-screen flex flex-col bg-background font-inter">
       <Header />
       
-      {/* Hero Section with rainbow UFO cat image */}
+      {/* Hero Section with fairy cows image */}
       <section className="w-full py-16 md:py-24 px-4 flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-indigo-900 to-black">
-        <div className="absolute inset-0 bg-[url('/lovable-uploads/c767ea95-f4d6-4875-aa3d-c9f854be9e40.png')] opacity-40 bg-cover bg-center"></div>
+        <div className="absolute inset-0 bg-[url('/lovable-uploads/d2df99a1-71d4-4d47-999f-5159bfdf52be.png')] opacity-40 bg-cover bg-center"></div>
         <div className="container max-w-4xl mx-auto text-center animate-fade-in-slow relative z-10">
           <h1 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">
-            Welcome to Petly
+            Love Never Ends — It Just Glows Differently
           </h1>
           <p className="text-xl md:text-2xl text-gray-200 mb-10 max-w-2xl mx-auto">
-            Celebrate your pet's life — from joyful beginnings to cherished memories. Petly is your creative AI-powered space to make heartfelt, downloadable keepsakes for every silly, snuggly, unforgettable moment.
+            Let's honor them. Celebrate their love. Keep their light alive.
           </p>
           
           <Button onClick={scrollToForm} className="bg-indigo-600 hover:bg-indigo-700 text-white transition-colors">

@@ -42,7 +42,7 @@ const Header = () => {
                   className="text-xl font-playfair font-semibold"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Petly
+                  HaloPet
                 </Link>
                 <Button variant="ghost" size="sm" className="p-1" onClick={() => setIsMenuOpen(false)}>
                   <X className="h-6 w-6" />
@@ -99,7 +99,7 @@ const Header = () => {
         </Dialog>
         
         <Link to="/" className="text-xl font-playfair font-semibold flex items-center">
-          <span>Petly</span>
+          <span>HaloPet</span>
         </Link>
         
         <Button 
