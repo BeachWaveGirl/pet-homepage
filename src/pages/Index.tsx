@@ -34,38 +34,10 @@ const categoryImages = {
   "pet-physic-reading": "/pet-psychic-reading.png", // Updated image
   "pet-zodiac": "/pet-tarot-reading.png", // Updated image
 
-  // Pet Love & Communication
-  "pet-poems": "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?q=80&w=1000&auto=format&fit=crop", // Dreamy dog
-  "pet-typography": "https://images.unsplash.com/photo-1561948955-570b270e7c36?q=80&w=1000&auto=format&fit=crop", // Artistic cat
-
   // Pet Memorial & Afterlife
   "star-map": "https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0?q=80&w=1000&auto=format&fit=crop", // Cosmic night sky
   "rainbow-bridge": "https://images.unsplash.com/photo-1604537466608-109fa2f16c3b?q=80&w=1000&auto=format&fit=crop", // Rainbow with silhouette
   "digital-scrapbooks": "https://images.unsplash.com/photo-1535930891776-0c2dfb7fda1a?q=80&w=1000&auto=format&fit=crop", // Memory collage
-
-  // Pet Life & Responsibility
-  "pet-health-record": "https://images.unsplash.com/photo-1576201836106-db1758fd1c97?q=80&w=1000&auto=format&fit=crop", // High-tech vet
-  "pet-sitting-service": "https://images.unsplash.com/photo-1601758177266-bc599de87707?q=80&w=1000&auto=format&fit=crop", // Modern pet sitting
-  "pet-record": "https://images.unsplash.com/photo-1553322396-0c9cd410975e?q=80&w=1000&auto=format&fit=crop", // Futuristic record
-
-  // Pet Portraits & Artwork
-  "pet-portrait": "https://images.unsplash.com/photo-1558236714-d1a6333fce68?q=80&w=1000&auto=format&fit=crop", // Modern portrait
-  "pet-badly-drawn": "https://images.unsplash.com/photo-1596854372943-a50bbbdf24a7?q=80&w=1000&auto=format&fit=crop", // Artistic style
-  "pet-digital-art": "https://images.unsplash.com/photo-1548247416-ec66f4900b2e?q=80&w=1000&auto=format&fit=crop", // Digital art style
-
-  // Pet Celebrations & Fun Prints
-  "pet-party": "https://images.unsplash.com/photo-1563474993427-c7923146d8f0?q=80&w=1000&auto=format&fit=crop", // Party pet
-  "pet-achievement": "https://images.unsplash.com/photo-1503256207526-0d5d80fa2f47?q=80&w=1000&auto=format&fit=crop", // Achievement
-
-  // Pet Home & Decor
-  "pet-bathroom": "https://images.unsplash.com/photo-1543466835-00a7907e9de1?q=80&w=1000&auto=format&fit=crop", // Modern bathroom
-  "quote-posters": "https://images.unsplash.com/photo-1425082661705-1834bfd09dca?q=80&w=1000&auto=format&fit=crop", // Quote context
-  "pet-door-sign": "https://images.unsplash.com/photo-1494947665470-20322015e3a8?q=80&w=1000&auto=format&fit=crop", // Modern door
-
-  // Pet Stories & Journals
-  "memory-stories": "https://images.unsplash.com/photo-1529429617124-95b109e86bb8?q=80&w=1000&auto=format&fit=crop", // Story moment
-  "grief-journal": "https://images.unsplash.com/photo-1491485880348-85d48a9e5312?q=80&w=1000&auto=format&fit=crop", // Reflective moment
-  "pet-adventure": "https://images.unsplash.com/photo-1477884213360-7e9d7dcc1e48?q=80&w=1000&auto=format&fit=crop" // Adventure scene
 };
 
 // Apply the custom images to our categories
