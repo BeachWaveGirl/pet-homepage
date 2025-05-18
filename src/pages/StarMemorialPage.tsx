@@ -8,8 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
-import { Toast } from "@/components/ui/toast";
-import { toast } from "@/hooks/use-toast";
+import { toast } from "sonner";
 import { Star, Upload, Heart } from "lucide-react";
 
 const StarMemorialPage = () => {
@@ -22,6 +21,7 @@ const StarMemorialPage = () => {
   const [petPhoto, setPetPhoto] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [memorialCreated, setMemorialCreated] = useState(false);
+  const [allMemorials, setAllMemorials] = useState<any[]>([]);
   
   // Ref for the canvas element
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -48,9 +48,23 @@ const StarMemorialPage = () => {
       setIsSubmitting(false);
       setMemorialCreated(true);
       
-      toast({
-        title: "Memorial Created",
-        description: `${petName} has been transformed into a beautiful star in our celestial map.`,
+      // Create new memorial object
+      const newMemorial = {
+        id: Date.now().toString(),
+        petName,
+        petType,
+        petBirthDate,
+        petPassingDate,
+        petMessage,
+        petPhoto,
+        createdAt: new Date().toISOString()
+      };
+      
+      // Add to memorials list
+      setAllMemorials(prev => [newMemorial, ...prev]);
+      
+      toast.success("Memorial Created", {
+        description: `${petName} has been transformed into a beautiful star in our celestial map.`
       });
       
       // Animate the canvas to show the pet becoming a star
@@ -115,6 +129,17 @@ const StarMemorialPage = () => {
   useEffect(() => {
     animateStars();
   }, []);
+
+  // Reset form fields after successful submission
+  const handleCreateAnother = () => {
+    setMemorialCreated(false);
+    setPetName("");
+    setPetType("");
+    setPetBirthDate("");
+    setPetPassingDate("");
+    setPetMessage("");
+    setPetPhoto(null);
+  };
   
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-indigo-900 to-black text-white">
@@ -298,12 +323,86 @@ const StarMemorialPage = () => {
                         {petName}'s star will shine brightly in our celestial memorial sky forever.
                         Visit anytime to send light and remember your beloved companion.
                       </p>
+                      
+                      <Button 
+                        onClick={handleCreateAnother} 
+                        variant="outline" 
+                        className="mt-6 border-white/30 text-white hover:bg-white/10"
+                      >
+                        Create Another Memorial
+                      </Button>
                     </motion.div>
                   </div>
                 )}
               </div>
             </motion.div>
           </div>
+          
+          {/* All Memorials Section */}
+          {allMemorials.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="mt-16"
+            >
+              <h2 className="text-2xl font-playfair font-bold mb-6 flex items-center">
+                <Star className="mr-2 h-5 w-5 text-yellow-300" />
+                Your Pet Memorials
+              </h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {allMemorials.map((memorial) => (
+                  <Card key={memorial.id} className="bg-white/10 backdrop-blur-md border-white/20 text-white shadow-xl overflow-hidden">
+                    <div className="h-40 bg-gray-800 relative">
+                      {memorial.petPhoto && (
+                        <img 
+                          src={memorial.petPhoto} 
+                          alt={memorial.petName} 
+                          className="w-full h-full object-cover"
+                        />
+                      )}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                    </div>
+                    <CardContent className="p-4">
+                      <h3 className="text-xl font-playfair font-bold">{memorial.petName}</h3>
+                      <p className="text-sm text-gray-300">{memorial.petType}</p>
+                      {memorial.petPassingDate && (
+                        <p className="text-xs text-gray-400 mt-1">
+                          {new Date(memorial.petPassingDate).toLocaleDateString('en-US', { 
+                            year: 'numeric', 
+                            month: 'long', 
+                            day: 'numeric' 
+                          })}
+                        </p>
+                      )}
+                      {memorial.petMessage && (
+                        <p className="mt-3 text-sm line-clamp-2">{memorial.petMessage}</p>
+                      )}
+                      <div className="flex justify-between mt-4">
+                        <Button 
+                          variant="ghost" 
+                          size="sm" 
+                          className="text-indigo-300 hover:text-indigo-200 hover:bg-white/5"
+                        >
+                          <Star className="mr-1 h-4 w-4" />
+                          View
+                        </Button>
+                        <Button 
+                          variant="ghost" 
+                          size="sm" 
+                          className="text-pink-300 hover:text-pink-200 hover:bg-white/5"
+                        >
+                          <Heart className="mr-1 h-4 w-4" />
+                          Send Light
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </motion.div>
+          )}
         </div>
       </main>
       

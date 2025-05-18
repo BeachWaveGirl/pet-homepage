@@ -45,11 +45,12 @@ const Header = () => {
     <header className={`w-full bg-white py-4 px-4 md:px-6 flex justify-center border-b sticky top-0 z-50 ${isScrolled ? 'shadow-md' : ''}`}>
       <div className="container flex justify-between items-center">
         {/* Hamburger Menu with side slide effect */}
+        <Button variant="ghost" size="sm" className="p-1" onClick={() => setIsMenuOpen(true)}>
+          <Menu className="h-7 w-7" />
+          <span className="sr-only">Open main menu</span>
+        </Button>
+        
         <Dialog open={isMenuOpen} onOpenChange={setIsMenuOpen}>
-          <Button variant="ghost" size="sm" className="p-1" onClick={() => setIsMenuOpen(true)}>
-            <Menu className="h-7 w-7" />
-            <span className="sr-only">Open main menu</span>
-          </Button>
           <DialogContent className="p-0 sm:max-w-[280px] h-full fixed left-0 top-0 rounded-none border-r shadow-xl transform transition-transform duration-300 ease-in-out" 
             style={{transform: isMenuOpen ? 'translateX(0)' : 'translateX(-100%)'}}
             onInteractOutside={(e) => {e.preventDefault(); setIsMenuOpen(false);}}>
@@ -101,9 +102,8 @@ const Header = () => {
                   >
                     Memorial Products
                   </Link>
-                  <Link to="/star-memorial">
+                  <Link to="/star-memorial" onClick={() => setIsMenuOpen(false)}>
                     <Button
-                      onClick={() => setIsMenuOpen(false)}
                       className="w-full bg-black text-white hover:bg-gray-800 transition-colors mt-4"
                     >
                       Create a Memorial
