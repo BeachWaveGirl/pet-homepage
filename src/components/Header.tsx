@@ -3,13 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerOverlay,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
 import { 
   Accordion,
   AccordionContent,
@@ -17,43 +10,44 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { categoryGroups } from "./NavigationMenu";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 const Header = () => {
-  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   
   const scrollToForm = () => {
     const formElement = document.getElementById('letter-form');
     formElement?.scrollIntoView({ behavior: 'smooth' });
-    setDrawerOpen(false);
+    setIsMenuOpen(false);
   };
 
   return (
     <header className="w-full bg-white py-4 px-4 md:px-6 flex justify-center border-b">
       <div className="container flex justify-between items-center">
-        {/* Hamburger Menu - Made slightly bigger */}
-        <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
-          <DrawerTrigger asChild>
+        {/* Hamburger Menu with side slide effect */}
+        <Dialog open={isMenuOpen} onOpenChange={setIsMenuOpen}>
+          <DialogTrigger asChild>
             <Button variant="ghost" size="sm" className="p-1">
-              <Menu className="h-7 w-7" /> {/* Increased size */}
+              <Menu className="h-7 w-7" />
               <span className="sr-only">Open main menu</span>
             </Button>
-          </DrawerTrigger>
-          <DrawerContent className="h-full w-[80%] max-w-sm left-0 right-auto">
+          </DialogTrigger>
+          <DialogContent className="p-0 sm:max-w-[280px] h-full fixed left-0 top-0 rounded-none border-r shadow-xl transform transition-transform duration-300 ease-in-out" 
+            style={{transform: isMenuOpen ? 'translateX(0)' : 'translateX(-100%)'}}
+            onInteractOutside={(e) => {e.preventDefault(); setIsMenuOpen(false);}}>
             <div className="h-full flex flex-col">
               <div className="flex items-center justify-between p-4 border-b">
                 <Link 
                   to="/" 
                   className="text-xl font-playfair font-semibold"
-                  onClick={() => setDrawerOpen(false)}
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   Petly
                 </Link>
-                <DrawerClose asChild>
-                  <Button variant="ghost" size="sm" className="p-1">
-                    <X className="h-6 w-6" />
-                    <span className="sr-only">Close menu</span>
-                  </Button>
-                </DrawerClose>
+                <Button variant="ghost" size="sm" className="p-1" onClick={() => setIsMenuOpen(false)}>
+                  <X className="h-6 w-6" />
+                  <span className="sr-only">Close menu</span>
+                </Button>
               </div>
               <div className="flex-1 overflow-y-auto p-4">
                 <Accordion type="multiple" className="space-y-4">
@@ -70,7 +64,7 @@ const Header = () => {
                               key={item.title}
                               to={item.href}
                               className="block py-2 px-2 text-left hover:text-indigo-600 transition-colors"
-                              onClick={() => setDrawerOpen(false)}
+                              onClick={() => setIsMenuOpen(false)}
                             >
                               {item.title}
                             </Link>
@@ -85,14 +79,14 @@ const Header = () => {
                   <Link 
                     to="/pricing" 
                     className="block py-2 px-4 text-left hover:bg-gray-50 rounded-md transition-colors"
-                    onClick={() => setDrawerOpen(false)}
+                    onClick={() => setIsMenuOpen(false)}
                   >
                     Memorial Products
                   </Link>
                   <Button
                     onClick={() => {
                       scrollToForm();
-                      setDrawerOpen(false);
+                      setIsMenuOpen(false);
                     }}
                     className="w-full bg-black text-white hover:bg-gray-800 transition-colors mt-4"
                   >
@@ -101,8 +95,8 @@ const Header = () => {
                 </div>
               </div>
             </div>
-          </DrawerContent>
-        </Drawer>
+          </DialogContent>
+        </Dialog>
         
         <Link to="/" className="text-xl font-playfair font-semibold flex items-center">
           <span>Petly</span>

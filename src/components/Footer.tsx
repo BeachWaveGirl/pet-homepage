@@ -8,9 +8,6 @@ const Footer = () => {
           <p className="text-sm text-gray-500 max-w-xl mx-auto">
             ✨ No shipping. No clutter. Just meaningful digital art to save, share, and smile at.
           </p>
-          <p className="text-xs text-gray-400 max-w-xl mx-auto mt-2">
-            Disclaimer: Petly is a creative platform designed for personal enjoyment and expression. All content is for entertainment purposes only and not intended as professional, medical, or therapeutic advice.
-          </p>
         </div>
         
         <div className="flex justify-center space-x-6 mb-6">
@@ -20,7 +17,8 @@ const Footer = () => {
         </div>
         
         <div className="text-xs text-gray-400 text-center">
-          © {new Date().getFullYear()} Petly. All rights reserved.
+          <p className="mb-2">Disclaimer: Petly is a creative platform designed for personal enjoyment and expression. All content is for entertainment purposes only and not intended as professional, medical, or therapeutic advice.</p>
+          <p>© {new Date().getFullYear()} Petly. All rights reserved.</p>
         </div>
       </div>
     </footer>

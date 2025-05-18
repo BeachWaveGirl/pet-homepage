@@ -3,12 +3,14 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/hooks/use-toast";
+import { Download, Share } from "lucide-react";
+import html2canvas from "html2canvas";
 
 const PetFuneral = () => {
   const [petName, setPetName] = useState("");
@@ -20,6 +22,7 @@ const PetFuneral = () => {
   const [additionalInfo, setAdditionalInfo] = useState("");
   const [petPhoto, setPetPhoto] = useState<string | null>(null);
   const [isGenerated, setIsGenerated] = useState(false);
+  const invitationRef = useRef<HTMLDivElement>(null);
   
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -35,6 +38,81 @@ const PetFuneral = () => {
       title: "Memorial invitation created",
       description: `Your pet memorial invitation for ${petName || "your pet"} has been generated.`,
     });
+  };
+
+  const downloadInvitation = async () => {
+    if (!invitationRef.current) return;
+    
+    try {
+      const canvas = await html2canvas(invitationRef.current, {
+        scale: 2, // Higher quality
+        backgroundColor: null,
+        useCORS: true, // To handle cross-origin images
+      });
+      
+      const image = canvas.toDataURL("image/png");
+      const link = document.createElement("a");
+      link.download = `${petName || "pet"}_memorial_invitation.png`;
+      link.href = image;
+      link.click();
+      
+      toast({
+        title: "Invitation downloaded",
+        description: "Your pet memorial invitation has been saved to your device.",
+      });
+    } catch (error) {
+      console.error("Error downloading invitation:", error);
+      toast({
+        title: "Download failed",
+        description: "There was an error downloading your invitation. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const shareInvitation = async () => {
+    if (!invitationRef.current) return;
+    
+    try {
+      const canvas = await html2canvas(invitationRef.current, { scale: 2, useCORS: true });
+      canvas.toBlob(async (blob) => {
+        if (!blob) {
+          throw new Error("Could not create image blob");
+        }
+        
+        if (navigator.share) {
+          const file = new File([blob], `${petName || "pet"}_memorial_invitation.png`, { type: "image/png" });
+          await navigator.share({
+            title: `Memorial for ${petName || "a beloved pet"}`,
+            text: "Please join us in remembering our beloved pet.",
+            files: [file],
+          });
+          toast({
+            title: "Invitation shared",
+            description: "Your pet memorial invitation has been shared.",
+          });
+        } else {
+          // Fallback if Web Share API is not supported
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement("a");
+          link.download = `${petName || "pet"}_memorial_invitation.png`;
+          link.href = url;
+          link.click();
+          URL.revokeObjectURL(url);
+          toast({
+            title: "Invitation downloaded",
+            description: "Web sharing is not supported on your device. The invitation has been downloaded instead.",
+          });
+        }
+      }, "image/png");
+    } catch (error) {
+      console.error("Error sharing invitation:", error);
+      toast({
+        title: "Share failed",
+        description: "There was an error sharing your invitation. Please try again or use the download option.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -169,10 +247,11 @@ const PetFuneral = () => {
                   <div className="w-full h-full flex flex-col items-center justify-center">
                     {isGenerated ? (
                       <div 
+                        ref={invitationRef}
                         className="w-full h-full flex flex-col items-center justify-between relative"
                         style={{
                           backgroundColor: "#F3F3F3",
-                          backgroundImage: "url('https://images.unsplash.com/photo-1558386620-08e0998d3737?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80')",
+                          backgroundImage: "url('/lovable-uploads/c767ea95-f4d6-4875-aa3d-c9f854be9e40.png')", // Updated background with the rainbow cat image
                           backgroundBlendMode: "soft-light",
                           backgroundSize: "cover",
                           backgroundPosition: "center"
@@ -234,7 +313,7 @@ const PetFuneral = () => {
                     ) : (
                       <div className="text-center p-6">
                         <img 
-                          src="https://images.unsplash.com/photo-1568393691383-989143b57423?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" 
+                          src="/lovable-uploads/c767ea95-f4d6-4875-aa3d-c9f854be9e40.png" 
                           alt="Pet memorial" 
                           className="w-48 h-48 object-cover mx-auto mb-4 rounded-full"
                         />
@@ -244,6 +323,26 @@ const PetFuneral = () => {
                   </div>
                 </AspectRatio>
               </CardContent>
+              
+              {/* Download and share buttons */}
+              {isGenerated && (
+                <div className="p-4 flex space-x-4">
+                  <Button 
+                    onClick={downloadInvitation} 
+                    className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white"
+                  >
+                    <Download className="h-4 w-4 mr-2" />
+                    Download
+                  </Button>
+                  <Button 
+                    onClick={shareInvitation} 
+                    className="flex-1 bg-teal-600 hover:bg-teal-700 text-white"
+                  >
+                    <Share className="h-4 w-4 mr-2" />
+                    Share
+                  </Button>
+                </div>
+              )}
             </Card>
           </div>
           
