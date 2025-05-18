@@ -120,7 +120,7 @@ const Index = () => {
           <div className="container mx-auto max-w-6xl">
             <div className="flex items-center justify-center mb-4">
               <span className="text-2xl mr-2">{category.emoji}</span>
-              <h2 className="text-3xl font-playfair font-bold">{category.title}</h2>
+              <h2 className="text-3xl font-playfair font-bold text-center">{category.title}</h2>
             </div>
             
             <p className="text-lg text-gray-700 mb-8 max-w-3xl mx-auto text-center">
