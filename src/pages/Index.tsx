@@ -1,4 +1,3 @@
-
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CategoryCard from "@/components/CategoryCard";
@@ -98,7 +97,7 @@ const Index = () => {
             Welcome to Petly
           </h1>
           <p className="text-xl md:text-2xl text-gray-200 mb-10 max-w-2xl mx-auto">
-            Whether you're celebrating a new furry friend, cherishing everyday cuddles, or honoring a beloved memory — Petly is your AI-powered creative space for all things pet love.
+            Celebrate your pet's life — from joyful beginnings to cherished memories. Petly is your creative AI-powered space to make heartfelt, downloadable keepsakes for every silly, snuggly, unforgettable moment.
           </p>
           
           <Button onClick={scrollToForm} className="bg-indigo-600 hover:bg-indigo-700 text-white transition-colors">
@@ -111,13 +110,10 @@ const Index = () => {
       <section className="w-full py-12 px-4 bg-gradient-to-r from-gray-900 to-gray-800 text-white">
         <div className="container mx-auto max-w-4xl text-center">
           <p className="text-lg mb-4">
-            Here, you can create beautiful, personalized <strong className="text-indigo-300">digital keepsakes</strong> that capture your pet's spirit, quirks, and story — from day one to forever.
-          </p>
-          <p className="text-lg mb-4">
-            ✨ No shipping. No clutter. Just meaningful, downloadable digital art you can save, share, and revisit anytime.
+            ✨ No shipping. No clutter. Just meaningful digital art to save, share, and smile at.
           </p>
           <p className="text-lg">
-            <strong className="text-indigo-300">Petly</strong> is made for people who love their pets deeply — not just when they're gone, but in every silly, snuggly, unforgettable moment.
+            <strong className="text-indigo-300">Disclaimer:</strong> Petly is a creative platform designed for personal enjoyment and expression. All content is for entertainment purposes only and not intended as professional, medical, or therapeutic advice.
           </p>
         </div>
       </section>
