@@ -11,9 +11,17 @@ interface CategoryCardProps {
   description: string;
   imageUrl: string;
   link: string;
+  aspectRatio?: number;
 }
 
-const CategoryCard = ({ id, title, description, imageUrl, link }: CategoryCardProps) => {
+const CategoryCard = ({ 
+  id, 
+  title, 
+  description, 
+  imageUrl, 
+  link,
+  aspectRatio = 16/9 
+}: CategoryCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   
   return (
@@ -30,7 +38,7 @@ const CategoryCard = ({ id, title, description, imageUrl, link }: CategoryCardPr
     >
       <Link to={link} className="block h-full">
         <div className="relative">
-          <AspectRatio ratio={16/9} className="bg-gray-100">
+          <AspectRatio ratio={aspectRatio} className="bg-gray-100">
             <img
               src={imageUrl}
               alt={title}

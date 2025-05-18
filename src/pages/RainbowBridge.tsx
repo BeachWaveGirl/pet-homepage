@@ -4,21 +4,32 @@ import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { Heart } from "lucide-react";
-import { toast } from "@/hooks/use-toast";
+import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
 
 const RainbowBridge = () => {
   const [petName, setPetName] = useState("");
-  const [ownerName, setOwnerName] = useState("");
-  const [specialMessage, setSpecialMessage] = useState("");
-  const [isGenerated, setIsGenerated] = useState(false);
+  const [petType, setPetType] = useState("");
+  const [generatedPoem, setGeneratedPoem] = useState("");
+  const { toast } = useToast();
   
   const handleGeneratePoem = () => {
-    setIsGenerated(true);
+    // In a real implementation, this would call an AI service
+    const samplePoems = [
+      `In loving memory of ${petName || "your beloved pet"},\nA ${petType || "companion"} so true and so dear.\nNow crossing the Rainbow Bridge to paradise,\nWhere pain and suffering disappear.`,
+      
+      `The Rainbow Bridge awaits ${petName || "your sweet companion"},\nWhere meadows are green and skies always blue.\nRunning free without pain, just joy and laughter,\nPatiently waiting to reunite with you.`,
+      
+      `Whiskers, paws, and a heart of gold,\n${petName || "Your pet"} is now free among the stars.\nThe Rainbow Bridge has welcomed them home,\nWhere their spirit forever shines from afar.`,
+      
+      `Across the Rainbow Bridge they trot,\n${petName || "Your beloved pet"}, now free from all pain.\nPlaying in meadows of endless treats,\nUntil the day you meet again.`
+    ];
+    
+    setGeneratedPoem(samplePoems[Math.floor(Math.random() * samplePoems.length)]);
+    
     toast({
-      title: "Rainbow Bridge poem created",
-      description: `Your personalized poem for ${petName || "your pet"} has been generated.`,
+      title: "Rainbow Bridge Poem Generated",
+      description: `A special poem has been created for ${petName || "your pet"}.`,
     });
   };
   
@@ -26,28 +37,32 @@ const RainbowBridge = () => {
     <div className="min-h-screen flex flex-col bg-white">
       <Header />
       
-      <main className="flex-1 py-8 px-4 md:py-12">
+      <main className="flex-1 py-12 px-4">
         <div className="container mx-auto max-w-4xl">
-          <div className="flex items-center justify-center mb-2">
-            <Heart className="h-6 w-6 mr-2 text-red-500" />
-            <h1 className="font-playfair text-3xl md:text-4xl font-bold text-center">
-              Rainbow Bridge Poem
-            </h1>
+          <h1 className="font-playfair text-4xl md:text-5xl font-bold mb-6 text-center">
+            Rainbow Bridge Poems
+          </h1>
+          
+          <div className="relative w-full h-64 md:h-80 lg:h-96 mb-10 rounded-xl overflow-hidden">
+            <img 
+              src="/lovable-uploads/500de6cf-1ba5-4a1a-95dc-cee82a126210.png"
+              alt="Rainbow Bridge" 
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+              <p className="text-white text-lg md:text-xl p-6 max-w-2xl">
+                Honor your beloved pet with a beautiful Rainbow Bridge poem, celebrating their journey across the bridge where they wait until you meet again.
+              </p>
+            </div>
           </div>
           
-          <p className="text-lg md:text-xl text-gray-700 mb-8 text-center max-w-2xl mx-auto">
-            Create a beautiful customized Rainbow Bridge poem to honor your beloved pet's memory
-          </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Card className="bg-white border-gray-200 shadow-md">
-              <CardHeader>
-                <CardTitle className="text-xl md:text-2xl font-playfair flex items-center">
-                  <span>Customize Your Poem</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-5">
+          <Card className="bg-white border-gray-200 shadow-md mb-8">
+            <CardHeader>
+              <CardTitle className="text-2xl font-playfair">Create Your Rainbow Bridge Poem</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-5">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
                     <label className="block text-sm font-medium mb-1">Pet's Name</label>
                     <input 
@@ -58,98 +73,51 @@ const RainbowBridge = () => {
                       placeholder="Enter your pet's name"
                     />
                   </div>
-                  
                   <div>
-                    <label className="block text-sm font-medium mb-1">Your Name</label>
+                    <label className="block text-sm font-medium mb-1">Type of Pet</label>
                     <input 
                       type="text"
                       className="w-full p-2 border rounded-md"
-                      value={ownerName}
-                      onChange={(e) => setOwnerName(e.target.value)}
-                      placeholder="Enter your name"
+                      value={petType}
+                      onChange={(e) => setPetType(e.target.value)}
+                      placeholder="Dog, cat, rabbit, etc."
                     />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium mb-1">Special Message (Optional)</label>
-                    <textarea
-                      className="w-full p-2 border rounded-md min-h-[100px]"
-                      value={specialMessage}
-                      onChange={(e) => setSpecialMessage(e.target.value)}
-                      placeholder="Add a personal message to appear at the bottom of your poem..."
-                    />
-                  </div>
-                  
-                  <div className="pt-3">
-                    <Button
-                      onClick={handleGeneratePoem}
-                      className="w-full bg-blue-500 hover:bg-blue-600 text-white"
-                    >
-                      Generate Rainbow Bridge Poem
-                    </Button>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
-            
-            <Card className="bg-white border-gray-200 shadow-md overflow-hidden">
-              <CardContent className="p-0">
-                <AspectRatio ratio={4/5}>
-                  <div className="w-full h-full flex flex-col items-center justify-center relative">
-                    {isGenerated ? (
-                      <div className="relative w-full h-full">
-                        <div 
-                          className="absolute inset-0 bg-gradient-to-b from-blue-300 via-purple-300 to-pink-200"
-                          style={{
-                            backgroundImage: "url('https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')",
-                            backgroundSize: "cover",
-                            backgroundPosition: "center",
-                            backgroundBlendMode: "overlay",
-                            opacity: 0.7
-                          }}
-                        />
-                        
-                        <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
-                          <h3 className="font-playfair text-2xl font-bold mb-4">{petName || "Pet name"}</h3>
-                          
-                          <div className="prose text-xs sm:text-sm md:text-base italic text-gray-900 overflow-y-auto max-h-[80%] px-4 py-2">
-                            <p>Just this side of heaven is a place called Rainbow Bridge.</p>
-                            <p>When an animal dies that has been especially close to someone here, that pet goes to Rainbow Bridge. There are meadows and hills for all of our special friends so they can run and play together.</p>
-                            <p>There is plenty of food, water and sunshine, and our friends are warm and comfortable.</p>
-                            <p>All the animals who had been ill and old are restored to health and vigor. Those who were hurt or maimed are made whole and strong again, just as we remember them in our dreams of days and times gone by.</p>
-                            <p>The animals are happy and content, except for one small thing; they each miss someone very special to them, who had to be left behind.</p>
-                            <p>They all run and play together, but the day comes when one suddenly stops and looks into the distance. His bright eyes are intent. His eager body quivers. Suddenly he begins to run from the group, flying over the green grass, his legs carrying him faster and faster.</p>
-                            <p>You have been spotted, and when you and your special friend finally meet, you cling together in joyous reunion, never to be parted again.</p>
-                            <p>The happy kisses rain upon your face; your hands again caress the beloved head, and you look once more into the trusting eyes of your pet, so long gone from your life but never absent from your heart.</p>
-                            <p>Then you cross Rainbow Bridge together...</p>
-                          </div>
-                          
-                          {specialMessage && (
-                            <p className="mt-4 text-sm italic font-semibold">
-                              {specialMessage}
-                            </p>
-                          )}
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="text-center p-6">
-                        <p className="text-gray-500">Enter your pet's information and generate a beautiful Rainbow Bridge poem to honor their memory.</p>
-                        <img 
-                          src="https://images.unsplash.com/photo-1535930891776-0c2dfb7fda1a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80"
-                          alt="Rainbow" 
-                          className="w-48 h-48 object-cover mx-auto mt-4 rounded-full opacity-60"
-                        />
-                      </div>
-                    )}
+                
+                <div className="pt-3">
+                  <Button
+                    onClick={handleGeneratePoem}
+                    className="w-full bg-gradient-to-r from-[#8B5CF6] to-[#D946EF] hover:opacity-90 text-white"
+                  >
+                    Generate Rainbow Bridge Poem
+                  </Button>
+                </div>
+                
+                {generatedPoem && (
+                  <div className="mt-6 p-5 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg border border-purple-100">
+                    <h3 className="font-medium mb-2 text-lg">Your Rainbow Bridge Poem</h3>
+                    <div className="font-playfair italic text-gray-800 whitespace-pre-line">
+                      {generatedPoem}
+                    </div>
+                    <div className="mt-4 flex justify-end">
+                      <Button variant="outline" className="border-[#8B5CF6] text-[#8B5CF6] hover:bg-[#8B5CF6] hover:text-white">
+                        Download Poem
+                      </Button>
+                    </div>
                   </div>
-                </AspectRatio>
-              </CardContent>
-            </Card>
-          </div>
+                )}
+              </div>
+            </CardContent>
+          </Card>
           
-          <div className="text-center mt-8">
-            <p className="text-gray-600">
-              Download your custom Rainbow Bridge poem and share it with loved ones
+          <div className="text-center mt-8 max-w-2xl mx-auto">
+            <h3 className="text-xl font-playfair mb-3">About The Rainbow Bridge</h3>
+            <p className="text-gray-600 mb-4">
+              The Rainbow Bridge is a beautiful metaphor for the place where our beloved pets go when they pass away. It's a meadow filled with sunshine, where they can run and play with other animals in comfort and happiness until the day we join them.
+            </p>
+            <p className="text-sm text-gray-500">
+              These poems are created to provide comfort and honor the special bond between you and your pet, celebrating the love that continues even after they've crossed the Rainbow Bridge.
             </p>
           </div>
         </div>

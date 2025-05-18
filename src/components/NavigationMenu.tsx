@@ -20,17 +20,17 @@ export const categoryGroups = [
     description: "Fun, mystical, and personalized content based on your pet's spirit.",
     items: [
       {
-        title: "Pet Horoscope",
-        href: "/pet-physic-reading",
-        description: "Discover what the stars have in store for your pet.",
-      },
-      {
-        title: "Pet Tarot Reading",
+        title: "Pet Psychic Reading",
         href: "/pet-physic-reading",
         description: "Connect with your pet on a deeper spiritual level.",
       },
       {
-        title: "Pet Zodiac Portrait",
+        title: "Pet Tarot Reading",
+        href: "/pet-tarot-reading",
+        description: "Discover what the cards reveal about your pet's energy.",
+      },
+      {
+        title: "Pet Zodiac",
         href: "/pet-zodiac",
         description: "Mystical astrological portraits with your pet's zodiac sign.",
       },
@@ -53,9 +53,9 @@ export const categoryGroups = [
         description: "Beautiful customized Rainbow Bridge poems to honor your pet's memory.",
       },
       {
-        title: "Digital Memory Scrapbook",
-        href: "/digital-scrapbooks",
-        description: "Digital memory books featuring photo collages and loving captions.",
+        title: "Pet Funeral Invitation",
+        href: "/pet-funeral",
+        description: "Create a mobile funeral invitation to share with loved ones.",
       },
     ],
   },

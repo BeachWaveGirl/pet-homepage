@@ -6,8 +6,10 @@ const Footer = () => {
         <div className="text-center mb-6">
           <h3 className="font-playfair text-xl mb-4">Petly</h3>
           <p className="text-sm text-gray-500 max-w-xl mx-auto">
-            AI-generated for comfort only — not therapy or spiritual advice. 
-            Our creations are designed with care to help you celebrate and remember your pets.
+            ✨ No shipping. No clutter. Just meaningful digital art to save, share, and smile at.
+          </p>
+          <p className="text-xs text-gray-400 max-w-xl mx-auto mt-2">
+            Disclaimer: Petly is a creative platform designed for personal enjoyment and expression. All content is for entertainment purposes only and not intended as professional, medical, or therapeutic advice.
           </p>
         </div>
         

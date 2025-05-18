@@ -31,13 +31,14 @@ const categoriesMapping = categoryGroups.map(group => ({
 // Update images to more futuristic, AI-style images
 const categoryImages = {
   // Pet Personality & Destiny
-  "pet-physic-reading": "/pet-psychic-reading.png", // Updated image
-  "pet-zodiac": "/pet-tarot-reading.png", // Updated image
+  "pet-physic-reading": "/lovable-uploads/a0fc43da-849b-4f80-a304-2ad0953ed05d.png", // Updated image with hedgehog
+  "pet-zodiac": "/lovable-uploads/bbeee178-1311-4366-8650-1648c40df369.png", // Updated image with mouse
+  "pet-tarot-reading": "/lovable-uploads/f33432eb-d4f4-459a-9cba-6fdfdbacd6a0.png", // Cat on horse
 
   // Pet Memorial & Afterlife
-  "star-map": "https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0?q=80&w=1000&auto=format&fit=crop", // Cosmic night sky
-  "rainbow-bridge": "https://images.unsplash.com/photo-1604537466608-109fa2f16c3b?q=80&w=1000&auto=format&fit=crop", // Rainbow with silhouette
-  "digital-scrapbooks": "https://images.unsplash.com/photo-1535930891776-0c2dfb7fda1a?q=80&w=1000&auto=format&fit=crop", // Memory collage
+  "star-map": "/lovable-uploads/efa73ad4-f753-493c-933e-d1ec4998656f.png", // Cats in space
+  "rainbow-bridge": "/lovable-uploads/500de6cf-1ba5-4a1a-95dc-cee82a126210.png", // Rainbow bridge with dogs
+  "pet-funeral": "/lovable-uploads/500de6cf-1ba5-4a1a-95dc-cee82a126210.png", // Rainbow bridge image
 };
 
 // Apply the custom images to our categories
@@ -62,9 +63,9 @@ const Index = () => {
     <div className="min-h-screen flex flex-col bg-background font-inter">
       <Header />
       
-      {/* Hero Section with futuristic style */}
+      {/* Hero Section with rainbow bridge image */}
       <section className="w-full py-16 md:py-24 px-4 flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-indigo-900 to-black">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=2000')] opacity-20 bg-cover bg-center"></div>
+        <div className="absolute inset-0 bg-[url('/lovable-uploads/500de6cf-1ba5-4a1a-95dc-cee82a126210.png')] opacity-40 bg-cover bg-center"></div>
         <div className="container max-w-4xl mx-auto text-center animate-fade-in-slow relative z-10">
           <h1 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">
             Welcome to Petly
@@ -76,18 +77,6 @@ const Index = () => {
           <Button onClick={scrollToForm} className="bg-indigo-600 hover:bg-indigo-700 text-white transition-colors">
             Create a Memorial
           </Button>
-        </div>
-      </section>
-      
-      {/* How Petly Works - simplified to 3 lines with futuristic style */}
-      <section className="w-full py-12 px-4 bg-gradient-to-r from-gray-900 to-gray-800 text-white">
-        <div className="container mx-auto max-w-4xl text-center">
-          <p className="text-lg mb-4">
-            ✨ No shipping. No clutter. Just meaningful digital art to save, share, and smile at.
-          </p>
-          <p className="text-lg">
-            <strong className="text-indigo-300">Disclaimer:</strong> Petly is a creative platform designed for personal enjoyment and expression. All content is for entertainment purposes only and not intended as professional, medical, or therapeutic advice.
-          </p>
         </div>
       </section>
       
@@ -104,44 +93,19 @@ const Index = () => {
               {category.description}
             </p>
             
-            {category.items.length > 3 ? (
-              <div className="relative px-10">
-                <Carousel className="w-full">
-                  <CarouselContent>
-                    {category.items.map((item) => (
-                      <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/3">
-                        <CategoryCard
-                          id={item.id}
-                          title={item.title}
-                          description={item.description}
-                          imageUrl={item.imageUrl}
-                          link={item.link}
-                        />
-                      </CarouselItem>
-                    ))}
-                  </CarouselContent>
-                  <div className="absolute inset-y-0 left-0 flex items-center">
-                    <CarouselPrevious className="relative left-0 opacity-80 hover:opacity-100" />
-                  </div>
-                  <div className="absolute inset-y-0 right-0 flex items-center">
-                    <CarouselNext className="relative right-0 opacity-80 hover:opacity-100" />
-                  </div>
-                </Carousel>
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {category.items.map((item) => (
-                  <CategoryCard
-                    key={item.id}
-                    id={item.id}
-                    title={item.title}
-                    description={item.description}
-                    imageUrl={item.imageUrl}
-                    link={item.link}
-                  />
-                ))}
-              </div>
-            )}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              {category.items.map((item) => (
+                <CategoryCard
+                  key={item.id}
+                  id={item.id}
+                  title={item.title}
+                  description={item.description}
+                  imageUrl={item.imageUrl}
+                  link={item.link}
+                  aspectRatio={9/16}
+                />
+              ))}
+            </div>
           </div>
         </section>
       ))}
