@@ -18,8 +18,13 @@ const Header = () => {
   
   const scrollToForm = () => {
     const formElement = document.getElementById('letter-form');
-    formElement?.scrollIntoView({ behavior: 'smooth' });
-    setIsMenuOpen(false);
+    if (formElement) {
+      formElement.scrollIntoView({ behavior: 'smooth' });
+      setIsMenuOpen(false);
+    } else {
+      // If we're not on a page with the letter form, go to homepage
+      window.location.href = '/';
+    }
   };
 
   // Add scroll event listener to detect when the page is scrolled

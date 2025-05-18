@@ -1,285 +1,303 @@
 
+import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { useState, useEffect } from "react";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { motion } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
+import { Star, Clock, MessageCircle } from "lucide-react";
 
-type TarotCard = {
-  id: number;
-  name: string;
-  image: string;
-  meaning: string;
-  reversed: boolean;
-};
-
-const tarotCards: TarotCard[] = [
-  { id: 1, name: "The Fool", image: "/lovable-uploads/f33432eb-d4f4-459a-9cba-6fdfdbacd6a0.png", meaning: "Your pet is adventurous and enjoys new experiences. They live in the moment and find joy in simple pleasures.", reversed: false },
-  { id: 2, name: "The Magician", image: "/lovable-uploads/ae4cb9db-7c24-479a-bd6b-bfdab9c1c6e2.png", meaning: "Your pet is intelligent and resourceful. They have a special ability to communicate their needs to you.", reversed: false },
-  { id: 3, name: "The High Priestess", image: "/lovable-uploads/c767ea95-f4d6-4875-aa3d-c9f854be9e40.png", meaning: "Your pet has deep intuition and understanding. They sense your emotions and energy.", reversed: false },
-  { id: 4, name: "The Empress", image: "/lovable-uploads/bbeee178-1311-4366-8650-1648c40df369.png", meaning: "Your pet is nurturing and loving. They bring abundance and joy to your home environment.", reversed: false },
-  { id: 5, name: "The Emperor", image: "/lovable-uploads/6f146f9a-c7c2-4e3e-8b41-df577ef5aa27.png", meaning: "Your pet has a strong, protective nature. They see themselves as a guardian of their territory.", reversed: false },
-  { id: 6, name: "The Hierophant", image: "/lovable-uploads/efa73ad4-f753-493c-933e-d1ec4998656f.png", meaning: "Your pet values routine and tradition. They find comfort in established patterns and rituals.", reversed: false },
+// Tarot card data
+const tarotCards = [
+  {
+    id: 1,
+    name: "The Sun",
+    image: "/lovable-uploads/c767ea95-f4d6-4875-aa3d-c9f854be9e40.png",
+    description: "Represents joy, happiness, and positive energy. Your pet embodies these qualities and brings light to your life."
+  },
+  {
+    id: 2,
+    name: "The Moon",
+    image: "/lovable-uploads/d2df99a1-71d4-4d47-999f-5159bfdf52be.png",
+    description: "Symbolizes intuition and the unknown. Your pet has a deep intuitive connection with you and senses things beyond our understanding."
+  },
+  {
+    id: 3,
+    name: "The Star",
+    image: "/lovable-uploads/efa73ad4-f753-493c-933e-d1ec4998656f.png",
+    description: "Represents hope, inspiration, and guidance. Your pet serves as a guiding light in your life, offering comfort and direction."
+  },
+  {
+    id: 4,
+    name: "The Lovers",
+    image: "/lovable-uploads/be74091f-4ccb-434e-88ac-0667651f253a.png",
+    description: "Symbolizes deep connection and harmony. The bond between you and your pet is one of unconditional love and perfect understanding."
+  },
+  {
+    id: 5,
+    name: "The Magician",
+    image: "/lovable-uploads/ae4cb9db-7c24-479a-bd6b-bfdab9c1c6e2.png",
+    description: "Represents manifestation and resourcefulness. Your pet has an incredible ability to transform situations and bring magic to your everyday life."
+  },
+  {
+    id: 6,
+    name: "The Empress",
+    image: "/lovable-uploads/6f146f9a-c7c2-4e3e-8b41-df577ef5aa27.png",
+    description: "Symbolizes nurturing and abundance. Your pet embodies the spirit of care and brings richness to your emotional life."
+  }
 ];
 
 const PetTarotReading = () => {
+  const [selectedCard, setSelectedCard] = useState<number | null>(null);
+  const [flippedCards, setFlippedCards] = useState<number[]>([]);
   const [petName, setPetName] = useState("");
-  const [petType, setPetType] = useState("");
-  const [question, setQuestion] = useState("");
-  const [shuffledCards, setShuffledCards] = useState<TarotCard[]>([]);
-  const [selectedCards, setSelectedCards] = useState<TarotCard[]>([]);
-  const [isShuffling, setIsShuffling] = useState(false);
-  const [isReading, setIsReading] = useState(false);
-  const [isSelectionPhase, setIsSelectionPhase] = useState(false);
+  const [cardSelected, setCardSelected] = useState(false);
   const { toast } = useToast();
 
-  // Shuffle the cards and prepare them with random orientations
-  const shuffleCards = () => {
-    if (!petName || !petType || !question) {
-      toast({
-        title: "Missing information",
-        description: "Please provide your pet's name, type, and your question.",
-        variant: "destructive"
-      });
-      return;
-    }
-
-    setIsShuffling(true);
+  const handleCardClick = (id: number) => {
+    // If a card is already selected, do nothing
+    if (cardSelected) return;
     
-    // Create a new array with randomly reversed cards
-    const newCards = [...tarotCards].map(card => ({
-      ...card,
-      reversed: Math.random() > 0.5
-    }));
+    // Mark this card as flipped for animation
+    setFlippedCards([...flippedCards, id]);
     
-    // Shuffle the array
-    for (let i = newCards.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [newCards[i], newCards[j]] = [newCards[j], newCards[i]];
-    }
-    
-    setShuffledCards(newCards);
-    
-    // Simulate shuffling animation
+    // Simulate a "thinking" period before revealing the card meaning
     setTimeout(() => {
-      setIsShuffling(false);
-      setIsSelectionPhase(true);
+      setSelectedCard(id);
+      setCardSelected(true);
       toast({
-        title: "Cards shuffled",
-        description: "Please select three cards for your reading."
+        title: "Card Selected",
+        description: `You've selected ${tarotCards.find(card => card.id === id)?.name}`,
       });
-    }, 2000);
+    }, 1000);
   };
 
-  const handleCardSelection = (card: TarotCard) => {
-    if (selectedCards.length >= 3 || selectedCards.some(c => c.id === card.id)) return;
-    
-    setSelectedCards(prev => [...prev, card]);
-    
-    if (selectedCards.length === 2) {
-      // Third card selected, proceed to reading after a brief delay
-      setTimeout(() => {
-        setIsSelectionPhase(false);
-        setIsReading(true);
-        toast({
-          title: "Reading complete",
-          description: "Your pet's tarot reading is ready."
-        });
-      }, 1000);
-    }
-  };
-
-  const resetReading = () => {
-    setSelectedCards([]);
-    setIsReading(false);
-    setIsSelectionPhase(false);
-    setShuffledCards([]);
+  const handleReset = () => {
+    setSelectedCard(null);
+    setFlippedCards([]);
+    setCardSelected(false);
+    setPetName("");
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#191C27] text-white">
+    <div className="min-h-screen flex flex-col bg-[#1A1F2C] text-white">
       <Header />
       
-      <main className="flex-1 py-12 px-4">
-        <div className="container mx-auto max-w-5xl">
-          <h1 className="font-playfair text-4xl md:text-5xl font-bold mb-6 text-center text-white">
-            Pet Tarot Reading
-          </h1>
+      <main className="flex-grow">
+        {/* Hero Section */}
+        <section 
+          className="py-12 px-4 bg-[#1A1F2C] relative overflow-hidden"
+          style={{
+            backgroundImage: "url('/lovable-uploads/f33432eb-d4f4-459a-9cba-6fdfdbacd6a0.png')",
+            backgroundSize: "cover",
+            backgroundPosition: "center"
+          }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-b from-[#1A1F2C]/70 to-[#1A1F2C] pointer-events-none"></div>
           
-          <p className="text-xl text-gray-300 mb-10 text-center max-w-2xl mx-auto">
-            Discover insights into your pet's personality, emotions, and spiritual energy through the mystical art of Tarot
-          </p>
-          
-          {!isSelectionPhase && !isReading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <Card className="bg-[#242938] border-purple-600/20 shadow-xl shadow-purple-500/10">
-                <CardHeader>
-                  <CardTitle className="text-2xl font-playfair text-white">Begin Your Pet's Reading</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-5">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <div className="space-y-2">
-                      <Label htmlFor="petName" className="text-gray-300">Pet's Name</Label>
-                      <Input
-                        id="petName"
-                        value={petName}
-                        onChange={(e) => setPetName(e.target.value)}
-                        placeholder="Enter your pet's name"
-                        className="bg-[#1E212E] border-gray-700 text-white placeholder:text-gray-500"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="petType" className="text-gray-300">Type of Pet</Label>
-                      <Input
-                        id="petType"
-                        value={petType}
-                        onChange={(e) => setPetType(e.target.value)}
-                        placeholder="Dog, cat, rabbit, etc."
-                        className="bg-[#1E212E] border-gray-700 text-white placeholder:text-gray-500"
-                      />
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="question" className="text-gray-300">Your Question About Your Pet</Label>
-                    <Input
-                      id="question"
-                      value={question}
-                      onChange={(e) => setQuestion(e.target.value)}
-                      placeholder="What would you like to know about your pet?"
-                      className="bg-[#1E212E] border-gray-700 text-white placeholder:text-gray-500"
-                    />
-                  </div>
-                  
-                  <div className="pt-3">
-                    <Button
-                      onClick={shuffleCards}
-                      disabled={isShuffling}
-                      className="w-full bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 text-white font-medium py-2"
-                    >
-                      {isShuffling ? "Shuffling Cards..." : "Shuffle Cards"}
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-              
-              <div className="flex items-center justify-center">
-                <img 
-                  src="/lovable-uploads/f33432eb-d4f4-459a-9cba-6fdfdbacd6a0.png" 
-                  alt="Pet Tarot Reading" 
-                  className="max-w-full max-h-80 rounded-lg shadow-lg"
-                />
-              </div>
+          <div className="container mx-auto max-w-4xl text-center relative z-10">
+            <div className="inline-block px-4 py-1 rounded-full bg-white/10 text-white mb-4">
+              <span className="text-[#8B5CF6] font-bold mr-1">FAST DELIVERY</span>
             </div>
-          ) : isSelectionPhase ? (
-            <div className="space-y-8">
-              <div className="bg-[#242938] p-4 rounded-lg text-center">
-                <p className="text-xl font-medium mb-2">Select Three Cards</p>
-                <p className="text-gray-300">
-                  Trust your intuition as you choose cards for {petName}'s reading. 
-                  Selected: {selectedCards.length}/3
-                </p>
+            
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-4 text-white leading-tight">
+              PET <span className="block text-[#D946EF]">TAROT</span> <span className="block text-[#8B5CF6]">READING</span>
+            </h1>
+            
+            <p className="text-lg mb-8 text-gray-300 max-w-2xl mx-auto">
+              Discover what the cards reveal about your pet's energy, personality, and the spiritual messages they may have for you 🔮
+            </p>
+            
+            <div className="flex flex-wrap justify-center gap-6 mb-10">
+              <div className="flex items-center">
+                <Clock className="w-6 h-6 mr-2 text-[#8B5CF6]" />
+                <span className="text-[#8B5CF6]">SAME HOUR</span>
               </div>
-              
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-                {shuffledCards.map((card) => (
-                  <div 
-                    key={card.id} 
-                    className={`cursor-pointer transform transition-transform duration-300 hover:scale-105 ${
-                      selectedCards.some(c => c.id === card.id) ? 'ring-4 ring-pink-500' : ''
-                    }`}
-                    onClick={() => handleCardSelection(card)}
-                  >
-                    <div className="relative aspect-[2/3] rounded-lg overflow-hidden bg-[#2A2F45]">
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <img 
-                          src="/lovable-uploads/f33432eb-d4f4-459a-9cba-6fdfdbacd6a0.png" 
-                          alt="Tarot Card Back" 
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                ))}
+              <div className="flex items-center">
+                <MessageCircle className="w-6 h-6 mr-2 text-[#8B5CF6]" />
+                <span className="text-[#8B5CF6]">INTERACTIVE</span>
               </div>
-            </div>
-          ) : (
-            <div className="space-y-8">
-              <div className="bg-[#242938] p-4 rounded-lg text-center">
-                <h2 className="text-2xl font-playfair mb-2">{petName}'s Tarot Reading</h2>
-                <p className="text-gray-300">
-                  Your Question: {question}
-                </p>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {selectedCards.map((card, index) => (
-                  <Card 
-                    key={card.id} 
-                    className="bg-[#242938] border-purple-600/20 overflow-hidden"
-                  >
-                    <div className={`relative aspect-[2/3] ${card.reversed ? 'rotate-180' : ''}`}>
-                      <img 
-                        src={card.image}
-                        alt={card.name} 
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <CardFooter className="flex flex-col items-start p-4 space-y-2">
-                      <div className="flex items-center justify-between w-full">
-                        <h3 className="font-medium text-white">{card.name}</h3>
-                        {card.reversed && (
-                          <span className="text-xs px-2 py-1 rounded bg-pink-900/30 text-pink-300">Reversed</span>
-                        )}
-                      </div>
-                      <p className="text-sm text-gray-300">
-                        {card.meaning}
-                      </p>
-                    </CardFooter>
-                  </Card>
-                ))}
-              </div>
-              
-              <div className="flex justify-center pt-4">
-                <Button 
-                  onClick={resetReading}
-                  className="bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 text-white"
-                >
-                  Start New Reading
-                </Button>
-              </div>
-            </div>
-          )}
-          
-          <div className="mt-16 bg-[#242938] p-6 rounded-lg border border-purple-600/20 shadow-lg">
-            <h2 className="text-2xl font-playfair font-bold mb-6 text-center text-white">About Pet Tarot Readings</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-[#1E212E] p-5 rounded-lg">
-                <h3 className="text-lg font-medium mb-3 text-white">Past Influences</h3>
-                <p className="text-sm text-gray-300">
-                  The first card represents past experiences that have shaped your pet's personality and current behavior patterns.
-                </p>
-              </div>
-              <div className="bg-[#1E212E] p-5 rounded-lg">
-                <h3 className="text-lg font-medium mb-3 text-white">Present Energy</h3>
-                <p className="text-sm text-gray-300">
-                  The second card reveals your pet's current emotional state, needs, and feelings toward you and their environment.
-                </p>
-              </div>
-              <div className="bg-[#1E212E] p-5 rounded-lg">
-                <h3 className="text-lg font-medium mb-3 text-white">Future Guidance</h3>
-                <p className="text-sm text-gray-300">
-                  The third card offers insight into how to best support your pet's wellbeing and strengthen your bond going forward.
-                </p>
+              <div className="flex items-center">
+                <Star className="w-6 h-6 mr-2 text-[#F97316]" />
+                <span className="text-[#F97316]">5-STARS</span>
               </div>
             </div>
           </div>
-        </div>
+        </section>
+
+        {/* Tarot Card Selection Section */}
+        <section className="py-12 px-4 bg-[#1A1F2C]">
+          <div className="container mx-auto max-w-4xl">
+            {!selectedCard ? (
+              <>
+                <div className="mb-10 text-center">
+                  <h2 className="text-2xl font-bold mb-6 text-[#D946EF]">✨ SELECT A CARD FOR YOUR PET'S READING</h2>
+                  <div className="max-w-md mx-auto mb-8">
+                    <input
+                      type="text"
+                      placeholder="Enter your pet's name (optional)"
+                      value={petName}
+                      onChange={(e) => setPetName(e.target.value)}
+                      className="w-full px-4 py-2 rounded bg-[#2D2A49] border border-[#8B5CF6]/30 text-white placeholder:text-gray-400"
+                    />
+                  </div>
+                  <p className="text-gray-300 mb-8">
+                    Focus on your pet while selecting a card. The energy will guide you to the right message.
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+                  {tarotCards.map((card) => (
+                    <motion.div
+                      key={card.id}
+                      className={`cursor-pointer perspective-1000 ${flippedCards.includes(card.id) ? 'pointer-events-none' : ''}`}
+                      onClick={() => handleCardClick(card.id)}
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      <motion.div
+                        className="relative w-full h-64 md:h-80 preserve-3d rounded-lg shadow-xl"
+                        animate={{
+                          rotateY: flippedCards.includes(card.id) ? 180 : 0
+                        }}
+                        transition={{ duration: 0.8 }}
+                      >
+                        {/* Card Back */}
+                        <div className="absolute w-full h-full backface-hidden rounded-lg border-2 border-purple-500"
+                          style={{
+                            background: "linear-gradient(45deg, #2D2A49, #362C5A)",
+                            backgroundSize: "cover",
+                            display: flippedCards.includes(card.id) ? "none" : "flex"
+                          }}>
+                          <div className="flex items-center justify-center w-full h-full">
+                            <div className="text-[#D946EF] text-6xl">✨</div>
+                          </div>
+                        </div>
+
+                        {/* Card Front */}
+                        <div className="absolute w-full h-full backface-hidden rounded-lg overflow-hidden rotate-y-180"
+                          style={{
+                            display: flippedCards.includes(card.id) ? "flex" : "none"
+                          }}>
+                          <img 
+                            src={card.image} 
+                            alt={card.name}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      </motion.div>
+                    </motion.div>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <div className="flex flex-col items-center">
+                <motion.div
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.5 }}
+                  className="mb-10"
+                >
+                  <h2 className="text-3xl font-bold mb-2 text-center text-[#D946EF]">Your Pet's Tarot Reading</h2>
+                  <p className="text-gray-300 text-center">
+                    {petName ? `${petName}'s energy has revealed:` : "Your pet's energy has revealed:"}
+                  </p>
+                </motion.div>
+
+                <div className="grid md:grid-cols-2 gap-10 items-center max-w-4xl">
+                  {/* Selected Card */}
+                  <motion.div
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.2, duration: 0.5 }}
+                    className="w-full max-w-xs mx-auto"
+                  >
+                    <div className="relative w-full rounded-lg overflow-hidden shadow-2xl shadow-purple-500/30 aspect-[3/4]">
+                      <img
+                        src={tarotCards.find(card => card.id === selectedCard)?.image}
+                        alt={tarotCards.find(card => card.id === selectedCard)?.name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </motion.div>
+
+                  {/* Card Meaning */}
+                  <motion.div
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.4, duration: 0.5 }}
+                  >
+                    <Card className="bg-black/30 border-[#8B5CF6]/30">
+                      <CardContent className="p-6">
+                        <h3 className="text-2xl font-bold mb-4 text-[#D946EF]">
+                          {tarotCards.find(card => card.id === selectedCard)?.name}
+                        </h3>
+                        <p className="text-gray-300 mb-6 leading-relaxed">
+                          {tarotCards.find(card => card.id === selectedCard)?.description}
+                        </p>
+
+                        {petName && (
+                          <p className="text-gray-300 mb-6 leading-relaxed">
+                            {petName} embodies the energy of {tarotCards.find(card => card.id === selectedCard)?.name}. 
+                            This reveals their true nature and the gifts they bring to your life.
+                          </p>
+                        )}
+
+                        <div className="pt-4 border-t border-gray-700">
+                          <p className="text-[#F97316] font-medium">What This Means For You:</p>
+                          <p className="text-gray-300 mt-2">
+                            Your bond with your pet is aligned with the energy of this card. 
+                            Pay attention to how these qualities manifest in your everyday interactions.
+                          </p>
+                        </div>
+                      </CardContent>
+                    </Card>
+
+                    <div className="mt-6 text-center">
+                      <Button 
+                        onClick={handleReset}
+                        className="bg-gradient-to-r from-[#8B5CF6] to-[#D946EF] hover:from-[#9B87F5] hover:to-[#E158F7]"
+                      >
+                        ✨ Draw Another Card
+                      </Button>
+                    </div>
+                  </motion.div>
+                </div>
+              </div>
+            )}
+
+            {/* About Tarot Reading Section */}
+            <div className="mt-16 p-6 bg-[#0F0D1A] rounded-lg border border-[#8B5CF6]/30">
+              <h2 className="text-xl font-bold mb-4 text-[#F97316]">🌟 ABOUT PET TAROT READINGS</h2>
+              <p className="text-gray-300 mb-4">
+                Pet tarot readings work by tapping into the energy and spiritual connection between you and your pet.
+                When you focus on your pet while selecting a card, your intuition guides you to choose the card
+                that best reflects their energy or message for you.
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                <div className="flex items-start">
+                  <span className="text-[#8B5CF6] mr-2">✔️</span>
+                  <p className="text-gray-300">See your pet's true spiritual nature</p>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-[#8B5CF6] mr-2">✔️</span>
+                  <p className="text-gray-300">Understand their unique energy</p>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-[#8B5CF6] mr-2">✔️</span>
+                  <p className="text-gray-300">Receive guidance about your connection</p>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-[#8B5CF6] mr-2">✔️</span>
+                  <p className="text-gray-300">Get insights into behavior patterns</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
-      
+
       <Footer />
     </div>
   );
