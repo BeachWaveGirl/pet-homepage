@@ -22,8 +22,8 @@ const Header = () => {
       formElement.scrollIntoView({ behavior: 'smooth' });
       setIsMenuOpen(false);
     } else {
-      // If we're not on a page with the letter form, go to homepage
-      window.location.href = '/';
+      // If we're not on a page with the letter form, navigate to memorial page
+      window.location.href = '/star-memorial';
     }
   };
 
@@ -101,15 +101,14 @@ const Header = () => {
                   >
                     Memorial Products
                   </Link>
-                  <Button
-                    onClick={() => {
-                      scrollToForm();
-                      setIsMenuOpen(false);
-                    }}
-                    className="w-full bg-black text-white hover:bg-gray-800 transition-colors mt-4"
-                  >
-                    Create a Memorial
-                  </Button>
+                  <Link to="/star-memorial">
+                    <Button
+                      onClick={() => setIsMenuOpen(false)}
+                      className="w-full bg-black text-white hover:bg-gray-800 transition-colors mt-4"
+                    >
+                      Create a Memorial
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -120,12 +119,13 @@ const Header = () => {
           <span>HaloPet</span>
         </Link>
         
-        <Button 
-          onClick={scrollToForm}
-          className="bg-black text-white hover:bg-gray-800 transition-colors hidden md:flex"
-        >
-          Create a Memorial
-        </Button>
+        <Link to="/star-memorial">
+          <Button 
+            className="bg-black text-white hover:bg-gray-800 transition-colors hidden md:flex"
+          >
+            Create a Memorial
+          </Button>
+        </Link>
       </div>
     </header>
   );

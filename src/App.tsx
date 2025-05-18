@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import StarMapPage from "./pages/StarMapPage";
+import StarMemorialPage from "./pages/StarMemorialPage";
 import PetPoems from "./pages/PetPoems";
 import PetPortrait from "./pages/PetPortrait";
 import MemoryStories from "./pages/MemoryStories";
@@ -40,6 +41,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/star-map" element={<StarMapPage />} />
+            <Route path="/star-memorial" element={<StarMemorialPage />} />
             <Route path="/pet-poems" element={<PetPoems />} />
             <Route path="/pet-portrait" element={<PetPortrait />} />
             <Route path="/memory-stories" element={<MemoryStories />} />
