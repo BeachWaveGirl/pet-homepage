@@ -28,39 +28,41 @@ import PetSittingService from "./pages/PetSittingService";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/star-map" element={<StarMapPage />} />
-          <Route path="/pet-poems" element={<PetPoems />} />
-          <Route path="/pet-portrait" element={<PetPortrait />} />
-          <Route path="/memory-stories" element={<MemoryStories />} />
-          <Route path="/rainbow-bridge" element={<RainbowBridge />} />
-          <Route path="/grief-journal" element={<GriefJournal />} />
-          <Route path="/digital-scrapbooks" element={<DigitalScrapbooks />} />
-          <Route path="/pet-digital-art" element={<PetDigitalArt />} />
-          <Route path="/pet-zodiac" element={<PetZodiac />} />
-          <Route path="/pet-bathroom" element={<PetBathroom />} />
-          <Route path="/pet-typography" element={<PetTypography />} />
-          <Route path="/quote-posters" element={<QuotePosters />} />
-          <Route path="/pet-party" element={<PetParty />} />
-          <Route path="/pet-funeral" element={<PetFuneral />} />
-          <Route path="/pet-health-record" element={<PetHealthRecord />} />
-          <Route path="/pet-badly-drawn" element={<PetBadlyDrawn />} />
-          <Route path="/pet-physic-reading" element={<PetPhysicReading />} />
-          <Route path="/pet-record" element={<PetRecord />} />
-          <Route path="/pet-sitting-service" element={<PetSittingService />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+const App = () => {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/star-map" element={<StarMapPage />} />
+            <Route path="/pet-poems" element={<PetPoems />} />
+            <Route path="/pet-portrait" element={<PetPortrait />} />
+            <Route path="/memory-stories" element={<MemoryStories />} />
+            <Route path="/rainbow-bridge" element={<RainbowBridge />} />
+            <Route path="/grief-journal" element={<GriefJournal />} />
+            <Route path="/digital-scrapbooks" element={<DigitalScrapbooks />} />
+            <Route path="/pet-digital-art" element={<PetDigitalArt />} />
+            <Route path="/pet-zodiac" element={<PetZodiac />} />
+            <Route path="/pet-bathroom" element={<PetBathroom />} />
+            <Route path="/pet-typography" element={<PetTypography />} />
+            <Route path="/quote-posters" element={<QuotePosters />} />
+            <Route path="/pet-party" element={<PetParty />} />
+            <Route path="/pet-funeral" element={<PetFuneral />} />
+            <Route path="/pet-health-record" element={<PetHealthRecord />} />
+            <Route path="/pet-badly-drawn" element={<PetBadlyDrawn />} />
+            <Route path="/pet-physic-reading" element={<PetPhysicReading />} />
+            <Route path="/pet-record" element={<PetRecord />} />
+            <Route path="/pet-sitting-service" element={<PetSittingService />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;
