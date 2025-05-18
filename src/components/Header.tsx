@@ -30,11 +30,11 @@ const Header = () => {
   return (
     <header className="w-full bg-white py-4 px-4 md:px-6 flex justify-center border-b">
       <div className="container flex justify-between items-center">
-        {/* Hamburger Menu */}
-        <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
+        {/* Hamburger Menu - Made slightly bigger */}
+        <Drawer open={drawerOpen} onOpenChange={setDrawerOpen} direction="left">
           <DrawerTrigger asChild>
             <Button variant="ghost" size="sm" className="p-1">
-              <Menu className="h-6 w-6" />
+              <Menu className="h-7 w-7" /> {/* Increased from h-6 w-6 to h-7 w-7 */}
               <span className="sr-only">Open main menu</span>
             </Button>
           </DrawerTrigger>
@@ -87,7 +87,7 @@ const Header = () => {
                     className="block py-2 px-4 hover:bg-gray-50 rounded-md transition-colors"
                     onClick={() => setDrawerOpen(false)}
                   >
-                    Pricing
+                    Memorial Products
                   </Link>
                   <Button
                     onClick={() => {

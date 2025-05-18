@@ -29,23 +29,39 @@ const CategoryCard = ({ id, title, description, imageUrl, link }: CategoryCardPr
       }}
     >
       <Link to={link} className="block h-full">
-        <AspectRatio ratio={16/9} className="bg-gray-100">
-          <img
-            src={imageUrl}
-            alt={title}
-            className="object-cover w-full h-full transition-all duration-500"
-            style={{
-              filter: isHovered ? 'brightness(1.1)' : 'brightness(1)'
-            }}
-          />
-        </AspectRatio>
+        <div className="relative">
+          <AspectRatio ratio={16/9} className="bg-gray-100">
+            <img
+              src={imageUrl}
+              alt={title}
+              className="object-cover w-full h-full transition-all duration-500"
+              style={{
+                filter: isHovered ? 'brightness(1.1)' : 'brightness(1)'
+              }}
+            />
+          </AspectRatio>
+          
+          {/* Overlay with subtle gradient */}
+          <div 
+            className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-70 transition-opacity"
+            style={{ opacity: isHovered ? 0.8 : 0.5 }}
+          ></div>
+          
+          {/* Title positioned at bottom of image */}
+          <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+            <h3 
+              className="text-xl font-medium font-playfair drop-shadow-md"
+              style={{ 
+                transform: isHovered ? 'translateY(-4px)' : 'none',
+                transition: 'transform 0.3s ease-in-out' 
+              }}
+            >
+              {title}
+            </h3>
+          </div>
+        </div>
+        
         <CardContent className="p-4">
-          <h3 className="text-xl font-medium mb-2 font-playfair" style={{ 
-            transform: isHovered ? 'translateY(-2px)' : 'none',
-            transition: 'transform 0.3s ease-in-out' 
-          }}>
-            {title}
-          </h3>
           <p className="text-sm text-gray-600 mb-3">{description}</p>
           
           <div className={`flex items-center text-sm text-indigo-600 transition-opacity ${isHovered ? 'opacity-100' : 'opacity-70'}`}>
