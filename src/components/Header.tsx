@@ -16,17 +16,6 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   
-  const scrollToForm = () => {
-    const formElement = document.getElementById('letter-form');
-    if (formElement) {
-      formElement.scrollIntoView({ behavior: 'smooth' });
-      setIsMenuOpen(false);
-    } else {
-      // If we're not on a page with the letter form, navigate to memorial page
-      window.location.href = '/star-memorial';
-    }
-  };
-
   // Add scroll event listener to detect when the page is scrolled
   useEffect(() => {
     const handleScroll = () => {
