@@ -40,7 +40,7 @@ export const categoryGroups = [
         description: "Connect with your pet on a deeper spiritual level.",
       },
       {
-        title: "Pet Tarot Card",
+        title: "Pet Tarot",
         href: "/pet-tarot-reading",
         description: "Receive comforting messages inspired by your pet's energy through tarot.",
       },
