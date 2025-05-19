@@ -6,8 +6,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Calendar, Clock, MapPin } from "lucide-react";
+import { Calendar, Clock, MapPin, Upload } from "lucide-react";
 import PageTitle from "@/components/StarMemorial/PageTitle";
+import PetPhotoUpload from "@/components/pet-letter-form/PetPhotoUpload";
 
 const PetFuneral = () => {
   const [petName, setPetName] = useState("");
@@ -16,6 +17,7 @@ const PetFuneral = () => {
   const [serviceTime, setServiceTime] = useState("");
   const [serviceLocation, setServiceLocation] = useState("");
   const [additionalInfo, setAdditionalInfo] = useState("");
+  const [petPhoto, setPetPhoto] = useState("");
   const [invitation, setInvitation] = useState(null);
   const [loading, setLoading] = useState(false);
   
@@ -31,7 +33,8 @@ const PetFuneral = () => {
         serviceDate,
         serviceTime,
         serviceLocation,
-        additionalInfo
+        additionalInfo,
+        petPhoto
       });
     }, 1200);
   };
@@ -54,6 +57,14 @@ const PetFuneral = () => {
                 <h3 className="font-playfair text-xl font-semibold mb-5 text-gray-800">Service Details</h3>
                 
                 <div className="space-y-4">
+                  {/* Pet Photo Upload */}
+                  <div>
+                    <PetPhotoUpload
+                      photoUrl={petPhoto}
+                      onPhotoChange={(url) => setPetPhoto(url)}
+                    />
+                  </div>
+                
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium mb-1 text-gray-700">Pet's Name</label>
@@ -134,6 +145,18 @@ const PetFuneral = () => {
               {invitation ? (
                 <Card className="bg-white border-gray-200 shadow-md h-full flex flex-col">
                   <div className="bg-gray-100 p-6 text-center flex-grow flex flex-col justify-center">
+                    {invitation.petPhoto && (
+                      <div className="mb-6">
+                        <div className="w-32 h-32 rounded-full mx-auto overflow-hidden border-2 border-gray-300">
+                          <img 
+                            src={invitation.petPhoto} 
+                            alt={invitation.petName}
+                            className="w-full h-full object-cover" 
+                          />
+                        </div>
+                      </div>
+                    )}
+                  
                     <h3 className="font-playfair text-2xl text-gray-900 mb-1">Memorial Service</h3>
                     <p className="text-gray-500 mb-4">In loving memory of</p>
                     <h2 className="font-playfair text-3xl text-gray-900 mb-1">{invitation.petName}</h2>

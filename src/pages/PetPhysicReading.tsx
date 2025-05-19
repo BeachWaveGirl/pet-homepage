@@ -8,10 +8,12 @@ import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import PageTitle from "@/components/StarMemorial/PageTitle";
+import PetPhotoUpload from "@/components/pet-letter-form/PetPhotoUpload";
 
 const PetPhysicReading = () => {
   const [petName, setPetName] = useState("");
   const [question, setQuestion] = useState("");
+  const [petPhoto, setPetPhoto] = useState("");
   const [response, setResponse] = useState("");
 
   const handleSubmitQuestion = () => {
@@ -38,6 +40,15 @@ const PetPhysicReading = () => {
             lightMode={true}
           />
           
+          <div className="text-center mb-8">
+            <p className="text-gray-700 max-w-2xl mx-auto">
+              This is a safe space to remember and feel connected to your pet. Share your thoughts and receive comfort in return.
+            </p>
+            <p className="text-sm text-gray-500 mt-2 italic">
+              Note: This is an entertainment experience powered by AI. It is not a replacement for professional support or therapy.
+            </p>
+          </div>
+          
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <Card className="bg-white border-gray-200 shadow-md">
               <CardHeader>
@@ -45,6 +56,13 @@ const PetPhysicReading = () => {
               </CardHeader>
               <CardContent>
                 <div className="space-y-5">
+                  <div>
+                    <PetPhotoUpload
+                      photoUrl={petPhoto}
+                      onPhotoChange={(url) => setPetPhoto(url)}
+                    />
+                  </div>
+                
                   <div>
                     <Label htmlFor="petName">Your Pet's Name</Label>
                     <Input
@@ -82,7 +100,20 @@ const PetPhysicReading = () => {
             <div className="flex flex-col">
               <Card className="bg-white border-gray-200 shadow-md flex-grow">
                 <CardHeader>
-                  <CardTitle className="font-playfair text-2xl">Message from the Other Side</CardTitle>
+                  <div className="flex items-center">
+                    {petPhoto && (
+                      <div className="w-12 h-12 rounded-full overflow-hidden mr-4 border border-gray-200">
+                        <img
+                          src={petPhoto}
+                          alt={petName || "Your pet"}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    )}
+                    <CardTitle className="font-playfair text-2xl">
+                      {petName ? `Message from ${petName}` : "Message from the Other Side"}
+                    </CardTitle>
+                  </div>
                 </CardHeader>
                 <CardContent>
                   {response ? (

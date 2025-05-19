@@ -30,6 +30,40 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Memorial tools for mobile menu
+  const memorialTools = [
+    {
+      title: "Create a Memorial",
+      href: "/star-memorial",
+      description: "Transform your beloved pet into an eternal star in our interactive night sky."
+    },
+    {
+      title: "Pet Funeral Announcement Card",
+      href: "/pet-funeral",
+      description: "Create a dignified digital invitation to share your pet's memorial service with family and friends."
+    },
+    {
+      title: "Custom Pet Star Map",
+      href: "/star-map",
+      description: "Generate a personalized star chart to mark the memory of your beloved pet."
+    },
+    {
+      title: "Rainbow Bridge Poem Print",
+      href: "/rainbow-bridge",
+      description: "Create a beautiful, personalized poem to honor and remember your beloved pet companion."
+    },
+    {
+      title: "Pet Spirit Connection Chat",
+      href: "/pet-physic-reading",
+      description: "A gentle AI chat experience to feel spiritually connected to your pet."
+    },
+    {
+      title: "Pet Personality Astrology Chart",
+      href: "/pet-zodiac",
+      description: "Discover your pet's personality traits based on their birth date and zodiac sign."
+    }
+  ];
+
   return (
     <header className={`w-full bg-white py-4 px-4 md:px-6 flex justify-center border-b border-gray-200 fixed top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-opacity-50 backdrop-blur-sm shadow-sm' : 'bg-opacity-100'}`}>
       <div className="container flex justify-between items-center">
@@ -88,21 +122,29 @@ const Header = () => {
                   ))}
                 </Accordion>
                 
-                <div className="mt-6 space-y-3">
-                  <Link 
-                    to="/pricing" 
-                    className="block py-2 px-4 text-left text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Memorial Products
-                  </Link>
-                  <Link to="/star-memorial" onClick={() => setIsMenuOpen(false)}>
-                    <Button
-                      className="w-full bg-black text-white hover:bg-gray-800 transition-colors mt-4 border border-gray-200"
-                    >
-                      Create a Memorial
-                    </Button>
-                  </Link>
+                <div className="mt-6">
+                  <h3 className="font-medium text-gray-900 mb-3">Memorial Tools</h3>
+                  <div className="space-y-3">
+                    {memorialTools.map((tool) => (
+                      <Link 
+                        key={tool.title}
+                        to={tool.href} 
+                        className="block py-2 px-4 text-left text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        <div className="font-medium">{tool.title}</div>
+                        <p className="text-xs text-gray-500 mt-1">{tool.description}</p>
+                      </Link>
+                    ))}
+                    
+                    <Link to="/star-memorial" onClick={() => setIsMenuOpen(false)}>
+                      <Button
+                        className="w-full bg-black text-white hover:bg-gray-800 transition-colors mt-4 border border-gray-200"
+                      >
+                        Create a Memorial
+                      </Button>
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>

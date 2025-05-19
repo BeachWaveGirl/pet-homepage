@@ -29,7 +29,7 @@ const PetPoems = () => {
       <main className="flex-1 py-12 px-4">
         <div className="container mx-auto max-w-4xl">
           <h1 className="font-playfair text-4xl md:text-5xl font-bold mb-6 text-center">
-            Pet Memorial Poems
+            Rainbow Bridge Poem Print
           </h1>
           
           <p className="text-xl text-gray-700 mb-10 text-center max-w-2xl mx-auto">
