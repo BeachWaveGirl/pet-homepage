@@ -54,25 +54,29 @@ const PetPhysicReading = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <ConnectionForm
-              petName={petName}
-              setPetName={setPetName}
-              question={question}
-              setQuestion={setQuestion}
-              petPhoto={petPhoto}
-              setPetPhoto={setPetPhoto}
-              onConnect={handleConnect}
-            />
+            <div className="md:h-full">
+              <ConnectionForm
+                petName={petName}
+                setPetName={setPetName}
+                question={question}
+                setQuestion={setQuestion}
+                petPhoto={petPhoto}
+                setPetPhoto={setPetPhoto}
+                onConnect={handleConnect}
+              />
+            </div>
             
-            <ChatBox
-              petName={petName}
-              petPhoto={petPhoto}
-              currentQuestion={currentQuestion}
-              setCurrentQuestion={setCurrentQuestion}
-              chatHistory={chatHistory}
-              onSendMessage={handleSubmitQuestion}
-              handleKeyDown={handleKeyDown}
-            />
+            <div className="md:h-full">
+              <ChatBox
+                petName={petName}
+                petPhoto={petPhoto}
+                currentQuestion={currentQuestion}
+                setCurrentQuestion={setCurrentQuestion}
+                chatHistory={chatHistory}
+                onSendMessage={handleSubmitQuestion}
+                handleKeyDown={handleKeyDown}
+              />
+            </div>
           </div>
           
           <InformationSection />

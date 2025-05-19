@@ -27,12 +27,12 @@ const ConnectionForm = ({
   onConnect,
 }: ConnectionFormProps) => {
   return (
-    <Card className="bg-white border-gray-200 shadow-md">
+    <Card className="bg-white border-gray-200 shadow-md h-full flex flex-col">
       <CardHeader>
         <CardTitle className="font-playfair text-2xl">Connect With Your Pet</CardTitle>
       </CardHeader>
-      <CardContent>
-        <div className="space-y-5">
+      <CardContent className="flex-grow">
+        <div className="space-y-5 flex flex-col h-full">
           <div>
             <PetPhotoUpload
               photoUrl={petPhoto}
@@ -51,7 +51,7 @@ const ConnectionForm = ({
             />
           </div>
           
-          <div>
+          <div className="flex-grow">
             <Label htmlFor="question">Ask Your Question</Label>
             <Textarea
               id="question"
@@ -59,17 +59,19 @@ const ConnectionForm = ({
               onChange={(e) => setQuestion(e.target.value)}
               placeholder="What would you like to ask or know from your pet?"
               rows={4}
-              className="w-full"
+              className="w-full flex-grow"
             />
           </div>
           
-          <Button 
-            onClick={onConnect} 
-            className="w-full bg-black text-white hover:bg-gray-800"
-            disabled={!petName.trim() || !question.trim()}
-          >
-            Connect with {petName || "your pet"}
-          </Button>
+          <div className="mt-auto pt-4">
+            <Button 
+              onClick={onConnect} 
+              className="w-full bg-black text-white hover:bg-gray-800"
+              disabled={!petName.trim() || !question.trim()}
+            >
+              Connect with {petName || "your pet"}
+            </Button>
+          </div>
         </div>
       </CardContent>
     </Card>
