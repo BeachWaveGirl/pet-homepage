@@ -48,6 +48,27 @@ const ChatBox = ({
             </CardTitle>
           </div>
         </CardHeader>
+        
+        <div className="px-4 pb-4 pt-2 border-t">
+          <div className="flex items-center">
+            <Input
+              value={currentQuestion}
+              onChange={(e) => setCurrentQuestion(e.target.value)}
+              onKeyDown={handleKeyDown}
+              placeholder="Type your message..."
+              className="flex-grow mr-2"
+              disabled={!petName.trim()}
+            />
+            <Button 
+              onClick={onSendMessage}
+              disabled={!currentQuestion.trim() || !petName.trim()}
+              className="bg-gray-800"
+            >
+              <SendHorizontal className="h-5 w-5" />
+            </Button>
+          </div>
+        </div>
+        
         <CardContent className="flex flex-col h-full">
           <div className="flex-grow overflow-y-auto mb-4 p-2 min-h-[300px]">
             {chatHistory.length > 0 ? (
@@ -88,26 +109,6 @@ const ChatBox = ({
             )}
           </div>
         </CardContent>
-        
-        <div className="px-4 pb-4 pt-2 border-t">
-          <div className="flex items-center">
-            <Input
-              value={currentQuestion}
-              onChange={(e) => setCurrentQuestion(e.target.value)}
-              onKeyDown={handleKeyDown}
-              placeholder="Type your message..."
-              className="flex-grow mr-2"
-              disabled={!petName.trim()}
-            />
-            <Button 
-              onClick={onSendMessage}
-              disabled={!currentQuestion.trim() || !petName.trim()}
-              className="bg-gray-800"
-            >
-              <SendHorizontal className="h-5 w-5" />
-            </Button>
-          </div>
-        </div>
       </Card>
       
       <div className="mt-6 text-center">

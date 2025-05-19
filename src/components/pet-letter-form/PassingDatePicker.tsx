@@ -43,7 +43,7 @@ const PassingDatePicker = ({
                 !date && "text-muted-foreground"
               )}
             >
-              <CalendarIcon className="mr-2 h-4 w-4" />
+              <CalendarIcon className="mr-2 h-4 w-4 text-white" />
               {date ? format(date, "PPP") : <span>Select date</span>}
             </Button>
           </PopoverTrigger>
