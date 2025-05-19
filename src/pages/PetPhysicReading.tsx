@@ -30,11 +30,12 @@ const PetPhysicReading = () => {
     <div className="min-h-screen flex flex-col bg-white">
       <Header />
       
-      <main className="flex-1 py-12 px-4 pt-24 mt-8">
+      <main className="flex-1 py-12 px-4">
         <div className="container mx-auto max-w-4xl">
           <PageTitle 
             title="Pet Spirit Connection Chat"
-            description="Receive comforting messages and insights from your pet on the other side"
+            description="A gentle AI chat experience to feel spiritually connected to your pet. Receive comforting messages that can help during the grieving process."
+            lightMode={true}
           />
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
-// Updated offering with "Create a Memorial" title
+// Updated offering titles and descriptions
 const memorialOfferings = [
   {
     id: "pet-funeral",
@@ -14,6 +14,7 @@ const memorialOfferings = [
     description: "Create a dignified digital invitation to share your pet's memorial service with family and friends. Instant download, easily shareable via text or social media.",
     imageUrl: "/lovable-uploads/c3857a85-d6ef-423a-a3bb-bd784cf7ac7d.png",
     link: "/pet-funeral",
+    detailedDescription: "Design personalized announcement cards for your pet's service. Choose from elegant templates and customize with your pet's photo and memorial details.",
     keywords: ["pet loss announcement", "dog funeral invitation", "cat memorial service", "pet remembrance gathering"]
   },
   {
@@ -22,6 +23,7 @@ const memorialOfferings = [
     description: "A personalized celestial map showing the exact stars shining on the night your beloved pet became your guardian angel. Beautiful constellation art to remember their special place in your heart.",
     imageUrl: "/lovable-uploads/efa73ad4-f753-493c-933e-d1ec4998656f.png",
     link: "/star-map",
+    detailedDescription: "Generate a personalized star chart to mark the memory of your beloved pet. See the exact stars that were shining on their special day.",
     keywords: ["pet memorial star map", "dog remembrance gift", "cat memorial print", "pet loss keepsake"]
   },
   {
@@ -30,6 +32,7 @@ const memorialOfferings = [
     description: "Transform your favorite photo into a touching rainbow bridge memorial portrait. A beautiful way to celebrate your pet's unique personality and the joy they brought to your life.",
     imageUrl: "/lovable-uploads/ae4cb9db-7c24-479a-bd6b-bfdab9c1c6e2.png",
     link: "/star-memorial",
+    detailedDescription: "Create a lasting digital memorial for your pet that transforms them into a beautiful star in our interactive night sky.",
     keywords: ["custom pet memorial", "dog remembrance portrait", "cat memorial picture", "rainbow bridge keepsake"]
   },
   {
@@ -38,6 +41,7 @@ const memorialOfferings = [
     description: "Comforting words paired with gentle imagery to honor your pet's crossing. Personalized with their name and a special message from you.",
     imageUrl: "/lovable-uploads/be74091f-4ccb-434e-88ac-0667651f253a.png",
     link: "/rainbow-bridge",
+    detailedDescription: "Create a beautiful, personalized Rainbow Bridge poem that honors your pet's memory with comforting words and gentle imagery.",
     keywords: ["pet sympathy gift", "dog memorial poem", "cat rainbow bridge", "pet bereavement print"]
   },
   {
@@ -46,6 +50,7 @@ const memorialOfferings = [
     description: "Receive comforting messages and insights from your pet on the other side. Our spiritual advisors help bridge the connection between worlds.",
     imageUrl: "/lovable-uploads/f33432eb-d4f4-459a-9cba-6fdfdbacd6a0.png",
     link: "/pet-physic-reading",
+    detailedDescription: "A gentle AI chat experience to feel spiritually connected to your pet. Receive comforting messages that can help during the grieving process.",
     keywords: ["pet medium reading", "dog afterlife connection", "cat spirit communication", "pet loss comfort"]
   },
   {
@@ -54,16 +59,12 @@ const memorialOfferings = [
     description: "Discover how the stars influenced your pet's unique traits and spirit. A beautiful keepsake explaining the cosmic forces that shaped their special personality.",
     imageUrl: "/lovable-uploads/6f146f9a-c7c2-4e3e-8b41-df577ef5aa27.png",
     link: "/pet-zodiac",
+    detailedDescription: "Explore how the stars and planets influenced your pet's unique personality traits and behaviors through a custom astrological reading.",
     keywords: ["pet astrology reading", "dog natal chart", "cat zodiac personality", "pet horoscope gift"]
   }
 ];
 
 const Index = () => {
-  const scrollToForm = () => {
-    const formElement = document.getElementById('memorial-section');
-    formElement?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
     <div className="min-h-screen flex flex-col bg-white font-inter page-container">
       <Header />
@@ -79,9 +80,11 @@ const Index = () => {
             Customized pet memorial keepsakes delivered instantly to your inbox
           </p>
           
-          <Button onClick={scrollToForm} className="bg-black hover:bg-gray-800 text-white transition-colors">
-            Create a Memorial
-          </Button>
+          <Link to="/star-memorial">
+            <Button className="bg-black hover:bg-gray-800 text-white transition-colors">
+              Create a Memorial
+            </Button>
+          </Link>
         </div>
       </section>
       

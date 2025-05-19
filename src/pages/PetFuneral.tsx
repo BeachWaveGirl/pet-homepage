@@ -1,353 +1,202 @@
 
+import React, { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useState, useRef } from "react";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { toast } from "@/hooks/use-toast";
-import { Download, Share } from "lucide-react";
-import html2canvas from "html2canvas";
+import { Calendar, Clock, MapPin } from "lucide-react";
 import PageTitle from "@/components/StarMemorial/PageTitle";
 
 const PetFuneral = () => {
   const [petName, setPetName] = useState("");
-  const [memorialDate, setMemorialDate] = useState("");
-  const [memorialTime, setMemorialTime] = useState("");
-  const [memorialLocation, setMemorialLocation] = useState("");
-  const [petBirthDate, setPetBirthDate] = useState("");
-  const [petPassingDate, setPetPassingDate] = useState("");
+  const [petType, setPetType] = useState("");
+  const [serviceDate, setServiceDate] = useState("");
+  const [serviceTime, setServiceTime] = useState("");
+  const [serviceLocation, setServiceLocation] = useState("");
   const [additionalInfo, setAdditionalInfo] = useState("");
-  const [petPhoto, setPetPhoto] = useState<string | null>(null);
-  const [isGenerated, setIsGenerated] = useState(false);
-  const invitationRef = useRef<HTMLDivElement>(null);
+  const [invitation, setInvitation] = useState(null);
+  const [loading, setLoading] = useState(false);
   
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      const file = e.target.files[0];
-      const url = URL.createObjectURL(file);
-      setPetPhoto(url);
-    }
+  const handleGenerate = () => {
+    setLoading(true);
+    
+    // In a real implementation, this would call an API endpoint
+    setTimeout(() => {
+      setLoading(false);
+      setInvitation({
+        petName,
+        petType,
+        serviceDate,
+        serviceTime,
+        serviceLocation,
+        additionalInfo
+      });
+    }, 1200);
   };
   
-  const handleGenerateInvitation = () => {
-    setIsGenerated(true);
-    toast({
-      title: "Memorial invitation created",
-      description: `Your pet memorial invitation for ${petName || "your pet"} has been generated.`,
-    });
-  };
-
-  const downloadInvitation = async () => {
-    if (!invitationRef.current) return;
-    
-    try {
-      const canvas = await html2canvas(invitationRef.current, {
-        scale: 2, // Higher quality
-        backgroundColor: null,
-        useCORS: true, // To handle cross-origin images
-      });
-      
-      const image = canvas.toDataURL("image/png");
-      const link = document.createElement("a");
-      link.download = `${petName || "pet"}_memorial_invitation.png`;
-      link.href = image;
-      link.click();
-      
-      toast({
-        title: "Invitation downloaded",
-        description: "Your pet memorial invitation has been saved to your device.",
-      });
-    } catch (error) {
-      console.error("Error downloading invitation:", error);
-      toast({
-        title: "Download failed",
-        description: "There was an error downloading your invitation. Please try again.",
-        variant: "destructive",
-      });
-    }
-  };
-
-  const shareInvitation = async () => {
-    if (!invitationRef.current) return;
-    
-    try {
-      const canvas = await html2canvas(invitationRef.current, { scale: 2, useCORS: true });
-      canvas.toBlob(async (blob) => {
-        if (!blob) {
-          throw new Error("Could not create image blob");
-        }
-        
-        if (navigator.share) {
-          const file = new File([blob], `${petName || "pet"}_memorial_invitation.png`, { type: "image/png" });
-          await navigator.share({
-            title: `Memorial for ${petName || "a beloved pet"}`,
-            text: "Please join us in remembering our beloved pet.",
-            files: [file],
-          });
-          toast({
-            title: "Invitation shared",
-            description: "Your pet memorial invitation has been shared.",
-          });
-        } else {
-          // Fallback if Web Share API is not supported
-          const url = URL.createObjectURL(blob);
-          const link = document.createElement("a");
-          link.download = `${petName || "pet"}_memorial_invitation.png`;
-          link.href = url;
-          link.click();
-          URL.revokeObjectURL(url);
-          toast({
-            title: "Invitation downloaded",
-            description: "Web sharing is not supported on your device. The invitation has been downloaded instead.",
-          });
-        }
-      }, "image/png");
-    } catch (error) {
-      console.error("Error sharing invitation:", error);
-      toast({
-        title: "Share failed",
-        description: "There was an error sharing your invitation. Please try again or use the download option.",
-        variant: "destructive",
-      });
-    }
-  };
-
   return (
     <div className="min-h-screen flex flex-col bg-white">
       <Header />
       
-      <main className="flex-1 py-12 px-4 pt-24 mt-8">
+      <main className="flex-1 py-6 px-4">
         <div className="container mx-auto max-w-4xl">
-          <PageTitle
-            title="Pet Funeral Announcement Card"
-            description="Create a mobile-friendly memorial invitation to celebrate your pet's life with friends and family"
+          <PageTitle 
+            title="Pet Funeral Announcement Card" 
+            description="Create a dignified digital invitation to share your pet's memorial service with family and friends."
+            lightMode={true}
           />
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             <Card className="bg-white border-gray-200 shadow-md">
-              <CardHeader>
-                <CardTitle className="text-2xl font-playfair">Create Memorial Invitation</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-5">
-                  <div>
-                    <Label htmlFor="petName">Pet's Name</Label>
-                    <Input
-                      id="petName"
-                      value={petName}
-                      onChange={(e) => setPetName(e.target.value)}
-                      placeholder="Enter your pet's name"
-                    />
-                  </div>
-                  
-                  <div className="grid grid-cols-2 gap-4">
+              <CardContent className="p-6">
+                <h3 className="font-playfair text-xl font-semibold mb-5 text-gray-800">Service Details</h3>
+                
+                <div className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="petBirthDate">Birth/Adoption Date</Label>
+                      <label className="block text-sm font-medium mb-1 text-gray-700">Pet's Name</label>
                       <Input
-                        id="petBirthDate"
-                        type="date"
-                        value={petBirthDate}
-                        onChange={(e) => setPetBirthDate(e.target.value)}
+                        value={petName}
+                        onChange={(e) => setPetName(e.target.value)}
+                        placeholder="Max, Bella, etc."
                       />
                     </div>
-                    
                     <div>
-                      <Label htmlFor="petPassingDate">Passing Date</Label>
+                      <label className="block text-sm font-medium mb-1 text-gray-700">Type of Pet</label>
                       <Input
-                        id="petPassingDate"
-                        type="date"
-                        value={petPassingDate}
-                        onChange={(e) => setPetPassingDate(e.target.value)}
+                        value={petType}
+                        onChange={(e) => setPetType(e.target.value)}
+                        placeholder="Dog, Cat, etc."
                       />
                     </div>
                   </div>
                   
                   <div>
-                    <Label htmlFor="memorialDate">Memorial Date</Label>
-                    <Input
-                      id="memorialDate"
-                      type="date"
-                      value={memorialDate}
-                      onChange={(e) => setMemorialDate(e.target.value)}
-                    />
+                    <label className="block text-sm font-medium mb-1 text-gray-700">Service Date</label>
+                    <div className="relative">
+                      <Input
+                        type="date"
+                        value={serviceDate}
+                        onChange={(e) => setServiceDate(e.target.value)}
+                      />
+                      <Calendar className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none" size={16} />
+                    </div>
                   </div>
                   
                   <div>
-                    <Label htmlFor="memorialTime">Memorial Time</Label>
-                    <Input
-                      id="memorialTime"
-                      type="time"
-                      value={memorialTime}
-                      onChange={(e) => setMemorialTime(e.target.value)}
-                    />
+                    <label className="block text-sm font-medium mb-1 text-gray-700">Service Time</label>
+                    <div className="relative">
+                      <Input
+                        type="time"
+                        value={serviceTime}
+                        onChange={(e) => setServiceTime(e.target.value)}
+                      />
+                      <Clock className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none" size={16} />
+                    </div>
                   </div>
                   
                   <div>
-                    <Label htmlFor="memorialLocation">Memorial Location</Label>
-                    <Input
-                      id="memorialLocation"
-                      value={memorialLocation}
-                      onChange={(e) => setMemorialLocation(e.target.value)}
-                      placeholder="Enter memorial location"
-                    />
+                    <label className="block text-sm font-medium mb-1 text-gray-700">Service Location</label>
+                    <div className="relative">
+                      <Input
+                        value={serviceLocation}
+                        onChange={(e) => setServiceLocation(e.target.value)}
+                        placeholder="Address or location name"
+                      />
+                      <MapPin className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none" size={16} />
+                    </div>
                   </div>
                   
                   <div>
-                    <Label htmlFor="additionalInfo">Additional Information</Label>
+                    <label className="block text-sm font-medium mb-1 text-gray-700">Additional Information</label>
                     <Textarea
-                      id="additionalInfo"
                       value={additionalInfo}
                       onChange={(e) => setAdditionalInfo(e.target.value)}
-                      placeholder="Any additional details about the memorial service..."
+                      placeholder="Any special instructions or message to attendees"
                       rows={3}
                     />
                   </div>
                   
-                  <div>
-                    <Label htmlFor="petPhoto">Upload Pet Photo</Label>
-                    <Input
-                      id="petPhoto"
-                      type="file"
-                      accept="image/*"
-                      onChange={handleFileChange}
-                      className="cursor-pointer"
-                    />
-                    {petPhoto && (
-                      <div className="mt-2 flex justify-center">
-                        <img 
-                          src={petPhoto} 
-                          alt="Pet preview" 
-                          className="w-32 h-32 object-cover rounded-lg"
-                        />
-                      </div>
-                    )}
-                  </div>
-                  
-                  <div className="pt-4">
-                    <Button
-                      onClick={handleGenerateInvitation}
-                      className="w-full bg-black hover:bg-gray-800 text-white"
-                    >
-                      Generate Memorial Invitation
-                    </Button>
-                  </div>
+                  <Button 
+                    onClick={handleGenerate}
+                    disabled={!petName || !serviceDate || !serviceLocation || loading}
+                    className="w-full mt-2"
+                  >
+                    {loading ? "Generating..." : "Generate Invitation"}
+                  </Button>
                 </div>
               </CardContent>
             </Card>
             
-            <Card className="bg-white border-gray-200 shadow-md overflow-hidden">
-              <CardContent className="p-0">
-                <AspectRatio ratio={9/16}>
-                  <div className="w-full h-full flex flex-col items-center justify-center">
-                    {isGenerated ? (
-                      <div 
-                        ref={invitationRef}
-                        className="w-full h-full flex flex-col items-center justify-between relative"
-                        style={{
-                          backgroundColor: "#F3F3F3",
-                          backgroundImage: "url('/lovable-uploads/c767ea95-f4d6-4875-aa3d-c9f854be9e40.png')",
-                          backgroundBlendMode: "soft-light",
-                          backgroundSize: "cover",
-                          backgroundPosition: "center"
-                        }}
-                      >
-                        <div className="w-full h-full flex flex-col items-center justify-between p-6 bg-black bg-opacity-30 text-white">
-                          {/* Memorial invitation header */}
-                          <div className="text-center mt-8">
-                            <h3 className="font-playfair text-xl mb-2">In Loving Memory Of</h3>
-                            <h2 className="font-playfair text-3xl font-bold">{petName || "Your Pet"}</h2>
-                          </div>
-                          
-                          {/* Pet photo */}
-                          <div className="flex-1 flex items-center justify-center my-6">
-                            <div className="w-40 h-40 sm:w-48 sm:h-48 rounded-full overflow-hidden border-4 border-white shadow-lg">
-                              {petPhoto ? (
-                                <img 
-                                  src={petPhoto} 
-                                  alt={petName} 
-                                  className="w-full h-full object-cover"
-                                />
-                              ) : (
-                                <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-                                  <span className="text-gray-500 font-bold">Pet Photo</span>
-                                </div>
-                              )}
-                            </div>
-                          </div>
-                          
-                          {/* Dates */}
-                          <div className="text-center mb-6">
-                            <p className="text-sm mb-1 font-light tracking-wider">
-                              {petBirthDate ? new Date(petBirthDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : "Birth date"} 
-                              {" - "}
-                              {petPassingDate ? new Date(petPassingDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : "Passing date"}
-                            </p>
-                            <div className="w-16 h-px bg-white mx-auto my-4"></div>
-                            <p className="italic">"Forever in our hearts"</p>
-                          </div>
-                          
-                          {/* Memorial details */}
-                          <div className="w-full text-center bg-white bg-opacity-90 text-gray-800 p-6 rounded-t-lg">
-                            <h4 className="font-bold text-lg mb-4">Memorial Service</h4>
-                            
-                            <div className="space-y-2">
-                              <p><strong>Date:</strong> {memorialDate ? new Date(memorialDate).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : "TBD"}</p>
-                              <p><strong>Time:</strong> {memorialTime || "TBD"}</p>
-                              <p><strong>Location:</strong> {memorialLocation || "TBD"}</p>
-                              
-                              {additionalInfo && (
-                                <p className="text-sm italic mt-4">
-                                  {additionalInfo}
-                                </p>
-                              )}
-                            </div>
-                          </div>
-                        </div>
+            <div>
+              {invitation ? (
+                <Card className="bg-white border-gray-200 shadow-md h-full flex flex-col">
+                  <div className="bg-gray-100 p-6 text-center flex-grow flex flex-col justify-center">
+                    <h3 className="font-playfair text-2xl text-gray-900 mb-1">Memorial Service</h3>
+                    <p className="text-gray-500 mb-4">In loving memory of</p>
+                    <h2 className="font-playfair text-3xl text-gray-900 mb-1">{invitation.petName}</h2>
+                    <p className="text-gray-600 mb-6">Our beloved {invitation.petType}</p>
+                    
+                    <div className="border-t border-b border-gray-300 py-4 mb-6">
+                      <div className="flex items-center justify-center mb-2">
+                        <Calendar size={18} className="text-gray-600 mr-2" />
+                        <span className="text-gray-800">
+                          {new Date(invitation.serviceDate).toLocaleDateString('en-US', {
+                            weekday: 'long',
+                            month: 'long',
+                            day: 'numeric',
+                            year: 'numeric'
+                          })}
+                        </span>
                       </div>
-                    ) : (
-                      <div className="text-center p-6">
-                        <img 
-                          src="/lovable-uploads/c767ea95-f4d6-4875-aa3d-c9f854be9e40.png" 
-                          alt="Pet memorial" 
-                          className="w-48 h-48 object-cover mx-auto mb-4 rounded-full"
-                        />
-                        <p className="text-gray-500">Enter your pet's information to create a memorial invitation</p>
+                      
+                      <div className="flex items-center justify-center mb-2">
+                        <Clock size={18} className="text-gray-600 mr-2" />
+                        <span className="text-gray-800">
+                          {invitation.serviceTime}
+                        </span>
                       </div>
+                      
+                      <div className="flex items-center justify-center">
+                        <MapPin size={18} className="text-gray-600 mr-2" />
+                        <span className="text-gray-800">
+                          {invitation.serviceLocation}
+                        </span>
+                      </div>
+                    </div>
+                    
+                    {invitation.additionalInfo && (
+                      <p className="text-gray-700 italic text-sm mb-6">
+                        {invitation.additionalInfo}
+                      </p>
                     )}
+                    
+                    <p className="text-gray-600 text-sm">
+                      Please join us as we celebrate the life and memory of our cherished companion.
+                    </p>
                   </div>
-                </AspectRatio>
-              </CardContent>
-              
-              {/* Download and share buttons */}
-              {isGenerated && (
-                <div className="p-4 flex space-x-4">
-                  <Button 
-                    onClick={downloadInvitation} 
-                    className="flex-1 bg-gray-900 hover:bg-black text-white"
-                  >
-                    <Download className="h-4 w-4 mr-2" />
-                    Download
-                  </Button>
-                  <Button 
-                    onClick={shareInvitation} 
-                    className="flex-1 bg-gray-900 hover:bg-black text-white"
-                  >
-                    <Share className="h-4 w-4 mr-2" />
-                    Share
-                  </Button>
+                  
+                  <div className="p-4 border-t border-gray-200 bg-white">
+                    <Button className="w-full">
+                      Download Invitation
+                    </Button>
+                  </div>
+                </Card>
+              ) : (
+                <div className="bg-gray-50 border border-gray-200 rounded-lg h-full flex items-center justify-center p-8 text-center">
+                  <div>
+                    <p className="text-gray-500 mb-4">
+                      Fill in the service details to generate your pet's memorial invitation
+                    </p>
+                    <p className="text-sm text-gray-400">
+                      The invitation will appear here once generated
+                    </p>
+                  </div>
                 </div>
               )}
-            </Card>
-          </div>
-          
-          <div className="text-center mt-8">
-            <p className="text-gray-600">
-              The digital invitation can be easily shared via text message, email, or social media
-            </p>
+            </div>
           </div>
         </div>
       </main>

@@ -22,7 +22,7 @@ interface PricingTierSelectProps {
 const PricingTierSelect = ({ tiers, selectedTierId, onSelect }: PricingTierSelectProps) => {
   return (
     <div className="w-full">
-      <h3 className="text-white text-lg mb-4 font-medium">Select Memorial Duration</h3>
+      {/* The title text has been removed as it's now in the parent component */}
       
       <RadioGroup 
         value={selectedTierId} 

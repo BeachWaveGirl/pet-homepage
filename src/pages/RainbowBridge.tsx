@@ -38,11 +38,12 @@ const RainbowBridge = () => {
     <div className="min-h-screen flex flex-col bg-white">
       <Header />
       
-      <main className="flex-1 py-12 px-4 pt-24 mt-8">
+      <main className="flex-1 py-12 px-4">
         <div className="container mx-auto max-w-4xl">
           <PageTitle
             title="Rainbow Bridge Poem Print"
-            description="Honor your beloved pet with a beautiful Rainbow Bridge poem, celebrating their journey across the bridge where they wait until you meet again."
+            description="Create a beautiful, personalized Rainbow Bridge poem that honors your pet's memory with comforting words and gentle imagery."
+            lightMode={true}
           />
           
           <div className="relative w-full h-64 md:h-80 lg:h-96 mb-10 rounded-xl overflow-hidden">
