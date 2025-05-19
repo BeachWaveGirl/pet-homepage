@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 import { motion } from "framer-motion";
 import StarCanvas from "./StarCanvas";
 
-interface StarDisplayProps {
+export interface StarDisplayProps {
   children?: ReactNode;
   className?: string;
 }
