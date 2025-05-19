@@ -28,10 +28,10 @@ const PetPhysicReading = () => {
     setTimeout(() => {
       // This would connect to an AI service in a real implementation
       const responses = [
-        `${petName} wants you to know they're always by your side, even when you can't see them. They feel your love every day.`,
-        `${petName} is at peace now and wants you to know that they're running free without any pain. They miss you but are happy.`,
-        `${petName} says thank you for all the love and care you provided. They're watching over you from across the rainbow bridge.`,
-        `${petName} wants you to know that they understand your grief, but they're in a beautiful place now and will wait for you.`
+        `I miss you so much too! I'm always by your side, even when you can't see me. I feel your love every day.`,
+        `I'm at peace now and don't have any pain anymore. I miss you but I'm happy where I am. Your love still reaches me.`,
+        `Thank you for all the love and care you gave me. I'm watching over you from across the rainbow bridge. I love you!`,
+        `I understand how sad you are, but please know I'm in a beautiful place now. I'll wait for you here.`
       ];
       
       const petResponse = responses[Math.floor(Math.random() * responses.length)];
@@ -138,68 +138,66 @@ const PetPhysicReading = () => {
                     </CardTitle>
                   </div>
                 </CardHeader>
-                <CardContent>
-                  <div className="flex flex-col h-[300px]">
-                    <div className="flex-grow overflow-y-auto mb-4 p-2">
-                      {chatHistory.length > 0 ? (
-                        <div className="space-y-4">
-                          {chatHistory.map((message, index) => (
+                <CardContent className="flex flex-col h-full">
+                  <div className="flex-grow overflow-y-auto mb-4 p-2 min-h-[300px]">
+                    {chatHistory.length > 0 ? (
+                      <div className="space-y-4">
+                        {chatHistory.map((message, index) => (
+                          <div 
+                            key={index} 
+                            className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
+                          >
                             <div 
-                              key={index} 
-                              className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
+                              className={`max-w-[80%] p-3 rounded-lg ${
+                                message.type === 'user' 
+                                  ? 'bg-gray-100 text-gray-800' 
+                                  : 'bg-gray-800 text-white'
+                              }`}
                             >
-                              <div 
-                                className={`max-w-[80%] p-3 rounded-lg ${
-                                  message.type === 'user' 
-                                    ? 'bg-gray-100 text-gray-800' 
-                                    : 'bg-gray-800 text-white'
-                                }`}
-                              >
-                                {message.type === 'pet' && petPhoto && (
-                                  <div className="flex items-center mb-2">
-                                    <div className="w-8 h-8 rounded-full overflow-hidden mr-2">
-                                      <img 
-                                        src={petPhoto} 
-                                        alt={petName} 
-                                        className="w-full h-full object-cover" 
-                                      />
-                                    </div>
-                                    <span className="font-medium">{petName}</span>
+                              {message.type === 'pet' && petPhoto && (
+                                <div className="flex items-center mb-2">
+                                  <div className="w-8 h-8 rounded-full overflow-hidden mr-2">
+                                    <img 
+                                      src={petPhoto} 
+                                      alt={petName} 
+                                      className="w-full h-full object-cover" 
+                                    />
                                   </div>
-                                )}
-                                <p>{message.content}</p>
-                              </div>
+                                  <span className="font-medium">{petName}</span>
+                                </div>
+                              )}
+                              <p>{message.content}</p>
                             </div>
-                          ))}
-                        </div>
-                      ) : (
-                        <div className="h-full flex items-center justify-center text-center">
-                          <p className="text-gray-500">Ask a question to start chatting with your pet</p>
-                        </div>
-                      )}
-                    </div>
-                    
-                    <div className="border-t pt-4">
-                      <div className="flex items-center">
-                        <Input
-                          value={currentQuestion}
-                          onChange={(e) => setCurrentQuestion(e.target.value)}
-                          onKeyDown={handleKeyDown}
-                          placeholder="Type your message..."
-                          className="flex-grow mr-2"
-                          disabled={!petName.trim()}
-                        />
-                        <Button 
-                          onClick={handleSubmitQuestion}
-                          disabled={!currentQuestion.trim() || !petName.trim()}
-                          className="bg-gray-800"
-                        >
-                          <SendHorizontal className="h-5 w-5" />
-                        </Button>
+                          </div>
+                        ))}
                       </div>
-                    </div>
+                    ) : (
+                      <div className="h-full flex items-center justify-center text-center">
+                        <p className="text-gray-500">Ask a question to start chatting with your pet</p>
+                      </div>
+                    )}
                   </div>
                 </CardContent>
+                
+                <div className="px-4 pb-4 pt-2 border-t">
+                  <div className="flex items-center">
+                    <Input
+                      value={currentQuestion}
+                      onChange={(e) => setCurrentQuestion(e.target.value)}
+                      onKeyDown={handleKeyDown}
+                      placeholder="Type your message..."
+                      className="flex-grow mr-2"
+                      disabled={!petName.trim()}
+                    />
+                    <Button 
+                      onClick={handleSubmitQuestion}
+                      disabled={!currentQuestion.trim() || !petName.trim()}
+                      className="bg-gray-800"
+                    >
+                      <SendHorizontal className="h-5 w-5" />
+                    </Button>
+                  </div>
+                </div>
               </Card>
               
               <div className="mt-6 text-center">

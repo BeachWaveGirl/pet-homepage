@@ -91,7 +91,7 @@ const RainbowBridge = () => {
                 <div className="pt-3">
                   <Button
                     onClick={handleGeneratePoem}
-                    className="w-full bg-gradient-to-r from-[#8B5CF6] to-[#D946EF] hover:opacity-90 text-white"
+                    className="w-full bg-black hover:bg-gray-800 text-white"
                   >
                     Generate Rainbow Bridge Poem
                   </Button>
