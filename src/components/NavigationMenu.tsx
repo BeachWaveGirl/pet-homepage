@@ -40,9 +40,9 @@ export const categoryGroups = [
         description: "Connect with your pet on a deeper spiritual level.",
       },
       {
-        title: "Pet Personality Astrology Chart",
-        href: "/pet-zodiac",
-        description: "Discover what the stars reveal about your pet's personality.",
+        title: "Pet Tarot Card",
+        href: "/pet-tarot-reading",
+        description: "Receive comforting messages inspired by your pet's energy through tarot.",
       },
     ],
   },

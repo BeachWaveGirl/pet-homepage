@@ -57,9 +57,9 @@ const Header = () => {
       description: "A gentle AI chat experience to feel spiritually connected to your pet."
     },
     {
-      title: "Pet Personality Astrology Chart",
-      href: "/pet-zodiac",
-      description: "Discover your pet's personality traits based on their birth date and zodiac sign."
+      title: "Pet Tarot Card",
+      href: "/pet-tarot-reading",
+      description: "Receive comforting messages inspired by your pet's energy through tarot."
     }
   ];
 

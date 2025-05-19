@@ -106,7 +106,7 @@ const PetTarotReading = () => {
             </h1>
             
             <p className="text-lg mb-8 text-gray-300 max-w-2xl mx-auto">
-              Discover what the cards reveal about your pet's energy, personality, and the spiritual messages they may have for you 🔮
+              Connect with the spirit of your beloved pet through tarot. Choose a card and receive a comforting message inspired by their soul's energy 🔮
             </p>
             
             <div className="flex flex-wrap justify-center gap-6 mb-10">
@@ -293,6 +293,44 @@ const PetTarotReading = () => {
                   <p className="text-gray-300">Get insights into behavior patterns</p>
                 </div>
               </div>
+            </div>
+
+            {/* How to Use Instructions */}
+            <div className="mt-10 mb-16 max-w-2xl mx-auto">
+              <h2 className="text-2xl font-bold mb-6 text-center text-[#D946EF]">How to Use Pet Tarot</h2>
+              <div className="space-y-6">
+                <div className="flex items-start">
+                  <div className="flex items-center justify-center bg-[#8B5CF6] text-white rounded-full w-8 h-8 font-bold mr-4 shrink-0">
+                    1
+                  </div>
+                  <p className="text-gray-300">
+                    Take a quiet moment to think about your pet.
+                  </p>
+                </div>
+                <div className="flex items-start">
+                  <div className="flex items-center justify-center bg-[#8B5CF6] text-white rounded-full w-8 h-8 font-bold mr-4 shrink-0">
+                    2
+                  </div>
+                  <p className="text-gray-300">
+                    Pick a card that calls to you from the deck above.
+                  </p>
+                </div>
+                <div className="flex items-start">
+                  <div className="flex items-center justify-center bg-[#8B5CF6] text-white rounded-full w-8 h-8 font-bold mr-4 shrink-0">
+                    3
+                  </div>
+                  <p className="text-gray-300">
+                    Receive a gentle, emotional reading inspired by your pet's love.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Disclaimer */}
+            <div className="text-center py-6 border-t border-gray-700 mt-10 text-sm text-gray-400">
+              <p>
+                This tarot experience is for emotional support and entertainment purposes only. It is not a substitute for professional advice or therapy.
+              </p>
             </div>
           </div>
         </section>
