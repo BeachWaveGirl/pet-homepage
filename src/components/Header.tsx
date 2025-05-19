@@ -46,12 +46,12 @@ const Header = () => {
       <div className="container flex justify-between items-center">
         {/* Hamburger Menu with side slide effect */}
         <Button variant="ghost" size="sm" className="p-1 text-gray-900 hover:bg-gray-100" onClick={() => setIsMenuOpen(true)}>
-          <Menu className="h-7 w-7" />
+          <Menu className="h-8 w-8" />
           <span className="sr-only">Open main menu</span>
         </Button>
         
         <Dialog open={isMenuOpen} onOpenChange={setIsMenuOpen}>
-          <DialogContent className="p-0 sm:max-w-[280px] h-full fixed left-0 top-0 rounded-none border-r border-gray-200 bg-white text-gray-900 shadow-xl transform transition-transform duration-300 ease-in-out" 
+          <DialogContent className="p-0 sm:max-w-[320px] h-full fixed left-0 top-0 rounded-none border-r border-gray-200 bg-white text-gray-900 shadow-xl transform transition-transform duration-300 ease-in-out" 
             style={{transform: isMenuOpen ? 'translateX(0)' : 'translateX(-100%)'}}
             onInteractOutside={(e) => {e.preventDefault(); setIsMenuOpen(false);}}>
             <div className="h-full flex flex-col">
@@ -78,16 +78,21 @@ const Header = () => {
                       </AccordionTrigger>
                       <AccordionContent className="px-2 py-2">
                         <div className="space-y-2 pl-4">
-                          {group.items.map((item) => (
-                            <Link
-                              key={item.title}
-                              to={item.href}
-                              className="block py-2 px-2 text-left text-gray-600 hover:text-gray-900 transition-colors"
-                              onClick={() => setIsMenuOpen(false)}
-                            >
-                              {item.title}
-                            </Link>
-                          ))}
+                          {group.items.map((item) => {
+                            // Update the title for Pet Spirit Connection Reading to Chat
+                            const displayTitle = item.title === "Pet Psychic Reading" ? "Pet Spirit Connection Chat" : item.title;
+                            
+                            return (
+                              <Link
+                                key={item.title}
+                                to={item.href}
+                                className="block py-2 px-2 text-left text-gray-600 hover:text-gray-900 transition-colors"
+                                onClick={() => setIsMenuOpen(false)}
+                              >
+                                {displayTitle}
+                              </Link>
+                            );
+                          })}
                         </div>
                       </AccordionContent>
                     </AccordionItem>

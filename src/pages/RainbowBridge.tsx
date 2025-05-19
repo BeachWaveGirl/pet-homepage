@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import PageTitle from "@/components/StarMemorial/PageTitle";
 
 const RainbowBridge = () => {
   const [petName, setPetName] = useState("");
@@ -37,11 +38,12 @@ const RainbowBridge = () => {
     <div className="min-h-screen flex flex-col bg-white">
       <Header />
       
-      <main className="flex-1 py-12 px-4">
+      <main className="flex-1 py-12 px-4 pt-24 mt-8">
         <div className="container mx-auto max-w-4xl">
-          <h1 className="font-playfair text-4xl md:text-5xl font-bold mb-6 text-center">
-            Rainbow Bridge Poems
-          </h1>
+          <PageTitle
+            title="Rainbow Bridge Poem Print"
+            description="Honor your beloved pet with a beautiful Rainbow Bridge poem, celebrating their journey across the bridge where they wait until you meet again."
+          />
           
           <div className="relative w-full h-64 md:h-80 lg:h-96 mb-10 rounded-xl overflow-hidden">
             <img 

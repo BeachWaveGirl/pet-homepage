@@ -42,7 +42,7 @@ const memorialOfferings = [
   },
   {
     id: "pet-physic-reading",
-    title: "Pet Spirit Connection Reading",
+    title: "Pet Spirit Connection Chat",
     description: "Receive comforting messages and insights from your pet on the other side. Our spiritual advisors help bridge the connection between worlds.",
     imageUrl: "/lovable-uploads/f33432eb-d4f4-459a-9cba-6fdfdbacd6a0.png",
     link: "/pet-physic-reading",

@@ -20,7 +20,7 @@ export const categoryGroups = [
     description: "Fun, mystical, and personalized content based on your pet's spirit.",
     items: [
       {
-        title: "Pet Psychic Reading",
+        title: "Pet Spirit Connection Chat",
         href: "/pet-physic-reading",
         description: "Connect with your pet on a deeper spiritual level.",
       },
@@ -43,17 +43,17 @@ export const categoryGroups = [
     description: "Tributes and mementos for pets who've crossed the Rainbow Bridge.",
     items: [
       {
-        title: "Pet Star Map",
+        title: "Custom Pet Star Map",
         href: "/star-map",
         description: "A personalized star map showing when your pet became a star.",
       },
       {
-        title: "Rainbow Bridge Poem",
+        title: "Rainbow Bridge Poem Print",
         href: "/rainbow-bridge",
         description: "Beautiful customized Rainbow Bridge poems to honor your pet's memory.",
       },
       {
-        title: "Pet Funeral Invitation",
+        title: "Pet Funeral Announcement Card",
         href: "/pet-funeral",
         description: "Create a mobile funeral invitation to share with loved ones.",
       },

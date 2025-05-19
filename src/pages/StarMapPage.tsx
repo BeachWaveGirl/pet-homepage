@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -10,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/hooks/use-toast";
+import PageTitle from "@/components/StarMemorial/PageTitle";
 
 const StarMapPage = () => {
   const [petName, setPetName] = useState("");
@@ -75,15 +75,12 @@ const StarMapPage = () => {
     <div className="min-h-screen flex flex-col bg-white">
       <Header />
       
-      <main className="flex-1 py-12 px-4">
+      <main className="flex-1 py-12 px-4 pt-24 mt-8">
         <div className="container mx-auto max-w-4xl">
-          <h1 className="font-playfair text-4xl md:text-5xl font-bold mb-6 text-center">
-            Star Map Letter
-          </h1>
-          
-          <p className="text-xl text-gray-700 mb-10 text-center max-w-2xl mx-auto">
-            Create a personalized letter with a star map showing the night sky when your pet became a star
-          </p>
+          <PageTitle
+            title="Custom Pet Star Map"
+            description="Create a personalized letter with a star map showing the night sky when your pet became a star"
+          />
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card className="bg-white border-gray-200 shadow-md">
