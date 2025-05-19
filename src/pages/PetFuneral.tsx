@@ -11,6 +11,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/hooks/use-toast";
 import { Download, Share } from "lucide-react";
 import html2canvas from "html2canvas";
+import PageTitle from "@/components/StarMemorial/PageTitle";
 
 const PetFuneral = () => {
   const [petName, setPetName] = useState("");
@@ -119,15 +120,12 @@ const PetFuneral = () => {
     <div className="min-h-screen flex flex-col bg-white">
       <Header />
       
-      <main className="flex-1 py-12 px-4">
+      <main className="flex-1 py-12 px-4 pt-24 mt-8">
         <div className="container mx-auto max-w-4xl">
-          <h1 className="font-playfair text-4xl md:text-5xl font-bold mb-6 text-center">
-            Pet Funeral Mobile Invitation
-          </h1>
-          
-          <p className="text-xl text-gray-700 mb-10 text-center max-w-2xl mx-auto">
-            Create a mobile-friendly memorial invitation to celebrate your pet's life with friends and family
-          </p>
+          <PageTitle
+            title="Pet Funeral Announcement Card"
+            description="Create a mobile-friendly memorial invitation to celebrate your pet's life with friends and family"
+          />
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card className="bg-white border-gray-200 shadow-md">
@@ -232,7 +230,7 @@ const PetFuneral = () => {
                   <div className="pt-4">
                     <Button
                       onClick={handleGenerateInvitation}
-                      className="w-full bg-gray-800 hover:bg-black text-white"
+                      className="w-full bg-black hover:bg-gray-800 text-white"
                     >
                       Generate Memorial Invitation
                     </Button>
@@ -251,7 +249,7 @@ const PetFuneral = () => {
                         className="w-full h-full flex flex-col items-center justify-between relative"
                         style={{
                           backgroundColor: "#F3F3F3",
-                          backgroundImage: "url('/lovable-uploads/c767ea95-f4d6-4875-aa3d-c9f854be9e40.png')", // Updated background with the rainbow cat image
+                          backgroundImage: "url('/lovable-uploads/c767ea95-f4d6-4875-aa3d-c9f854be9e40.png')",
                           backgroundBlendMode: "soft-light",
                           backgroundSize: "cover",
                           backgroundPosition: "center"
@@ -329,14 +327,14 @@ const PetFuneral = () => {
                 <div className="p-4 flex space-x-4">
                   <Button 
                     onClick={downloadInvitation} 
-                    className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white"
+                    className="flex-1 bg-gray-900 hover:bg-black text-white"
                   >
                     <Download className="h-4 w-4 mr-2" />
                     Download
                   </Button>
                   <Button 
                     onClick={shareInvitation} 
-                    className="flex-1 bg-teal-600 hover:bg-teal-700 text-white"
+                    className="flex-1 bg-gray-900 hover:bg-black text-white"
                   >
                     <Share className="h-4 w-4 mr-2" />
                     Share
