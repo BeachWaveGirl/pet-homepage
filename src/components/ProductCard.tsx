@@ -30,40 +30,40 @@ const ProductCard = ({
   
   return (
     <Card 
-      className={`overflow-hidden transition-all ${isHovered ? 'shadow-lg transform scale-[1.03]' : 'shadow'} duration-300 ease-in-out`}
+      className={`overflow-hidden transition-all ${isHovered ? 'shadow-md' : 'shadow-sm'} duration-300 ease-in-out`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{ 
-        borderRadius: '12px', 
-        borderWidth: '2px', 
+        borderRadius: '8px', 
+        borderWidth: '1px', 
         borderStyle: 'solid',
-        borderColor: isHovered ? '#8B5CF6' : 'transparent'
+        borderColor: isHovered ? '#cccccc' : '#e5e5e5'
       }}
     >
-      <AspectRatio ratio={4/3} className="bg-gray-100">
+      <AspectRatio ratio={4/3} className="bg-gray-50">
         <img
           src={imageUrl}
           alt={title}
           className="object-cover w-full h-full transition-all duration-500"
           style={{
-            filter: isHovered ? 'brightness(1.1)' : 'brightness(1)'
+            filter: isHovered ? 'brightness(1.05)' : 'brightness(1)'
           }}
         />
       </AspectRatio>
       
-      <CardContent className="p-4">
+      <CardContent className="p-5">
         <div className="mb-4">
-          <h3 className="text-xl font-medium mb-1 font-playfair" style={{ 
+          <h3 className="text-xl font-medium mb-1 font-playfair text-gray-900" style={{ 
             transform: isHovered ? 'translateY(-2px)' : 'none',
             transition: 'transform 0.3s ease-in-out' 
           }}>
             {title}
           </h3>
-          <p className="text-sm font-medium text-indigo-600 mb-2">{subtitle}</p>
+          <p className="text-sm font-medium text-gray-700 mb-2">{subtitle}</p>
           <p className="text-sm text-gray-600 mb-3">{description}</p>
           
           <div className="flex items-center justify-between">
-            <span className="font-bold text-lg">{price}</span>
+            <span className="font-bold text-lg text-gray-900">{price}</span>
             
             <div className="flex gap-2">
               {onPreview && (
@@ -71,7 +71,7 @@ const ProductCard = ({
                   variant="outline" 
                   size="sm"
                   onClick={onPreview}
-                  className="text-sm"
+                  className="text-sm border-gray-300 text-gray-700"
                 >
                   Preview
                 </Button>
@@ -79,7 +79,7 @@ const ProductCard = ({
               
               <Button 
                 onClick={onOrder}
-                className="text-sm bg-black hover:bg-gray-800 text-white flex items-center gap-1"
+                className="text-sm bg-gray-900 hover:bg-gray-800 text-white flex items-center gap-1"
               >
                 {digitalDownload ? (
                   <>

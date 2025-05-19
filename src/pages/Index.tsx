@@ -1,114 +1,164 @@
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import CategoryCard from "@/components/CategoryCard";
 import { Button } from "@/components/ui/button";
-import { categoryGroups } from "@/components/NavigationMenu";
 import { Link } from "react-router-dom";
-import { 
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious
-} from "@/components/ui/carousel";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
-// Create a mapping of categories to display on the homepage
-const categoriesMapping = categoryGroups.map(group => ({
-  id: group.id,
-  emoji: group.emoji,
-  title: group.title,
-  description: group.description,
-  items: group.items.map(item => ({
-    id: item.href.replace('/', ''),
-    title: item.title,
-    description: item.description,
-    imageUrl: `https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313_1280.jpg`, // Default image
-    link: item.href
-  }))
-}));
-
-// Update images to more futuristic, AI-style images
-const categoryImages = {
-  // Pet Personality & Destiny
-  "pet-physic-reading": "/lovable-uploads/ae4cb9db-7c24-479a-bd6b-bfdab9c1c6e2.png", // Cat on shark
-  "pet-voice-chat": "/lovable-uploads/6f146f9a-c7c2-4e3e-8b41-df577ef5aa27.png", // Cat bread in space
-  "pet-tarot-reading": "/lovable-uploads/f33432eb-d4f4-459a-9cba-6fdfdbacd6a0.png", // Cat on horse
-
-  // Pet Memorial & Afterlife
-  "star-map": "/lovable-uploads/efa73ad4-f753-493c-933e-d1ec4998656f.png", // Cats in space
-  "rainbow-bridge": "/lovable-uploads/be74091f-4ccb-434e-88ac-0667651f253a.png", // Cat UFO rainbow bridge
-  "pet-funeral": "/lovable-uploads/c3857a85-d6ef-423a-a3bb-bd784cf7ac7d.png", // Dogs on rainbow bridge
-};
-
-// Apply the custom images to our categories
-const categoriesWithImages = categoriesMapping.map(category => {
-  const categoryWithImageItems = category.items.map(item => ({
-    ...item,
-    imageUrl: categoryImages[item.id] || item.imageUrl
-  }));
-  return {
-    ...category,
-    items: categoryWithImageItems
-  };
-});
+// New curated offerings based on user request
+const memorialOfferings = [
+  {
+    id: "pet-funeral",
+    title: "Pet Funeral Announcement Card",
+    description: "Create a dignified digital invitation to share your pet's memorial service with family and friends. Instant download, easily shareable via text or social media.",
+    imageUrl: "/lovable-uploads/c3857a85-d6ef-423a-a3bb-bd784cf7ac7d.png",
+    link: "/pet-funeral",
+    keywords: ["pet loss announcement", "dog funeral invitation", "cat memorial service", "pet remembrance gathering"]
+  },
+  {
+    id: "star-map",
+    title: "Custom Pet Star Map",
+    description: "A personalized celestial map showing the exact stars shining on the night your beloved pet became your guardian angel. Beautiful constellation art to remember their special place in your heart.",
+    imageUrl: "/lovable-uploads/efa73ad4-f753-493c-933e-d1ec4998656f.png",
+    link: "/star-map",
+    keywords: ["pet memorial star map", "dog remembrance gift", "cat memorial print", "pet loss keepsake"]
+  },
+  {
+    id: "pet-portrait",
+    title: "Pet Memorial Digital Portrait",
+    description: "Transform your favorite photo into a touching rainbow bridge memorial portrait. A beautiful way to celebrate your pet's unique personality and the joy they brought to your life.",
+    imageUrl: "/lovable-uploads/ae4cb9db-7c24-479a-bd6b-bfdab9c1c6e2.png",
+    link: "/pet-portrait",
+    keywords: ["custom pet memorial", "dog remembrance portrait", "cat memorial picture", "rainbow bridge keepsake"]
+  },
+  {
+    id: "rainbow-bridge",
+    title: "Rainbow Bridge Poem Print",
+    description: "Comforting words paired with gentle imagery to honor your pet's crossing. Personalized with their name and a special message from you.",
+    imageUrl: "/lovable-uploads/be74091f-4ccb-434e-88ac-0667651f253a.png",
+    link: "/rainbow-bridge",
+    keywords: ["pet sympathy gift", "dog memorial poem", "cat rainbow bridge", "pet bereavement print"]
+  },
+  {
+    id: "pet-physic-reading",
+    title: "Pet Spirit Connection Reading",
+    description: "Receive comforting messages and insights from your pet on the other side. Our spiritual advisors help bridge the connection between worlds.",
+    imageUrl: "/lovable-uploads/f33432eb-d4f4-459a-9cba-6fdfdbacd6a0.png",
+    link: "/pet-physic-reading",
+    keywords: ["pet medium reading", "dog afterlife connection", "cat spirit communication", "pet loss comfort"]
+  },
+  {
+    id: "pet-zodiac",
+    title: "Pet Personality Astrology Chart",
+    description: "Discover how the stars influenced your pet's unique traits and spirit. A beautiful keepsake explaining the cosmic forces that shaped their special personality.",
+    imageUrl: "/lovable-uploads/6f146f9a-c7c2-4e3e-8b41-df577ef5aa27.png",
+    link: "/pet-zodiac",
+    keywords: ["pet astrology reading", "dog natal chart", "cat zodiac personality", "pet horoscope gift"]
+  }
+];
 
 const Index = () => {
   const scrollToForm = () => {
-    const formElement = document.getElementById('letter-form');
+    const formElement = document.getElementById('memorial-section');
     formElement?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-background font-inter">
+    <div className="min-h-screen flex flex-col bg-white font-inter">
       <Header />
       
-      {/* Hero Section with fairy cows image */}
-      <section className="w-full py-16 md:py-24 px-4 flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-indigo-900 to-black">
-        <div className="absolute inset-0 bg-[url('/lovable-uploads/be74091f-4ccb-434e-88ac-0667651f253a.png')] opacity-40 bg-cover bg-center"></div>
+      {/* Hero Section with subtle background and minimalist design */}
+      <section className="w-full py-20 md:py-28 px-4 flex items-center justify-center relative overflow-hidden bg-gradient-to-b from-white to-gray-50">
+        <div className="absolute inset-0 bg-[url('/lovable-uploads/be74091f-4ccb-434e-88ac-0667651f253a.png')] opacity-10 bg-cover bg-center"></div>
         <div className="container max-w-4xl mx-auto text-center animate-fade-in-slow relative z-10">
-          <h1 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">
-            Love Never Ends — It Just Glows Differently
+          <h1 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900">
+            Honor Their Memory, Celebrate Their Love
           </h1>
-          <p className="text-xl md:text-2xl text-gray-200 mb-10 max-w-2xl mx-auto">
-            Let's honor them. Celebrate their love. Keep their light alive.
+          <p className="text-lg md:text-xl text-gray-700 mb-10 max-w-2xl mx-auto">
+            Customized pet memorial keepsakes delivered instantly to your inbox
           </p>
           
-          <Button onClick={scrollToForm} className="bg-indigo-600 hover:bg-indigo-700 text-white transition-colors">
+          <Button onClick={scrollToForm} className="bg-gray-900 hover:bg-gray-800 text-white transition-colors">
             Create a Memorial
           </Button>
         </div>
       </section>
       
-      {/* Category Sections with Carousel Navigation */}
-      {categoriesWithImages.map((category) => (
-        <section key={category.id} className="w-full py-12 px-4 bg-gradient-to-br from-gray-50 to-gray-100 border-b last:border-b-0">
-          <div className="container mx-auto max-w-6xl">
-            <div className="flex items-center justify-center mb-4">
-              <span className="text-2xl mr-2">{category.emoji}</span>
-              <h2 className="text-3xl font-playfair font-bold text-center">{category.title}</h2>
-            </div>
-            
-            <p className="text-lg text-gray-700 mb-8 max-w-3xl mx-auto text-center">
-              {category.description}
+      {/* Memorial Offerings Section */}
+      <section id="memorial-section" className="w-full py-16 px-4 bg-white">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-12">
+            <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-4 text-gray-900">Pet Loss Memorial Gifts & Keepsakes</h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Healing digital remembrances for your rainbow bridge pet
             </p>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-              {category.items.map((item) => (
-                <CategoryCard
-                  key={item.id}
-                  id={item.id}
-                  title={item.title}
-                  description={item.description}
-                  imageUrl={item.imageUrl}
-                  link={item.link}
-                  aspectRatio={9/16}
-                />
-              ))}
-            </div>
           </div>
-        </section>
-      ))}
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {memorialOfferings.map((offering) => (
+              <Link to={offering.link} key={offering.id} className="group">
+                <Card className="h-full overflow-hidden transition-all duration-300 hover:shadow-md group-hover:border-gray-300">
+                  <div className="aspect-w-16 aspect-h-9 bg-gray-100">
+                    <img 
+                      src={offering.imageUrl} 
+                      alt={offering.title} 
+                      className="object-cover w-full h-64 transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <CardContent className="p-6">
+                    <h3 className="font-playfair text-xl font-medium mb-2 text-gray-900 group-hover:text-gray-700">
+                      {offering.title}
+                    </h3>
+                    <p className="text-gray-600 mb-4 text-sm">
+                      {offering.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2 mt-auto">
+                      {offering.keywords.slice(0,2).map((keyword, i) => (
+                        <Badge key={i} variant="outline" className="text-xs">
+                          {keyword}
+                        </Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+      
+      {/* Comfort Section */}
+      <section className="w-full py-16 px-4 bg-gray-50">
+        <div className="container mx-auto max-w-4xl">
+          <div className="text-center mb-8">
+            <h2 className="font-playfair text-3xl font-bold mb-4 text-gray-900">Finding Comfort in Memory</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Every remembrance is a celebration of the love you shared with your pet.
+              Our thoughtfully designed memorials provide comfort during this difficult time.
+            </p>
+          </div>
+          
+          <div className="mt-12 flex flex-col md:flex-row items-center gap-8 justify-center">
+            <Button
+              as={Link}
+              to="/star-map"
+              className="w-full md:w-auto bg-gray-900 text-white hover:bg-gray-800"
+            >
+              Create a Star Map
+            </Button>
+            
+            <Button
+              as={Link}
+              to="/rainbow-bridge"
+              variant="outline"
+              className="w-full md:w-auto border-gray-300 text-gray-900"
+            >
+              Rainbow Bridge Poem
+            </Button>
+          </div>
+        </div>
+      </section>
       
       <Footer />
     </div>

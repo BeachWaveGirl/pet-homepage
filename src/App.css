@@ -6,8 +6,8 @@
 }
 
 body {
-  background-color: #000000;
-  color: #ffffff;
+  background-color: #ffffff;
+  color: #111111;
 }
 
 main {
@@ -21,10 +21,10 @@ main {
   transition: filter 300ms;
 }
 .logo:hover {
-  filter: drop-shadow(0 0 2em rgba(255, 255, 255, 0.5));
+  filter: drop-shadow(0 0 2em rgba(0, 0, 0, 0.2));
 }
 .logo.react:hover {
-  filter: drop-shadow(0 0 2em rgba(255, 255, 255, 0.5));
+  filter: drop-shadow(0 0 2em rgba(0, 0, 0, 0.2));
 }
 
 @keyframes logo-spin {
@@ -52,11 +52,11 @@ main {
 
 /* Custom styles for the Co-Star inspired UI */
 .star-background {
-  background: linear-gradient(to bottom, #000000, #121212);
+  background: linear-gradient(to bottom, #ffffff, #f5f5f5);
 }
 
 .star-card {
-  background-color: rgba(30, 30, 30, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
 }
