@@ -65,7 +65,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white font-inter">
+    <div className="min-h-screen flex flex-col bg-white font-inter page-container">
       <Header />
       
       {/* Hero Section with subtle background and minimalist design */}
@@ -79,7 +79,7 @@ const Index = () => {
             Customized pet memorial keepsakes delivered instantly to your inbox
           </p>
           
-          <Button onClick={scrollToForm} className="bg-gray-900 hover:bg-gray-800 text-white transition-colors">
+          <Button onClick={scrollToForm} className="bg-black hover:bg-gray-800 text-white transition-colors">
             Create a Memorial
           </Button>
         </div>
@@ -140,22 +140,17 @@ const Index = () => {
           </div>
           
           <div className="mt-12 flex flex-col md:flex-row items-center gap-8 justify-center">
-            <Button
-              as={Link}
-              to="/star-map"
-              className="w-full md:w-auto bg-gray-900 text-white hover:bg-gray-800"
-            >
-              Create a Star Map
-            </Button>
+            <Link to="/star-map" className="w-full md:w-auto">
+              <Button className="w-full bg-black text-white hover:bg-gray-800">
+                Create a Star Map
+              </Button>
+            </Link>
             
-            <Button
-              as={Link}
-              to="/rainbow-bridge"
-              variant="outline"
-              className="w-full md:w-auto border-gray-300 text-gray-900"
-            >
-              Rainbow Bridge Poem
-            </Button>
+            <Link to="/rainbow-bridge" className="w-full md:w-auto">
+              <Button variant="outline" className="w-full border-gray-300 text-gray-900">
+                Rainbow Bridge Poem
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

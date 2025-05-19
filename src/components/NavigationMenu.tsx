@@ -66,7 +66,7 @@ const ProductNavigationMenu = () => {
     <NavigationMenu className="hidden md:flex">
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Categories</NavigationMenuTrigger>
+          <NavigationMenuTrigger className="text-gray-900 hover:text-gray-600">Categories</NavigationMenuTrigger>
           <NavigationMenuContent>
             <div className="grid grid-cols-1 gap-3 p-6 md:w-[600px] lg:w-[700px] absolute left-1/2 transform -translate-x-1/2 top-0 bg-white shadow-lg rounded-md">
               {categoryGroups.map((group) => (
@@ -81,7 +81,7 @@ const ProductNavigationMenu = () => {
                       <Link
                         key={item.title}
                         to={item.href}
-                        className="flex flex-col p-3 rounded-md bg-gradient-to-b from-white/50 to-white hover:bg-slate-50 border border-gray-100 shadow-sm"
+                        className="flex flex-col p-3 rounded-md bg-gradient-to-b from-white/50 to-white hover:bg-gray-50 border border-gray-100 shadow-sm"
                       >
                         <div className="font-medium">{item.title}</div>
                         <p className="text-xs text-gray-600 mt-1">
@@ -97,7 +97,7 @@ const ProductNavigationMenu = () => {
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <Link to="/pricing" className="block py-2 px-3">
+          <Link to="/pricing" className="block py-2 px-3 text-gray-900 hover:text-gray-600">
             Pricing
           </Link>
         </NavigationMenuItem>

@@ -14,6 +14,11 @@ main {
   padding-top: 80px; /* Add padding to account for the fixed header */
 }
 
+/* Apply padding to all pages to accommodate the fixed header */
+.page-container {
+  padding-top: 72px; /* Adjust based on the header height */
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;

@@ -42,28 +42,28 @@ const Header = () => {
   }, []);
 
   return (
-    <header className={`w-full bg-black py-4 px-4 md:px-6 flex justify-center border-b border-gray-800 fixed top-0 z-50 ${isScrolled ? 'shadow-md shadow-black/30' : ''}`}>
+    <header className={`w-full bg-white py-4 px-4 md:px-6 flex justify-center border-b border-gray-200 fixed top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-opacity-50 backdrop-blur-sm shadow-sm' : 'bg-opacity-100'}`}>
       <div className="container flex justify-between items-center">
         {/* Hamburger Menu with side slide effect */}
-        <Button variant="ghost" size="sm" className="p-1 text-white hover:bg-gray-900" onClick={() => setIsMenuOpen(true)}>
+        <Button variant="ghost" size="sm" className="p-1 text-gray-900 hover:bg-gray-100" onClick={() => setIsMenuOpen(true)}>
           <Menu className="h-7 w-7" />
           <span className="sr-only">Open main menu</span>
         </Button>
         
         <Dialog open={isMenuOpen} onOpenChange={setIsMenuOpen}>
-          <DialogContent className="p-0 sm:max-w-[280px] h-full fixed left-0 top-0 rounded-none border-r border-gray-800 bg-black text-white shadow-xl transform transition-transform duration-300 ease-in-out" 
+          <DialogContent className="p-0 sm:max-w-[280px] h-full fixed left-0 top-0 rounded-none border-r border-gray-200 bg-white text-gray-900 shadow-xl transform transition-transform duration-300 ease-in-out" 
             style={{transform: isMenuOpen ? 'translateX(0)' : 'translateX(-100%)'}}
             onInteractOutside={(e) => {e.preventDefault(); setIsMenuOpen(false);}}>
             <div className="h-full flex flex-col">
-              <div className="flex items-center justify-between p-4 border-b border-gray-800">
+              <div className="flex items-center justify-between p-4 border-b border-gray-200">
                 <Link 
                   to="/" 
-                  className="text-xl font-playfair font-semibold text-white"
+                  className="text-xl font-playfair font-semibold text-gray-900"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   HaloPet
                 </Link>
-                <Button variant="ghost" size="sm" className="p-1 text-white hover:bg-gray-900" onClick={() => setIsMenuOpen(false)}>
+                <Button variant="ghost" size="sm" className="p-1 text-gray-900 hover:bg-gray-100" onClick={() => setIsMenuOpen(false)}>
                   <X className="h-6 w-6" />
                   <span className="sr-only">Close menu</span>
                 </Button>
@@ -71,8 +71,8 @@ const Header = () => {
               <div className="flex-1 overflow-y-auto p-4">
                 <Accordion type="multiple" className="space-y-4">
                   {categoryGroups.map((group) => (
-                    <AccordionItem key={group.id} value={group.id} className="border-gray-800 rounded-md">
-                      <AccordionTrigger className="px-4 py-3 flex items-center text-left text-white hover:text-gray-300">
+                    <AccordionItem key={group.id} value={group.id} className="border-gray-200 rounded-md">
+                      <AccordionTrigger className="px-4 py-3 flex items-center text-left text-gray-900 hover:text-gray-600">
                         <span className="mr-2">{group.emoji}</span>
                         <span>{group.title}</span>
                       </AccordionTrigger>
@@ -82,7 +82,7 @@ const Header = () => {
                             <Link
                               key={item.title}
                               to={item.href}
-                              className="block py-2 px-2 text-left text-gray-300 hover:text-white transition-colors"
+                              className="block py-2 px-2 text-left text-gray-600 hover:text-gray-900 transition-colors"
                               onClick={() => setIsMenuOpen(false)}
                             >
                               {item.title}
@@ -97,14 +97,14 @@ const Header = () => {
                 <div className="mt-6 space-y-3">
                   <Link 
                     to="/pricing" 
-                    className="block py-2 px-4 text-left text-gray-300 hover:text-white hover:bg-gray-900 rounded-md transition-colors"
+                    className="block py-2 px-4 text-left text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Memorial Products
                   </Link>
                   <Link to="/star-memorial" onClick={() => setIsMenuOpen(false)}>
                     <Button
-                      className="w-full bg-white text-black hover:bg-gray-300 transition-colors mt-4 border border-gray-800"
+                      className="w-full bg-black text-white hover:bg-gray-800 transition-colors mt-4 border border-gray-200"
                     >
                       Create a Memorial
                     </Button>
@@ -115,13 +115,13 @@ const Header = () => {
           </DialogContent>
         </Dialog>
         
-        <Link to="/" className="text-xl font-playfair font-semibold flex items-center text-white">
+        <Link to="/" className="text-xl font-playfair font-semibold flex items-center text-gray-900">
           <span>HaloPet</span>
         </Link>
         
         <Link to="/star-memorial">
           <Button 
-            className="bg-white text-black hover:bg-gray-300 transition-colors hidden md:flex border border-gray-800"
+            className="bg-black text-white hover:bg-gray-800 transition-colors hidden md:flex border border-gray-200"
           >
             Create a Memorial
           </Button>
