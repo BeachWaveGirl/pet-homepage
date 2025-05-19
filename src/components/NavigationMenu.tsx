@@ -14,29 +14,6 @@ import React from "react";
 // Define and export the category groups for use in other components
 export const categoryGroups = [
   {
-    id: "personality-destiny",
-    emoji: "🧿",
-    title: "Pet Personality & Destiny",
-    description: "Fun, mystical, and personalized content based on your pet's spirit.",
-    items: [
-      {
-        title: "Pet Spirit Connection Chat",
-        href: "/pet-physic-reading",
-        description: "Connect with your pet on a deeper spiritual level.",
-      },
-      {
-        title: "Pet Voice Chat",
-        href: "/pet-voice-chat",
-        description: "Talk with your pet using our AI voice technology.",
-      },
-      {
-        title: "Pet Tarot Reading",
-        href: "/pet-tarot-reading",
-        description: "Discover what the cards reveal about your pet's energy.",
-      },
-    ],
-  },
-  {
     id: "memorial-afterlife",
     emoji: "🌈",
     title: "Pet Memorial & Afterlife",
@@ -56,6 +33,16 @@ export const categoryGroups = [
         title: "Pet Funeral Announcement Card",
         href: "/pet-funeral",
         description: "Create a mobile funeral invitation to share with loved ones.",
+      },
+      {
+        title: "Pet Spirit Connection Chat",
+        href: "/pet-physic-reading",
+        description: "Connect with your pet on a deeper spiritual level.",
+      },
+      {
+        title: "Pet Personality Astrology Chart",
+        href: "/pet-zodiac",
+        description: "Discover what the stars reveal about your pet's personality.",
       },
     ],
   },

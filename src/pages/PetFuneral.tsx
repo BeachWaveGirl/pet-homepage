@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
@@ -18,8 +18,31 @@ const PetFuneral = () => {
   const [serviceLocation, setServiceLocation] = useState("");
   const [additionalInfo, setAdditionalInfo] = useState("");
   const [petPhoto, setPetPhoto] = useState("");
-  const [invitation, setInvitation] = useState(null);
   const [loading, setLoading] = useState(false);
+  
+  // Preview state - updated in real time
+  const [previewData, setPreviewData] = useState({
+    petName: "",
+    petType: "",
+    serviceDate: "",
+    serviceTime: "",
+    serviceLocation: "",
+    additionalInfo: "",
+    petPhoto: ""
+  });
+
+  // Update preview in real-time as user inputs data
+  useEffect(() => {
+    setPreviewData({
+      petName,
+      petType,
+      serviceDate,
+      serviceTime,
+      serviceLocation,
+      additionalInfo,
+      petPhoto
+    });
+  }, [petName, petType, serviceDate, serviceTime, serviceLocation, additionalInfo, petPhoto]);
   
   const handleGenerate = () => {
     setLoading(true);
@@ -27,15 +50,6 @@ const PetFuneral = () => {
     // In a real implementation, this would call an API endpoint
     setTimeout(() => {
       setLoading(false);
-      setInvitation({
-        petName,
-        petType,
-        serviceDate,
-        serviceTime,
-        serviceLocation,
-        additionalInfo,
-        petPhoto
-      });
     }, 1200);
   };
   
@@ -141,84 +155,77 @@ const PetFuneral = () => {
               </CardContent>
             </Card>
             
+            {/* Live preview card that updates in real-time */}
             <div>
-              {invitation ? (
-                <Card className="bg-white border-gray-200 shadow-md h-full flex flex-col">
-                  <div className="bg-gray-100 p-6 text-center flex-grow flex flex-col justify-center">
-                    {invitation.petPhoto && (
-                      <div className="mb-6">
-                        <div className="w-32 h-32 rounded-full mx-auto overflow-hidden border-2 border-gray-300">
-                          <img 
-                            src={invitation.petPhoto} 
-                            alt={invitation.petName}
-                            className="w-full h-full object-cover" 
-                          />
-                        </div>
+              <Card className="bg-white border-gray-200 shadow-md h-full flex flex-col">
+                <div className="bg-gray-100 p-6 text-center flex-grow flex flex-col justify-center">
+                  {previewData.petPhoto && (
+                    <div className="mb-6">
+                      <div className="w-32 h-32 rounded-full mx-auto overflow-hidden border-2 border-gray-300">
+                        <img 
+                          src={previewData.petPhoto} 
+                          alt={previewData.petName || "Your pet"}
+                          className="w-full h-full object-cover" 
+                        />
                       </div>
-                    )}
+                    </div>
+                  )}
+                
+                  <h3 className="font-playfair text-2xl text-gray-900 mb-1">Memorial Service</h3>
+                  <p className="text-gray-500 mb-4">In loving memory of</p>
+                  <h2 className="font-playfair text-3xl text-gray-900 mb-1">{previewData.petName || "Your Pet"}</h2>
+                  <p className="text-gray-600 mb-6">
+                    {previewData.petType ? `Our beloved ${previewData.petType}` : "Our beloved companion"}
+                  </p>
                   
-                    <h3 className="font-playfair text-2xl text-gray-900 mb-1">Memorial Service</h3>
-                    <p className="text-gray-500 mb-4">In loving memory of</p>
-                    <h2 className="font-playfair text-3xl text-gray-900 mb-1">{invitation.petName}</h2>
-                    <p className="text-gray-600 mb-6">Our beloved {invitation.petType}</p>
-                    
-                    <div className="border-t border-b border-gray-300 py-4 mb-6">
-                      <div className="flex items-center justify-center mb-2">
-                        <Calendar size={18} className="text-gray-600 mr-2" />
-                        <span className="text-gray-800">
-                          {new Date(invitation.serviceDate).toLocaleDateString('en-US', {
+                  <div className="border-t border-b border-gray-300 py-4 mb-6">
+                    <div className="flex items-center justify-center mb-2">
+                      <Calendar size={18} className="text-gray-600 mr-2" />
+                      <span className="text-gray-800">
+                        {previewData.serviceDate ? 
+                          new Date(previewData.serviceDate).toLocaleDateString('en-US', {
                             weekday: 'long',
                             month: 'long',
                             day: 'numeric',
                             year: 'numeric'
-                          })}
-                        </span>
-                      </div>
-                      
-                      <div className="flex items-center justify-center mb-2">
-                        <Clock size={18} className="text-gray-600 mr-2" />
-                        <span className="text-gray-800">
-                          {invitation.serviceTime}
-                        </span>
-                      </div>
-                      
-                      <div className="flex items-center justify-center">
-                        <MapPin size={18} className="text-gray-600 mr-2" />
-                        <span className="text-gray-800">
-                          {invitation.serviceLocation}
-                        </span>
-                      </div>
+                          }) : 
+                          "Date to be determined"
+                        }
+                      </span>
                     </div>
                     
-                    {invitation.additionalInfo && (
-                      <p className="text-gray-700 italic text-sm mb-6">
-                        {invitation.additionalInfo}
-                      </p>
-                    )}
+                    <div className="flex items-center justify-center mb-2">
+                      <Clock size={18} className="text-gray-600 mr-2" />
+                      <span className="text-gray-800">
+                        {previewData.serviceTime || "Time to be determined"}
+                      </span>
+                    </div>
                     
-                    <p className="text-gray-600 text-sm">
-                      Please join us as we celebrate the life and memory of our cherished companion.
-                    </p>
+                    <div className="flex items-center justify-center">
+                      <MapPin size={18} className="text-gray-600 mr-2" />
+                      <span className="text-gray-800">
+                        {previewData.serviceLocation || "Location to be determined"}
+                      </span>
+                    </div>
                   </div>
                   
-                  <div className="p-4 border-t border-gray-200 bg-white">
-                    <Button className="w-full">
-                      Download Invitation
-                    </Button>
-                  </div>
-                </Card>
-              ) : (
-                <div className="bg-gray-50 border border-gray-200 rounded-lg h-full flex items-center justify-center p-8 text-center">
-                  <div>
-                    <p className="text-gray-500 mb-4">
-                      Fill in the service details to generate your pet's memorial invitation
+                  {previewData.additionalInfo && (
+                    <p className="text-gray-700 italic text-sm mb-6">
+                      {previewData.additionalInfo}
                     </p>
-                    <p className="text-sm text-gray-400">
-                      The invitation will appear here once generated
-                    </p>
-                  </div>
+                  )}
+                  
+                  <p className="text-gray-600 text-sm">
+                    Please join us as we celebrate the life and memory of our cherished companion.
+                  </p>
                 </div>
-              )}
+                
+                <div className="p-4 border-t border-gray-200 bg-white">
+                  <Button className="w-full">
+                    Download Invitation
+                  </Button>
+                </div>
+              </Card>
             </div>
           </div>
         </div>

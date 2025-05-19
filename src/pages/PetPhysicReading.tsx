@@ -9,23 +9,43 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import PageTitle from "@/components/StarMemorial/PageTitle";
 import PetPhotoUpload from "@/components/pet-letter-form/PetPhotoUpload";
+import { SendHorizontal } from "lucide-react";
 
 const PetPhysicReading = () => {
   const [petName, setPetName] = useState("");
   const [question, setQuestion] = useState("");
   const [petPhoto, setPetPhoto] = useState("");
-  const [response, setResponse] = useState("");
+  const [currentQuestion, setCurrentQuestion] = useState("");
+  const [chatHistory, setChatHistory] = useState<Array<{type: 'user' | 'pet', content: string}>>([]);
 
   const handleSubmitQuestion = () => {
-    // This would connect to an AI service in a real implementation
-    const responses = [
-      `${petName} wants you to know they're always by your side, even when you can't see them. They feel your love every day.`,
-      `${petName} is at peace now and wants you to know that they're running free without any pain. They miss you but are happy.`,
-      `${petName} says thank you for all the love and care you provided. They're watching over you from across the rainbow bridge.`,
-      `${petName} wants you to know that they understand your grief, but they're in a beautiful place now and will wait for you.`
-    ];
+    if (!currentQuestion.trim()) return;
     
-    setResponse(responses[Math.floor(Math.random() * responses.length)]);
+    // Add user's question to chat history
+    setChatHistory(prev => [...prev, {type: 'user', content: currentQuestion}]);
+    
+    // Generate response from pet
+    setTimeout(() => {
+      // This would connect to an AI service in a real implementation
+      const responses = [
+        `${petName} wants you to know they're always by your side, even when you can't see them. They feel your love every day.`,
+        `${petName} is at peace now and wants you to know that they're running free without any pain. They miss you but are happy.`,
+        `${petName} says thank you for all the love and care you provided. They're watching over you from across the rainbow bridge.`,
+        `${petName} wants you to know that they understand your grief, but they're in a beautiful place now and will wait for you.`
+      ];
+      
+      const petResponse = responses[Math.floor(Math.random() * responses.length)];
+      setChatHistory(prev => [...prev, {type: 'pet', content: petResponse}]);
+    }, 1000);
+    
+    setCurrentQuestion("");
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSubmitQuestion();
+    }
   };
 
   return (
@@ -87,7 +107,10 @@ const PetPhysicReading = () => {
                   </div>
                   
                   <Button 
-                    onClick={handleSubmitQuestion} 
+                    onClick={() => {
+                      setCurrentQuestion(question);
+                      handleSubmitQuestion();
+                    }} 
                     className="w-full bg-black text-white hover:bg-gray-800"
                     disabled={!petName.trim() || !question.trim()}
                   >
@@ -111,20 +134,71 @@ const PetPhysicReading = () => {
                       </div>
                     )}
                     <CardTitle className="font-playfair text-2xl">
-                      {petName ? `Message from ${petName}` : "Message from the Other Side"}
+                      {petName ? `Chat with ${petName}` : "Chat with Your Pet"}
                     </CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent>
-                  {response ? (
-                    <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
-                      <p className="font-playfair italic text-gray-800">{response}</p>
+                  <div className="flex flex-col h-[300px]">
+                    <div className="flex-grow overflow-y-auto mb-4 p-2">
+                      {chatHistory.length > 0 ? (
+                        <div className="space-y-4">
+                          {chatHistory.map((message, index) => (
+                            <div 
+                              key={index} 
+                              className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
+                            >
+                              <div 
+                                className={`max-w-[80%] p-3 rounded-lg ${
+                                  message.type === 'user' 
+                                    ? 'bg-gray-100 text-gray-800' 
+                                    : 'bg-gray-800 text-white'
+                                }`}
+                              >
+                                {message.type === 'pet' && petPhoto && (
+                                  <div className="flex items-center mb-2">
+                                    <div className="w-8 h-8 rounded-full overflow-hidden mr-2">
+                                      <img 
+                                        src={petPhoto} 
+                                        alt={petName} 
+                                        className="w-full h-full object-cover" 
+                                      />
+                                    </div>
+                                    <span className="font-medium">{petName}</span>
+                                  </div>
+                                )}
+                                <p>{message.content}</p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="h-full flex items-center justify-center text-center">
+                          <p className="text-gray-500">Ask a question to start chatting with your pet</p>
+                        </div>
+                      )}
                     </div>
-                  ) : (
-                    <div className="h-40 flex items-center justify-center text-center">
-                      <p className="text-gray-500">Ask a question to receive a message from your pet</p>
+                    
+                    <div className="border-t pt-4">
+                      <div className="flex items-center">
+                        <Input
+                          value={currentQuestion}
+                          onChange={(e) => setCurrentQuestion(e.target.value)}
+                          onKeyDown={handleKeyDown}
+                          placeholder="Type your message..."
+                          className="flex-grow mr-2"
+                          disabled={!petName.trim()}
+                        />
+                        <Button 
+                          onClick={handleSubmitQuestion}
+                          disabled={!currentQuestion.trim() || !petName.trim()}
+                          className="bg-gray-800"
+                        >
+                          <SendHorizontal className="h-5 w-5" />
+                        </Button>
+                      </div>
                     </div>
-                  )}
+                  </div>
                 </CardContent>
               </Card>
               

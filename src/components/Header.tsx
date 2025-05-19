@@ -9,7 +9,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { categoryGroups } from "./NavigationMenu";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 const Header = () => {
@@ -92,36 +91,6 @@ const Header = () => {
                 </Button>
               </div>
               <div className="flex-1 overflow-y-auto p-4">
-                <Accordion type="multiple" className="space-y-4">
-                  {categoryGroups.map((group) => (
-                    <AccordionItem key={group.id} value={group.id} className="border-gray-200 rounded-md">
-                      <AccordionTrigger className="px-4 py-3 flex items-center text-left text-gray-900 hover:text-gray-600">
-                        <span className="mr-2">{group.emoji}</span>
-                        <span>{group.title}</span>
-                      </AccordionTrigger>
-                      <AccordionContent className="px-2 py-2">
-                        <div className="space-y-2 pl-4">
-                          {group.items.map((item) => {
-                            // Update the title for Pet Spirit Connection Reading to Chat
-                            const displayTitle = item.title === "Pet Psychic Reading" ? "Pet Spirit Connection Chat" : item.title;
-                            
-                            return (
-                              <Link
-                                key={item.title}
-                                to={item.href}
-                                className="block py-2 px-2 text-left text-gray-600 hover:text-gray-900 transition-colors"
-                                onClick={() => setIsMenuOpen(false)}
-                              >
-                                {displayTitle}
-                              </Link>
-                            );
-                          })}
-                        </div>
-                      </AccordionContent>
-                    </AccordionItem>
-                  ))}
-                </Accordion>
-                
                 <div className="mt-6">
                   <h3 className="font-medium text-gray-900 mb-3">Memorial Tools</h3>
                   <div className="space-y-3">
