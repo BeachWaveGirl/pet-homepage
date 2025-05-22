@@ -64,7 +64,7 @@ const MemorialTributes = ({ petName = "your pet" }: MemorialTributesProps) => {
               <Flame className="w-10 h-10 mb-4 text-amber-400" />
               <h3 className="text-xl font-medium text-white">Light a Candle</h3>
               <p className="text-gray-400 text-center text-sm mt-2">
-                Let a gentle flame shine in memory of your beloved pet.
+                Shine a light for your pet's memory.
               </p>
             </div>
             
@@ -102,7 +102,7 @@ const MemorialTributes = ({ petName = "your pet" }: MemorialTributesProps) => {
               <Flower className="w-10 h-10 mb-4 text-pink-400" />
               <h3 className="text-xl font-medium text-white">Offer Flowers</h3>
               <p className="text-gray-400 text-center text-sm mt-2">
-                Place a beautiful bouquet by your pet's star.
+                A floral tribute beneath their star.
               </p>
             </div>
             
