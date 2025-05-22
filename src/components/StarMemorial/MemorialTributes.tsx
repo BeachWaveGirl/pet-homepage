@@ -1,38 +1,15 @@
+
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Flame, Flower, Package } from "lucide-react";
 import { toast } from "sonner";
 import TributeModal from "./TributeModal";
+import CandleTributeCard from "./TributeCards/CandleTributeCard";
+import FlowerTributeCard from "./TributeCards/FlowerTributeCard";
+import ToyTributeCard from "./TributeCards/ToyTributeCard";
+import PromotionBanner from "./TributeCards/PromotionBanner";
+import tributeOptions from "./TributeCards/TributeOptions";
 
 // Define the tribute item types
 type TributeItemType = "candle" | "flower" | "toy";
-
-// Define the tribute options with their durations/types and prices
-const tributeOptions = {
-  candle: [
-    { id: "candle-free", name: "A free 24-hour tribute", duration: "24 hours", price: 0 },
-    { id: "candle-3", name: "🕯️ Three Day Candle", duration: "3 days", price: 1.99 },
-    { id: "candle-30", name: "🌙 Thirty Day Candle", duration: "30 days", price: 4.99 },
-    { id: "candle-180", name: "🌌 Six Month Candle", duration: "6 months", price: 9.99 },
-    { id: "candle-365", name: "💫 One Year Candle", duration: "1 year", price: 29.99 }
-  ],
-  flower: [
-    { id: "flower-free", name: "Memorial Daisy", type: "Daisy", price: 0 },
-    { id: "flower-forget", name: "Forget-Me-Not Posy", type: "Forget-Me-Not", price: 0.99 },
-    { id: "flower-lily", name: "Pure Lilies Bouquet", type: "Lilies", price: 1.99 },
-    { id: "flower-rose", name: "Eternal Roses", type: "Roses", price: 1.99 },
-    { id: "flower-orchid", name: "Orchid Elegance", type: "Orchids", price: 2.99 }
-  ],
-  toy: [
-    { id: "toy-free", name: "Simple Ball", description: "A basic pet ball", price: 0 },
-    { id: "toy-ball", name: "Playful Ball", description: "A colorful ball", price: 1.99 },
-    { id: "toy-plush", name: "Soft Plushie", description: "A cuddly plush toy", price: 3.99 },
-    { id: "toy-rope", name: "Tug Rope", description: "A durable rope toy", price: 2.49 },
-    { id: "toy-mouse", name: "Catnip Mouse", description: "A mouse toy with catnip", price: 2.99 }
-  ]
-};
 
 interface MemorialTributesProps {
   petName?: string;
@@ -80,145 +57,23 @@ const MemorialTributes = ({ petName = "your pet", petPhoto = null }: MemorialTri
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Candle Tribute Card */}
-          <Card className="bg-black border border-gray-800 text-white hover:border-gray-700 transition-colors overflow-hidden">
-            <div className="border-b border-gray-800 p-6 flex flex-col items-center">
-              <Flame className="w-10 h-10 mb-4 text-amber-400" />
-              <h3 className="text-xl font-medium text-white">Light a Candle</h3>
-              <p className="text-gray-400 text-center text-sm mt-2">
-                Shine a light for your pet's memory.
-              </p>
-            </div>
-            
-            <CardContent className="p-6">
-              <ul className="space-y-4 mb-6">
-                {tributeOptions.candle.map((option) => (
-                  <li key={option.id} className="flex justify-between items-center">
-                    <div>
-                      <p className="text-white">{option.name}</p>
-                      {option.id === "candle-free" ? (
-                        <p className="text-xs text-gray-400">to begin your memorial</p>
-                      ) : option.id === "candle-3" ? (
-                        <p className="text-xs text-gray-400">A gentle glow that lasts through the weekend</p>
-                      ) : option.id === "candle-30" ? (
-                        <p className="text-xs text-gray-400">A soft light to guide them for a month</p>
-                      ) : option.id === "candle-180" ? (
-                        <p className="text-xs text-gray-400">Keep their star shining through the seasons</p>
-                      ) : (
-                        <p className="text-xs text-gray-400">A lasting tribute for a lifetime of memories</p>
-                      )}
-                    </div>
-                    <Button 
-                      variant="outline" 
-                      size="sm" 
-                      className="border-gray-700 hover:bg-gray-800 text-white"
-                      onClick={() => handlePurchase("candle", option.id, option.name)}
-                    >
-                      {option.price === 0 ? "Free" : `$${option.price.toFixed(2)}`}
-                    </Button>
-                  </li>
-                ))}
-              </ul>
-              
-              <Link to="/candle-tribute">
-                <Button className="w-full bg-amber-700 hover:bg-amber-800">
-                  Light a Candle →
-                </Button>
-              </Link>
-            </CardContent>
-          </Card>
+          <CandleTributeCard 
+            candleOptions={tributeOptions.candle}
+            onPurchase={handlePurchase}
+          />
           
-          {/* Flower Tribute Card */}
-          <Card className="bg-black border border-gray-800 text-white hover:border-gray-700 transition-colors overflow-hidden">
-            <div className="border-b border-gray-800 p-6 flex flex-col items-center">
-              <Flower className="w-10 h-10 mb-4 text-pink-400" />
-              <h3 className="text-xl font-medium text-white">Offer Flowers</h3>
-              <p className="text-gray-400 text-center text-sm mt-2">
-                A floral tribute beneath their star.
-              </p>
-            </div>
-            
-            <CardContent className="p-6">
-              <ul className="space-y-4 mb-6">
-                {tributeOptions.flower.map((option) => (
-                  <li key={option.id} className="flex justify-between items-center">
-                    <div>
-                      <p className="text-white">{option.name}</p>
-                      <p className="text-xs text-gray-400">{option.type}</p>
-                    </div>
-                    <Button 
-                      variant="outline" 
-                      size="sm" 
-                      className="border-gray-700 hover:bg-gray-800 text-white"
-                      onClick={() => handlePurchase("flower", option.id, option.name)}
-                    >
-                      {option.price === 0 ? "Free" : `$${option.price.toFixed(2)}`}
-                    </Button>
-                  </li>
-                ))}
-              </ul>
-              
-              <Link to="/flower-tribute">
-                <Button className="w-full bg-pink-700 hover:bg-pink-800">
-                  Send Flowers →
-                </Button>
-              </Link>
-            </CardContent>
-          </Card>
+          <FlowerTributeCard 
+            flowerOptions={tributeOptions.flower}
+            onPurchase={handlePurchase}
+          />
           
-          {/* Toys Tribute Card */}
-          <Card className="bg-black border border-gray-800 text-white hover:border-gray-700 transition-colors overflow-hidden">
-            <div className="border-b border-gray-800 p-6 flex flex-col items-center">
-              <Package className="w-10 h-10 mb-4 text-yellow-400" />
-              <h3 className="text-xl font-medium text-white">Leave a Toy</h3>
-              <p className="text-gray-400 text-center text-sm mt-2">
-                Share a toy your pet would love.
-              </p>
-            </div>
-            
-            <CardContent className="p-6">
-              <ul className="space-y-4 mb-6">
-                {tributeOptions.toy.map((option) => (
-                  <li key={option.id} className="flex justify-between items-center">
-                    <div>
-                      <p className="text-white">{option.name}</p>
-                      <p className="text-xs text-gray-400">{option.description}</p>
-                    </div>
-                    <Button 
-                      variant="outline" 
-                      size="sm" 
-                      className="border-gray-700 hover:bg-gray-800 text-white"
-                      onClick={() => handlePurchase("toy", option.id, option.name)}
-                    >
-                      {option.price === 0 ? "Free" : `$${option.price.toFixed(2)}`}
-                    </Button>
-                  </li>
-                ))}
-              </ul>
-              
-              <Link to="/toy-tribute">
-                <Button className="w-full bg-yellow-700 hover:bg-yellow-800">
-                  Leave a Toy →
-                </Button>
-              </Link>
-            </CardContent>
-          </Card>
+          <ToyTributeCard 
+            toyOptions={tributeOptions.toy}
+            onPurchase={handlePurchase}
+          />
         </div>
 
-        {/* Banner for Special Promotion */}
-        <div className="mt-12">
-          <Link to="/special-tribute-collection">
-            <div className="bg-gradient-to-r from-gray-900 to-gray-800 border border-gray-700 rounded-lg p-6 flex flex-col md:flex-row items-center justify-between hover:shadow-lg transition-all">
-              <div className="mb-4 md:mb-0">
-                <h3 className="text-xl font-bold text-white mb-2">Special Memorial Collection</h3>
-                <p className="text-gray-300">Create a complete tribute with our curated memorial package at a special price</p>
-              </div>
-              <Button className="bg-white text-black hover:bg-gray-200">
-                Explore Collection → 
-              </Button>
-            </div>
-          </Link>
-        </div>
+        <PromotionBanner />
 
         {/* Tribute Modal */}
         {selectedTribute && (
