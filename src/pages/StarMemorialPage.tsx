@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { toast } from "sonner";
 import Header from "@/components/Header";
@@ -224,7 +225,10 @@ const StarMemorialPage = () => {
       </main>
       
       {/* Add Memorial Tributes Section */}
-      <MemorialTributes petName={currentMemorial?.petName} />
+      <MemorialTributes 
+        petName={currentMemorial?.petName} 
+        petPhoto={currentMemorial?.petPhoto}
+      />
       
       <Footer />
     </div>

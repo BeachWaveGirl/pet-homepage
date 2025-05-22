@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Flame, Flower, Package } from "lucide-react";
 import { toast } from "sonner";
+import TributeModal from "./TributeModal";
 
 // Define the tribute item types
 type TributeItemType = "candle" | "flower" | "toy";
@@ -36,15 +37,37 @@ const tributeOptions = {
 
 interface MemorialTributesProps {
   petName?: string;
+  petPhoto?: string | null;
 }
 
-const MemorialTributes = ({ petName = "your pet" }: MemorialTributesProps) => {
+const MemorialTributes = ({ petName = "your pet", petPhoto = null }: MemorialTributesProps) => {
   const [selectedType, setSelectedType] = useState<TributeItemType>("candle");
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedTribute, setSelectedTribute] = useState<{
+    id: string;
+    name: string;
+    duration?: string;
+    type?: string;
+    description?: string;
+    price: number;
+    tributeType: TributeItemType;
+  } | null>(null);
   
-  const handlePurchase = (itemId: string, itemName: string) => {
-    toast.success(`Added to memorial: ${itemName}`, {
-      description: "Your tribute will appear on your pet's memorial soon"
+  const handlePurchase = (tributeType: TributeItemType, itemId: string, itemName: string) => {
+    const tribute = tributeOptions[tributeType].find(item => item.id === itemId);
+    if (!tribute) return;
+    
+    setSelectedTribute({
+      id: tribute.id,
+      name: tribute.name,
+      duration: 'duration' in tribute ? tribute.duration : undefined,
+      type: 'type' in tribute ? tribute.type : undefined,
+      description: 'description' in tribute ? tribute.description : undefined,
+      price: tribute.price,
+      tributeType: tributeType
     });
+    
+    setModalOpen(true);
   };
 
   return (
@@ -80,7 +103,7 @@ const MemorialTributes = ({ petName = "your pet" }: MemorialTributesProps) => {
                       variant="outline" 
                       size="sm" 
                       className="border-gray-700 hover:bg-gray-800 text-white"
-                      onClick={() => handlePurchase(option.id, option.name)}
+                      onClick={() => handlePurchase("candle", option.id, option.name)}
                     >
                       {option.price === 0 ? "Free" : `$${option.price.toFixed(2)}`}
                     </Button>
@@ -118,7 +141,7 @@ const MemorialTributes = ({ petName = "your pet" }: MemorialTributesProps) => {
                       variant="outline" 
                       size="sm" 
                       className="border-gray-700 hover:bg-gray-800 text-white"
-                      onClick={() => handlePurchase(option.id, option.name)}
+                      onClick={() => handlePurchase("flower", option.id, option.name)}
                     >
                       {option.price === 0 ? "Free" : `$${option.price.toFixed(2)}`}
                     </Button>
@@ -156,7 +179,7 @@ const MemorialTributes = ({ petName = "your pet" }: MemorialTributesProps) => {
                       variant="outline" 
                       size="sm" 
                       className="border-gray-700 hover:bg-gray-800 text-white"
-                      onClick={() => handlePurchase(option.id, option.name)}
+                      onClick={() => handlePurchase("toy", option.id, option.name)}
                     >
                       {option.price === 0 ? "Free" : `$${option.price.toFixed(2)}`}
                     </Button>
@@ -187,6 +210,20 @@ const MemorialTributes = ({ petName = "your pet" }: MemorialTributesProps) => {
             </div>
           </Link>
         </div>
+
+        {/* Tribute Modal */}
+        {selectedTribute && (
+          <TributeModal
+            isOpen={modalOpen}
+            onClose={() => setModalOpen(false)}
+            tributeType={selectedTribute.tributeType}
+            tributeName={selectedTribute.name}
+            duration={selectedTribute.duration}
+            petName={petName}
+            petPhoto={petPhoto}
+            price={selectedTribute.price}
+          />
+        )}
       </div>
     </section>
   );
