@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -13,11 +12,11 @@ type TributeItemType = "candle" | "flower" | "toy";
 // Define the tribute options with their durations/types and prices
 const tributeOptions = {
   candle: [
-    { id: "candle-free", name: "Remembrance Candle", duration: "24 hours", price: 0 },
-    { id: "candle-1", name: "One Day Candle", duration: "1 day", price: 0.99 },
-    { id: "candle-3", name: "Three Day Candle", duration: "3 days", price: 1.99 },
-    { id: "candle-30", name: "Thirty Day Candle", duration: "30 days", price: 4.99 },
-    { id: "candle-100", name: "One Hundred Day Candle", duration: "100 days", price: 9.99 }
+    { id: "candle-free", name: "A free 24-hour tribute", duration: "24 hours", price: 0 },
+    { id: "candle-3", name: "🕯️ Three Day Candle", duration: "3 days", price: 1.99 },
+    { id: "candle-30", name: "🌙 Thirty Day Candle", duration: "30 days", price: 4.99 },
+    { id: "candle-180", name: "🌌 Six Month Candle", duration: "6 months", price: 9.99 },
+    { id: "candle-365", name: "💫 One Year Candle", duration: "1 year", price: 29.99 }
   ],
   flower: [
     { id: "flower-free", name: "Memorial Daisy", type: "Daisy", price: 0 },
@@ -97,7 +96,17 @@ const MemorialTributes = ({ petName = "your pet", petPhoto = null }: MemorialTri
                   <li key={option.id} className="flex justify-between items-center">
                     <div>
                       <p className="text-white">{option.name}</p>
-                      <p className="text-xs text-gray-400">Glows for {option.duration}</p>
+                      {option.id === "candle-free" ? (
+                        <p className="text-xs text-gray-400">to begin your memorial</p>
+                      ) : option.id === "candle-3" ? (
+                        <p className="text-xs text-gray-400">A gentle glow that lasts through the weekend</p>
+                      ) : option.id === "candle-30" ? (
+                        <p className="text-xs text-gray-400">A soft light to guide them for a month</p>
+                      ) : option.id === "candle-180" ? (
+                        <p className="text-xs text-gray-400">Keep their star shining through the seasons</p>
+                      ) : (
+                        <p className="text-xs text-gray-400">A lasting tribute for a lifetime of memories</p>
+                      )}
                     </div>
                     <Button 
                       variant="outline" 
