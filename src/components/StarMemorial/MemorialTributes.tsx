@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { candle, flower, package as packageIcon } from "lucide-react";
+import { Flame, Flower, Package } from "lucide-react";
 import { toast } from "sonner";
 
 // Define the tribute item types
@@ -56,7 +56,7 @@ const MemorialTributes = ({ petName = "your pet" }: MemorialTributesProps) => {
           {/* Candle Tribute Card */}
           <Card className="bg-black border border-gray-800 text-white hover:border-gray-700 transition-colors overflow-hidden">
             <div className="border-b border-gray-800 p-6 flex flex-col items-center">
-              <candle className="w-10 h-10 mb-4 text-amber-400" />
+              <Flame className="w-10 h-10 mb-4 text-amber-400" />
               <h3 className="text-xl font-medium text-white">Light a Candle</h3>
               <p className="text-gray-400 text-center text-sm mt-2">
                 Let a gentle flame shine in memory of your beloved pet.
@@ -94,7 +94,7 @@ const MemorialTributes = ({ petName = "your pet" }: MemorialTributesProps) => {
           {/* Flower Tribute Card */}
           <Card className="bg-black border border-gray-800 text-white hover:border-gray-700 transition-colors overflow-hidden">
             <div className="border-b border-gray-800 p-6 flex flex-col items-center">
-              <flower className="w-10 h-10 mb-4 text-pink-400" />
+              <Flower className="w-10 h-10 mb-4 text-pink-400" />
               <h3 className="text-xl font-medium text-white">Offer Flowers</h3>
               <p className="text-gray-400 text-center text-sm mt-2">
                 Place a beautiful bouquet by your pet's star.
@@ -132,7 +132,7 @@ const MemorialTributes = ({ petName = "your pet" }: MemorialTributesProps) => {
           {/* Snack Tribute Card */}
           <Card className="bg-black border border-gray-800 text-white hover:border-gray-700 transition-colors overflow-hidden">
             <div className="border-b border-gray-800 p-6 flex flex-col items-center">
-              <packageIcon className="w-10 h-10 mb-4 text-yellow-400" />
+              <Package className="w-10 h-10 mb-4 text-yellow-400" />
               <h3 className="text-xl font-medium text-white">Leave a Snack</h3>
               <p className="text-gray-400 text-center text-sm mt-2">
                 Share a treat your pet loved.
