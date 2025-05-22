@@ -1,9 +1,8 @@
-
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Star, Heart } from "lucide-react";
-import { MemorialData } from "./MemorialForm";
+import { MemorialData } from "./MemorialForm/types";
 
 interface MemorialsListProps {
   memorials: (MemorialData & { id: string, createdAt: string })[];

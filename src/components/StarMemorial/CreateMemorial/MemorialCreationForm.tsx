@@ -1,9 +1,8 @@
-
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import MemorialForm from "@/components/StarMemorial/MemorialForm";
 import PricingTierSelect from "@/components/StarMemorial/PricingTierSelect";
-import type { MemorialData } from "@/components/StarMemorial/MemorialForm";
+import type { MemorialData } from "@/components/StarMemorial/MemorialForm/types";
 
 interface MemorialCreationFormProps {
   isSubmitting: boolean;
