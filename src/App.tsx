@@ -62,6 +62,13 @@ const App = () => {
             <Route path="/pet-sitting-service" element={<PetSittingService />} />
             <Route path="/pet-tarot-reading" element={<PetTarotReading />} />
             <Route path="/pet-voice-chat" element={<PetVoiceChat />} />
+            
+            {/* Tribute Pages */}
+            <Route path="/candle-tribute" element={<NotFound />} /> {/* Placeholder until we create these pages */}
+            <Route path="/flower-tribute" element={<NotFound />} />
+            <Route path="/snack-tribute" element={<NotFound />} />
+            <Route path="/special-tribute-collection" element={<NotFound />} />
+            
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

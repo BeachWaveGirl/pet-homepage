@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { toast } from "sonner";
 import Header from "@/components/Header";
@@ -9,6 +8,7 @@ import MemorialSuccess from "@/components/StarMemorial/MemorialSuccess";
 import MemorialsList from "@/components/StarMemorial/MemorialsList";
 import FullScreenStarBg from "@/components/StarMemorial/FullScreenStarBg";
 import PricingTierSelect from "@/components/StarMemorial/PricingTierSelect";
+import MemorialTributes from "@/components/StarMemorial/MemorialTributes";
 import type { MemorialData } from "@/components/StarMemorial/MemorialForm";
 import { Card } from "@/components/ui/card";
 
@@ -222,6 +222,9 @@ const StarMemorialPage = () => {
           <MemorialsList memorials={allMemorials} />
         </div>
       </main>
+      
+      {/* Add Memorial Tributes Section */}
+      <MemorialTributes petName={currentMemorial?.petName} />
       
       <Footer />
     </div>
