@@ -7,7 +7,7 @@ import { Flame, Flower, Package } from "lucide-react";
 import { toast } from "sonner";
 
 // Define the tribute item types
-type TributeItemType = "candle" | "flower" | "snack";
+type TributeItemType = "candle" | "flower" | "toy";
 
 // Define the tribute options with their durations/types and prices
 const tributeOptions = {
@@ -23,9 +23,11 @@ const tributeOptions = {
     { id: "flower-rose", name: "Eternal Roses", type: "Roses", price: 1.99 },
     { id: "flower-orchid", name: "Orchid Elegance", type: "Orchids", price: 2.99 }
   ],
-  snack: [
-    { id: "snack-default", name: "Default Snack", description: "(by pet type)", price: 0.99 },
-    { id: "snack-custom", name: "Personalized Snack", description: "(add custom message)", price: 2.99 }
+  toy: [
+    { id: "toy-ball", name: "Playful Ball", description: "A colorful ball", price: 1.99 },
+    { id: "toy-plush", name: "Soft Plushie", description: "A cuddly plush toy", price: 3.99 },
+    { id: "toy-rope", name: "Tug Rope", description: "A durable rope toy", price: 2.49 },
+    { id: "toy-mouse", name: "Catnip Mouse", description: "A mouse toy with catnip", price: 2.99 }
   ]
 };
 
@@ -74,7 +76,7 @@ const MemorialTributes = ({ petName = "your pet" }: MemorialTributesProps) => {
                     <Button 
                       variant="outline" 
                       size="sm" 
-                      className="border-gray-700 hover:bg-gray-800"
+                      className="border-gray-700 hover:bg-gray-800 text-white"
                       onClick={() => handlePurchase(option.id, option.name)}
                     >
                       ${option.price.toFixed(2)}
@@ -112,7 +114,7 @@ const MemorialTributes = ({ petName = "your pet" }: MemorialTributesProps) => {
                     <Button 
                       variant="outline" 
                       size="sm" 
-                      className="border-gray-700 hover:bg-gray-800"
+                      className="border-gray-700 hover:bg-gray-800 text-white"
                       onClick={() => handlePurchase(option.id, option.name)}
                     >
                       ${option.price.toFixed(2)}
@@ -129,19 +131,19 @@ const MemorialTributes = ({ petName = "your pet" }: MemorialTributesProps) => {
             </CardContent>
           </Card>
           
-          {/* Snack Tribute Card */}
+          {/* Toys Tribute Card (previously Snack) */}
           <Card className="bg-black border border-gray-800 text-white hover:border-gray-700 transition-colors overflow-hidden">
             <div className="border-b border-gray-800 p-6 flex flex-col items-center">
               <Package className="w-10 h-10 mb-4 text-yellow-400" />
-              <h3 className="text-xl font-medium text-white">Leave a Snack</h3>
+              <h3 className="text-xl font-medium text-white">Leave a Toy</h3>
               <p className="text-gray-400 text-center text-sm mt-2">
-                Share a treat your pet loved.
+                Share a toy your pet would love.
               </p>
             </div>
             
             <CardContent className="p-6">
               <ul className="space-y-4 mb-6">
-                {tributeOptions.snack.map((option) => (
+                {tributeOptions.toy.map((option) => (
                   <li key={option.id} className="flex justify-between items-center">
                     <div>
                       <p className="text-white">{option.name}</p>
@@ -150,7 +152,7 @@ const MemorialTributes = ({ petName = "your pet" }: MemorialTributesProps) => {
                     <Button 
                       variant="outline" 
                       size="sm" 
-                      className="border-gray-700 hover:bg-gray-800"
+                      className="border-gray-700 hover:bg-gray-800 text-white"
                       onClick={() => handlePurchase(option.id, option.name)}
                     >
                       ${option.price.toFixed(2)}
@@ -159,9 +161,9 @@ const MemorialTributes = ({ petName = "your pet" }: MemorialTributesProps) => {
                 ))}
               </ul>
               
-              <Link to="/snack-tribute">
+              <Link to="/toy-tribute">
                 <Button className="w-full bg-yellow-700 hover:bg-yellow-800">
-                  Leave a Snack →
+                  Leave a Toy →
                 </Button>
               </Link>
             </CardContent>
