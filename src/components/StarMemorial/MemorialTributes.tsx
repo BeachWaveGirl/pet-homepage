@@ -12,18 +12,21 @@ type TributeItemType = "candle" | "flower" | "toy";
 // Define the tribute options with their durations/types and prices
 const tributeOptions = {
   candle: [
+    { id: "candle-free", name: "Remembrance Candle", duration: "24 hours", price: 0 },
     { id: "candle-1", name: "One Day Candle", duration: "1 day", price: 0.99 },
     { id: "candle-3", name: "Three Day Candle", duration: "3 days", price: 1.99 },
     { id: "candle-30", name: "Thirty Day Candle", duration: "30 days", price: 4.99 },
     { id: "candle-100", name: "One Hundred Day Candle", duration: "100 days", price: 9.99 }
   ],
   flower: [
+    { id: "flower-free", name: "Memorial Daisy", type: "Daisy", price: 0 },
     { id: "flower-forget", name: "Forget-Me-Not Posy", type: "Forget-Me-Not", price: 0.99 },
     { id: "flower-lily", name: "Pure Lilies Bouquet", type: "Lilies", price: 1.99 },
     { id: "flower-rose", name: "Eternal Roses", type: "Roses", price: 1.99 },
     { id: "flower-orchid", name: "Orchid Elegance", type: "Orchids", price: 2.99 }
   ],
   toy: [
+    { id: "toy-free", name: "Simple Ball", description: "A basic pet ball", price: 0 },
     { id: "toy-ball", name: "Playful Ball", description: "A colorful ball", price: 1.99 },
     { id: "toy-plush", name: "Soft Plushie", description: "A cuddly plush toy", price: 3.99 },
     { id: "toy-rope", name: "Tug Rope", description: "A durable rope toy", price: 2.49 },
@@ -79,7 +82,7 @@ const MemorialTributes = ({ petName = "your pet" }: MemorialTributesProps) => {
                       className="border-gray-700 hover:bg-gray-800 text-white"
                       onClick={() => handlePurchase(option.id, option.name)}
                     >
-                      ${option.price.toFixed(2)}
+                      {option.price === 0 ? "Free" : `$${option.price.toFixed(2)}`}
                     </Button>
                   </li>
                 ))}
@@ -117,7 +120,7 @@ const MemorialTributes = ({ petName = "your pet" }: MemorialTributesProps) => {
                       className="border-gray-700 hover:bg-gray-800 text-white"
                       onClick={() => handlePurchase(option.id, option.name)}
                     >
-                      ${option.price.toFixed(2)}
+                      {option.price === 0 ? "Free" : `$${option.price.toFixed(2)}`}
                     </Button>
                   </li>
                 ))}
@@ -131,7 +134,7 @@ const MemorialTributes = ({ petName = "your pet" }: MemorialTributesProps) => {
             </CardContent>
           </Card>
           
-          {/* Toys Tribute Card (previously Snack) */}
+          {/* Toys Tribute Card */}
           <Card className="bg-black border border-gray-800 text-white hover:border-gray-700 transition-colors overflow-hidden">
             <div className="border-b border-gray-800 p-6 flex flex-col items-center">
               <Package className="w-10 h-10 mb-4 text-yellow-400" />
@@ -155,7 +158,7 @@ const MemorialTributes = ({ petName = "your pet" }: MemorialTributesProps) => {
                       className="border-gray-700 hover:bg-gray-800 text-white"
                       onClick={() => handlePurchase(option.id, option.name)}
                     >
-                      ${option.price.toFixed(2)}
+                      {option.price === 0 ? "Free" : `$${option.price.toFixed(2)}`}
                     </Button>
                   </li>
                 ))}
