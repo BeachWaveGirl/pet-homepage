@@ -6,7 +6,8 @@ import { Input } from "@/components/ui/input";
 import { Share, Star, X } from "lucide-react";
 import LottieAnimation from "@/components/LottieAnimation";
 import { toast } from "sonner";
-import candleAnimation from "@/animations/star-animation.json"; // Using star animation for now
+import starAnimation from "@/animations/star-animation.json";
+import candleAnimation from "@/animations/candle-animation.json";
 
 export interface TributeModalProps {
   isOpen: boolean;
@@ -78,6 +79,16 @@ const TributeModal = ({
     }
   };
 
+  // Get the appropriate animation based on tribute type
+  const getAnimationData = () => {
+    switch (tributeType) {
+      case "candle":
+        return candleAnimation;
+      default:
+        return starAnimation;
+    }
+  };
+
   const getStepContent = () => {
     switch (step) {
       case "animation":
@@ -92,7 +103,7 @@ const TributeModal = ({
             </DialogHeader>
             <div className="flex flex-col items-center py-8">
               <LottieAnimation
-                animationData={candleAnimation}
+                animationData={getAnimationData()}
                 className="w-40 h-40"
                 loop={true}
               />
