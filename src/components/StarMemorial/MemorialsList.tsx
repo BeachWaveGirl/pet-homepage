@@ -1,7 +1,8 @@
+
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Star, Heart } from "lucide-react";
+import { Star, Heart, Flower } from "lucide-react";
 import { MemorialData } from "./MemorialForm/types";
 
 interface MemorialsListProps {
@@ -60,14 +61,24 @@ const MemorialsList = ({ memorials }: MemorialsListProps) => {
                   <Star className="mr-1 h-4 w-4" />
                   View
                 </Button>
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  className="text-gray-400 hover:text-white hover:bg-gray-900"
-                >
-                  <Heart className="mr-1 h-4 w-4" />
-                  Send Light
-                </Button>
+                <div className="flex space-x-1">
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    className="text-gray-400 hover:text-white hover:bg-gray-900"
+                  >
+                    <Flower className="mr-1 h-4 w-4" />
+                    Send Flowers
+                  </Button>
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    className="text-gray-400 hover:text-white hover:bg-gray-900"
+                  >
+                    <Heart className="mr-1 h-4 w-4" />
+                    Send Light
+                  </Button>
+                </div>
               </div>
             </CardContent>
           </Card>

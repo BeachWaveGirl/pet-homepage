@@ -8,11 +8,11 @@ export const tributeOptions = {
     { id: "candle-365", name: "💫 One Year Candle", duration: "1 year", price: 29.99 }
   ],
   flower: [
-    { id: "flower-free", name: "Memorial Daisy", type: "Daisy", price: 0 },
-    { id: "flower-forget", name: "Forget-Me-Not Posy", type: "Forget-Me-Not", price: 0.99 },
-    { id: "flower-lily", name: "Pure Lilies Bouquet", type: "Lilies", price: 1.99 },
-    { id: "flower-rose", name: "Eternal Roses", type: "Roses", price: 1.99 },
-    { id: "flower-orchid", name: "Orchid Elegance", type: "Orchids", price: 2.99 }
+    { id: "flower-free", name: "Memorial Daisy", type: "Daisy", description: "A simple, heartfelt bloom", price: 0 },
+    { id: "flower-forget", name: "Forget-Me-Not Posy", type: "Forget-Me-Not", description: "For memories that never fade", price: 0.99 },
+    { id: "flower-lily", name: "Pure Lilies Bouquet", type: "Lilies", description: "A symbol of peace and purity", price: 1.99 },
+    { id: "flower-rose", name: "Eternal Roses", type: "Roses", description: "Eternal love and remembrance", price: 1.99 },
+    { id: "flower-orchid", name: "Orchid Elegance", type: "Orchids", description: "A rare and graceful tribute", price: 2.99 }
   ],
   toy: [
     { id: "toy-free", name: "Simple Ball", description: "A basic pet ball", price: 0 },

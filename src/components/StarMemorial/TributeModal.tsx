@@ -23,13 +23,26 @@ const TributeModal = ({
   const [isSharing, setIsSharing] = useState(false);
   const [timeRemaining, setTimeRemaining] = useState(`${duration} left`);
   
+  // Auto-advance from animation step after 2 seconds
   const handleContinue = () => {
     if (step === "animation") {
       setStep("message");
     } else if (step === "message") {
-      toast.success("Your tribute has been placed!");
+      const flowerEmoji = tributeType === "flower" ? getTributeEmoji(tributeName) : "🕯️";
+      toast.success(`Your ${tributeName} was placed for ${petName}. ${flowerEmoji}`, {
+        description: "Your tribute will appear for others to see."
+      });
       setStep("result");
     }
+  };
+
+  const getTributeEmoji = (tributeName: string) => {
+    if (tributeName.includes("Daisy")) return "🌼";
+    if (tributeName.includes("Forget-Me-Not")) return "🔵";
+    if (tributeName.includes("Lilies")) return "🤍";
+    if (tributeName.includes("Roses")) return "🌹";
+    if (tributeName.includes("Orchid")) return "💜";
+    return "💐";
   };
 
   const handleShare = () => {
