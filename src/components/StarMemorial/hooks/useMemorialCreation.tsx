@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { toast } from "sonner";
-import type { MemorialData } from "@/components/StarMemorial/MemorialForm";
+import type { MemorialData } from "@/components/StarMemorial/MemorialForm/types";
 import { animateStarTransformation } from "../StarAnimation";
 
 interface UseMemorialCreationProps {
