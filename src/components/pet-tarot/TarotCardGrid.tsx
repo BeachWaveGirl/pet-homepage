@@ -1,5 +1,6 @@
 
 import { Card } from "@/types/tarot";
+import TarotCard from "./TarotCard";
 
 interface TarotCardGridProps {
   tarotCards: Card[];
