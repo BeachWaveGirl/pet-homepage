@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -13,21 +13,9 @@ import {
   AccordionItem, 
   AccordionTrigger 
 } from "@/components/ui/accordion";
-import { Download, RotateCcw } from "lucide-react";
+import { Download, RotateCcw, ChevronLeft, Search } from "lucide-react";
 import { Link } from "react-router-dom";
-
-// Pet types with watercolor illustrations
-const petTypes = [
-  { id: "dog", name: "Dog", image: "/assets/dog-representative.png" },
-  { id: "cat", name: "Cat", image: "/assets/cat-representative.png" },
-  { id: "parrot", name: "Parrot", image: "/assets/parrot-representative.png" },
-  { id: "rabbit", name: "Rabbit", image: "/assets/rabbit-representative.png" },
-  { id: "hamster", name: "Hamster", image: "/assets/hamster-representative.png" },
-  { id: "turtle", name: "Turtle", image: "/assets/turtle-representative.png" },
-  { id: "fish", name: "Fish", image: "/assets/fish-representative.png" },
-  { id: "lizard", name: "Lizard", image: "/assets/lizard-representative.png" },
-  { id: "horse", name: "Horse", image: "/assets/horse-representative.png" },
-];
+import { petTypes, getPetTypeById, PetBreed } from "@/data/petBreeds";
 
 // Background options
 const backgrounds = [
@@ -39,7 +27,12 @@ const backgrounds = [
 ];
 
 const PetMemorialCard = () => {
-  const [selectedPet, setSelectedPet] = useState("rabbit");
+  // Pet selection state
+  const [selectedPetType, setSelectedPetType] = useState<string | null>(null);
+  const [selectedBreed, setSelectedBreed] = useState<PetBreed | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  
+  // Card details state
   const [petName, setPetName] = useState("Milo");
   const [birthYear, setBirthYear] = useState("2015");
   const [passingYear, setPassingYear] = useState("2025");
@@ -48,11 +41,22 @@ const PetMemorialCard = () => {
   const [petSize, setPetSize] = useState([120]);
   const [openStep, setOpenStep] = useState("step-1");
 
-  const selectedPetData = petTypes.find(p => p.id === selectedPet);
+  const selectedPetTypeData = selectedPetType ? getPetTypeById(selectedPetType) : null;
   const selectedBgData = backgrounds.find(b => b.id === selectedBackground);
 
+  // Filter breeds by search query
+  const filteredBreeds = useMemo(() => {
+    if (!selectedPetTypeData) return [];
+    if (!searchQuery.trim()) return selectedPetTypeData.breeds;
+    return selectedPetTypeData.breeds.filter(breed => 
+      breed.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  }, [selectedPetTypeData, searchQuery]);
+
   const handleReset = () => {
-    setSelectedPet("rabbit");
+    setSelectedPetType(null);
+    setSelectedBreed(null);
+    setSearchQuery("");
     setPetName("Milo");
     setBirthYear("2015");
     setPassingYear("2025");
@@ -60,6 +64,20 @@ const PetMemorialCard = () => {
     setSelectedBackground("sunset");
     setPetSize([120]);
     setOpenStep("step-1");
+  };
+
+  const handlePetTypeSelect = (petTypeId: string) => {
+    setSelectedPetType(petTypeId);
+    setSearchQuery("");
+  };
+
+  const handleBreedSelect = (breed: PetBreed) => {
+    setSelectedBreed(breed);
+  };
+
+  const handleBackToTypes = () => {
+    setSelectedPetType(null);
+    setSearchQuery("");
   };
 
   const handleDownload = () => {
@@ -78,6 +96,9 @@ const PetMemorialCard = () => {
   };
 
   const isLightBackground = selectedBackground !== 'starry';
+  
+  // Get the image to display in preview
+  const previewImage = selectedBreed?.image || selectedPetTypeData?.image || "/assets/rabbit-representative.png";
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
@@ -195,30 +216,87 @@ const PetMemorialCard = () => {
                   <span className="font-semibold">Step 1: Choose Pet Type</span>
                 </AccordionTrigger>
                 <AccordionContent>
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4 py-4">
-                    {petTypes.map((pet) => (
-                      <Card
-                        key={pet.id}
-                        onClick={() => setSelectedPet(pet.id)}
-                        className={`p-4 cursor-pointer transition-all hover:shadow-lg hover:scale-105 text-center ${
-                          selectedPet === pet.id 
-                            ? 'ring-2 ring-gray-900' 
-                            : ''
-                        }`}
-                      >
-                        <div className="flex flex-col items-center gap-3">
-                          <div className="w-24 h-24 flex items-center justify-center">
-                            <img 
-                              src={pet.image} 
-                              alt={`${pet.name} watercolor illustration`}
-                              className="w-full h-full object-contain"
-                            />
+                  {/* Show breeds list when a pet type is selected */}
+                  {selectedPetType ? (
+                    <div className="py-4">
+                      {/* Back button and title */}
+                      <div className="flex items-center gap-2 mb-2">
+                        <Button 
+                          variant="ghost" 
+                          size="sm" 
+                          onClick={handleBackToTypes}
+                          className="p-1 h-auto"
+                        >
+                          <ChevronLeft className="w-4 h-4" />
+                          Back
+                        </Button>
+                        <span className="font-semibold">Choose Your {selectedPetTypeData?.name}</span>
+                      </div>
+                      
+                      <p className="text-sm text-gray-500 mb-4">
+                        {selectedPetTypeData?.breeds.length} {selectedPetTypeData?.name} Breeds Available
+                      </p>
+                      
+                      {/* Search bar */}
+                      <div className="relative mb-4">
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                        <Input 
+                          placeholder="Search for your pet..."
+                          value={searchQuery}
+                          onChange={(e) => setSearchQuery(e.target.value)}
+                          className="pl-10"
+                        />
+                      </div>
+                      
+                      {/* Breeds grid */}
+                      <div className="grid grid-cols-3 gap-3 max-h-[400px] overflow-y-auto pr-2">
+                        {filteredBreeds.map((breed) => (
+                          <Card
+                            key={breed.id}
+                            onClick={() => handleBreedSelect(breed)}
+                            className={`p-3 cursor-pointer transition-all hover:shadow-lg text-center ${
+                              selectedBreed?.id === breed.id 
+                                ? 'ring-2 ring-gray-900' 
+                                : ''
+                            }`}
+                          >
+                            <div className="flex flex-col items-center gap-2">
+                              <div className="w-16 h-16 flex items-center justify-center">
+                                <img 
+                                  src={breed.image} 
+                                  alt={breed.name}
+                                  className="w-full h-full object-contain"
+                                />
+                              </div>
+                              <h3 className="font-medium text-xs text-center leading-tight">{breed.name}</h3>
+                            </div>
+                          </Card>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    /* Show main pet types */
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 py-4">
+                      {petTypes.map((pet) => (
+                        <Card
+                          key={pet.id}
+                          onClick={() => handlePetTypeSelect(pet.id)}
+                          className="p-4 cursor-pointer transition-all hover:shadow-lg hover:scale-105 text-center"
+                        >
+                          <div className="flex flex-col items-center gap-3">
+                            <div className="w-24 h-24 flex items-center justify-center">
+                              <img 
+                                src={pet.image} 
+                                alt={`${pet.name} watercolor illustration`}
+                                className="w-full h-full object-contain"
+                              />
+                            </div>
+                            <h3 className="font-semibold text-lg">{pet.name}</h3>
                           </div>
-                          <h3 className="font-semibold text-lg">{pet.name}</h3>
-                        </div>
-                      </Card>
-                    ))}
-                  </div>
+                        </Card>
+                      ))}
+                    </div>
+                  )}
                   
                   <div className="mt-6 pt-6 border-t space-y-3">
                     <Label className="text-sm font-medium">Adjust Pet Size</Label>
@@ -389,8 +467,17 @@ const PetMemorialCard = () => {
                   className="relative h-full flex flex-col items-center justify-between px-8 pointer-events-none select-none"
                   style={{ paddingTop: '60px', paddingBottom: '40px' }}
                 >
-                  {/* Pet Name and Dates */}
-                  <div className="w-full text-center space-y-4 z-30">
+                  {/* "In Loving Memory of" and Pet Name */}
+                  <div className="w-full text-center space-y-2 z-30">
+                    <p 
+                      className="text-lg tracking-wide"
+                      style={{ 
+                        color: isLightBackground ? '#000' : '#fff',
+                        textShadow: isLightBackground ? '0 1px 2px rgba(255,255,255,0.8)' : '0 1px 2px rgba(0,0,0,0.5)'
+                      }}
+                    >
+                      In Loving Memory of
+                    </p>
                     <h3 
                       className="text-5xl md:text-6xl font-playfair"
                       style={{ 
@@ -400,19 +487,10 @@ const PetMemorialCard = () => {
                     >
                       {petName || "Pet Name"}
                     </h3>
-                    <p 
-                      className="text-lg md:text-xl font-medium tracking-wide"
-                      style={{ 
-                        color: isLightBackground ? '#000' : '#fff',
-                        textShadow: isLightBackground ? '0 1px 2px rgba(255,255,255,0.8)' : '0 1px 2px rgba(0,0,0,0.5)'
-                      }}
-                    >
-                      {birthYear && passingYear ? `${birthYear} - ${passingYear}` : "Birth Year - Passing Year"}
-                    </p>
                   </div>
                   
                   {/* Message */}
-                  <div className="w-full text-center z-30 max-w-[70%] mx-auto mt-6">
+                  <div className="w-full text-center z-30 max-w-[70%] mx-auto mt-4">
                     <p 
                       className="text-sm md:text-base leading-relaxed whitespace-pre-line italic"
                       style={{ 
@@ -428,17 +506,32 @@ const PetMemorialCard = () => {
                   <div 
                     className="absolute z-20"
                     style={{ 
-                      bottom: '15%',
+                      bottom: '8%',
                       left: '50%',
                       transform: 'translateX(-50%)',
                       width: `${petSize[0]}px`,
                     }}
                   >
                     <img 
-                      src={selectedPetData?.image}
+                      src={previewImage}
                       alt={petName}
                       className="w-full object-contain drop-shadow-lg"
                     />
+                  </div>
+                  
+                  {/* Dates at bottom */}
+                  <div 
+                    className="absolute bottom-4 left-0 right-0 text-center z-30"
+                  >
+                    <p 
+                      className="text-lg font-medium tracking-wide"
+                      style={{ 
+                        color: isLightBackground ? '#000' : '#fff',
+                        textShadow: isLightBackground ? '0 1px 2px rgba(255,255,255,0.8)' : '0 1px 2px rgba(0,0,0,0.5)'
+                      }}
+                    >
+                      {birthYear && passingYear ? `${birthYear} - ${passingYear}` : "Birth Year - Passing Year"}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -491,13 +584,13 @@ const PetMemorialCard = () => {
               style={{ background: 'linear-gradient(transparent 55%, rgba(255,255,255,0.95) 78%, white 100%)' }}
             />
             <div className="relative h-full flex flex-col items-center justify-between px-4 py-6">
-              <div className="text-center space-y-2 z-30">
+              <div className="text-center space-y-1 z-30">
+                <p className="text-xs" style={{ color: isLightBackground ? '#000' : '#fff' }}>
+                  In Loving Memory of
+                </p>
                 <h3 className="text-2xl font-playfair" style={{ color: isLightBackground ? '#000' : '#fff' }}>
                   {petName || "Pet Name"}
                 </h3>
-                <p className="text-sm" style={{ color: isLightBackground ? '#000' : '#fff' }}>
-                  {birthYear && passingYear ? `${birthYear} - ${passingYear}` : "Birth Year - Passing Year"}
-                </p>
               </div>
               <div className="text-center z-30 max-w-[80%]">
                 <p className="text-xs italic whitespace-pre-line" style={{ color: isLightBackground ? '#000' : '#fff' }}>
@@ -506,10 +599,13 @@ const PetMemorialCard = () => {
               </div>
               <div 
                 className="absolute z-20"
-                style={{ bottom: '10%', left: '50%', transform: 'translateX(-50%)', width: `${petSize[0] * 0.5}px` }}
+                style={{ bottom: '12%', left: '50%', transform: 'translateX(-50%)', width: `${petSize[0] * 0.5}px` }}
               >
-                <img src={selectedPetData?.image} alt={petName} className="w-full object-contain" />
+                <img src={previewImage} alt={petName} className="w-full object-contain" />
               </div>
+              <p className="absolute bottom-2 text-xs" style={{ color: isLightBackground ? '#000' : '#fff' }}>
+                {birthYear && passingYear ? `${birthYear} - ${passingYear}` : ""}
+              </p>
             </div>
           </div>
         </div>
@@ -527,20 +623,46 @@ const PetMemorialCard = () => {
               <span className="font-semibold text-sm">Step 1: Choose Pet Type</span>
             </AccordionTrigger>
             <AccordionContent>
-              <div className="grid grid-cols-3 gap-2 py-4">
-                {petTypes.map((pet) => (
-                  <button
-                    key={pet.id}
-                    onClick={() => setSelectedPet(pet.id)}
-                    className={`p-2 rounded-lg border text-center ${
-                      selectedPet === pet.id ? 'border-gray-900 bg-gray-50' : 'border-gray-200'
-                    }`}
-                  >
-                    <img src={pet.image} alt={pet.name} className="w-12 h-12 mx-auto object-contain" />
-                    <p className="text-xs mt-1">{pet.name}</p>
-                  </button>
-                ))}
-              </div>
+              {selectedPetType ? (
+                <div className="py-4">
+                  <Button variant="ghost" size="sm" onClick={handleBackToTypes} className="mb-2">
+                    <ChevronLeft className="w-4 h-4 mr-1" /> Back
+                  </Button>
+                  <Input 
+                    placeholder="Search..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="mb-3"
+                  />
+                  <div className="grid grid-cols-3 gap-2 max-h-[300px] overflow-y-auto">
+                    {filteredBreeds.map((breed) => (
+                      <button
+                        key={breed.id}
+                        onClick={() => handleBreedSelect(breed)}
+                        className={`p-2 rounded-lg border text-center ${
+                          selectedBreed?.id === breed.id ? 'border-gray-900 bg-gray-50' : 'border-gray-200'
+                        }`}
+                      >
+                        <img src={breed.image} alt={breed.name} className="w-10 h-10 mx-auto object-contain" />
+                        <p className="text-xs mt-1 leading-tight">{breed.name}</p>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <div className="grid grid-cols-3 gap-2 py-4">
+                  {petTypes.map((pet) => (
+                    <button
+                      key={pet.id}
+                      onClick={() => handlePetTypeSelect(pet.id)}
+                      className="p-2 rounded-lg border border-gray-200 text-center hover:shadow"
+                    >
+                      <img src={pet.image} alt={pet.name} className="w-12 h-12 mx-auto object-contain" />
+                      <p className="text-xs mt-1">{pet.name}</p>
+                    </button>
+                  ))}
+                </div>
+              )}
             </AccordionContent>
           </AccordionItem>
           
