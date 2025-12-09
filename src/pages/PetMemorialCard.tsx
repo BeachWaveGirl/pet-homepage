@@ -17,13 +17,52 @@ import { Download, RotateCcw, ChevronLeft, Search } from "lucide-react";
 import { Link } from "react-router-dom";
 import { petTypes, getPetTypeById, PetBreed } from "@/data/petBreeds";
 
-// Background options
+// Background options - Celestial
+const celestialBackgrounds = [
+  { id: "angel-stars", name: "Angel Stars", image: "/assets/backgrounds/celestial/angel-stars.jpg", category: "celestial" },
+  { id: "constellation-sky", name: "Constellation Sky", image: "/assets/backgrounds/celestial/constellation-sky.jpg", category: "celestial" },
+  { id: "cosmic-peace", name: "Cosmic Peace", image: "/assets/backgrounds/celestial/cosmic-peace.jpg", category: "celestial" },
+  { id: "forever-stars", name: "Forever Stars", image: "/assets/backgrounds/celestial/forever-stars.jpg", category: "celestial" },
+  { id: "galaxy-dreams", name: "Galaxy Dreams", image: "/assets/backgrounds/celestial/galaxy-dreams.jpg", category: "celestial" },
+  { id: "golden-stars", name: "Golden Stars", image: "/assets/backgrounds/celestial/golden-stars.jpg", category: "celestial" },
+  { id: "heavenly-glow", name: "Heavenly Glow", image: "/assets/backgrounds/celestial/heavenly-glow.jpg", category: "celestial" },
+  { id: "midnight-garden", name: "Midnight Garden", image: "/assets/backgrounds/celestial/midnight-garden.jpg", category: "celestial" },
+  { id: "moonlight-memorial", name: "Moonlight Memorial", image: "/assets/backgrounds/celestial/moonlight-memorial.jpg", category: "celestial" },
+  { id: "northern-lights", name: "Northern Lights", image: "/assets/backgrounds/celestial/northern-lights.jpg", category: "celestial" },
+  { id: "starry-night-sky", name: "Starry Night Sky", image: "/assets/backgrounds/celestial/starry-night-sky.jpg", category: "celestial" },
+  { id: "twilight-stars", name: "Twilight Stars", image: "/assets/backgrounds/celestial/twilight-stars.jpg", category: "celestial" },
+];
+
+// Background options - Nature
+const natureBackgrounds = [
+  { id: "autumn-lake", name: "Autumn Lake", image: "/assets/backgrounds/nature/autumn-lake.png", category: "nature" },
+  { id: "dunes-sea", name: "Dunes & Sea", image: "/assets/backgrounds/nature/dunes-sea.png", category: "nature" },
+  { id: "floral-valley", name: "Floral Valley", image: "/assets/backgrounds/nature/floral-valley.png", category: "nature" },
+  { id: "meadow-birds", name: "Meadow Birds", image: "/assets/backgrounds/nature/meadow-birds.png", category: "nature" },
+  { id: "misty-dock", name: "Misty Dock", image: "/assets/backgrounds/nature/misty-dock.png", category: "nature" },
+  { id: "mountain-lake", name: "Mountain Lake", image: "/assets/backgrounds/nature/mountain-lake.png", category: "nature" },
+  { id: "riverside", name: "Riverside", image: "/assets/backgrounds/nature/riverside.png", category: "nature" },
+  { id: "wheat-field", name: "Wheat Field", image: "/assets/backgrounds/nature/wheat-field.png", category: "nature" },
+];
+
+// Background options - Watercolor
+const watercolorBackgrounds = [
+  { id: "daisy-meadow", name: "Daisy Meadow", image: "/assets/backgrounds/watercolor/daisy-meadow.jpg", category: "watercolor" },
+  { id: "hillside-vista", name: "Hillside Vista", image: "/assets/backgrounds/watercolor/hillside-vista.jpg", category: "watercolor" },
+  { id: "meadow-field", name: "Meadow Field", image: "/assets/backgrounds/watercolor/meadow-field.jpg", category: "watercolor" },
+  { id: "misty-lake-pines", name: "Misty Lake Pines", image: "/assets/backgrounds/watercolor/misty-lake-pines.jpg", category: "watercolor" },
+  { id: "mountain-path", name: "Mountain Path", image: "/assets/backgrounds/watercolor/mountain-path.jpg", category: "watercolor" },
+  { id: "mountain-poppies", name: "Mountain Poppies", image: "/assets/backgrounds/watercolor/mountain-poppies.jpg", category: "watercolor" },
+  { id: "peaceful-countryside", name: "Peaceful Countryside", image: "/assets/backgrounds/watercolor/peaceful-countryside.jpg", category: "watercolor" },
+  { id: "rolling-hills-trees", name: "Rolling Hills", image: "/assets/backgrounds/watercolor/rolling-hills-trees.jpg", category: "watercolor" },
+  { id: "wildflower-hills", name: "Wildflower Hills", image: "/assets/backgrounds/watercolor/wildflower-hills.jpg", category: "watercolor" },
+];
+
+// Combined backgrounds array
 const backgrounds = [
-  { id: "sunset", name: "Sunset Pastels", image: "/assets/sunset-pastels.jpg" },
-  { id: "rainbow", name: "Rainbow Sky", gradient: "linear-gradient(180deg, #fef3c7 0%, #fde68a 30%, #fbbf24 50%, #f472b6 70%, #a78bfa 100%)" },
-  { id: "starry", name: "Starry Night", gradient: "linear-gradient(180deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%)" },
-  { id: "clouds", name: "Soft Clouds", gradient: "linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 50%, #bae6fd 100%)" },
-  { id: "meadow", name: "Green Meadow", gradient: "linear-gradient(180deg, #ecfccb 0%, #d9f99d 50%, #a3e635 100%)" },
+  ...celestialBackgrounds,
+  ...natureBackgrounds,
+  ...watercolorBackgrounds,
 ];
 
 const PetMemorialCard = () => {
@@ -92,10 +131,12 @@ const PetMemorialCard = () => {
         backgroundPosition: 'center',
       };
     }
-    return { background: selectedBgData?.gradient };
+    return {};
   };
 
-  const isLightBackground = selectedBackground !== 'starry';
+  // Celestial backgrounds should use light text
+  const darkBackgrounds = celestialBackgrounds.map(b => b.id);
+  const isLightBackground = !darkBackgrounds.includes(selectedBackground);
   
   // Get the image to display in preview
   const previewImage = selectedBreed?.image || selectedPetTypeData?.image || "/assets/rabbit-representative.png";
@@ -406,11 +447,7 @@ const PetMemorialCard = () => {
                         }`}
                         title={bg.name}
                       >
-                        {bg.image ? (
-                          <img src={bg.image} alt={bg.name} className="w-full h-full object-cover" />
-                        ) : (
-                          <div className="w-full h-full" style={{ background: bg.gradient }} />
-                        )}
+                        <img src={bg.image} alt={bg.name} className="w-full h-full object-cover" />
                       </button>
                     ))}
                   </div>
@@ -713,11 +750,7 @@ const PetMemorialCard = () => {
                       selectedBackground === bg.id ? 'border-gray-900' : 'border-gray-200'
                     }`}
                   >
-                    {bg.image ? (
-                      <img src={bg.image} alt={bg.name} className="w-full h-full object-cover" />
-                    ) : (
-                      <div className="w-full h-full" style={{ background: bg.gradient }} />
-                    )}
+                    <img src={bg.image} alt={bg.name} className="w-full h-full object-cover" />
                   </button>
                 ))}
               </div>
