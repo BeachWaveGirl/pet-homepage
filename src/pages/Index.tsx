@@ -27,13 +27,13 @@ const memorialOfferings = [
     keywords: ["pet memorial star map", "dog remembrance gift", "cat memorial print", "pet loss keepsake"]
   },
   {
-    id: "pet-portrait",
-    title: "Create a Memorial",
-    description: "Transform your favorite photo into a touching rainbow bridge memorial portrait. A beautiful way to celebrate your pet's unique personality and the joy they brought to your life.",
+    id: "memorial-card",
+    title: "Create a Memorial Card",
+    description: "Create a personalized pet memorial card with beautiful watercolor illustrations. Choose your pet type, add their name, dates, and a heartfelt message.",
     imageUrl: "/lovable-uploads/ae4cb9db-7c24-479a-bd6b-bfdab9c1c6e2.png",
-    link: "/star-memorial",
-    detailedDescription: "Create a lasting digital memorial for your pet that transforms them into a beautiful star in our interactive night sky.",
-    keywords: ["custom pet memorial", "dog remembrance portrait", "cat memorial picture", "rainbow bridge keepsake"]
+    link: "/memorial-card",
+    detailedDescription: "Design a beautiful memorial card featuring watercolor pet illustrations, customizable backgrounds, and your personal tribute message.",
+    keywords: ["pet memorial card", "dog remembrance card", "cat memorial keepsake", "rainbow bridge card"]
   },
   {
     id: "rainbow-bridge",
@@ -80,7 +80,7 @@ const Index = () => {
             Customized pet memorial keepsakes delivered instantly to your inbox
           </p>
           
-          <Link to="/star-memorial">
+          <Link to="/memorial-card">
             <Button className="bg-black hover:bg-gray-800 text-white transition-colors">
               Create a Memorial
             </Button>

@@ -28,6 +28,8 @@ import PetRecord from "./pages/PetRecord";
 import PetSittingService from "./pages/PetSittingService";
 import PetTarotReading from "./pages/PetTarotReading";
 import PetVoiceChat from "./pages/PetVoiceChat";
+import PetMemorialCard from "./pages/PetMemorialCard";
+import DigitalCandles from "./pages/DigitalCandles";
 
 const queryClient = new QueryClient();
 
@@ -62,6 +64,8 @@ const App = () => {
             <Route path="/pet-sitting-service" element={<PetSittingService />} />
             <Route path="/pet-tarot-reading" element={<PetTarotReading />} />
             <Route path="/pet-voice-chat" element={<PetVoiceChat />} />
+            <Route path="/memorial-card" element={<PetMemorialCard />} />
+            <Route path="/digital-candles" element={<DigitalCandles />} />
             
             {/* Tribute Pages */}
             <Route path="/candle-tribute" element={<NotFound />} /> {/* Placeholder until we create these pages */}
