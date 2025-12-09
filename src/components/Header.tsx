@@ -124,13 +124,21 @@ const Header = () => {
           <span>HaloPet</span>
         </Link>
         
-        <Link to="/star-memorial">
-          <Button 
-            className="bg-black text-white hover:bg-gray-800 transition-colors hidden md:flex border border-gray-200"
+        <div className="flex items-center gap-4">
+          <Link 
+            to="/blog" 
+            className="text-gray-700 hover:text-gray-900 transition-colors hidden md:block font-medium"
           >
-            Create a Memorial
-          </Button>
-        </Link>
+            Blog
+          </Link>
+          <Link to="/star-memorial">
+            <Button 
+              className="bg-black text-white hover:bg-gray-800 transition-colors hidden md:flex border border-gray-200"
+            >
+              Create a Memorial
+            </Button>
+          </Link>
+        </div>
       </div>
     </header>
   );
