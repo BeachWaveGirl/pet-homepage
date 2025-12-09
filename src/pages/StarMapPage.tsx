@@ -1,219 +1,259 @@
-
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import StarMapPoster from "@/components/StarMapPoster";
-import { generateStarMap } from "@/utils/starMapGenerator";
+import { useState, useRef } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { toast } from "@/hooks/use-toast";
-import PageTitle from "@/components/StarMemorial/PageTitle";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { PetMemorialForm, PetData } from "@/components/star-map/PetMemorialForm";
+import { MemorialPreviewCard } from "@/components/star-map/MemorialPreviewCard";
+import { AstronomicalStarMap } from "@/components/star-map/AstronomicalStarMap";
+import { useNasaStarData } from "@/hooks/useNasaStarData";
+import { trackDownload, trackCTAClick } from "@/utils/analytics";
+import { Download, Sparkles, Star, Heart, Moon } from "lucide-react";
+import { toast } from "sonner";
+import html2canvas from "html2canvas";
 
 const StarMapPage = () => {
-  const [petName, setPetName] = useState("");
-  const [ownerName, setOwnerName] = useState("");
-  const [passingDate, setPassingDate] = useState("");
-  const [location, setLocation] = useState("Charlotte, North Carolina");
-  const [letterText, setLetterText] = useState("");
-  const [photoUrl, setPhotoUrl] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [starMapUrl, setStarMapUrl] = useState("");
-  const [isGenerated, setIsGenerated] = useState(false);
-  const [coordinates, setCoordinates] = useState("");
-  
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      const file = e.target.files[0];
-      const url = URL.createObjectURL(file);
-      setPhotoUrl(url);
+  const [showForm, setShowForm] = useState(false);
+  const [photoPreview, setPhotoPreview] = useState<string | null>(null);
+  const [petData, setPetData] = useState<PetData>({
+    name: "",
+    type: "",
+    dateOfFirstMeeting: "",
+    dateOfPassing: "",
+    ownerName: "",
+    memorialMessage: "",
+  });
+
+  const previewRef = useRef<HTMLDivElement>(null);
+  const { starMemorialData } = useNasaStarData(petData);
+
+  const handlePhotoChange = (file: File | null) => {
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPhotoPreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setPhotoPreview(null);
     }
   };
-  
-  const handleGenerateStarMap = async () => {
-    setIsLoading(true);
+
+  const handleDownload = async () => {
+    const element = document.querySelector("[data-memorial-card]") as HTMLElement;
+    if (!element) {
+      toast.error("Unable to generate download");
+      return;
+    }
+
     try {
-      const { starMapUrl: generatedUrl, formattedCoordinates } = await generateStarMap({
-        date: passingDate,
-        location,
-        coordinates: {
-          latitude: 35.2271,
-          longitude: -80.8431
-        }
-      });
+      toast.loading("Generating your star map...");
       
-      setStarMapUrl(generatedUrl);
-      setCoordinates(formattedCoordinates);
-      setIsGenerated(true);
-      
-      toast({
-        title: "Star map created",
-        description: `Your star map for ${petName || "your pet"} has been generated.`,
+      const canvas = await html2canvas(element, {
+        backgroundColor: "#000000",
+        scale: 2,
+        useCORS: true,
       });
+
+      const link = document.createElement("a");
+      link.download = `${petData.name || "pet"}-star-memorial.png`;
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+
+      trackDownload(link.download, "png");
+      toast.dismiss();
+      toast.success("Star map downloaded successfully!");
     } catch (error) {
-      console.error("Error generating star map:", error);
-      toast({
-        title: "Error",
-        description: "There was an error generating your star map. Please try again.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsLoading(false);
+      toast.dismiss();
+      toast.error("Failed to generate download");
     }
   };
-  
-  const handleDownload = () => {
-    // In a real implementation, this would generate a PDF or image download
-    toast({
-      title: "Downloading poster",
-      description: "Your star map poster is being downloaded.",
-    });
+
+  const handleStartCreating = () => {
+    trackCTAClick("Start Creating", "hero", "form");
+    setShowForm(true);
   };
-  
+
+  if (!showForm) {
+    // Hero State
+    return (
+      <div className="min-h-screen bg-background text-foreground">
+        <Header />
+        
+        {/* Hero Section with Live Star Background */}
+        <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
+          {/* Star Background */}
+          <div className="absolute inset-0">
+            <AstronomicalStarMap
+              date={new Date()}
+              width={1920}
+              height={1080}
+            />
+          </div>
+          
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background" />
+          
+          {/* Content */}
+          <div className="relative z-10 text-center px-4 max-w-3xl mx-auto">
+            <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-4 py-2 mb-6">
+              <Sparkles className="w-4 h-4 text-primary" />
+              <span className="text-sm text-primary">Custom Pet Star Memorial</span>
+            </div>
+            
+            <h1 className="text-4xl md:text-6xl font-serif font-light mb-6 text-white">
+              Honor Your Pet with a
+              <span className="block text-primary">Personalized Star Map</span>
+            </h1>
+            
+            <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+              Create a beautiful memorial showing the night sky as it appeared on the special day 
+              your beloved companion crossed the Rainbow Bridge.
+            </p>
+            
+            <Button
+              size="lg"
+              onClick={handleStartCreating}
+              className="text-lg px-8 py-6 rounded-full"
+            >
+              <Star className="mr-2 w-5 h-5" />
+              Create Your Star Map
+            </Button>
+
+            {/* Features */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
+              <div className="text-center">
+                <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-3">
+                  <Star className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="font-medium text-white mb-1">Unique Star Selection</h3>
+                <p className="text-sm text-muted-foreground">
+                  A real star is selected based on the date to honor your pet
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-3">
+                  <Moon className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="font-medium text-white mb-1">Accurate Moon Phase</h3>
+                <p className="text-sm text-muted-foreground">
+                  Shows the exact moon phase on your special date
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-3">
+                  <Heart className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="font-medium text-white mb-1">Personal Touch</h3>
+                <p className="text-sm text-muted-foreground">
+                  Add your pet's photo and a heartfelt message
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <Footer />
+      </div>
+    );
+  }
+
+  // Form State
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen bg-background text-foreground">
       <Header />
       
-      <main className="flex-1 py-12 px-4">
-        <div className="container mx-auto max-w-4xl">
-          <PageTitle
-            title="Custom Pet Star Map"
-            description="Generate a personalized star chart to mark the memory of your beloved pet. See the exact stars that were shining on their special day."
-            lightMode={true}
-          />
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Card className="bg-white border-gray-200 shadow-md">
-              <CardHeader>
-                <CardTitle className="font-playfair text-2xl text-center">Create Your Letter</CardTitle>
-                <CardDescription className="text-center">
-                  Tell us about your pet and we'll craft a comforting letter in their voice
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-5">
+      <main className="container mx-auto px-4 py-8">
+        <div className="text-center mb-8">
+          <h1 className="text-3xl md:text-4xl font-serif font-light mb-2">
+            Create Your Star Memorial
+          </h1>
+          <p className="text-muted-foreground">
+            Fill in the details below and watch your memorial come to life
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          {/* Form Column */}
+          <Card className="bg-card/50 backdrop-blur">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Star className="w-5 h-5 text-primary" />
+                Pet Information
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <PetMemorialForm
+                petData={petData}
+                onPetDataChange={setPetData}
+                onPhotoChange={handlePhotoChange}
+                photoPreview={photoPreview}
+              />
+
+              <div className="mt-6 pt-6 border-t space-y-4">
+                <Button
+                  onClick={handleDownload}
+                  disabled={!petData.name || !petData.dateOfPassing}
+                  className="w-full"
+                  size="lg"
+                >
+                  <Download className="mr-2 w-5 h-5" />
+                  Download Star Map
+                </Button>
+                
+                <Button
+                  variant="outline"
+                  onClick={() => setShowForm(false)}
+                  className="w-full"
+                >
+                  Back to Start
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Preview Column */}
+          <div ref={previewRef}>
+            <MemorialPreviewCard
+              petData={petData}
+              photoPreview={photoPreview}
+            />
+          </div>
+        </div>
+
+        {/* Star Data Info */}
+        {starMemorialData && (
+          <div className="max-w-6xl mx-auto mt-8">
+            <Card className="bg-card/50 backdrop-blur">
+              <CardContent className="pt-6">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
                   <div>
-                    <Label htmlFor="petPhoto">Pet's Photo (Optional)</Label>
-                    <Input
-                      id="petPhoto"
-                      type="file"
-                      accept="image/*"
-                      onChange={handleFileChange}
-                      className="cursor-pointer"
-                    />
-                    {photoUrl && (
-                      <div className="mt-2 flex justify-center">
-                        <div className="w-32 h-32 rounded-lg overflow-hidden">
-                          <img 
-                            src={photoUrl} 
-                            alt="Pet preview" 
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                      </div>
-                    )}
+                    <div className="text-2xl mb-1">{starMemorialData.moonPhase.emoji}</div>
+                    <div className="text-sm font-medium">{starMemorialData.moonPhase.phase}</div>
+                    <div className="text-xs text-muted-foreground">Moon Phase</div>
                   </div>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="petName">Pet's Name</Label>
-                      <Input
-                        id="petName"
-                        value={petName}
-                        onChange={(e) => setPetName(e.target.value)}
-                        placeholder="e.g., Fluffy"
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="ownerName">Your Name</Label>
-                      <Input
-                        id="ownerName"
-                        value={ownerName}
-                        onChange={(e) => setOwnerName(e.target.value)}
-                        placeholder="e.g., Emma (or leave blank for 'my human')"
-                      />
-                    </div>
-                  </div>
-                  
                   <div>
-                    <Label htmlFor="passingDate">Pet's Passing Date</Label>
-                    <Input
-                      id="passingDate"
-                      type="date"
-                      value={passingDate}
-                      onChange={(e) => setPassingDate(e.target.value)}
-                    />
-                    <p className="text-xs text-gray-500 mt-1">
-                      This date will be used to create a commemorative star chart of the night sky.
-                    </p>
+                    <div className="text-2xl mb-1">⭐</div>
+                    <div className="text-sm font-medium">{starMemorialData.starName}</div>
+                    <div className="text-xs text-muted-foreground">Memorial Star</div>
                   </div>
-                  
                   <div>
-                    <Label htmlFor="letterText">Message for the Letter</Label>
-                    <Textarea
-                      id="letterText"
-                      value={letterText}
-                      onChange={(e) => setLetterText(e.target.value)}
-                      placeholder="Add a personal message or leave blank for an AI-generated letter..."
-                      rows={4}
-                    />
+                    <div className="text-2xl mb-1">🌅</div>
+                    <div className="text-sm font-medium">{starMemorialData.sunTimes.sunset}</div>
+                    <div className="text-xs text-muted-foreground">Sunset</div>
                   </div>
-                  
-                  <div className="pt-3">
-                    <Button 
-                      onClick={handleGenerateStarMap}
-                      className="w-full bg-black hover:bg-gray-800 text-white"
-                      disabled={isLoading}
-                    >
-                      {isLoading ? "Generating Star Map..." : "Generate Star Map Letter"}
-                    </Button>
+                  <div>
+                    <div className="text-2xl mb-1">🍂</div>
+                    <div className="text-sm font-medium">{starMemorialData.season.season}</div>
+                    <div className="text-xs text-muted-foreground">Season</div>
                   </div>
                 </div>
               </CardContent>
             </Card>
-            
-            <Card className="bg-white border-gray-200 shadow-md overflow-hidden">
-              <CardContent className="p-0">
-                {isGenerated ? (
-                  <StarMapPoster 
-                    date={passingDate ? new Date(passingDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : ""}
-                    location={location}
-                    petName={petName}
-                    coordinates={coordinates}
-                    starMapUrl={starMapUrl}
-                    letterText={letterText || "I'll always be your guiding star.\nLook up when you miss me.\nI'm watching over you with love."}
-                    photoUrl={photoUrl || undefined}
-                    isLoading={isLoading}
-                  />
-                ) : (
-                  <div className="h-96 flex flex-col items-center justify-center text-gray-600 p-4">
-                    <img 
-                      src="https://images.unsplash.com/photo-1435224668334-0f82ec57b605?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80" 
-                      alt="Stars" 
-                      className="w-48 h-48 object-cover mx-auto mb-6 rounded-full opacity-80"
-                    />
-                    <p className="text-lg text-center">Fill out the form to create your star map letter</p>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
           </div>
-          
-          {isGenerated && (
-            <div className="mt-8 flex justify-center">
-              <Button 
-                className="bg-black text-white hover:bg-gray-800"
-                onClick={handleDownload}
-              >
-                Download Poster
-              </Button>
-            </div>
-          )}
-        </div>
+        )}
       </main>
-      
+
       <Footer />
     </div>
   );
