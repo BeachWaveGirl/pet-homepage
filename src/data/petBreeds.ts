@@ -13,75 +13,63 @@ export interface PetType {
   breeds: PetBreed[];
 }
 
-// Dog breeds (67)
+// Dog breeds (57 available)
 const dogBreeds: PetBreed[] = [
   { id: "akita", name: "Akita", image: "/assets/pets/dog/akita.png" },
   { id: "australian-shepherd", name: "Australian Shepherd", image: "/assets/pets/dog/australian-shepherd.png" },
   { id: "basset-hound", name: "Basset Hound", image: "/assets/pets/dog/basset-hound.png" },
-  { id: "beagle", name: "Beagle", image: "/assets/pets/dog/beagle-1.png" },
-  { id: "bernese-mountain-dog", name: "Bernese Mountain Dog", image: "/assets/pets/dog/bernese-mountain-dog.png" },
+  { id: "beagle", name: "Beagle", image: "/assets/pets/dog/beagle.png" },
+  { id: "bernese-mountain", name: "Bernese Mountain Dog", image: "/assets/pets/dog/bernese-mountain.png" },
   { id: "bichon-frise", name: "Bichon Frise", image: "/assets/pets/dog/bichon-frise.png" },
   { id: "border-collie", name: "Border Collie", image: "/assets/pets/dog/border-collie.png" },
   { id: "boston-terrier", name: "Boston Terrier", image: "/assets/pets/dog/boston-terrier.png" },
   { id: "boxer", name: "Boxer", image: "/assets/pets/dog/boxer.png" },
-  { id: "bull-terrier", name: "Bull Terrier", image: "/assets/pets/dog/bull-terrier.png" },
-  { id: "bulldog", name: "Bulldog", image: "/assets/pets/dog/bulldog.png" },
-  { id: "cane-corso", name: "Cane Corso", image: "/assets/pets/dog/cane-corso.png" },
-  { id: "cavalier", name: "Cavalier King Charles", image: "/assets/pets/dog/cavalier.png" },
-  { id: "chihuahua", name: "Chihuahua", image: "/assets/pets/dog/chihuahua.png" },
-  { id: "chinese-crested", name: "Chinese Crested", image: "/assets/pets/dog/chinese-crested.png" },
-  { id: "chow-chow", name: "Chow Chow", image: "/assets/pets/dog/chow-chow.png" },
-  { id: "cocker-spaniel", name: "Cocker Spaniel", image: "/assets/pets/dog/cocker-spaniel.png" },
-  { id: "corgi-1", name: "Corgi (Tan)", image: "/assets/pets/dog/corgi-1.png" },
-  { id: "corgi-2", name: "Corgi (Red)", image: "/assets/pets/dog/corgi-2.png" },
-  { id: "dachshund-1", name: "Dachshund (Brown)", image: "/assets/pets/dog/dachshund-1.png" },
-  { id: "dachshund-2", name: "Dachshund (Black & Tan)", image: "/assets/pets/dog/dachshund-2.png" },
+  { id: "brittany", name: "Brittany", image: "/assets/pets/dog/brittany.png" },
+  { id: "cavalier-king-charles", name: "Cavalier King Charles", image: "/assets/pets/dog/cavalier-king-charles.png" },
+  { id: "dachshund", name: "Dachshund", image: "/assets/pets/dog/dachshund.png" },
   { id: "dalmatian", name: "Dalmatian", image: "/assets/pets/dog/dalmatian.png" },
   { id: "doberman", name: "Doberman", image: "/assets/pets/dog/doberman.png" },
   { id: "english-setter", name: "English Setter", image: "/assets/pets/dog/english-setter.png" },
-  { id: "french-bulldog", name: "French Bulldog", image: "/assets/pets/dog/french-bulldog-1.png" },
-  { id: "german-shepherd-1", name: "German Shepherd (Classic)", image: "/assets/pets/dog/german-shepherd-1.png" },
-  { id: "german-shepherd-2", name: "German Shepherd (Sable)", image: "/assets/pets/dog/german-shepherd-2.png" },
-  { id: "golden-retriever-1", name: "Golden Retriever (Light)", image: "/assets/pets/dog/golden-retriever-1.png" },
-  { id: "golden-retriever-2", name: "Golden Retriever (Dark)", image: "/assets/pets/dog/golden-retriever-2.png" },
-  { id: "golden-retriever-3", name: "Golden Retriever (Cream)", image: "/assets/pets/dog/golden-retriever-3.png" },
+  { id: "german-shepherd", name: "German Shepherd", image: "/assets/pets/dog/german-shepherd.png" },
+  { id: "golden-retriever", name: "Golden Retriever", image: "/assets/pets/dog/golden-retriever.png" },
   { id: "great-dane", name: "Great Dane", image: "/assets/pets/dog/great-dane.png" },
   { id: "greyhound", name: "Greyhound", image: "/assets/pets/dog/greyhound.png" },
   { id: "havanese", name: "Havanese", image: "/assets/pets/dog/havanese.png" },
-  { id: "husky-1", name: "Husky (Gray)", image: "/assets/pets/dog/husky-1.png" },
-  { id: "husky-2", name: "Husky (Red)", image: "/assets/pets/dog/husky-2.png" },
+  { id: "husky", name: "Husky", image: "/assets/pets/dog/husky.png" },
   { id: "irish-setter", name: "Irish Setter", image: "/assets/pets/dog/irish-setter.png" },
-  { id: "italian-greyhound", name: "Italian Greyhound", image: "/assets/pets/dog/italian-greyhound.png" },
-  { id: "keeshond", name: "Keeshond", image: "/assets/pets/dog/keeshond.png" },
-  { id: "labrador-black", name: "Labrador (Black)", image: "/assets/pets/dog/labrador-black-3.png" },
-  { id: "labrador-chocolate", name: "Labrador (Chocolate)", image: "/assets/pets/dog/labrador-chocolate-2.png" },
-  { id: "labrador-yellow", name: "Labrador (Yellow)", image: "/assets/pets/dog/labrador-yellow-1.png" },
-  { id: "leonberger", name: "Leonberger", image: "/assets/pets/dog/leonberger.png" },
-  { id: "malamute", name: "Alaskan Malamute", image: "/assets/pets/dog/malamute.png" },
+  { id: "jack-russell", name: "Jack Russell", image: "/assets/pets/dog/jack-russell.png" },
+  { id: "labrador-black", name: "Labrador (Black)", image: "/assets/pets/dog/labrador-black.png" },
+  { id: "labrador-chocolate", name: "Labrador (Chocolate)", image: "/assets/pets/dog/labrador-chocolate.png" },
+  { id: "labrador-yellow", name: "Labrador (Yellow)", image: "/assets/pets/dog/labrador-yellow.png" },
+  { id: "lhasa-apso", name: "Lhasa Apso", image: "/assets/pets/dog/lhasa-apso.png" },
   { id: "maltese", name: "Maltese", image: "/assets/pets/dog/maltese.png" },
+  { id: "mastiff", name: "Mastiff", image: "/assets/pets/dog/mastiff.png" },
+  { id: "miniature-pinscher", name: "Miniature Pinscher", image: "/assets/pets/dog/miniature-pinscher.png" },
+  { id: "miniature-schnauzer", name: "Miniature Schnauzer", image: "/assets/pets/dog/miniature-schnauzer.png" },
   { id: "newfoundland", name: "Newfoundland", image: "/assets/pets/dog/newfoundland.png" },
   { id: "old-english-sheepdog", name: "Old English Sheepdog", image: "/assets/pets/dog/old-english-sheepdog.png" },
   { id: "papillon", name: "Papillon", image: "/assets/pets/dog/papillon.png" },
   { id: "pekingese", name: "Pekingese", image: "/assets/pets/dog/pekingese.png" },
+  { id: "pitbull", name: "Pitbull", image: "/assets/pets/dog/pitbull.png" },
+  { id: "pointer", name: "Pointer", image: "/assets/pets/dog/pointer.png" },
   { id: "pomeranian", name: "Pomeranian", image: "/assets/pets/dog/pomeranian.png" },
-  { id: "poodle-1", name: "Poodle (White)", image: "/assets/pets/dog/poodle-1.png" },
-  { id: "poodle-2", name: "Poodle (Apricot)", image: "/assets/pets/dog/poodle-2.png" },
-  { id: "portuguese-water-dog", name: "Portuguese Water Dog", image: "/assets/pets/dog/portuguese-water-dog.png" },
+  { id: "poodle-standard", name: "Poodle (Standard)", image: "/assets/pets/dog/poodle-standard.png" },
+  { id: "poodle-toy", name: "Poodle (Toy)", image: "/assets/pets/dog/poodle-toy.png" },
   { id: "pug", name: "Pug", image: "/assets/pets/dog/pug.png" },
+  { id: "rhodesian-ridgeback", name: "Rhodesian Ridgeback", image: "/assets/pets/dog/rhodesian-ridgeback.png" },
   { id: "rottweiler", name: "Rottweiler", image: "/assets/pets/dog/rottweiler.png" },
   { id: "saint-bernard", name: "Saint Bernard", image: "/assets/pets/dog/saint-bernard.png" },
   { id: "samoyed", name: "Samoyed", image: "/assets/pets/dog/samoyed.png" },
-  { id: "schnauzer", name: "Schnauzer", image: "/assets/pets/dog/schnauzer.png" },
+  { id: "scottish-terrier", name: "Scottish Terrier", image: "/assets/pets/dog/scottish-terrier.png" },
   { id: "shar-pei", name: "Shar Pei", image: "/assets/pets/dog/shar-pei.png" },
-  { id: "shiba-inu-1", name: "Shiba Inu (Red)", image: "/assets/pets/dog/shiba-inu-1.png" },
-  { id: "shiba-inu-2", name: "Shiba Inu (Sesame)", image: "/assets/pets/dog/shiba-inu-2.png" },
+  { id: "shiba-inu", name: "Shiba Inu", image: "/assets/pets/dog/shiba-inu.png" },
   { id: "shih-tzu", name: "Shih Tzu", image: "/assets/pets/dog/shih-tzu.png" },
-  { id: "staffordshire-bull-terrier", name: "Staffordshire Bull Terrier", image: "/assets/pets/dog/staffordshire-bull-terrier.png" },
+  { id: "springer-spaniel", name: "Springer Spaniel", image: "/assets/pets/dog/springer-spaniel.png" },
   { id: "vizsla", name: "Vizsla", image: "/assets/pets/dog/vizsla.png" },
   { id: "weimaraner", name: "Weimaraner", image: "/assets/pets/dog/weimaraner.png" },
-  { id: "westie", name: "West Highland Terrier", image: "/assets/pets/dog/westie.png" },
+  { id: "west-highland", name: "West Highland Terrier", image: "/assets/pets/dog/west-highland.png" },
   { id: "whippet", name: "Whippet", image: "/assets/pets/dog/whippet.png" },
-  { id: "yorkie", name: "Yorkshire Terrier", image: "/assets/pets/dog/yorkie.png" },
+  { id: "yorkshire-terrier", name: "Yorkshire Terrier", image: "/assets/pets/dog/yorkshire-terrier.png" },
 ];
 
 // Cat breeds (11)
@@ -102,29 +90,29 @@ const catBreeds: PetBreed[] = [
 // Parrot breeds (6)
 const parrotBreeds: PetBreed[] = [
   { id: "african-grey", name: "African Grey", image: "/assets/pets/parrot/african-grey.png" },
-  { id: "budgerigar", name: "Budgerigar", image: "/assets/pets/parrot/budgerigar.png" },
+  { id: "budgie", name: "Budgie", image: "/assets/pets/parrot/budgie.png" },
   { id: "cockatiel", name: "Cockatiel", image: "/assets/pets/parrot/cockatiel.png" },
+  { id: "cockatoo", name: "Cockatoo", image: "/assets/pets/parrot/cockatoo.png" },
   { id: "lovebird", name: "Lovebird", image: "/assets/pets/parrot/lovebird.png" },
-  { id: "macaw-blue-gold", name: "Blue & Gold Macaw", image: "/assets/pets/parrot/macaw-blue-gold.png" },
-  { id: "macaw-scarlet", name: "Scarlet Macaw", image: "/assets/pets/parrot/macaw-scarlet.png" },
+  { id: "macaw", name: "Macaw", image: "/assets/pets/parrot/macaw.png" },
 ];
 
 // Rabbit breeds (5)
 const rabbitBreeds: PetBreed[] = [
   { id: "dutch", name: "Dutch", image: "/assets/pets/rabbit/dutch.png" },
-  { id: "flemish-giant", name: "Flemish Giant", image: "/assets/pets/rabbit/flemish-giant.png" },
+  { id: "holland-lop", name: "Holland Lop", image: "/assets/pets/rabbit/holland-lop.png" },
   { id: "lionhead", name: "Lionhead", image: "/assets/pets/rabbit/lionhead.png" },
-  { id: "rex", name: "Rex", image: "/assets/pets/rabbit/rex.png" },
-  { id: "white-lop", name: "White Lop", image: "/assets/pets/rabbit/white-lop.png" },
+  { id: "mini-rex", name: "Mini Rex", image: "/assets/pets/rabbit/mini-rex.png" },
+  { id: "netherland-dwarf", name: "Netherland Dwarf", image: "/assets/pets/rabbit/netherland-dwarf.png" },
 ];
 
 // Hamster breeds (5)
 const hamsterBreeds: PetBreed[] = [
   { id: "chinese", name: "Chinese", image: "/assets/pets/hamster/chinese.png" },
-  { id: "dwarf-campbell", name: "Dwarf Campbell", image: "/assets/pets/hamster/dwarf-campbell.png" },
+  { id: "dwarf", name: "Dwarf", image: "/assets/pets/hamster/dwarf.png" },
   { id: "roborovski", name: "Roborovski", image: "/assets/pets/hamster/roborovski.png" },
   { id: "syrian", name: "Syrian", image: "/assets/pets/hamster/syrian.png" },
-  { id: "winter-white", name: "Winter White", image: "/assets/pets/hamster/winter-white.png" },
+  { id: "teddy-bear", name: "Teddy Bear", image: "/assets/pets/hamster/teddy-bear.png" },
 ];
 
 // Turtle breeds (4)
@@ -132,18 +120,18 @@ const turtleBreeds: PetBreed[] = [
   { id: "box-turtle", name: "Box Turtle", image: "/assets/pets/turtle/box-turtle.png" },
   { id: "painted-turtle", name: "Painted Turtle", image: "/assets/pets/turtle/painted-turtle.png" },
   { id: "red-eared-slider", name: "Red-Eared Slider", image: "/assets/pets/turtle/red-eared-slider.png" },
-  { id: "sulcata", name: "Sulcata Tortoise", image: "/assets/pets/turtle/sulcata.png" },
+  { id: "russian-tortoise", name: "Russian Tortoise", image: "/assets/pets/turtle/russian-tortoise.png" },
 ];
 
 // Fish breeds (7)
 const fishBreeds: PetBreed[] = [
   { id: "angelfish", name: "Angelfish", image: "/assets/pets/fish/angelfish.png" },
-  { id: "betta-halfmoon", name: "Betta (Halfmoon)", image: "/assets/pets/fish/betta-halfmoon.png" },
-  { id: "betta-veiltail", name: "Betta (Veiltail)", image: "/assets/pets/fish/betta-veiltail.png" },
-  { id: "goldfish-common", name: "Goldfish (Common)", image: "/assets/pets/fish/goldfish-common.png" },
-  { id: "goldfish-ryukin", name: "Goldfish (Ryukin)", image: "/assets/pets/fish/goldfish-ryukin.png" },
+  { id: "betta", name: "Betta", image: "/assets/pets/fish/betta.png" },
+  { id: "clownfish", name: "Clownfish", image: "/assets/pets/fish/clownfish.png" },
+  { id: "goldfish", name: "Goldfish", image: "/assets/pets/fish/goldfish.png" },
   { id: "guppy", name: "Guppy", image: "/assets/pets/fish/guppy.png" },
   { id: "koi", name: "Koi", image: "/assets/pets/fish/koi.png" },
+  { id: "neon-tetra", name: "Neon Tetra", image: "/assets/pets/fish/neon-tetra.png" },
 ];
 
 // Lizard breeds (5)
@@ -157,11 +145,11 @@ const lizardBreeds: PetBreed[] = [
 
 // Horse breeds (5)
 const horseBreeds: PetBreed[] = [
-  { id: "bay", name: "Bay", image: "/assets/pets/horse/bay.png" },
-  { id: "black", name: "Black", image: "/assets/pets/horse/black.png" },
-  { id: "chestnut", name: "Chestnut", image: "/assets/pets/horse/chestnut.png" },
-  { id: "grey", name: "Grey", image: "/assets/pets/horse/grey.png" },
-  { id: "pinto", name: "Pinto", image: "/assets/pets/horse/pinto.png" },
+  { id: "arabian", name: "Arabian", image: "/assets/pets/horse/arabian.png" },
+  { id: "mustang", name: "Mustang", image: "/assets/pets/horse/mustang.png" },
+  { id: "palomino", name: "Palomino", image: "/assets/pets/horse/palomino.png" },
+  { id: "quarter-horse", name: "Quarter Horse", image: "/assets/pets/horse/quarter-horse.png" },
+  { id: "thoroughbred", name: "Thoroughbred", image: "/assets/pets/horse/thoroughbred.png" },
 ];
 
 export const petTypes: PetType[] = [
