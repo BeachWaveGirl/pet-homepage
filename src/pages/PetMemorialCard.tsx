@@ -19,43 +19,43 @@ import { petTypes, getPetTypeById, PetBreed } from "@/data/petBreeds";
 
 // Background options - Celestial
 const celestialBackgrounds = [
-  { id: "angel-stars", name: "Angel Stars", image: "/assets/backgrounds/celestial/angel-stars.jpg", category: "celestial" },
-  { id: "constellation-sky", name: "Constellation Sky", image: "/assets/backgrounds/celestial/constellation-sky.jpg", category: "celestial" },
-  { id: "cosmic-peace", name: "Cosmic Peace", image: "/assets/backgrounds/celestial/cosmic-peace.jpg", category: "celestial" },
-  { id: "forever-stars", name: "Forever Stars", image: "/assets/backgrounds/celestial/forever-stars.jpg", category: "celestial" },
-  { id: "galaxy-dreams", name: "Galaxy Dreams", image: "/assets/backgrounds/celestial/galaxy-dreams.jpg", category: "celestial" },
-  { id: "golden-stars", name: "Golden Stars", image: "/assets/backgrounds/celestial/golden-stars.jpg", category: "celestial" },
-  { id: "heavenly-glow", name: "Heavenly Glow", image: "/assets/backgrounds/celestial/heavenly-glow.jpg", category: "celestial" },
-  { id: "midnight-garden", name: "Midnight Garden", image: "/assets/backgrounds/celestial/midnight-garden.jpg", category: "celestial" },
-  { id: "moonlight-memorial", name: "Moonlight Memorial", image: "/assets/backgrounds/celestial/moonlight-memorial.jpg", category: "celestial" },
-  { id: "northern-lights", name: "Northern Lights", image: "/assets/backgrounds/celestial/northern-lights.jpg", category: "celestial" },
-  { id: "starry-night-sky", name: "Starry Night Sky", image: "/assets/backgrounds/celestial/starry-night-sky.jpg", category: "celestial" },
-  { id: "twilight-stars", name: "Twilight Stars", image: "/assets/backgrounds/celestial/twilight-stars.jpg", category: "celestial" },
+  { id: "celestial-1", name: "Starry Night", image: "/assets/backgrounds/celestial-1.jpg", category: "celestial" },
+  { id: "celestial-2", name: "Cosmic Dreams", image: "/assets/backgrounds/celestial-2.jpg", category: "celestial" },
+  { id: "celestial-3", name: "Galaxy Peace", image: "/assets/backgrounds/celestial-3.jpg", category: "celestial" },
+  { id: "celestial-4", name: "Midnight Stars", image: "/assets/backgrounds/celestial-4.jpg", category: "celestial" },
+  { id: "celestial-5", name: "Northern Lights", image: "/assets/backgrounds/celestial-5.jpg", category: "celestial" },
+  { id: "celestial-6", name: "Heavenly Glow", image: "/assets/backgrounds/celestial-6.jpg", category: "celestial" },
+  { id: "celestial-7", name: "Golden Stars", image: "/assets/backgrounds/celestial-7.jpg", category: "celestial" },
+  { id: "celestial-8", name: "Moonlight", image: "/assets/backgrounds/celestial-8.jpg", category: "celestial" },
+  { id: "celestial-9", name: "Twilight Sky", image: "/assets/backgrounds/celestial-9.jpg", category: "celestial" },
+  { id: "celestial-10", name: "Angel Stars", image: "/assets/backgrounds/celestial-10.jpg", category: "celestial" },
+  { id: "celestial-11", name: "Forever Stars", image: "/assets/backgrounds/celestial-11.jpg", category: "celestial" },
+  { id: "celestial-12", name: "Constellation", image: "/assets/backgrounds/celestial-12.jpg", category: "celestial" },
 ];
 
 // Background options - Nature
 const natureBackgrounds = [
-  { id: "autumn-lake", name: "Autumn Lake", image: "/assets/backgrounds/nature/autumn-lake.png", category: "nature" },
-  { id: "dunes-sea", name: "Dunes & Sea", image: "/assets/backgrounds/nature/dunes-sea.png", category: "nature" },
-  { id: "floral-valley", name: "Floral Valley", image: "/assets/backgrounds/nature/floral-valley.png", category: "nature" },
-  { id: "meadow-birds", name: "Meadow Birds", image: "/assets/backgrounds/nature/meadow-birds.png", category: "nature" },
-  { id: "misty-dock", name: "Misty Dock", image: "/assets/backgrounds/nature/misty-dock.png", category: "nature" },
-  { id: "mountain-lake", name: "Mountain Lake", image: "/assets/backgrounds/nature/mountain-lake.png", category: "nature" },
-  { id: "riverside", name: "Riverside", image: "/assets/backgrounds/nature/riverside.png", category: "nature" },
-  { id: "wheat-field", name: "Wheat Field", image: "/assets/backgrounds/nature/wheat-field.png", category: "nature" },
+  { id: "nature-1", name: "Autumn Lake", image: "/assets/backgrounds/nature-1.jpg", category: "nature" },
+  { id: "nature-2", name: "Mountain Vista", image: "/assets/backgrounds/nature-2.jpg", category: "nature" },
+  { id: "nature-3", name: "Peaceful Meadow", image: "/assets/backgrounds/nature-3.jpg", category: "nature" },
+  { id: "nature-4", name: "Misty Morning", image: "/assets/backgrounds/nature-4.jpg", category: "nature" },
+  { id: "nature-5", name: "Rolling Hills", image: "/assets/backgrounds/nature-5.jpg", category: "nature" },
+  { id: "nature-6", name: "Riverside", image: "/assets/backgrounds/nature-6.jpg", category: "nature" },
+  { id: "nature-7", name: "Sunset Field", image: "/assets/backgrounds/nature-7.jpg", category: "nature" },
+  { id: "nature-8", name: "Flower Garden", image: "/assets/backgrounds/nature-8.jpg", category: "nature" },
 ];
 
 // Background options - Watercolor
 const watercolorBackgrounds = [
-  { id: "daisy-meadow", name: "Daisy Meadow", image: "/assets/backgrounds/watercolor/daisy-meadow.jpg", category: "watercolor" },
-  { id: "hillside-vista", name: "Hillside Vista", image: "/assets/backgrounds/watercolor/hillside-vista.jpg", category: "watercolor" },
-  { id: "meadow-field", name: "Meadow Field", image: "/assets/backgrounds/watercolor/meadow-field.jpg", category: "watercolor" },
-  { id: "misty-lake-pines", name: "Misty Lake Pines", image: "/assets/backgrounds/watercolor/misty-lake-pines.jpg", category: "watercolor" },
-  { id: "mountain-path", name: "Mountain Path", image: "/assets/backgrounds/watercolor/mountain-path.jpg", category: "watercolor" },
-  { id: "mountain-poppies", name: "Mountain Poppies", image: "/assets/backgrounds/watercolor/mountain-poppies.jpg", category: "watercolor" },
-  { id: "peaceful-countryside", name: "Peaceful Countryside", image: "/assets/backgrounds/watercolor/peaceful-countryside.jpg", category: "watercolor" },
-  { id: "rolling-hills-trees", name: "Rolling Hills", image: "/assets/backgrounds/watercolor/rolling-hills-trees.jpg", category: "watercolor" },
-  { id: "wildflower-hills", name: "Wildflower Hills", image: "/assets/backgrounds/watercolor/wildflower-hills.jpg", category: "watercolor" },
+  { id: "watercolor-1", name: "Soft Meadow", image: "/assets/backgrounds/watercolor-1.jpg", category: "watercolor" },
+  { id: "watercolor-2", name: "Hillside Vista", image: "/assets/backgrounds/watercolor-2.jpg", category: "watercolor" },
+  { id: "watercolor-3", name: "Daisy Field", image: "/assets/backgrounds/watercolor-3.jpg", category: "watercolor" },
+  { id: "watercolor-4", name: "Lake Pines", image: "/assets/backgrounds/watercolor-4.jpg", category: "watercolor" },
+  { id: "watercolor-5", name: "Mountain Path", image: "/assets/backgrounds/watercolor-5.jpg", category: "watercolor" },
+  { id: "watercolor-6", name: "Poppy Fields", image: "/assets/backgrounds/watercolor-6.jpg", category: "watercolor" },
+  { id: "watercolor-7", name: "Countryside", image: "/assets/backgrounds/watercolor-7.jpg", category: "watercolor" },
+  { id: "watercolor-8", name: "Rolling Hills", image: "/assets/backgrounds/watercolor-8.jpg", category: "watercolor" },
+  { id: "watercolor-9", name: "Wildflowers", image: "/assets/backgrounds/watercolor-9.jpg", category: "watercolor" },
 ];
 
 // Combined backgrounds array
@@ -76,7 +76,7 @@ const PetMemorialCard = () => {
   const [birthYear, setBirthYear] = useState("2015");
   const [passingYear, setPassingYear] = useState("2025");
   const [message, setMessage] = useState("They say memories are golden,\nWell maybe that is true.\nI never wanted memories,\nI only wanted you.");
-  const [selectedBackground, setSelectedBackground] = useState("sunset");
+  const [selectedBackground, setSelectedBackground] = useState("watercolor-1");
   const [petSize, setPetSize] = useState([120]);
   const [openStep, setOpenStep] = useState("step-1");
 
@@ -100,7 +100,7 @@ const PetMemorialCard = () => {
     setBirthYear("2015");
     setPassingYear("2025");
     setMessage("They say memories are golden,\nWell maybe that is true.\nI never wanted memories,\nI only wanted you.");
-    setSelectedBackground("sunset");
+    setSelectedBackground("watercolor-1");
     setPetSize([120]);
     setOpenStep("step-1");
   };
