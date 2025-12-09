@@ -54,13 +54,13 @@ const memorialOfferings = [
     keywords: ["pet medium reading", "dog afterlife connection", "cat spirit communication", "pet loss comfort"]
   },
   {
-    id: "pet-zodiac",
-    title: "Pet Personality Astrology Chart",
-    description: "Discover how the stars influenced your pet's unique traits and spirit. A beautiful keepsake explaining the cosmic forces that shaped their special personality.",
+    id: "digital-candles",
+    title: "Pet Remembrance Light",
+    description: "Light a virtual memorial candle for your beloved pet. A peaceful, interactive tribute that keeps their memory glowing bright in your heart.",
     imageUrl: "/lovable-uploads/6f146f9a-c7c2-4e3e-8b41-df577ef5aa27.png",
-    link: "/pet-zodiac",
-    detailedDescription: "Explore how the stars and planets influenced your pet's unique personality traits and behaviors through a custom astrological reading.",
-    keywords: ["pet astrology reading", "dog natal chart", "cat zodiac personality", "pet horoscope gift"]
+    link: "/digital-candles",
+    detailedDescription: "Create a serene digital candle memorial for your pet. Watch the gentle flame flicker as you honor their memory with a personalized message.",
+    keywords: ["pet memorial candle", "virtual pet tribute", "dog remembrance light", "cat memorial flame"]
   }
 ];
 
