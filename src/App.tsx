@@ -15,7 +15,7 @@ import GriefJournal from "./pages/GriefJournal";
 import NotFound from "./pages/NotFound";
 import DigitalScrapbooks from "./pages/DigitalScrapbooks";
 import PetDigitalArt from "./pages/PetDigitalArt";
-import PetMemorial from "./pages/PetZodiac"; // Renamed component but same file
+import PetMemorial from "./pages/PetZodiac";
 import PetBathroom from "./pages/PetBathroom";
 import PetTypography from "./pages/PetTypography";
 import QuotePosters from "./pages/QuotePosters";
@@ -30,6 +30,8 @@ import PetTarotReading from "./pages/PetTarotReading";
 import PetVoiceChat from "./pages/PetVoiceChat";
 import PetMemorialCard from "./pages/PetMemorialCard";
 import DigitalCandles from "./pages/DigitalCandles";
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 
 const queryClient = new QueryClient();
 
@@ -66,6 +68,8 @@ const App = () => {
             <Route path="/pet-voice-chat" element={<PetVoiceChat />} />
             <Route path="/memorial-card" element={<PetMemorialCard />} />
             <Route path="/digital-candles" element={<DigitalCandles />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
             
             {/* Tribute Pages */}
             <Route path="/candle-tribute" element={<NotFound />} /> {/* Placeholder until we create these pages */}
