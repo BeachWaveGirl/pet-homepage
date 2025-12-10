@@ -4,7 +4,7 @@ const Footer = () => {
     <footer className="w-full bg-white py-8 px-4 border-t relative">
       <div className="container max-w-4xl mx-auto">
         <div className="text-center mb-6">
-          <h3 className="font-playfair text-xl mb-4">HaloPet</h3>
+          <h3 className="font-playfair text-xl mb-4">Pet Memorial Star</h3>
           <p className="text-sm text-gray-500 max-w-xl mx-auto">
             ✨ No shipping. No clutter. Just meaningful digital art to save, share, and smile at.
           </p>
@@ -17,8 +17,8 @@ const Footer = () => {
         </div>
         
         <div className="text-xs text-gray-400 text-center">
-          <p className="mb-2">Disclaimer: HaloPet is a creative platform designed for personal enjoyment and expression. All content is for entertainment purposes only and not intended as professional, medical, or therapeutic advice.</p>
-          <p>© {new Date().getFullYear()} HaloPet. All rights reserved.</p>
+          <p className="mb-2">Disclaimer: Pet Memorial Star is a creative platform designed for personal enjoyment and expression. All content is for entertainment purposes only and not intended as professional, medical, or therapeutic advice.</p>
+          <p>© {new Date().getFullYear()} Pet Memorial Star. All rights reserved.</p>
         </div>
       </div>
     </footer>

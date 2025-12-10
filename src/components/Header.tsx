@@ -60,6 +60,11 @@ const Header = () => {
       title: "Pet Tarot Card",
       href: "/pet-tarot-reading",
       description: "Receive comforting messages inspired by your pet's energy through tarot."
+    },
+    {
+      title: "Candle Ceremony",
+      href: "/candle-ceremony",
+      description: "Light a virtual memorial candle to honor your beloved pet's memory."
     }
   ];
 
@@ -83,7 +88,7 @@ const Header = () => {
                   className="text-xl font-playfair font-semibold text-gray-900"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  HaloPet
+                  Pet Memorial Star
                 </Link>
                 <Button variant="ghost" size="sm" className="p-1 text-gray-900 hover:bg-gray-100" onClick={() => setIsMenuOpen(false)}>
                   <X className="h-6 w-6" />
@@ -121,7 +126,7 @@ const Header = () => {
         </Dialog>
         
         <Link to="/" className="text-xl font-playfair font-semibold flex items-center text-gray-900">
-          <span>HaloPet</span>
+          <span>Pet Memorial Star</span>
         </Link>
         
         <div className="flex items-center gap-4">

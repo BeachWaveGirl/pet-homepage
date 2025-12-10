@@ -138,8 +138,9 @@ const PetMemorialCard = () => {
   const darkBackgrounds = celestialBackgrounds.map(b => b.id);
   const isLightBackground = !darkBackgrounds.includes(selectedBackground);
   
-  // Get the image to display in preview
-  const previewImage = selectedBreed?.image || selectedPetTypeData?.image || "/assets/rabbit-representative.png";
+  // Get the image to display in preview - default to rabbit
+  const defaultRabbitImage = "/assets/rabbit-representative.png";
+  const previewImage = selectedBreed?.image || selectedPetTypeData?.image || defaultRabbitImage;
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
@@ -252,9 +253,9 @@ const PetMemorialCard = () => {
               className="space-y-2"
             >
               {/* Step 1: Choose Pet Type */}
-              <AccordionItem value="step-1" className="border rounded-lg px-4">
+              <AccordionItem value="step-1" className="border rounded-lg px-4 bg-white">
                 <AccordionTrigger className="hover:no-underline">
-                  <span className="font-semibold">Step 1: Choose Pet Type</span>
+                  <span className="font-semibold text-gray-900">Step 1: Choose Pet Type</span>
                 </AccordionTrigger>
                 <AccordionContent>
                   {/* Show breeds list when a pet type is selected */}
@@ -271,7 +272,7 @@ const PetMemorialCard = () => {
                           <ChevronLeft className="w-4 h-4" />
                           Back
                         </Button>
-                        <span className="font-semibold">Choose Your {selectedPetTypeData?.name}</span>
+                        <span className="font-semibold text-gray-900">Choose Your {selectedPetTypeData?.name}</span>
                       </div>
                       
                       <p className="text-sm text-gray-500 mb-4">
@@ -309,7 +310,7 @@ const PetMemorialCard = () => {
                                   className="w-full h-full object-contain"
                                 />
                               </div>
-                              <h3 className="font-medium text-xs text-center leading-tight">{breed.name}</h3>
+                              <h3 className="font-medium text-xs text-center leading-tight text-gray-900">{breed.name}</h3>
                             </div>
                           </Card>
                         ))}
@@ -332,7 +333,7 @@ const PetMemorialCard = () => {
                                 className="w-full h-full object-contain"
                               />
                             </div>
-                            <h3 className="font-semibold text-lg">{pet.name}</h3>
+                            <h3 className="font-semibold text-lg text-gray-900">{pet.name}</h3>
                           </div>
                         </Card>
                       ))}
@@ -340,7 +341,7 @@ const PetMemorialCard = () => {
                   )}
                   
                   <div className="mt-6 pt-6 border-t space-y-3">
-                    <Label className="text-sm font-medium">Adjust Pet Size</Label>
+                    <Label className="text-sm font-medium text-gray-900">Adjust Pet Size</Label>
                     <Slider
                       value={petSize}
                       onValueChange={setPetSize}
@@ -368,9 +369,9 @@ const PetMemorialCard = () => {
               </AccordionItem>
               
               {/* Step 2: Personalize Details */}
-              <AccordionItem value="step-2" className="border rounded-lg px-4">
+              <AccordionItem value="step-2" className="border rounded-lg px-4 bg-white">
                 <AccordionTrigger className="hover:no-underline">
-                  <span className="font-semibold">Step 2: Personalize Details</span>
+                  <span className="font-semibold text-gray-900">Step 2: Personalize Details</span>
                 </AccordionTrigger>
                 <AccordionContent>
                   <div className="space-y-4 py-4">
@@ -430,9 +431,9 @@ const PetMemorialCard = () => {
               </AccordionItem>
               
               {/* Step 3: Choose Background */}
-              <AccordionItem value="step-3" className="border rounded-lg px-4">
+              <AccordionItem value="step-3" className="border rounded-lg px-4 bg-white">
                 <AccordionTrigger className="hover:no-underline">
-                  <span className="font-semibold">Step 3: Choose Background</span>
+                  <span className="font-semibold text-gray-900">Step 3: Choose Background</span>
                 </AccordionTrigger>
                 <AccordionContent>
                   <div className="grid grid-cols-5 gap-3 py-4">
@@ -655,9 +656,9 @@ const PetMemorialCard = () => {
           onValueChange={setOpenStep}
           className="space-y-2"
         >
-          <AccordionItem value="step-1" className="border rounded-lg px-4">
+          <AccordionItem value="step-1" className="border rounded-lg px-4 bg-white">
             <AccordionTrigger className="hover:no-underline">
-              <span className="font-semibold text-sm">Step 1: Choose Pet Type</span>
+              <span className="font-semibold text-sm text-gray-900">Step 1: Choose Pet Type</span>
             </AccordionTrigger>
             <AccordionContent>
               {selectedPetType ? (
@@ -703,9 +704,9 @@ const PetMemorialCard = () => {
             </AccordionContent>
           </AccordionItem>
           
-          <AccordionItem value="step-2" className="border rounded-lg px-4">
+          <AccordionItem value="step-2" className="border rounded-lg px-4 bg-white">
             <AccordionTrigger className="hover:no-underline">
-              <span className="font-semibold text-sm">Step 2: Personalize Details</span>
+              <span className="font-semibold text-sm text-gray-900">Step 2: Personalize Details</span>
             </AccordionTrigger>
             <AccordionContent>
               <div className="space-y-3 py-4">
@@ -736,9 +737,9 @@ const PetMemorialCard = () => {
             </AccordionContent>
           </AccordionItem>
           
-          <AccordionItem value="step-3" className="border rounded-lg px-4">
+          <AccordionItem value="step-3" className="border rounded-lg px-4 bg-white">
             <AccordionTrigger className="hover:no-underline">
-              <span className="font-semibold text-sm">Step 3: Choose Background</span>
+              <span className="font-semibold text-sm text-gray-900">Step 3: Choose Background</span>
             </AccordionTrigger>
             <AccordionContent>
               <div className="grid grid-cols-5 gap-2 py-4">

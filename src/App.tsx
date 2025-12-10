@@ -30,6 +30,7 @@ import PetTarotReading from "./pages/PetTarotReading";
 import PetVoiceChat from "./pages/PetVoiceChat";
 import PetMemorialCard from "./pages/PetMemorialCard";
 import DigitalCandles from "./pages/DigitalCandles";
+import CandleCeremony from "./pages/CandleCeremony";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 
@@ -68,6 +69,7 @@ const App = () => {
             <Route path="/pet-voice-chat" element={<PetVoiceChat />} />
             <Route path="/memorial-card" element={<PetMemorialCard />} />
             <Route path="/digital-candles" element={<DigitalCandles />} />
+            <Route path="/candle-ceremony" element={<CandleCeremony />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
             
