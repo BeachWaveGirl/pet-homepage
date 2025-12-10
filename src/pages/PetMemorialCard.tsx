@@ -17,6 +17,9 @@ import { Download, RotateCcw, ChevronLeft, Search } from "lucide-react";
 import { Link } from "react-router-dom";
 import { petTypes, getPetTypeById, PetBreed } from "@/data/petBreeds";
 
+// Default background - Sunset Pastels (always available)
+const defaultBackground = { id: "sunset-pastels", name: "Sunset Pastels", image: "/assets/sunset-pastels.jpg", category: "default" };
+
 // Background options - Celestial
 const celestialBackgrounds = [
   { id: "celestial-1", name: "Starry Night", image: "/assets/backgrounds/celestial-1.jpg", category: "celestial" },
@@ -58,8 +61,9 @@ const watercolorBackgrounds = [
   { id: "watercolor-9", name: "Wildflowers", image: "/assets/backgrounds/watercolor-9.jpg", category: "watercolor" },
 ];
 
-// Combined backgrounds array
+// Combined backgrounds array - default first
 const backgrounds = [
+  defaultBackground,
   ...celestialBackgrounds,
   ...natureBackgrounds,
   ...watercolorBackgrounds,
@@ -76,7 +80,7 @@ const PetMemorialCard = () => {
   const [birthYear, setBirthYear] = useState("2015");
   const [passingYear, setPassingYear] = useState("2025");
   const [message, setMessage] = useState("They say memories are golden,\nWell maybe that is true.\nI never wanted memories,\nI only wanted you.");
-  const [selectedBackground, setSelectedBackground] = useState("watercolor-1");
+  const [selectedBackground, setSelectedBackground] = useState("sunset-pastels");
   const [petSize, setPetSize] = useState([120]);
   const [openStep, setOpenStep] = useState("step-1");
 
@@ -100,7 +104,7 @@ const PetMemorialCard = () => {
     setBirthYear("2015");
     setPassingYear("2025");
     setMessage("They say memories are golden,\nWell maybe that is true.\nI never wanted memories,\nI only wanted you.");
-    setSelectedBackground("watercolor-1");
+    setSelectedBackground("sunset-pastels");
     setPetSize([120]);
     setOpenStep("step-1");
   };
@@ -138,8 +142,8 @@ const PetMemorialCard = () => {
   const darkBackgrounds = celestialBackgrounds.map(b => b.id);
   const isLightBackground = !darkBackgrounds.includes(selectedBackground);
   
-  // Get the image to display in preview - default to rabbit
-  const defaultRabbitImage = "/assets/rabbit-representative.png";
+  // Get the image to display in preview - default to white lop rabbit
+  const defaultRabbitImage = "/assets/white-lop.png";
   const previewImage = selectedBreed?.image || selectedPetTypeData?.image || defaultRabbitImage;
 
   return (
