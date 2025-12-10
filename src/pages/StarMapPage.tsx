@@ -92,7 +92,7 @@ const StarMapPage = () => {
           </div>
           
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-black" />
           
           {/* Content */}
           <div className="relative z-10 text-center px-4 max-w-3xl mx-auto">
@@ -153,7 +153,28 @@ const StarMapPage = () => {
           </div>
         </section>
 
-        <Footer />
+        {/* Dark Footer for Star Map */}
+        <footer className="w-full bg-black py-8 px-4 border-t border-gray-800">
+          <div className="container max-w-4xl mx-auto">
+            <div className="text-center mb-6">
+              <h3 className="font-playfair text-xl mb-4 text-white">Pet Memorial Star</h3>
+              <p className="text-sm text-gray-400 max-w-xl mx-auto">
+                ✨ No shipping. No clutter. Just meaningful digital art to save, share, and smile at.
+              </p>
+            </div>
+            
+            <div className="flex justify-center space-x-6 mb-6">
+              <a href="#" className="text-sm text-gray-400 hover:text-white transition-colors">Privacy</a>
+              <a href="#" className="text-sm text-gray-400 hover:text-white transition-colors">Terms</a>
+              <a href="#" className="text-sm text-gray-400 hover:text-white transition-colors">Contact</a>
+            </div>
+            
+            <div className="text-xs text-gray-500 text-center">
+              <p className="mb-2">Disclaimer: Pet Memorial Star is a creative platform designed for personal enjoyment and expression. All content is for entertainment purposes only and not intended as professional, medical, or therapeutic advice.</p>
+              <p>© {new Date().getFullYear()} Pet Memorial Star. All rights reserved.</p>
+            </div>
+          </div>
+        </footer>
       </div>
     );
   }
@@ -254,7 +275,28 @@ const StarMapPage = () => {
         )}
       </main>
 
-      <Footer />
+      {/* Dark Footer for Star Map */}
+      <footer className="w-full bg-black py-8 px-4 border-t border-gray-800">
+        <div className="container max-w-4xl mx-auto">
+          <div className="text-center mb-6">
+            <h3 className="font-playfair text-xl mb-4 text-white">Pet Memorial Star</h3>
+            <p className="text-sm text-gray-400 max-w-xl mx-auto">
+              ✨ No shipping. No clutter. Just meaningful digital art to save, share, and smile at.
+            </p>
+          </div>
+          
+          <div className="flex justify-center space-x-6 mb-6">
+            <a href="#" className="text-sm text-gray-400 hover:text-white transition-colors">Privacy</a>
+            <a href="#" className="text-sm text-gray-400 hover:text-white transition-colors">Terms</a>
+            <a href="#" className="text-sm text-gray-400 hover:text-white transition-colors">Contact</a>
+          </div>
+          
+          <div className="text-xs text-gray-500 text-center">
+            <p className="mb-2">Disclaimer: Pet Memorial Star is a creative platform designed for personal enjoyment and expression. All content is for entertainment purposes only and not intended as professional, medical, or therapeutic advice.</p>
+            <p>© {new Date().getFullYear()} Pet Memorial Star. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
