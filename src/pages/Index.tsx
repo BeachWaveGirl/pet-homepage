@@ -54,12 +54,12 @@ const memorialOfferings = [
     keywords: ["pet medium reading", "dog afterlife connection", "cat spirit communication", "pet loss comfort"]
   },
   {
-    id: "digital-candles",
-    title: "Pet Remembrance Light",
+    id: "candle-ceremony",
+    title: "Candle Ceremony",
     description: "Light a virtual memorial candle for your beloved pet. A peaceful, interactive tribute that keeps their memory glowing bright in your heart.",
     imageUrl: "/lovable-uploads/6f146f9a-c7c2-4e3e-8b41-df577ef5aa27.png",
-    link: "/digital-candles",
-    detailedDescription: "Create a serene digital candle memorial for your pet. Watch the gentle flame flicker as you honor their memory with a personalized message.",
+    link: "/candle-ceremony",
+    detailedDescription: "Honor your pet's memory with a virtual candle that burns for 24 hours. Join a community of pet lovers in remembrance.",
     keywords: ["pet memorial candle", "virtual pet tribute", "dog remembrance light", "cat memorial flame"]
   }
 ];
