@@ -161,50 +161,22 @@ const CandleCeremony = () => {
                 className="overflow-hidden border-0"
               >
                 <CardContent className="p-0">
-                  <div className="aspect-square relative">
-                    {/* Orange/sunset gradient background */}
+                  <div className="aspect-square relative overflow-hidden">
+                    {/* Blue/Orange gradient background matching the candle image */}
                     <div 
                       className="absolute inset-0"
                       style={{
-                        background: 'linear-gradient(180deg, #ff6b35 0%, #f7c59f 30%, #2ec4b6 60%, #0096c7 100%)'
+                        background: 'linear-gradient(180deg, #0066cc 0%, #0066cc 50%, #ff4500 50%, #ff4500 100%)'
                       }}
                     />
                     
-                    {/* Lit candle */}
+                    {/* Candle image with glow animation */}
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="relative w-20 h-28">
-                        {/* Flame glow */}
-                        <div 
-                          className="absolute -top-4 left-1/2 -translate-x-1/2 w-16 h-16 rounded-full animate-pulse"
-                          style={{
-                            background: 'radial-gradient(circle, rgba(255,200,100,0.6) 0%, rgba(255,150,50,0.3) 40%, transparent 70%)',
-                          }}
-                        />
-                        
-                        {/* Flame */}
-                        <div 
-                          className="absolute top-0 left-1/2 -translate-x-1/2 w-4 h-8"
-                          style={{
-                            background: 'linear-gradient(180deg, #fff8e1 0%, #ffeb3b 30%, #ff9800 60%, #ff5722 100%)',
-                            borderRadius: '50% 50% 50% 50% / 60% 60% 40% 40%',
-                            animation: 'flicker 0.5s ease-in-out infinite alternate',
-                          }}
-                        />
-                        
-                        {/* Candle body - blue ceramic */}
-                        <div 
-                          className="absolute bottom-0 w-20 h-20 rounded-full"
-                          style={{
-                            background: 'linear-gradient(135deg, #4a6fa5 0%, #2d4a7c 50%, #1a3a5c 100%)',
-                            boxShadow: '0 4px 15px rgba(0,0,0,0.3)'
-                          }}
-                        />
-                        {/* Candle wax pool */}
-                        <div 
-                          className="absolute bottom-14 left-1/2 -translate-x-1/2 w-14 h-6 rounded-full"
-                          style={{
-                            background: 'linear-gradient(180deg, #fff8e1 0%, #ffe0b2 100%)',
-                          }}
+                      <div className="relative candle-glow">
+                        <img 
+                          src="/assets/candle.png" 
+                          alt="Memorial candle"
+                          className="w-full h-full object-contain scale-110"
                         />
                       </div>
                     </div>
@@ -271,6 +243,19 @@ const CandleCeremony = () => {
         @keyframes flicker {
           0% { transform: translateX(-50%) scale(1) rotate(-2deg); }
           100% { transform: translateX(-50%) scale(1.1) rotate(2deg); }
+        }
+        
+        @keyframes candleGlow {
+          0%, 100% { 
+            filter: drop-shadow(0 0 8px rgba(255, 200, 100, 0.6)) drop-shadow(0 0 15px rgba(255, 150, 50, 0.4));
+          }
+          50% { 
+            filter: drop-shadow(0 0 12px rgba(255, 200, 100, 0.8)) drop-shadow(0 0 25px rgba(255, 150, 50, 0.6));
+          }
+        }
+        
+        .candle-glow {
+          animation: candleGlow 2s ease-in-out infinite;
         }
       `}</style>
     </div>
