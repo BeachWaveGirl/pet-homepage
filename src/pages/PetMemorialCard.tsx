@@ -18,47 +18,47 @@ import { Link } from "react-router-dom";
 import { petTypes, getPetTypeById, PetBreed } from "@/data/petBreeds";
 
 // Default background - Sunset Pastels (always available)
-const defaultBackground = { id: "sunset-pastels", name: "Sunset Pastels", image: "/assets/sunset-pastels.jpg", category: "default" };
+const defaultBackground = { id: "sunset-pastels", name: "Sunset Pastels", image: "/assets/backgrounds/sunset-pastels.jpg", category: "default" };
 
-// Background options - Celestial
+// Background options - Celestial (12 images)
 const celestialBackgrounds = [
-  { id: "celestial-1", name: "Starry Night", image: "/assets/backgrounds/celestial-1.jpg", category: "celestial" },
-  { id: "celestial-2", name: "Cosmic Dreams", image: "/assets/backgrounds/celestial-2.jpg", category: "celestial" },
-  { id: "celestial-3", name: "Galaxy Peace", image: "/assets/backgrounds/celestial-3.jpg", category: "celestial" },
-  { id: "celestial-4", name: "Midnight Stars", image: "/assets/backgrounds/celestial-4.jpg", category: "celestial" },
-  { id: "celestial-5", name: "Northern Lights", image: "/assets/backgrounds/celestial-5.jpg", category: "celestial" },
-  { id: "celestial-6", name: "Heavenly Glow", image: "/assets/backgrounds/celestial-6.jpg", category: "celestial" },
-  { id: "celestial-7", name: "Golden Stars", image: "/assets/backgrounds/celestial-7.jpg", category: "celestial" },
-  { id: "celestial-8", name: "Moonlight", image: "/assets/backgrounds/celestial-8.jpg", category: "celestial" },
-  { id: "celestial-9", name: "Twilight Sky", image: "/assets/backgrounds/celestial-9.jpg", category: "celestial" },
-  { id: "celestial-10", name: "Angel Stars", image: "/assets/backgrounds/celestial-10.jpg", category: "celestial" },
-  { id: "celestial-11", name: "Forever Stars", image: "/assets/backgrounds/celestial-11.jpg", category: "celestial" },
-  { id: "celestial-12", name: "Constellation", image: "/assets/backgrounds/celestial-12.jpg", category: "celestial" },
+  { id: "starry-night", name: "Starry Night", image: "/assets/backgrounds/celestial/starry-night-sky.jpg", category: "celestial" },
+  { id: "cosmic-dreams", name: "Cosmic Dreams", image: "/assets/backgrounds/celestial/cosmic-peace.jpg", category: "celestial" },
+  { id: "galaxy-peace", name: "Galaxy Peace", image: "/assets/backgrounds/celestial/galaxy-dreams.jpg", category: "celestial" },
+  { id: "midnight-stars", name: "Midnight Stars", image: "/assets/backgrounds/celestial/midnight-garden.jpg", category: "celestial" },
+  { id: "northern-lights", name: "Northern Lights", image: "/assets/backgrounds/celestial/northern-lights.jpg", category: "celestial" },
+  { id: "heavenly-glow", name: "Heavenly Glow", image: "/assets/backgrounds/celestial/heavenly-glow.jpg", category: "celestial" },
+  { id: "golden-stars", name: "Golden Stars", image: "/assets/backgrounds/celestial/golden-stars.jpg", category: "celestial" },
+  { id: "moonlight", name: "Moonlight", image: "/assets/backgrounds/celestial/moonlight-memorial.jpg", category: "celestial" },
+  { id: "twilight-sky", name: "Twilight Sky", image: "/assets/backgrounds/celestial/twilight-stars.jpg", category: "celestial" },
+  { id: "angel-stars", name: "Angel Stars", image: "/assets/backgrounds/celestial/angel-stars.jpg", category: "celestial" },
+  { id: "forever-stars", name: "Forever Stars", image: "/assets/backgrounds/celestial/forever-stars.jpg", category: "celestial" },
+  { id: "constellation", name: "Constellation", image: "/assets/backgrounds/celestial/constellation-sky.jpg", category: "celestial" },
 ];
 
-// Background options - Nature
+// Background options - Nature (8 images)
 const natureBackgrounds = [
-  { id: "nature-1", name: "Autumn Lake", image: "/assets/backgrounds/nature-1.jpg", category: "nature" },
-  { id: "nature-2", name: "Mountain Vista", image: "/assets/backgrounds/nature-2.jpg", category: "nature" },
-  { id: "nature-3", name: "Peaceful Meadow", image: "/assets/backgrounds/nature-3.jpg", category: "nature" },
-  { id: "nature-4", name: "Misty Morning", image: "/assets/backgrounds/nature-4.jpg", category: "nature" },
-  { id: "nature-5", name: "Rolling Hills", image: "/assets/backgrounds/nature-5.jpg", category: "nature" },
-  { id: "nature-6", name: "Riverside", image: "/assets/backgrounds/nature-6.jpg", category: "nature" },
-  { id: "nature-7", name: "Sunset Field", image: "/assets/backgrounds/nature-7.jpg", category: "nature" },
-  { id: "nature-8", name: "Flower Garden", image: "/assets/backgrounds/nature-8.jpg", category: "nature" },
+  { id: "autumn-lake", name: "Autumn Lake", image: "/assets/backgrounds/nature/autumn-lake.png", category: "nature" },
+  { id: "mountain-vista", name: "Mountain Vista", image: "/assets/backgrounds/nature/mountain-lake.png", category: "nature" },
+  { id: "peaceful-meadow", name: "Peaceful Meadow", image: "/assets/backgrounds/nature/meadow-birds.png", category: "nature" },
+  { id: "misty-morning", name: "Misty Morning", image: "/assets/backgrounds/nature/misty-dock.png", category: "nature" },
+  { id: "rolling-hills", name: "Rolling Hills", image: "/assets/backgrounds/nature/floral-valley.png", category: "nature" },
+  { id: "riverside", name: "Riverside", image: "/assets/backgrounds/nature/riverside.png", category: "nature" },
+  { id: "sunset-field", name: "Sunset Field", image: "/assets/backgrounds/nature/wheat-field.png", category: "nature" },
+  { id: "flower-garden", name: "Flower Garden", image: "/assets/backgrounds/nature/dunes-sea.png", category: "nature" },
 ];
 
-// Background options - Watercolor
+// Background options - Watercolor (9 images)
 const watercolorBackgrounds = [
-  { id: "watercolor-1", name: "Soft Meadow", image: "/assets/backgrounds/watercolor-1.jpg", category: "watercolor" },
-  { id: "watercolor-2", name: "Hillside Vista", image: "/assets/backgrounds/watercolor-2.jpg", category: "watercolor" },
-  { id: "watercolor-3", name: "Daisy Field", image: "/assets/backgrounds/watercolor-3.jpg", category: "watercolor" },
-  { id: "watercolor-4", name: "Lake Pines", image: "/assets/backgrounds/watercolor-4.jpg", category: "watercolor" },
-  { id: "watercolor-5", name: "Mountain Path", image: "/assets/backgrounds/watercolor-5.jpg", category: "watercolor" },
-  { id: "watercolor-6", name: "Poppy Fields", image: "/assets/backgrounds/watercolor-6.jpg", category: "watercolor" },
-  { id: "watercolor-7", name: "Countryside", image: "/assets/backgrounds/watercolor-7.jpg", category: "watercolor" },
-  { id: "watercolor-8", name: "Rolling Hills", image: "/assets/backgrounds/watercolor-8.jpg", category: "watercolor" },
-  { id: "watercolor-9", name: "Wildflowers", image: "/assets/backgrounds/watercolor-9.jpg", category: "watercolor" },
+  { id: "soft-meadow", name: "Soft Meadow", image: "/assets/backgrounds/watercolor/meadow-field.jpg", category: "watercolor" },
+  { id: "hillside-vista", name: "Hillside Vista", image: "/assets/backgrounds/watercolor/hillside-vista.jpg", category: "watercolor" },
+  { id: "daisy-field", name: "Daisy Field", image: "/assets/backgrounds/watercolor/daisy-meadow.jpg", category: "watercolor" },
+  { id: "lake-pines", name: "Lake Pines", image: "/assets/backgrounds/watercolor/misty-lake-pines.jpg", category: "watercolor" },
+  { id: "mountain-path", name: "Mountain Path", image: "/assets/backgrounds/watercolor/mountain-path.jpg", category: "watercolor" },
+  { id: "poppy-fields", name: "Poppy Fields", image: "/assets/backgrounds/watercolor/mountain-poppies.jpg", category: "watercolor" },
+  { id: "countryside", name: "Countryside", image: "/assets/backgrounds/watercolor/peaceful-countryside.jpg", category: "watercolor" },
+  { id: "rolling-hills-trees", name: "Rolling Hills", image: "/assets/backgrounds/watercolor/rolling-hills-trees.jpg", category: "watercolor" },
+  { id: "wildflowers", name: "Wildflowers", image: "/assets/backgrounds/watercolor/wildflower-hills.jpg", category: "watercolor" },
 ];
 
 // Combined backgrounds array - default first
