@@ -67,8 +67,24 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				lavender: '#E5DEFF',
-				offwhite: '#F9F9F9',
+				// Rococo theme custom colors
+				cream: {
+					DEFAULT: 'hsl(39 35% 95%)',
+					light: 'hsl(40 30% 97%)',
+					dark: 'hsl(35 30% 88%)'
+				},
+				pastel: {
+					blue: 'hsl(210 45% 65%)',
+					'blue-dark': 'hsl(210 45% 55%)',
+					pink: 'hsl(350 35% 85%)',
+					gold: 'hsl(40 50% 75%)',
+					mint: 'hsl(160 30% 80%)',
+					peach: 'hsl(20 50% 85%)'
+				},
+				charcoal: {
+					DEFAULT: 'hsl(25 30% 18%)',
+					light: 'hsl(25 20% 35%)'
+				}
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -116,6 +132,10 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.5s ease-out',
 				'fade-in-slow': 'fade-in-slow 1.2s ease-out',
+			},
+			boxShadow: {
+				'rococo': '0 2px 8px rgba(139, 119, 101, 0.08), 0 8px 24px rgba(139, 119, 101, 0.06)',
+				'rococo-lg': '0 4px 16px rgba(139, 119, 101, 0.1), 0 12px 32px rgba(139, 119, 101, 0.08)',
 			}
 		}
 	},

@@ -5,83 +5,100 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 10%;
+    /* Rococo Pet Memorial Theme - Warm Cream Paper */
+    --background: 39 35% 95%;
+    --foreground: 25 30% 18%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 10%;
+    --card: 40 30% 97%;
+    --card-foreground: 25 30% 18%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 10%;
+    --popover: 40 30% 97%;
+    --popover-foreground: 25 30% 18%;
 
-    --primary: 0 0% 10%;
-    --primary-foreground: 0 0% 100%;
+    /* Primary: Pastel Blue from rococo frame */
+    --primary: 210 45% 65%;
+    --primary-foreground: 25 30% 18%;
 
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 10%;
+    /* Secondary: Soft warm pink/rose */
+    --secondary: 350 35% 85%;
+    --secondary-foreground: 25 30% 18%;
 
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
+    /* Muted: Warm gray cream */
+    --muted: 35 20% 90%;
+    --muted-foreground: 25 20% 45%;
 
-    --accent: 0 0% 96%;
-    --accent-foreground: 0 0% 10%;
+    /* Accent: Muted gold */
+    --accent: 40 50% 75%;
+    --accent-foreground: 25 30% 18%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 0 0% 10%;
+    /* Borders: Warm low-contrast */
+    --border: 35 20% 82%;
+    --input: 35 20% 85%;
+    --ring: 210 45% 65%;
 
-    --radius: 0.5rem;
+    --radius: 0.625rem;
 
-    --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 0 0% 10%;
-    --sidebar-primary: 0 0% 10%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 0 0% 96%;
-    --sidebar-accent-foreground: 0 0% 10%;
-    --sidebar-border: 0 0% 90%;
-    --sidebar-ring: 0 0% 10%;
+    /* Custom colors for rococo theme */
+    --cream-paper: 39 35% 95%;
+    --cream-light: 40 30% 97%;
+    --warm-charcoal: 25 30% 18%;
+    --pastel-blue: 210 45% 65%;
+    --pastel-blue-dark: 210 45% 55%;
+    --soft-pink: 350 35% 85%;
+    --muted-gold: 40 50% 75%;
+    --mint: 160 30% 80%;
+    --peach: 20 50% 85%;
+
+    --sidebar-background: 39 35% 95%;
+    --sidebar-foreground: 25 30% 18%;
+    --sidebar-primary: 210 45% 65%;
+    --sidebar-primary-foreground: 25 30% 18%;
+    --sidebar-accent: 40 50% 75%;
+    --sidebar-accent-foreground: 25 30% 18%;
+    --sidebar-border: 35 20% 82%;
+    --sidebar-ring: 210 45% 65%;
   }
 
   .dark {
-    --background: 0 0% 10%;
-    --foreground: 0 0% 98%;
+    --background: 25 20% 10%;
+    --foreground: 39 35% 95%;
 
-    --card: 0 0% 10%;
-    --card-foreground: 0 0% 98%;
+    --card: 25 20% 12%;
+    --card-foreground: 39 35% 95%;
 
-    --popover: 0 0% 10%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 25 20% 12%;
+    --popover-foreground: 39 35% 95%;
 
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 10%;
+    --primary: 210 45% 65%;
+    --primary-foreground: 25 30% 18%;
 
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 350 25% 25%;
+    --secondary-foreground: 39 35% 95%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 65%;
+    --muted: 25 15% 20%;
+    --muted-foreground: 35 20% 65%;
 
-    --accent: 0 0% 15%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 40 40% 35%;
+    --accent-foreground: 39 35% 95%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 0 0% 80%;
+    --border: 25 15% 25%;
+    --input: 25 15% 25%;
+    --ring: 210 45% 65%;
     
-    --sidebar-background: 0 0% 10%;
-    --sidebar-foreground: 0 0% 98%;
-    --sidebar-primary: 0 0% 98%;
-    --sidebar-primary-foreground: 0 0% 10%;
-    --sidebar-accent: 0 0% 15%;
-    --sidebar-accent-foreground: 0 0% 98%;
-    --sidebar-border: 0 0% 20%;
-    --sidebar-ring: 0 0% 80%;
+    --sidebar-background: 25 20% 10%;
+    --sidebar-foreground: 39 35% 95%;
+    --sidebar-primary: 210 45% 65%;
+    --sidebar-primary-foreground: 25 30% 18%;
+    --sidebar-accent: 40 40% 35%;
+    --sidebar-accent-foreground: 39 35% 95%;
+    --sidebar-border: 25 15% 25%;
+    --sidebar-ring: 210 45% 65%;
   }
 }
 
@@ -94,6 +111,17 @@
     @apply bg-background text-foreground;
     font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
   }
+}
+
+/* Paper texture background */
+.paper-texture {
+  background-image: 
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-blend-mode: soft-light;
+}
+
+.paper-vignette {
+  box-shadow: inset 0 0 100px rgba(139, 119, 101, 0.15);
 }
 
 /* Custom scroll behavior */
@@ -118,6 +146,20 @@ html {
   font-family: 'Playfair Display', serif;
   line-height: 1.8;
   letter-spacing: 0.01em;
+}
+
+/* Rococo decorative elements */
+.rococo-border {
+  border: 1px solid hsl(var(--border));
+  box-shadow: 0 2px 8px rgba(139, 119, 101, 0.08);
+}
+
+.rococo-card {
+  background: hsl(var(--card));
+  border-radius: var(--radius);
+  box-shadow: 
+    0 1px 3px rgba(139, 119, 101, 0.08),
+    0 4px 12px rgba(139, 119, 101, 0.04);
 }
 
 /* Responsive adjustments */
