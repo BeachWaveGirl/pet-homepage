@@ -69,9 +69,9 @@ const Index = () => {
     <div className="min-h-screen flex flex-col bg-white font-inter page-container">
       <Header />
       
-      {/* Hero Section with increased background image visibility */}
+      {/* Hero Section with rainbow pets image */}
       <section className="w-full py-20 md:py-28 px-4 flex items-center justify-center relative overflow-hidden bg-gradient-to-b from-white to-gray-50">
-        <div className="absolute inset-0 bg-[url('/lovable-uploads/be74091f-4ccb-434e-88ac-0667651f253a.png')] opacity-50 bg-cover bg-center"></div>
+        <div className="absolute inset-0 bg-[url('/assets/hero-petloss.png')] opacity-60 bg-cover bg-center"></div>
         <div className="container max-w-4xl mx-auto text-center animate-fade-in-slow relative z-10">
           <h1 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900">
             Honor Their Memory, Celebrate Their Love
