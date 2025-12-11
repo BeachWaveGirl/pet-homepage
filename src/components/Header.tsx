@@ -63,7 +63,11 @@ const Header = () => {
   ];
 
   return (
-    <header className={`w-full bg-background py-4 px-4 md:px-6 flex justify-center border-b border-border fixed top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-opacity-90 backdrop-blur-sm shadow-rococo' : 'bg-opacity-100'}`}>
+    <header className={`w-full bg-cream py-4 px-4 md:px-6 flex justify-center fixed top-0 z-50 transition-all duration-300 paper-texture ${isScrolled ? 'bg-opacity-95 backdrop-blur-sm shadow-rococo' : 'bg-opacity-100'}`}>
+      {/* Bottom decorative border */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
+      <div className="absolute bottom-[-1px] left-0 right-0 h-px bg-gradient-to-r from-transparent via-pastel-gold/40 to-transparent"></div>
+      
       <div className="container flex justify-between items-center">
         {/* Hamburger Menu with side slide effect */}
         <Button variant="ghost" size="sm" className="p-1 text-foreground hover:bg-muted" onClick={() => setIsMenuOpen(true)}>
@@ -132,7 +136,7 @@ const Header = () => {
           </Link>
           <Link to="/star-memorial">
             <Button 
-              className="bg-primary text-primary-foreground hover:bg-pastel-blue-dark transition-colors hidden md:flex shadow-rococo"
+              className="bg-primary text-primary-foreground hover:bg-pastel-blue-dark transition-colors hidden md:flex shadow-rococo rounded-lg"
             >
               Create a Memorial
             </Button>
