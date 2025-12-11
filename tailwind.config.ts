@@ -73,6 +73,7 @@ export default {
 					light: 'hsl(40 30% 97%)',
 					dark: 'hsl(35 30% 88%)'
 				},
+				'aged-paper': 'hsl(50 25% 88%)',
 			pastel: {
 					blue: 'hsl(210 45% 65%)',
 					'blue-dark': 'hsl(210 45% 55%)',

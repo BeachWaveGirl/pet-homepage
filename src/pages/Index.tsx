@@ -115,7 +115,7 @@ const Index = () => {
       </section>
       
       {/* Memorial Offerings Section */}
-      <section id="memorial-section" className="w-full py-16 px-4 bg-background paper-texture paper-vignette relative">
+      <section id="memorial-section" className="w-full py-16 px-4 bg-aged-paper paper-texture paper-vignette relative">
         <div className="container mx-auto max-w-6xl relative z-10">
           <div className="text-center mb-12">
             <div className="inline-block mb-4">
