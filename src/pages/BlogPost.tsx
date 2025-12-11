@@ -4,6 +4,37 @@ import Footer from "@/components/Footer";
 import { getPostBySlug, blogPosts } from "@/data/blogPosts";
 import { ArrowLeft } from "lucide-react";
 
+// Format content with proper HTML
+const formatContent = (content: string) => {
+  return content
+    .split('\n')
+    .map(line => {
+      const trimmed = line.trim();
+      if (trimmed.startsWith('## ')) {
+        return `<h2 class="text-2xl md:text-3xl font-bold text-[#c17f59] mt-12 mb-6">${trimmed.slice(3)}</h2>`;
+      }
+      if (trimmed.startsWith('### ')) {
+        return `<h3 class="text-xl md:text-2xl font-semibold text-gray-800 mt-10 mb-4">${trimmed.slice(4)}</h3>`;
+      }
+      if (trimmed.startsWith('- ')) {
+        return `<li class="text-gray-600 font-light leading-relaxed ml-4">${trimmed.slice(2)}</li>`;
+      }
+      if (trimmed.startsWith('**') && trimmed.endsWith('**')) {
+        return `<p class="text-gray-800 font-semibold mt-6 mb-2">${trimmed.slice(2, -2)}</p>`;
+      }
+      if (trimmed === '') {
+        return '';
+      }
+      // Regular paragraph - apply bold formatting within
+      const formattedLine = trimmed
+        .replace(/\*\*(.*?)\*\*/g, '<strong class="text-gray-800">$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>');
+      return `<p class="text-gray-600 font-light leading-[1.9] mb-6">${formattedLine}</p>`;
+    })
+    .filter(line => line !== '')
+    .join('\n');
+};
+
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
   const post = slug ? getPostBySlug(slug) : undefined;
@@ -17,14 +48,14 @@ const BlogPost = () => {
     .slice(0, 3);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white">
+    <div className="min-h-screen bg-white text-gray-900">
       <Header />
       
       <div className="pt-24 px-4">
-        <div className="container mx-auto max-w-4xl">
+        <div className="container mx-auto max-w-3xl">
           <Link
             to="/blog"
-            className="inline-flex items-center text-gray-400 hover:text-white transition-colors"
+            className="inline-flex items-center text-gray-500 hover:text-gray-800 transition-colors"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Blog
@@ -33,37 +64,37 @@ const BlogPost = () => {
       </div>
 
       <article className="pt-8 pb-16 px-4">
-        <div className="container mx-auto max-w-4xl">
-          <div className="aspect-[21/9] rounded-2xl overflow-hidden mb-8 relative">
+        <div className="container mx-auto max-w-3xl">
+          <div className="aspect-[21/9] rounded-2xl overflow-hidden mb-10 relative">
             <img
               src={post.imageUrl}
               alt={post.title}
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/10 via-pink-500/5 to-amber-500/10 opacity-60" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/10 via-pink-500/5 to-amber-500/10 opacity-50" />
           </div>
 
-          <div className="flex items-center gap-3 mb-4">
-            <span className="px-4 py-1.5 bg-amber-500/20 text-amber-400 text-sm font-medium rounded-full border border-amber-500/30">
+          <div className="flex items-center gap-3 mb-6 flex-wrap">
+            <span className="px-4 py-1.5 bg-gray-100 text-gray-700 text-sm font-medium rounded-full">
               {post.category}
             </span>
-            <span className="text-gray-500">{post.date}</span>
-            <span className="text-gray-600">•</span>
-            <span className="text-gray-500">{post.readTime} min read</span>
+            <span className="text-gray-400">{post.date}</span>
+            <span className="text-gray-300">•</span>
+            <span className="text-gray-400">{post.readTime} min read</span>
           </div>
 
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-playfair font-bold text-white mb-6 leading-tight">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#c17f59] mb-8 leading-tight">
             {post.title}
           </h1>
 
-          <p className="text-xl text-gray-400 mb-12 leading-relaxed">
+          <p className="text-xl text-gray-500 font-light mb-12 leading-relaxed border-l-4 border-[#c17f59]/30 pl-6">
             {post.description}
           </p>
 
           {post.tags && (
-            <div className="flex flex-wrap gap-2 mb-8">
+            <div className="flex flex-wrap gap-2 mb-10">
               {post.tags.map((tag) => (
-                <span key={tag} className="px-3 py-1 bg-gray-800 text-gray-400 text-xs rounded-full">
+                <span key={tag} className="px-3 py-1 bg-gray-100 text-gray-500 text-xs rounded-full">
                   {tag}
                 </span>
               ))}
@@ -71,30 +102,30 @@ const BlogPost = () => {
           )}
 
           <div 
-            className="prose prose-lg prose-invert max-w-none prose-headings:font-playfair prose-headings:text-white prose-p:text-gray-300 prose-strong:text-white prose-li:text-gray-300 prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3"
-            dangerouslySetInnerHTML={{ __html: post.content.replace(/\n/g, '<br>').replace(/## /g, '<h2>').replace(/### /g, '<h3>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\*(.*?)\*/g, '<em>$1</em>').replace(/- /g, '• ') }}
+            className="blog-content"
+            dangerouslySetInnerHTML={{ __html: formatContent(post.content) }}
           />
         </div>
       </article>
 
-      <section className="py-16 px-4 border-t border-gray-800">
-        <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-2xl md:text-3xl font-playfair font-bold text-white mb-4">
+      <section className="py-16 px-4 bg-[#faf8f5]">
+        <div className="container mx-auto max-w-3xl text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#c17f59] mb-4">
             Honor Your Beloved Pet
           </h2>
-          <p className="text-gray-400 mb-8 max-w-xl mx-auto">
+          <p className="text-gray-600 mb-8 max-w-xl mx-auto font-light">
             Create a beautiful memorial to celebrate the life of your cherished companion.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/memorial-card"
-              className="inline-flex items-center justify-center px-6 py-3 bg-amber-500 text-black font-medium rounded-full hover:bg-amber-400 transition-colors"
+              className="inline-flex items-center justify-center px-6 py-3 bg-[#c17f59] text-white font-medium rounded-full hover:bg-[#a86d4a] transition-colors"
             >
               Create Memorial Card
             </Link>
             <Link
-              to="/digital-candles"
-              className="inline-flex items-center justify-center px-6 py-3 bg-transparent text-white font-medium rounded-full hover:bg-white/10 transition-colors border border-gray-700"
+              to="/candle-ceremony"
+              className="inline-flex items-center justify-center px-6 py-3 bg-transparent text-gray-700 font-medium rounded-full hover:bg-gray-100 transition-colors border border-gray-300"
             >
               🕯️ Light a Candle
             </Link>
@@ -103,9 +134,9 @@ const BlogPost = () => {
       </section>
 
       {relatedPosts.length > 0 && (
-        <section className="py-16 px-4 border-t border-gray-800">
+        <section className="py-16 px-4 bg-white">
           <div className="container mx-auto max-w-6xl">
-            <h2 className="text-2xl font-playfair font-bold text-white mb-8">
+            <h2 className="text-2xl font-bold text-gray-800 mb-8">
               Related Articles
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -113,7 +144,7 @@ const BlogPost = () => {
                 <Link
                   key={relatedPost.slug}
                   to={`/blog/${relatedPost.slug}`}
-                  className="group bg-[#141414] rounded-2xl overflow-hidden hover:bg-[#1a1a1a] transition-all duration-300 border border-gray-800/50"
+                  className="group bg-white rounded-2xl overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-100"
                 >
                   <div className="aspect-[4/3] overflow-hidden relative">
                     <img
@@ -121,13 +152,13 @@ const BlogPost = () => {
                       alt={relatedPost.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/10 via-pink-500/5 to-amber-500/10 opacity-60" />
+                    <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/10 via-pink-500/5 to-amber-500/10 opacity-50" />
                   </div>
                   <div className="p-5">
-                    <span className="px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-medium rounded-full border border-amber-500/30">
+                    <span className="px-3 py-1 bg-gray-100 text-gray-600 text-xs font-medium rounded-full">
                       {relatedPost.category}
                     </span>
-                    <h3 className="mt-3 font-semibold text-white group-hover:text-amber-400 transition-colors line-clamp-2">
+                    <h3 className="mt-3 font-semibold text-gray-800 group-hover:text-[#c17f59] transition-colors line-clamp-2">
                       {relatedPost.title}
                     </h3>
                   </div>
