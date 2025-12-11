@@ -115,27 +115,37 @@ const Index = () => {
       </section>
       
       {/* Memorial Offerings Section */}
-      <section id="memorial-section" className="w-full py-16 px-4 bg-background paper-vignette">
-        <div className="container mx-auto max-w-6xl">
+      <section id="memorial-section" className="w-full py-16 px-4 bg-background paper-texture paper-vignette relative">
+        <div className="container mx-auto max-w-6xl relative z-10">
           <div className="text-center mb-12">
+            <div className="inline-block mb-4">
+              <div className="h-px w-24 bg-gradient-to-r from-transparent via-primary/60 to-transparent mx-auto mb-2"></div>
+            </div>
             <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-4 text-foreground">Pet Loss Memorial Gifts & Keepsakes</h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               Healing digital remembrances for your rainbow bridge pet
             </p>
+            <div className="h-px w-32 bg-gradient-to-r from-transparent via-pastel-gold/50 to-transparent mx-auto mt-6"></div>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {memorialOfferings.map((offering) => (
               <Link to={offering.link} key={offering.id} className="group">
-                <Card className="h-full overflow-hidden transition-all duration-300 hover:shadow-rococo-lg bg-card border-border/60 rounded-lg">
-                  <div className="aspect-w-16 aspect-h-9 bg-muted/30 overflow-hidden">
+                <Card className="h-full overflow-hidden transition-all duration-300 hover:shadow-rococo-lg bg-cream-light border-2 border-primary/20 rounded-xl relative">
+                  {/* Ornate corner detail */}
+                  <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-primary/40 rounded-tl-xl"></div>
+                  <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-primary/40 rounded-tr-xl"></div>
+                  
+                  <div className="aspect-w-16 aspect-h-9 bg-cream/50 overflow-hidden">
                     <img 
                       src={offering.imageUrl} 
                       alt={offering.title} 
                       className="object-cover w-full h-64 transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
-                  <CardContent className="p-6">
+                  <CardContent className="p-6 bg-cream-light paper-texture">
+                    {/* Decorative line */}
+                    <div className="h-px w-full bg-gradient-to-r from-primary/30 via-pastel-gold/40 to-primary/30 mb-4"></div>
                     <h3 className="font-playfair text-xl font-medium mb-2 text-foreground group-hover:text-primary transition-colors">
                       {offering.title}
                     </h3>
@@ -147,13 +157,17 @@ const Index = () => {
                         <Badge 
                           key={i} 
                           variant="outline" 
-                          className="text-xs border-primary/40 text-primary bg-primary/5"
+                          className="text-xs border-primary/50 text-primary bg-primary/10 rounded-full px-3"
                         >
                           {keyword}
                         </Badge>
                       ))}
                     </div>
                   </CardContent>
+                  
+                  {/* Bottom ornate corners */}
+                  <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-primary/40 rounded-bl-xl"></div>
+                  <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-primary/40 rounded-br-xl"></div>
                 </Card>
               </Link>
             ))}
@@ -162,8 +176,12 @@ const Index = () => {
       </section>
       
       {/* Comfort Section */}
-      <section className="w-full py-16 px-4 bg-muted/50">
-        <div className="container mx-auto max-w-4xl">
+      <section className="w-full py-16 px-4 bg-cream-dark paper-texture relative">
+        {/* Top decorative border */}
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
+        <div className="absolute top-1 left-0 right-0 h-px bg-gradient-to-r from-transparent via-pastel-gold/40 to-transparent"></div>
+        
+        <div className="container mx-auto max-w-4xl relative z-10">
           <div className="text-center mb-8">
             <h2 className="font-playfair text-3xl font-bold mb-4 text-foreground">Finding Comfort in Memory</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
@@ -174,18 +192,22 @@ const Index = () => {
           
           <div className="mt-12 flex flex-col md:flex-row items-center gap-6 justify-center">
             <Link to="/star-map" className="w-full md:w-auto">
-              <Button className="w-full bg-primary hover:bg-pastel-blue-dark text-primary-foreground shadow-rococo px-8">
+              <Button className="w-full bg-primary hover:bg-pastel-blue-dark text-primary-foreground shadow-rococo px-8 rounded-lg">
                 Create a Star Map
               </Button>
             </Link>
             
             <Link to="/rainbow-bridge" className="w-full md:w-auto">
-              <Button variant="outline" className="w-full border-primary/50 text-foreground hover:bg-primary/10 hover:border-primary px-8">
+              <Button variant="outline" className="w-full border-2 border-primary/50 text-foreground hover:bg-primary/10 hover:border-primary px-8 rounded-lg">
                 Rainbow Bridge Poem
               </Button>
             </Link>
           </div>
         </div>
+        
+        {/* Bottom decorative border */}
+        <div className="absolute bottom-1 left-0 right-0 h-px bg-gradient-to-r from-transparent via-pastel-gold/40 to-transparent"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
       </section>
       
       <Footer />

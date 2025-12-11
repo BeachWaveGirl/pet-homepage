@@ -73,7 +73,7 @@ export default {
 					light: 'hsl(40 30% 97%)',
 					dark: 'hsl(35 30% 88%)'
 				},
-				pastel: {
+			pastel: {
 					blue: 'hsl(210 45% 65%)',
 					'blue-dark': 'hsl(210 45% 55%)',
 					pink: 'hsl(350 35% 85%)',
@@ -81,6 +81,7 @@ export default {
 					mint: 'hsl(160 30% 80%)',
 					peach: 'hsl(20 50% 85%)'
 				},
+				'pastel-gold': 'hsl(40 50% 75%)',
 				charcoal: {
 					DEFAULT: 'hsl(25 30% 18%)',
 					light: 'hsl(25 20% 35%)'
