@@ -133,41 +133,47 @@ const Index = () => {
               <Link to={offering.link} key={offering.id} className="group">
                 <Card className="h-full overflow-hidden transition-all duration-300 hover:shadow-rococo-lg bg-cream-light border-2 border-primary/20 rounded-xl relative">
                   {/* Ornate corner detail */}
-                  <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-primary/40 rounded-tl-xl"></div>
-                  <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-primary/40 rounded-tr-xl"></div>
+                  <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-primary/40 rounded-tl-xl z-20"></div>
+                  <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-primary/40 rounded-tr-xl z-20"></div>
                   
-                  <div className="aspect-w-16 aspect-h-9 bg-cream/50 overflow-hidden">
+                  {/* Full image container with text overlay */}
+                  <div className="relative bg-cream/30">
+                    {/* Full image - object-contain to show entire illustration */}
                     <img 
                       src={offering.imageUrl} 
                       alt={offering.title} 
-                      className="object-cover w-full h-64 transition-transform duration-500 group-hover:scale-105"
+                      className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-[1.02]"
                     />
-                  </div>
-                  <CardContent className="p-6 bg-cream-light paper-texture">
-                    {/* Decorative line */}
-                    <div className="h-px w-full bg-gradient-to-r from-primary/30 via-pastel-gold/40 to-primary/30 mb-4"></div>
-                    <h3 className="font-playfair text-xl font-medium mb-2 text-foreground group-hover:text-primary transition-colors">
-                      {offering.title}
-                    </h3>
-                    <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
-                      {offering.description}
-                    </p>
-                    <div className="flex flex-wrap gap-2 mt-auto">
-                      {offering.keywords.slice(0,2).map((keyword, i) => (
-                        <Badge 
-                          key={i} 
-                          variant="outline" 
-                          className="text-xs border-primary/50 text-primary bg-primary/10 rounded-full px-3"
-                        >
-                          {keyword}
-                        </Badge>
-                      ))}
+                    
+                    {/* Copy overlay panel at top of image */}
+                    <div className="absolute top-0 left-0 right-0 p-4 z-10">
+                      <div className="bg-gradient-to-b from-cream/95 via-cream/90 to-transparent p-4 pb-8 rounded-t-lg">
+                        {/* Decorative line */}
+                        <div className="h-px w-full bg-gradient-to-r from-primary/30 via-pastel-gold/40 to-primary/30 mb-3"></div>
+                        <h3 className="font-playfair text-lg font-medium mb-2 text-foreground group-hover:text-primary transition-colors leading-tight">
+                          {offering.title}
+                        </h3>
+                        <p className="text-muted-foreground mb-3 text-xs leading-relaxed line-clamp-3">
+                          {offering.description}
+                        </p>
+                        <div className="flex flex-wrap gap-1.5">
+                          {offering.keywords.slice(0,2).map((keyword, i) => (
+                            <Badge 
+                              key={i} 
+                              variant="outline" 
+                              className="text-[10px] border-primary/50 text-primary bg-primary/10 rounded-full px-2 py-0.5"
+                            >
+                              {keyword}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
                     </div>
-                  </CardContent>
+                  </div>
                   
                   {/* Bottom ornate corners */}
-                  <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-primary/40 rounded-bl-xl"></div>
-                  <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-primary/40 rounded-br-xl"></div>
+                  <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-primary/40 rounded-bl-xl z-20"></div>
+                  <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-primary/40 rounded-br-xl z-20"></div>
                 </Card>
               </Link>
             ))}
