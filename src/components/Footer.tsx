@@ -1,7 +1,7 @@
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-cream-dark py-10 px-4 paper-texture relative">
+    <footer className="w-full bg-aged-paper py-10 px-4 paper-texture paper-vignette relative">
       {/* Top decorative border */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
       <div className="absolute top-1 left-0 right-0 h-px bg-gradient-to-r from-transparent via-pastel-gold/40 to-transparent"></div>
