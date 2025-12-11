@@ -4,32 +4,36 @@ import Footer from "@/components/Footer";
 import { getPostBySlug, blogPosts } from "@/data/blogPosts";
 import { ArrowLeft } from "lucide-react";
 
-// Format content with proper HTML
+// Format content with proper HTML - white background styling
 const formatContent = (content: string) => {
   return content
     .split('\n')
     .map(line => {
       const trimmed = line.trim();
+      // Handle h2 headings (with or without ##)
       if (trimmed.startsWith('## ')) {
-        return `<h2 class="text-2xl md:text-3xl font-bold text-[#c17f59] mt-12 mb-6">${trimmed.slice(3)}</h2>`;
+        return `<h2 class="text-2xl md:text-3xl font-playfair font-bold text-gray-900 mt-14 mb-6">${trimmed.slice(3)}</h2>`;
       }
+      // Handle h3 headings (with or without ###)
       if (trimmed.startsWith('### ')) {
-        return `<h3 class="text-xl md:text-2xl font-semibold text-gray-800 mt-10 mb-4">${trimmed.slice(4)}</h3>`;
+        return `<h3 class="text-xl md:text-2xl font-playfair font-semibold text-gray-800 mt-10 mb-4">${trimmed.slice(4)}</h3>`;
       }
+      // Handle list items
       if (trimmed.startsWith('- ')) {
-        return `<li class="text-gray-600 font-light leading-relaxed ml-4">${trimmed.slice(2)}</li>`;
+        return `<li class="text-gray-600 font-light leading-relaxed ml-6 mb-2">${trimmed.slice(2)}</li>`;
       }
+      // Handle bold paragraphs
       if (trimmed.startsWith('**') && trimmed.endsWith('**')) {
-        return `<p class="text-gray-800 font-semibold mt-6 mb-2">${trimmed.slice(2, -2)}</p>`;
+        return `<p class="text-gray-800 font-semibold mt-8 mb-3 text-lg">${trimmed.slice(2, -2)}</p>`;
       }
       if (trimmed === '') {
         return '';
       }
-      // Regular paragraph - apply bold formatting within
+      // Regular paragraph with inline formatting
       const formattedLine = trimmed
-        .replace(/\*\*(.*?)\*\*/g, '<strong class="text-gray-800">$1</strong>')
+        .replace(/\*\*(.*?)\*\*/g, '<strong class="text-gray-800 font-medium">$1</strong>')
         .replace(/\*(.*?)\*/g, '<em>$1</em>');
-      return `<p class="text-gray-600 font-light leading-[1.9] mb-6">${formattedLine}</p>`;
+      return `<p class="text-gray-600 font-light text-lg leading-[2] mb-8">${formattedLine}</p>`;
     })
     .filter(line => line !== '')
     .join('\n');
@@ -48,7 +52,7 @@ const BlogPost = () => {
     .slice(0, 3);
 
   return (
-    <div className="min-h-screen bg-white text-gray-900">
+    <div className="min-h-screen bg-white text-gray-900 font-inter">
       <Header />
       
       <div className="pt-24 px-4">
@@ -71,30 +75,30 @@ const BlogPost = () => {
               alt={post.title}
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/10 via-pink-500/5 to-amber-500/10 opacity-50" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/10 via-pink-500/5 to-amber-500/10 opacity-40" />
           </div>
 
           <div className="flex items-center gap-3 mb-6 flex-wrap">
             <span className="px-4 py-1.5 bg-gray-100 text-gray-700 text-sm font-medium rounded-full">
               {post.category}
             </span>
-            <span className="text-gray-400">{post.date}</span>
+            <span className="text-gray-500">{post.date}</span>
             <span className="text-gray-300">•</span>
-            <span className="text-gray-400">{post.readTime} min read</span>
+            <span className="text-gray-500">{post.readTime} min read</span>
           </div>
 
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#c17f59] mb-8 leading-tight">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-playfair font-bold text-gray-900 mb-8 leading-tight">
             {post.title}
           </h1>
 
-          <p className="text-xl text-gray-500 font-light mb-12 leading-relaxed border-l-4 border-[#c17f59]/30 pl-6">
+          <p className="text-xl text-gray-600 font-light mb-12 leading-relaxed border-l-4 border-gray-300 pl-6">
             {post.description}
           </p>
 
           {post.tags && (
-            <div className="flex flex-wrap gap-2 mb-10">
+            <div className="flex flex-wrap gap-2 mb-12">
               {post.tags.map((tag) => (
-                <span key={tag} className="px-3 py-1 bg-gray-100 text-gray-500 text-xs rounded-full">
+                <span key={tag} className="px-3 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">
                   {tag}
                 </span>
               ))}
@@ -108,9 +112,9 @@ const BlogPost = () => {
         </div>
       </article>
 
-      <section className="py-16 px-4 bg-[#faf8f5]">
+      <section className="py-16 px-4 bg-gray-50">
         <div className="container mx-auto max-w-3xl text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-[#c17f59] mb-4">
+          <h2 className="text-2xl md:text-3xl font-playfair font-bold text-gray-900 mb-4">
             Honor Your Beloved Pet
           </h2>
           <p className="text-gray-600 mb-8 max-w-xl mx-auto font-light">
@@ -119,7 +123,7 @@ const BlogPost = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/memorial-card"
-              className="inline-flex items-center justify-center px-6 py-3 bg-[#c17f59] text-white font-medium rounded-full hover:bg-[#a86d4a] transition-colors"
+              className="inline-flex items-center justify-center px-6 py-3 bg-black text-white font-medium rounded-full hover:bg-gray-800 transition-colors"
             >
               Create Memorial Card
             </Link>
@@ -127,7 +131,7 @@ const BlogPost = () => {
               to="/candle-ceremony"
               className="inline-flex items-center justify-center px-6 py-3 bg-transparent text-gray-700 font-medium rounded-full hover:bg-gray-100 transition-colors border border-gray-300"
             >
-              🕯️ Light a Candle
+              Light a Candle
             </Link>
           </div>
         </div>
@@ -136,7 +140,7 @@ const BlogPost = () => {
       {relatedPosts.length > 0 && (
         <section className="py-16 px-4 bg-white">
           <div className="container mx-auto max-w-6xl">
-            <h2 className="text-2xl font-bold text-gray-800 mb-8">
+            <h2 className="text-2xl font-playfair font-bold text-gray-900 mb-8">
               Related Articles
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -152,13 +156,13 @@ const BlogPost = () => {
                       alt={relatedPost.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/10 via-pink-500/5 to-amber-500/10 opacity-50" />
+                    <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/10 via-pink-500/5 to-amber-500/10 opacity-40" />
                   </div>
                   <div className="p-5">
                     <span className="px-3 py-1 bg-gray-100 text-gray-600 text-xs font-medium rounded-full">
                       {relatedPost.category}
                     </span>
-                    <h3 className="mt-3 font-semibold text-gray-800 group-hover:text-[#c17f59] transition-colors line-clamp-2">
+                    <h3 className="mt-3 font-playfair font-semibold text-gray-800 group-hover:text-gray-600 transition-colors line-clamp-2">
                       {relatedPost.title}
                     </h3>
                   </div>
