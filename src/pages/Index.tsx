@@ -69,30 +69,33 @@ const Index = () => {
     <div className="min-h-screen flex flex-col bg-background font-inter">
       <Header />
       
-      {/* Hero Section with rococo baroque illustration */}
-      <section className="w-full min-h-[70vh] md:min-h-[80vh] flex items-center justify-center relative overflow-hidden">
-        {/* Hero background image */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('/assets/hero-memorial.png')" }}
-        />
-        {/* Gradient overlay for text readability - fades to cream paper */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />
+      {/* Hero Section - Full image display */}
+      <section className="w-full pt-16 relative">
+        {/* Hero image - full display without transparency */}
+        <div className="w-full">
+          <img 
+            src="/assets/hero-memorial.png" 
+            alt="Pet Memorial - Rainbow Bridge with beloved pets in ornate baroque frame"
+            className="w-full h-auto object-contain"
+          />
+        </div>
         
-        <div className="container max-w-4xl mx-auto text-center animate-fade-in-slow relative z-10 px-4 pt-16">
-          <h1 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground drop-shadow-sm">
-            Honor Their Memory, Celebrate Their Love
-          </h1>
-          <p className="text-lg md:text-xl text-foreground/80 mb-10 max-w-2xl mx-auto">
-            Customized pet memorial keepsakes delivered instantly to your inbox
-          </p>
-          
-          <Link to="/memorial-card">
-            <Button className="bg-primary hover:bg-pastel-blue-dark text-primary-foreground transition-colors shadow-rococo px-8 py-6 text-lg">
-              Create a Memorial
-            </Button>
-          </Link>
+        {/* Text overlay positioned at bottom of image */}
+        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background via-background/90 to-transparent py-12 md:py-16">
+          <div className="container max-w-4xl mx-auto text-center px-4">
+            <h1 className="font-playfair text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-foreground drop-shadow-sm">
+              Honor Their Memory, Celebrate Their Love
+            </h1>
+            <p className="text-base md:text-lg text-foreground/80 mb-6 max-w-2xl mx-auto">
+              Customized pet memorial keepsakes delivered instantly to your inbox
+            </p>
+            
+            <Link to="/memorial-card">
+              <Button className="bg-primary hover:bg-pastel-blue-dark text-primary-foreground transition-colors shadow-rococo px-8 py-5 text-base">
+                Create a Memorial
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
       
