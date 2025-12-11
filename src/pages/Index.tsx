@@ -69,32 +69,47 @@ const Index = () => {
     <div className="min-h-screen flex flex-col bg-background font-inter">
       <Header />
       
-      {/* Hero Section - Full image display */}
+      {/* Hero Section - Full image display with centered text */}
       <section className="w-full pt-16 relative">
-        {/* Hero image - full display without transparency */}
-        <div className="w-full">
+        {/* Hero image - full display at 100% opacity */}
+        <div className="w-full relative">
           <img 
             src="/assets/hero-memorial.png" 
             alt="Pet Memorial - Rainbow Bridge with beloved pets in ornate baroque frame"
             className="w-full h-auto object-contain"
           />
-        </div>
-        
-        {/* Text overlay positioned at bottom of image */}
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background via-background/90 to-transparent py-12 md:py-16">
-          <div className="container max-w-4xl mx-auto text-center px-4">
-            <h1 className="font-playfair text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-foreground drop-shadow-sm">
-              Honor Their Memory, Celebrate Their Love
-            </h1>
-            <p className="text-base md:text-lg text-foreground/80 mb-6 max-w-2xl mx-auto">
-              Customized pet memorial keepsakes delivered instantly to your inbox
-            </p>
-            
-            <Link to="/memorial-card">
-              <Button className="bg-primary hover:bg-pastel-blue-dark text-primary-foreground transition-colors shadow-rococo px-8 py-5 text-base">
-                Create a Memorial
-              </Button>
-            </Link>
+          
+          {/* Text overlay centered within the image scene */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="text-center px-4 max-w-3xl" style={{ marginTop: '-5%' }}>
+              <h1 
+                className="font-playfair text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 text-foreground"
+                style={{ 
+                  textShadow: '0 0 30px rgba(245, 241, 232, 0.9), 0 0 60px rgba(245, 241, 232, 0.7), 0 2px 4px rgba(0,0,0,0.1)' 
+                }}
+              >
+                A soft place for hard goodbyes
+              </h1>
+              <p 
+                className="text-base md:text-lg lg:text-xl text-foreground/90 mb-6 max-w-2xl mx-auto leading-relaxed"
+                style={{ 
+                  textShadow: '0 0 20px rgba(245, 241, 232, 0.95), 0 0 40px rgba(245, 241, 232, 0.8)' 
+                }}
+              >
+                Turn your memories into gentle keepsakes—like a poem, a postcard, a small light you can visit whenever your heart misses them.
+              </p>
+              
+              <Link to="/memorial-card">
+                <Button 
+                  className="bg-primary hover:bg-pastel-blue-dark text-primary-foreground transition-colors shadow-rococo px-8 py-5 text-base"
+                  style={{ 
+                    boxShadow: '0 0 20px rgba(245, 241, 232, 0.6), 0 4px 15px rgba(0,0,0,0.1)' 
+                  }}
+                >
+                  Create a Memorial
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
