@@ -3,12 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
-import { 
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 const Header = () => {
@@ -69,51 +63,51 @@ const Header = () => {
   ];
 
   return (
-    <header className={`w-full bg-white py-4 px-4 md:px-6 flex justify-center border-b border-gray-200 fixed top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-opacity-50 backdrop-blur-sm shadow-sm' : 'bg-opacity-100'}`}>
+    <header className={`w-full bg-background py-4 px-4 md:px-6 flex justify-center border-b border-border fixed top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-opacity-90 backdrop-blur-sm shadow-rococo' : 'bg-opacity-100'}`}>
       <div className="container flex justify-between items-center">
         {/* Hamburger Menu with side slide effect */}
-        <Button variant="ghost" size="sm" className="p-1 text-gray-900 hover:bg-gray-100" onClick={() => setIsMenuOpen(true)}>
+        <Button variant="ghost" size="sm" className="p-1 text-foreground hover:bg-muted" onClick={() => setIsMenuOpen(true)}>
           <Menu className="h-8 w-8" />
           <span className="sr-only">Open main menu</span>
         </Button>
         
         <Dialog open={isMenuOpen} onOpenChange={setIsMenuOpen}>
-          <DialogContent className="p-0 sm:max-w-[320px] h-full fixed left-0 top-0 rounded-none border-r border-gray-200 bg-white text-gray-900 shadow-xl transform transition-transform duration-300 ease-in-out" 
+          <DialogContent className="p-0 sm:max-w-[320px] h-full fixed left-0 top-0 rounded-none border-r border-border bg-card text-foreground shadow-rococo-lg transform transition-transform duration-300 ease-in-out" 
             style={{transform: isMenuOpen ? 'translateX(0)' : 'translateX(-100%)'}}
             onInteractOutside={(e) => {e.preventDefault(); setIsMenuOpen(false);}}>
             <div className="h-full flex flex-col">
-              <div className="flex items-center justify-between p-4 border-b border-gray-200">
+              <div className="flex items-center justify-between p-4 border-b border-border">
                 <Link 
                   to="/" 
-                  className="text-xl font-playfair font-semibold text-gray-900"
+                  className="text-xl font-playfair font-semibold text-foreground"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Pet Memorial Star
                 </Link>
-                <Button variant="ghost" size="sm" className="p-1 text-gray-900 hover:bg-gray-100" onClick={() => setIsMenuOpen(false)}>
+                <Button variant="ghost" size="sm" className="p-1 text-foreground hover:bg-muted" onClick={() => setIsMenuOpen(false)}>
                   <X className="h-6 w-6" />
                   <span className="sr-only">Close menu</span>
                 </Button>
               </div>
               <div className="flex-1 overflow-y-auto p-4">
                 <div className="mt-6">
-                  <h3 className="font-medium text-gray-900 mb-3">Memorial Tools</h3>
+                  <h3 className="font-medium text-foreground mb-3">Memorial Tools</h3>
                   <div className="space-y-3">
                     {memorialTools.map((tool) => (
                       <Link 
                         key={tool.title}
                         to={tool.href} 
-                        className="block py-2 px-4 text-left text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors"
+                        className="block py-2 px-4 text-left text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors"
                         onClick={() => setIsMenuOpen(false)}
                       >
                         <div className="font-medium">{tool.title}</div>
-                        <p className="text-xs text-gray-500 mt-1">{tool.description}</p>
+                        <p className="text-xs text-muted-foreground mt-1">{tool.description}</p>
                       </Link>
                     ))}
                     
                     <Link to="/star-memorial" onClick={() => setIsMenuOpen(false)}>
                       <Button
-                        className="w-full bg-black text-white hover:bg-gray-800 transition-colors mt-4 border border-gray-200"
+                        className="w-full bg-primary text-primary-foreground hover:bg-pastel-blue-dark transition-colors mt-4"
                       >
                         Create a Memorial
                       </Button>
@@ -125,20 +119,20 @@ const Header = () => {
           </DialogContent>
         </Dialog>
         
-        <Link to="/" className="text-xl font-playfair font-semibold flex items-center text-gray-900">
+        <Link to="/" className="text-xl font-playfair font-semibold flex items-center text-foreground">
           <span>Pet Memorial Star</span>
         </Link>
         
         <div className="flex items-center gap-4">
           <Link 
             to="/blog" 
-            className="text-gray-700 hover:text-gray-900 transition-colors hidden md:block font-medium"
+            className="text-muted-foreground hover:text-foreground transition-colors hidden md:block font-medium"
           >
             Blog
           </Link>
           <Link to="/star-memorial">
             <Button 
-              className="bg-black text-white hover:bg-gray-800 transition-colors hidden md:flex border border-gray-200"
+              className="bg-primary text-primary-foreground hover:bg-pastel-blue-dark transition-colors hidden md:flex shadow-rococo"
             >
               Create a Memorial
             </Button>

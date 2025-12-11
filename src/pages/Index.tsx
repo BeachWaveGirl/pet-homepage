@@ -66,22 +66,30 @@ const memorialOfferings = [
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-white font-inter page-container">
+    <div className="min-h-screen flex flex-col bg-background font-inter">
       <Header />
       
-      {/* Hero Section with rainbow pets image */}
-      <section className="w-full py-20 md:py-28 px-4 flex items-center justify-center relative overflow-hidden bg-gradient-to-b from-white to-gray-50">
-        <div className="absolute inset-0 bg-[url('/assets/hero-petloss.png')] opacity-60 bg-cover bg-center"></div>
-        <div className="container max-w-4xl mx-auto text-center animate-fade-in-slow relative z-10">
-          <h1 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900">
+      {/* Hero Section with rococo baroque illustration */}
+      <section className="w-full min-h-[70vh] md:min-h-[80vh] flex items-center justify-center relative overflow-hidden">
+        {/* Hero background image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: "url('/assets/hero-memorial.png')" }}
+        />
+        {/* Gradient overlay for text readability - fades to cream paper */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />
+        
+        <div className="container max-w-4xl mx-auto text-center animate-fade-in-slow relative z-10 px-4 pt-16">
+          <h1 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground drop-shadow-sm">
             Honor Their Memory, Celebrate Their Love
           </h1>
-          <p className="text-lg md:text-xl text-gray-700 mb-10 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-foreground/80 mb-10 max-w-2xl mx-auto">
             Customized pet memorial keepsakes delivered instantly to your inbox
           </p>
           
           <Link to="/memorial-card">
-            <Button className="bg-black hover:bg-gray-800 text-white transition-colors">
+            <Button className="bg-primary hover:bg-pastel-blue-dark text-primary-foreground transition-colors shadow-rococo px-8 py-6 text-lg">
               Create a Memorial
             </Button>
           </Link>
@@ -89,11 +97,11 @@ const Index = () => {
       </section>
       
       {/* Memorial Offerings Section */}
-      <section id="memorial-section" className="w-full py-16 px-4 bg-white">
+      <section id="memorial-section" className="w-full py-16 px-4 bg-background paper-vignette">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
-            <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-4 text-gray-900">Pet Loss Memorial Gifts & Keepsakes</h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-4 text-foreground">Pet Loss Memorial Gifts & Keepsakes</h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               Healing digital remembrances for your rainbow bridge pet
             </p>
           </div>
@@ -101,8 +109,8 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {memorialOfferings.map((offering) => (
               <Link to={offering.link} key={offering.id} className="group">
-                <Card className="h-full overflow-hidden transition-all duration-300 hover:shadow-md group-hover:border-gray-300">
-                  <div className="aspect-w-16 aspect-h-9 bg-gray-100">
+                <Card className="h-full overflow-hidden transition-all duration-300 hover:shadow-rococo-lg bg-card border-border/60 rounded-lg">
+                  <div className="aspect-w-16 aspect-h-9 bg-muted/30 overflow-hidden">
                     <img 
                       src={offering.imageUrl} 
                       alt={offering.title} 
@@ -110,15 +118,19 @@ const Index = () => {
                     />
                   </div>
                   <CardContent className="p-6">
-                    <h3 className="font-playfair text-xl font-medium mb-2 text-gray-900 group-hover:text-gray-700">
+                    <h3 className="font-playfair text-xl font-medium mb-2 text-foreground group-hover:text-primary transition-colors">
                       {offering.title}
                     </h3>
-                    <p className="text-gray-600 mb-4 text-sm">
+                    <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
                       {offering.description}
                     </p>
                     <div className="flex flex-wrap gap-2 mt-auto">
                       {offering.keywords.slice(0,2).map((keyword, i) => (
-                        <Badge key={i} variant="outline" className="text-xs">
+                        <Badge 
+                          key={i} 
+                          variant="outline" 
+                          className="text-xs border-primary/40 text-primary bg-primary/5"
+                        >
                           {keyword}
                         </Badge>
                       ))}
@@ -132,25 +144,25 @@ const Index = () => {
       </section>
       
       {/* Comfort Section */}
-      <section className="w-full py-16 px-4 bg-gray-50">
+      <section className="w-full py-16 px-4 bg-muted/50">
         <div className="container mx-auto max-w-4xl">
           <div className="text-center mb-8">
-            <h2 className="font-playfair text-3xl font-bold mb-4 text-gray-900">Finding Comfort in Memory</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <h2 className="font-playfair text-3xl font-bold mb-4 text-foreground">Finding Comfort in Memory</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               Every remembrance is a celebration of the love you shared with your pet.
               Our thoughtfully designed memorials provide comfort during this difficult time.
             </p>
           </div>
           
-          <div className="mt-12 flex flex-col md:flex-row items-center gap-8 justify-center">
+          <div className="mt-12 flex flex-col md:flex-row items-center gap-6 justify-center">
             <Link to="/star-map" className="w-full md:w-auto">
-              <Button className="w-full bg-black text-white hover:bg-gray-800">
+              <Button className="w-full bg-primary hover:bg-pastel-blue-dark text-primary-foreground shadow-rococo px-8">
                 Create a Star Map
               </Button>
             </Link>
             
             <Link to="/rainbow-bridge" className="w-full md:w-auto">
-              <Button variant="outline" className="w-full border-gray-300 text-gray-900">
+              <Button variant="outline" className="w-full border-primary/50 text-foreground hover:bg-primary/10 hover:border-primary px-8">
                 Rainbow Bridge Poem
               </Button>
             </Link>
