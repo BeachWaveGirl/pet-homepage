@@ -54,7 +54,7 @@ const PetFuneral = () => {
   };
   
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col bg-aged-paper paper-texture">
       <Header />
       
       <main className="flex-1 py-6 px-4">

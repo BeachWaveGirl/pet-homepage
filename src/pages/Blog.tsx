@@ -6,12 +6,12 @@ import { Button } from "@/components/ui/button";
 
 const Blog = () => {
   return (
-    <div className="min-h-screen bg-background text-foreground font-inter">
+    <div className="min-h-screen bg-aged-paper paper-texture text-foreground font-inter">
       
       <Header />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-16 px-4 bg-muted/50">
+      <section className="pt-32 pb-16 px-4">
         <div className="container mx-auto max-w-6xl text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-playfair font-bold text-foreground mb-6 tracking-tight">
             Pet Memorial Blog
@@ -23,7 +23,7 @@ const Blog = () => {
       </section>
 
       {/* Blog Grid */}
-      <section className="py-12 px-4 bg-background">
+      <section className="py-12 px-4">
         <div className="container mx-auto max-w-7xl">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {blogPosts.map((post) => (
@@ -82,7 +82,7 @@ const Blog = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 px-4 bg-muted/50">
+      <section className="py-16 px-4">
         <div className="container mx-auto max-w-4xl text-center">
           <h2 className="text-3xl md:text-4xl font-playfair font-bold text-foreground mb-4">
             Honor Your Pet with a Star Memorial

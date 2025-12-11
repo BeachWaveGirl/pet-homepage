@@ -147,7 +147,7 @@ const PetMemorialCard = () => {
   const previewImage = selectedBreed?.image || selectedPetTypeData?.image || defaultRabbitImage;
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col bg-aged-paper paper-texture">
       <Header />
       
       {/* Hero Section */}
