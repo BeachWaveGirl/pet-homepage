@@ -53,7 +53,7 @@ const BlogPost = () => {
     .slice(0, 3);
 
   return (
-    <div className="min-h-screen bg-background text-foreground font-inter">
+    <div className="min-h-screen bg-aged-paper paper-texture text-foreground font-inter">
       <Header />
       
       <div className="pt-24 px-4">
@@ -113,7 +113,7 @@ const BlogPost = () => {
         </div>
       </article>
 
-      <section className="py-16 px-4 bg-muted/50">
+      <section className="py-16 px-4">
         <div className="container mx-auto max-w-3xl text-center">
           <h2 className="text-2xl md:text-3xl font-playfair font-bold text-foreground mb-4">
             Honor Your Beloved Pet
@@ -137,7 +137,7 @@ const BlogPost = () => {
       </section>
 
       {relatedPosts.length > 0 && (
-        <section className="py-16 px-4 bg-background">
+        <section className="py-16 px-4">
           <div className="container mx-auto max-w-6xl">
             <h2 className="text-2xl font-playfair font-bold text-foreground mb-8">
               Related Articles
