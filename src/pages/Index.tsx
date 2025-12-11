@@ -12,7 +12,7 @@ const memorialOfferings = [
     id: "pet-funeral",
     title: "Pet Funeral Announcement Card",
     description: "Create a dignified digital invitation to share your pet's memorial service with family and friends. Instant download, easily shareable via text or social media.",
-    imageUrl: "/lovable-uploads/c3857a85-d6ef-423a-a3bb-bd784cf7ac7d.png",
+    imageUrl: "/assets/banners/HP_funeral.png",
     link: "/pet-funeral",
     detailedDescription: "Design personalized announcement cards for your pet's service. Choose from elegant templates and customize with your pet's photo and memorial details.",
     keywords: ["pet loss announcement", "dog funeral invitation", "cat memorial service", "pet remembrance gathering"]
@@ -21,7 +21,7 @@ const memorialOfferings = [
     id: "star-map",
     title: "Custom Pet Star Map",
     description: "A personalized celestial map showing the exact stars shining on the night your beloved pet became your guardian angel. Beautiful constellation art to remember their special place in your heart.",
-    imageUrl: "/lovable-uploads/efa73ad4-f753-493c-933e-d1ec4998656f.png",
+    imageUrl: "/assets/banners/HP_starmap.png",
     link: "/star-map",
     detailedDescription: "Generate a personalized star chart to mark the memory of your beloved pet. See the exact stars that were shining on their special day.",
     keywords: ["pet memorial star map", "dog remembrance gift", "cat memorial print", "pet loss keepsake"]
@@ -30,7 +30,7 @@ const memorialOfferings = [
     id: "memorial-card",
     title: "Create a Memorial Card",
     description: "Create a personalized pet memorial card with beautiful watercolor illustrations. Choose your pet type, add their name, dates, and a heartfelt message.",
-    imageUrl: "/lovable-uploads/ae4cb9db-7c24-479a-bd6b-bfdab9c1c6e2.png",
+    imageUrl: "/assets/banners/HP_memorial.png",
     link: "/memorial-card",
     detailedDescription: "Design a beautiful memorial card featuring watercolor pet illustrations, customizable backgrounds, and your personal tribute message.",
     keywords: ["pet memorial card", "dog remembrance card", "cat memorial keepsake", "rainbow bridge card"]
@@ -39,7 +39,7 @@ const memorialOfferings = [
     id: "rainbow-bridge",
     title: "Rainbow Bridge Poem Print",
     description: "Comforting words paired with gentle imagery to honor your pet's crossing. Personalized with their name and a special message from you.",
-    imageUrl: "/lovable-uploads/be74091f-4ccb-434e-88ac-0667651f253a.png",
+    imageUrl: "/assets/banners/HP_poem.png",
     link: "/rainbow-bridge",
     detailedDescription: "Create a beautiful, personalized Rainbow Bridge poem that honors your pet's memory with comforting words and gentle imagery.",
     keywords: ["pet sympathy gift", "dog memorial poem", "cat rainbow bridge", "pet bereavement print"]
@@ -48,7 +48,7 @@ const memorialOfferings = [
     id: "pet-physic-reading",
     title: "Pet Spirit Connection Chat",
     description: "Receive comforting messages and insights from your pet on the other side. Our spiritual advisors help bridge the connection between worlds.",
-    imageUrl: "/lovable-uploads/f33432eb-d4f4-459a-9cba-6fdfdbacd6a0.png",
+    imageUrl: "/assets/banners/HP_chat.png",
     link: "/pet-physic-reading",
     detailedDescription: "A gentle AI chat experience to feel spiritually connected to your pet. Receive comforting messages that can help during the grieving process.",
     keywords: ["pet medium reading", "dog afterlife connection", "cat spirit communication", "pet loss comfort"]
@@ -57,7 +57,7 @@ const memorialOfferings = [
     id: "candle-ceremony",
     title: "Candle Ceremony",
     description: "Light a virtual memorial candle for your beloved pet. A peaceful, interactive tribute that keeps their memory glowing bright in your heart.",
-    imageUrl: "/lovable-uploads/6f146f9a-c7c2-4e3e-8b41-df577ef5aa27.png",
+    imageUrl: "/assets/banners/HP_candle.png",
     link: "/candle-ceremony",
     detailedDescription: "Honor your pet's memory with a virtual candle that burns for 24 hours. Join a community of pet lovers in remembrance.",
     keywords: ["pet memorial candle", "virtual pet tribute", "dog remembrance light", "cat memorial flame"]
