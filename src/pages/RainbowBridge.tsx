@@ -46,14 +46,14 @@ const RainbowBridge = () => {
             lightMode={true}
           />
           
-          <div className="relative w-full h-64 md:h-80 lg:h-96 mb-10 rounded-xl overflow-hidden">
+          <div className="relative w-full mb-10 rounded-xl overflow-hidden">
             <img 
-              src="/lovable-uploads/be74091f-4ccb-434e-88ac-0667651f253a.png"
+              src="/assets/banners/Poem_LP2-2.png"
               alt="Rainbow Bridge" 
-              className="w-full h-full object-cover"
+              className="w-full h-auto object-contain"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
-              <p className="text-white text-lg md:text-xl p-6 max-w-2xl">
+            <div className="absolute inset-0 flex items-center justify-center">
+              <p className="text-gray-800 text-lg md:text-xl text-center max-w-2xl px-6 py-4 bg-white/80 backdrop-blur-sm rounded-lg font-playfair">
                 Honor your beloved pet with a beautiful Rainbow Bridge poem, celebrating their journey across the bridge where they wait until you meet again.
               </p>
             </div>

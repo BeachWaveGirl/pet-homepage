@@ -10,15 +10,15 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-[hsl(35,30%,75%)] text-white hover:bg-[hsl(35,30%,65%)]",
+        default: "bg-[hsl(43,60%,55%)] text-white hover:bg-[hsl(43,60%,45%)]",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
-          "border-2 border-[hsl(35,30%,75%)] bg-[hsl(35,30%,75%)] text-white hover:bg-[hsl(35,30%,65%)]",
+          "border-2 border-[hsl(43,60%,55%)] bg-[hsl(43,60%,55%)] text-white hover:bg-[hsl(43,60%,45%)]",
         secondary:
-          "bg-[hsl(35,30%,75%)] text-white hover:bg-[hsl(35,30%,65%)]",
-        ghost: "hover:bg-[hsl(35,30%,75%)]/20 text-[hsl(35,30%,55%)] hover:text-[hsl(35,30%,45%)]",
-        link: "text-[hsl(35,30%,55%)] underline-offset-4 hover:underline hover:text-[hsl(35,30%,45%)]",
+          "bg-[hsl(43,60%,55%)] text-white hover:bg-[hsl(43,60%,45%)]",
+        ghost: "hover:bg-[hsl(43,60%,55%)]/20 text-[hsl(43,60%,45%)] hover:text-[hsl(43,60%,35%)]",
+        link: "text-[hsl(43,60%,45%)] underline-offset-4 hover:underline hover:text-[hsl(43,60%,35%)]",
       },
       size: {
         default: "h-10 px-6 py-2",
