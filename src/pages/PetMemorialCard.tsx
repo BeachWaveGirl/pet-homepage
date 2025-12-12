@@ -150,47 +150,46 @@ const PetMemorialCard = () => {
     <div className="min-h-screen flex flex-col bg-aged-paper paper-texture">
       <Header />
       
-      {/* Hero Section */}
-      <section className="relative py-8 flex flex-col items-center justify-center overflow-hidden">
-        <div className="container mx-auto max-w-6xl px-4">
-          {/* Hero Image - full display from left to right */}
-          <div className="relative w-full">
-            <img 
-              src="/assets/banners/Pet_Memorial_Hero.png" 
-              alt="Pet Memorial - Ornate rococo frame with beloved pets" 
-              className="w-full h-auto object-contain"
-            />
-            
-            {/* Text overlay centered within the frame */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="text-center px-8 max-w-2xl">
-                <h1 className="text-2xl md:text-3xl lg:text-4xl font-playfair font-bold mb-3 text-charcoal" style={{
-                  textShadow: '0 0 30px rgba(245, 241, 232, 0.9), 0 0 60px rgba(245, 241, 232, 0.7)'
-                }}>
-                  Create a Personalized Pet Memorial Card
-                </h1>
-                <p className="text-sm md:text-base text-charcoal/80 max-w-xl mx-auto" style={{
-                  textShadow: '0 0 20px rgba(245, 241, 232, 0.95)'
-                }}>
-                  A gentle way to honor your beloved companion who crossed the Rainbow Bridge
-                </p>
+      {/* Hero Section - Full width like homepage */}
+      <section className="w-full pt-16 relative">
+        {/* Hero image - full display at 100% opacity, edge-to-edge */}
+        <div className="w-full relative">
+          <img 
+            src="/assets/banners/Pet_Memorial_Hero.png" 
+            alt="Pet Memorial - Ornate rococo frame with beloved pets" 
+            className="w-full h-auto object-contain"
+          />
+          
+          {/* Text overlay centered within the image scene */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="text-center px-4 max-w-3xl" style={{ marginTop: '-5%' }}>
+              <h1 style={{
+                textShadow: '0 0 30px rgba(245, 241, 232, 0.9), 0 0 60px rgba(245, 241, 232, 0.7), 0 2px 4px rgba(0,0,0,0.1)'
+              }} className="font-playfair text-3xl md:text-4xl xl:text-6xl font-bold mb-4 text-foreground lg:text-3xl">
+                Create a Personalized Pet Memorial Card
+              </h1>
+              <p className="text-base md:text-lg lg:text-xl text-foreground/90 mb-6 max-w-2xl mx-auto leading-relaxed" style={{
+                textShadow: '0 0 20px rgba(245, 241, 232, 0.95), 0 0 40px rgba(245, 241, 232, 0.8)'
+              }}>
+                A gentle way to honor your beloved companion who crossed the Rainbow Bridge
+              </p>
+              
+              <div className="flex gap-4 justify-center flex-wrap">
+                <Button 
+                  className="bg-transparent border-2 border-pastel-gold text-charcoal hover:bg-pastel-gold/10 hover:border-pastel-gold-dark transition-colors px-8 py-5 text-base backdrop-blur-sm"
+                  style={{ boxShadow: '0 0 20px rgba(245, 241, 232, 0.6), 0 4px 15px rgba(0,0,0,0.1)' }}
+                  onClick={() => document.getElementById('card-creator')?.scrollIntoView({ behavior: 'smooth' })}
+                >
+                  Create Memorial Card
+                </Button>
+                <Button 
+                  className="bg-transparent border-2 border-pastel-gold text-charcoal hover:bg-pastel-gold/10 hover:border-pastel-gold-dark transition-colors px-8 py-5 text-base backdrop-blur-sm"
+                  style={{ boxShadow: '0 0 20px rgba(245, 241, 232, 0.6), 0 4px 15px rgba(0,0,0,0.1)' }}
+                >
+                  View Card Gallery
+                </Button>
               </div>
             </div>
-          </div>
-          
-          {/* Buttons below the image */}
-          <div className="flex gap-4 justify-center flex-wrap mt-6">
-            <Button 
-              className="bg-transparent border-2 border-pastel-gold text-charcoal hover:bg-pastel-gold/10 text-base px-6 py-5"
-              onClick={() => document.getElementById('card-creator')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              Create Memorial Card
-            </Button>
-            <Button 
-              className="bg-transparent border-2 border-pastel-gold text-charcoal hover:bg-pastel-gold/10 text-base px-6 py-5"
-            >
-              View Card Gallery
-            </Button>
           </div>
         </div>
       </section>
