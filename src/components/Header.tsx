@@ -123,8 +123,12 @@ const Header = () => {
           </DialogContent>
         </Dialog>
         
-        <Link to="/" className="text-xl font-playfair font-semibold flex items-center text-foreground">
-          <span>Pet Memorial Star</span>
+        <Link to="/" className="flex items-center">
+          <img 
+            src="/assets/logo.png" 
+            alt="Pet Memorial Star" 
+            className="h-12 md:h-14 w-auto"
+          />
         </Link>
         
         <div className="flex items-center gap-4">

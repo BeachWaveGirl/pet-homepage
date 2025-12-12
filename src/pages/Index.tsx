@@ -21,7 +21,7 @@ const memorialOfferings = [
     id: "star-map",
     title: "Custom Pet Star Map",
     description: "A personalized celestial map showing the exact stars shining on the night your beloved pet became your guardian angel. Beautiful constellation art to remember their special place in your heart.",
-    imageUrl: "/assets/banners/HP_starmap.png",
+    imageUrl: "/assets/banners/HP_starmap2.png",
     link: "/star-map",
     detailedDescription: "Generate a personalized star chart to mark the memory of your beloved pet. See the exact stars that were shining on their special day.",
     keywords: ["pet memorial star map", "dog remembrance gift", "cat memorial print", "pet loss keepsake"]
@@ -30,7 +30,7 @@ const memorialOfferings = [
     id: "memorial-card",
     title: "Create a Memorial Card",
     description: "Create a personalized pet memorial card with beautiful watercolor illustrations. Choose your pet type, add their name, dates, and a heartfelt message.",
-    imageUrl: "/assets/banners/HP_memorial.png",
+    imageUrl: "/assets/banners/HP_memorial2.png",
     link: "/memorial-card",
     detailedDescription: "Design a beautiful memorial card featuring watercolor pet illustrations, customizable backgrounds, and your personal tribute message.",
     keywords: ["pet memorial card", "dog remembrance card", "cat memorial keepsake", "rainbow bridge card"]
@@ -48,7 +48,7 @@ const memorialOfferings = [
     id: "pet-physic-reading",
     title: "Pet Spirit Connection Chat",
     description: "Receive comforting messages and insights from your pet on the other side. Our spiritual advisors help bridge the connection between worlds.",
-    imageUrl: "/assets/banners/HP_chat.png",
+    imageUrl: "/assets/banners/HP_chat2.png",
     link: "/pet-physic-reading",
     detailedDescription: "A gentle AI chat experience to feel spiritually connected to your pet. Receive comforting messages that can help during the grieving process.",
     keywords: ["pet medium reading", "dog afterlife connection", "cat spirit communication", "pet loss comfort"]
@@ -57,7 +57,7 @@ const memorialOfferings = [
     id: "candle-ceremony",
     title: "Candle Ceremony",
     description: "Light a virtual memorial candle for your beloved pet. A peaceful, interactive tribute that keeps their memory glowing bright in your heart.",
-    imageUrl: "/assets/banners/HP_candle.png",
+    imageUrl: "/assets/banners/HP_candle2.png",
     link: "/candle-ceremony",
     detailedDescription: "Honor your pet's memory with a virtual candle that burns for 24 hours. Join a community of pet lovers in remembrance.",
     keywords: ["pet memorial candle", "virtual pet tribute", "dog remembrance light", "cat memorial flame"]
