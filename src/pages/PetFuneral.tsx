@@ -178,81 +178,123 @@ const PetFuneral = () => {
             
             {/* Live preview card with frame */}
             <div>
-              <div ref={previewRef} className="relative aspect-[3/4] w-full">
-                {/* Frame background */}
+              <div ref={previewRef} className="relative w-full max-w-[500px] mx-auto">
+                {/* Frame image */}
                 <img 
                   src="/assets/Frame.png" 
-                  alt="Ornate frame" 
-                  className="absolute inset-0 w-full h-full object-cover z-10 pointer-events-none"
+                  alt="Ornate rococo frame" 
+                  className="w-full block"
                 />
                 
-                {/* Content inside frame */}
-                <div className="absolute inset-0 flex items-center justify-center p-8 md:p-12">
-                  <div className="text-center w-full max-w-[85%]">
-                    {previewData.petPhoto && (
-                      <div className="mb-4">
-                        <div className="w-20 h-20 md:w-24 md:h-24 rounded-full mx-auto overflow-hidden border-2 border-[hsl(43,60%,55%)]">
-                          <img 
-                            src={previewData.petPhoto} 
-                            alt={previewData.petName || "Your pet"}
-                            className="w-full h-full object-cover" 
-                          />
-                        </div>
-                      </div>
-                    )}
-                  
-                    <h3 className="font-playfair text-lg md:text-xl text-gray-800 mb-1">Memorial Service</h3>
-                    <p className="text-gray-500 text-xs md:text-sm mb-2">In loving memory of</p>
-                    <h2 className="font-playfair text-xl md:text-2xl text-gray-900 mb-1">{previewData.petName || "Your Pet"}</h2>
-                    <p className="text-gray-600 text-xs md:text-sm mb-4">
-                      {previewData.petType ? `Our beloved ${previewData.petType}` : "Our beloved companion"}
-                    </p>
-                    
-                    <div className="border-t border-b border-gray-300 py-3 mb-4">
-                      <div className="flex items-center justify-center mb-1">
-                        <Calendar size={14} className="text-gray-600 mr-1" />
-                        <span className="text-gray-800 text-xs md:text-sm">
-                          {previewData.serviceDate ? 
-                            new Date(previewData.serviceDate).toLocaleDateString('en-US', {
-                              weekday: 'long',
-                              month: 'long',
-                              day: 'numeric',
-                              year: 'numeric'
-                            }) : 
-                            "Date to be determined"
-                          }
-                        </span>
-                      </div>
-                      
-                      <div className="flex items-center justify-center mb-1">
-                        <Clock size={14} className="text-gray-600 mr-1" />
-                        <span className="text-gray-800 text-xs md:text-sm">
-                          {previewData.serviceTime || "Time to be determined"}
-                        </span>
-                      </div>
-                      
-                      <div className="flex items-center justify-center">
-                        <MapPin size={14} className="text-gray-600 mr-1" />
-                        <span className="text-gray-800 text-xs md:text-sm">
-                          {previewData.serviceLocation || "Location to be determined"}
-                        </span>
+                {/* Content overlay - positioned inside the frame */}
+                <div 
+                  className="absolute text-center"
+                  style={{
+                    top: '18%',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    width: '65%',
+                  }}
+                >
+                  {previewData.petPhoto && (
+                    <div className="mb-3">
+                      <div className="w-16 h-16 md:w-20 md:h-20 rounded-full mx-auto overflow-hidden border-2 border-[hsl(43,60%,55%)] shadow-md">
+                        <img 
+                          src={previewData.petPhoto} 
+                          alt={previewData.petName || "Your pet"}
+                          className="w-full h-full object-cover" 
+                        />
                       </div>
                     </div>
+                  )}
+                
+                  <h3 
+                    className="text-base md:text-lg mb-1"
+                    style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', serif", color: '#3e2f2f' }}
+                  >
+                    Memorial Service
+                  </h3>
+                  <p 
+                    className="text-xs md:text-sm mb-1"
+                    style={{ fontFamily: "'Cormorant Garamond', serif", color: '#6b5b5b' }}
+                  >
+                    In loving memory of
+                  </p>
+                  <h2 
+                    className="text-xl md:text-2xl mb-1 font-semibold"
+                    style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', serif", color: '#2a1f1f' }}
+                  >
+                    {previewData.petName || "Your Pet"}
+                  </h2>
+                  <p 
+                    className="text-xs md:text-sm mb-3"
+                    style={{ fontFamily: "'Cormorant Garamond', serif", color: '#5c4a4a' }}
+                  >
+                    {previewData.petType ? `Our beloved ${previewData.petType}` : "Our beloved companion"}
+                  </p>
+                  
+                  <div 
+                    className="border-t border-b py-2 mb-3"
+                    style={{ borderColor: 'rgba(62, 47, 47, 0.25)' }}
+                  >
+                    <div className="flex items-center justify-center mb-1">
+                      <Calendar size={12} className="mr-1" style={{ color: '#5c4a4a' }} />
+                      <span 
+                        className="text-xs md:text-sm"
+                        style={{ fontFamily: "'Cormorant Garamond', serif", color: '#3e2f2f' }}
+                      >
+                        {previewData.serviceDate ? 
+                          new Date(previewData.serviceDate).toLocaleDateString('en-US', {
+                            weekday: 'long',
+                            month: 'long',
+                            day: 'numeric',
+                            year: 'numeric'
+                          }) : 
+                          "Date to be determined"
+                        }
+                      </span>
+                    </div>
                     
-                    {previewData.additionalInfo && (
-                      <p className="text-gray-700 italic text-xs mb-4 line-clamp-3">
-                        {previewData.additionalInfo}
-                      </p>
-                    )}
+                    <div className="flex items-center justify-center mb-1">
+                      <Clock size={12} className="mr-1" style={{ color: '#5c4a4a' }} />
+                      <span 
+                        className="text-xs md:text-sm"
+                        style={{ fontFamily: "'Cormorant Garamond', serif", color: '#3e2f2f' }}
+                      >
+                        {previewData.serviceTime || "Time to be determined"}
+                      </span>
+                    </div>
                     
-                    <p className="text-gray-600 text-xs">
-                      Please join us as we celebrate the life and memory of our cherished companion.
-                    </p>
+                    <div className="flex items-center justify-center">
+                      <MapPin size={12} className="mr-1" style={{ color: '#5c4a4a' }} />
+                      <span 
+                        className="text-xs md:text-sm"
+                        style={{ fontFamily: "'Cormorant Garamond', serif", color: '#3e2f2f' }}
+                      >
+                        {previewData.serviceLocation || "Location to be determined"}
+                      </span>
+                    </div>
                   </div>
+                  
+                  {previewData.additionalInfo && (
+                    <p 
+                      className="italic text-xs mb-2 line-clamp-2"
+                      style={{ fontFamily: "'Cormorant Garamond', serif", color: '#4a3d3d' }}
+                    >
+                      {previewData.additionalInfo}
+                    </p>
+                  )}
+                  
+                  <p 
+                    className="text-xs"
+                    style={{ fontFamily: "'Cormorant Garamond', serif", color: '#5c4a4a' }}
+                  >
+                    Please join us as we celebrate the life of our cherished companion.
+                  </p>
                 </div>
               </div>
               
-              <div className="mt-4">
+              <div className="mt-4 max-w-[500px] mx-auto">
                 <Button onClick={handleDownload} className="w-full">
                   <Download className="mr-2" size={16} />
                   Download Invitation
