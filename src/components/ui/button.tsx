@@ -6,19 +6,19 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-medium ring-offset-background transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pastel-gold focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-medium ring-offset-background transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        default: "bg-pastel-pink border-2 border-pastel-gold text-charcoal hover:bg-pastel-pink/80 hover:border-pastel-gold-dark",
+        default: "bg-[hsl(35,30%,75%)] text-white hover:bg-[hsl(35,30%,65%)]",
         destructive:
-          "bg-pastel-pink/50 border-2 border-destructive text-destructive hover:bg-pastel-pink/30",
+          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
-          "border-2 border-pastel-gold bg-pastel-pink text-charcoal hover:bg-pastel-pink/80",
+          "border-2 border-[hsl(35,30%,75%)] bg-[hsl(35,30%,75%)] text-white hover:bg-[hsl(35,30%,65%)]",
         secondary:
-          "bg-pastel-pink/70 border-2 border-pastel-gold/60 text-charcoal hover:bg-pastel-pink/50 hover:border-pastel-gold",
-        ghost: "hover:bg-pastel-pink/50 text-charcoal border-2 border-transparent hover:border-pastel-gold/30",
-        link: "text-charcoal underline-offset-4 hover:underline hover:text-pastel-gold-dark",
+          "bg-[hsl(35,30%,75%)] text-white hover:bg-[hsl(35,30%,65%)]",
+        ghost: "hover:bg-[hsl(35,30%,75%)]/20 text-[hsl(35,30%,55%)] hover:text-[hsl(35,30%,45%)]",
+        link: "text-[hsl(35,30%,55%)] underline-offset-4 hover:underline hover:text-[hsl(35,30%,45%)]",
       },
       size: {
         default: "h-10 px-6 py-2",
