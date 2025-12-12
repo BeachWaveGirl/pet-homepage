@@ -34,7 +34,7 @@ const memorialOfferings = [{
   id: "rainbow-bridge",
   title: "Rainbow Bridge Poem Print",
   description: "Comforting words paired with gentle imagery to honor your pet's crossing. Personalized with their name and a special message from you.",
-  imageUrl: "/assets/banners/HP_poem.png",
+  imageUrl: "/assets/banners/HP_poem2.png",
   link: "/rainbow-bridge",
   detailedDescription: "Create a beautiful, personalized Rainbow Bridge poem that honors your pet's memory with comforting words and gentle imagery.",
   keywords: ["pet sympathy gift", "dog memorial poem", "cat rainbow bridge", "pet bereavement print"]
@@ -50,7 +50,7 @@ const memorialOfferings = [{
   id: "candle-ceremony",
   title: "Candle Ceremony",
   description: "Light a virtual memorial candle for your beloved pet. A peaceful, interactive tribute that keeps their memory glowing bright in your heart.",
-  imageUrl: "/assets/banners/HP_candle2.png",
+  imageUrl: "/assets/banners/HP_candle3.png",
   link: "/candle-ceremony",
   detailedDescription: "Honor your pet's memory with a virtual candle that burns for 24 hours. Join a community of pet lovers in remembrance.",
   keywords: ["pet memorial candle", "virtual pet tribute", "dog remembrance light", "cat memorial flame"]
