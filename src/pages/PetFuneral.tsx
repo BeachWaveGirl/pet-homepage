@@ -1,14 +1,15 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Calendar, Clock, MapPin, Upload } from "lucide-react";
+import { Calendar, Clock, MapPin, Download } from "lucide-react";
 import PageTitle from "@/components/StarMemorial/PageTitle";
 import PetPhotoUpload from "@/components/pet-letter-form/PetPhotoUpload";
+import html2canvas from "html2canvas";
 
 const PetFuneral = () => {
   const [petName, setPetName] = useState("");
@@ -19,6 +20,7 @@ const PetFuneral = () => {
   const [additionalInfo, setAdditionalInfo] = useState("");
   const [petPhoto, setPetPhoto] = useState("");
   const [loading, setLoading] = useState(false);
+  const previewRef = useRef<HTMLDivElement>(null);
   
   // Preview state - updated in real time
   const [previewData, setPreviewData] = useState({
@@ -52,13 +54,32 @@ const PetFuneral = () => {
       setLoading(false);
     }, 1200);
   };
+
+  const handleDownload = async () => {
+    if (!previewRef.current) return;
+    
+    try {
+      const canvas = await html2canvas(previewRef.current, {
+        useCORS: true,
+        allowTaint: true,
+        scale: 2,
+      });
+      
+      const link = document.createElement("a");
+      link.download = `${previewData.petName || "pet"}-funeral-invitation.png`;
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+    } catch (error) {
+      console.error("Error downloading:", error);
+    }
+  };
   
   return (
     <div className="min-h-screen flex flex-col bg-aged-paper paper-texture">
       <Header />
       
       <main className="flex-1 py-6 px-4">
-        <div className="container mx-auto max-w-4xl">
+        <div className="container mx-auto max-w-5xl">
           <PageTitle 
             title="Pet Funeral Announcement Card" 
             description="Create a dignified digital invitation to share your pet's memorial service with family and friends."
@@ -155,77 +176,88 @@ const PetFuneral = () => {
               </CardContent>
             </Card>
             
-            {/* Live preview card that updates in real-time */}
+            {/* Live preview card with frame */}
             <div>
-              <Card className="bg-white border-gray-200 shadow-md h-full flex flex-col">
-                <div className="bg-gray-100 p-6 text-center flex-grow flex flex-col justify-center">
-                  {previewData.petPhoto && (
-                    <div className="mb-6">
-                      <div className="w-32 h-32 rounded-full mx-auto overflow-hidden border-2 border-gray-300">
-                        <img 
-                          src={previewData.petPhoto} 
-                          alt={previewData.petName || "Your pet"}
-                          className="w-full h-full object-cover" 
-                        />
+              <div ref={previewRef} className="relative aspect-[3/4] w-full">
+                {/* Frame background */}
+                <img 
+                  src="/assets/Frame.png" 
+                  alt="Ornate frame" 
+                  className="absolute inset-0 w-full h-full object-cover z-10 pointer-events-none"
+                />
+                
+                {/* Content inside frame */}
+                <div className="absolute inset-0 flex items-center justify-center p-8 md:p-12">
+                  <div className="text-center w-full max-w-[85%]">
+                    {previewData.petPhoto && (
+                      <div className="mb-4">
+                        <div className="w-20 h-20 md:w-24 md:h-24 rounded-full mx-auto overflow-hidden border-2 border-[hsl(43,60%,55%)]">
+                          <img 
+                            src={previewData.petPhoto} 
+                            alt={previewData.petName || "Your pet"}
+                            className="w-full h-full object-cover" 
+                          />
+                        </div>
+                      </div>
+                    )}
+                  
+                    <h3 className="font-playfair text-lg md:text-xl text-gray-800 mb-1">Memorial Service</h3>
+                    <p className="text-gray-500 text-xs md:text-sm mb-2">In loving memory of</p>
+                    <h2 className="font-playfair text-xl md:text-2xl text-gray-900 mb-1">{previewData.petName || "Your Pet"}</h2>
+                    <p className="text-gray-600 text-xs md:text-sm mb-4">
+                      {previewData.petType ? `Our beloved ${previewData.petType}` : "Our beloved companion"}
+                    </p>
+                    
+                    <div className="border-t border-b border-gray-300 py-3 mb-4">
+                      <div className="flex items-center justify-center mb-1">
+                        <Calendar size={14} className="text-gray-600 mr-1" />
+                        <span className="text-gray-800 text-xs md:text-sm">
+                          {previewData.serviceDate ? 
+                            new Date(previewData.serviceDate).toLocaleDateString('en-US', {
+                              weekday: 'long',
+                              month: 'long',
+                              day: 'numeric',
+                              year: 'numeric'
+                            }) : 
+                            "Date to be determined"
+                          }
+                        </span>
+                      </div>
+                      
+                      <div className="flex items-center justify-center mb-1">
+                        <Clock size={14} className="text-gray-600 mr-1" />
+                        <span className="text-gray-800 text-xs md:text-sm">
+                          {previewData.serviceTime || "Time to be determined"}
+                        </span>
+                      </div>
+                      
+                      <div className="flex items-center justify-center">
+                        <MapPin size={14} className="text-gray-600 mr-1" />
+                        <span className="text-gray-800 text-xs md:text-sm">
+                          {previewData.serviceLocation || "Location to be determined"}
+                        </span>
                       </div>
                     </div>
-                  )}
-                
-                  <h3 className="font-playfair text-2xl text-gray-900 mb-1">Memorial Service</h3>
-                  <p className="text-gray-500 mb-4">In loving memory of</p>
-                  <h2 className="font-playfair text-3xl text-gray-900 mb-1">{previewData.petName || "Your Pet"}</h2>
-                  <p className="text-gray-600 mb-6">
-                    {previewData.petType ? `Our beloved ${previewData.petType}` : "Our beloved companion"}
-                  </p>
-                  
-                  <div className="border-t border-b border-gray-300 py-4 mb-6">
-                    <div className="flex items-center justify-center mb-2">
-                      <Calendar size={18} className="text-gray-600 mr-2" />
-                      <span className="text-gray-800">
-                        {previewData.serviceDate ? 
-                          new Date(previewData.serviceDate).toLocaleDateString('en-US', {
-                            weekday: 'long',
-                            month: 'long',
-                            day: 'numeric',
-                            year: 'numeric'
-                          }) : 
-                          "Date to be determined"
-                        }
-                      </span>
-                    </div>
                     
-                    <div className="flex items-center justify-center mb-2">
-                      <Clock size={18} className="text-gray-600 mr-2" />
-                      <span className="text-gray-800">
-                        {previewData.serviceTime || "Time to be determined"}
-                      </span>
-                    </div>
+                    {previewData.additionalInfo && (
+                      <p className="text-gray-700 italic text-xs mb-4 line-clamp-3">
+                        {previewData.additionalInfo}
+                      </p>
+                    )}
                     
-                    <div className="flex items-center justify-center">
-                      <MapPin size={18} className="text-gray-600 mr-2" />
-                      <span className="text-gray-800">
-                        {previewData.serviceLocation || "Location to be determined"}
-                      </span>
-                    </div>
-                  </div>
-                  
-                  {previewData.additionalInfo && (
-                    <p className="text-gray-700 italic text-sm mb-6">
-                      {previewData.additionalInfo}
+                    <p className="text-gray-600 text-xs">
+                      Please join us as we celebrate the life and memory of our cherished companion.
                     </p>
-                  )}
-                  
-                  <p className="text-gray-600 text-sm">
-                    Please join us as we celebrate the life and memory of our cherished companion.
-                  </p>
+                  </div>
                 </div>
-                
-                <div className="p-4 border-t border-gray-200 bg-white">
-                  <Button className="w-full">
-                    Download Invitation
-                  </Button>
-                </div>
-              </Card>
+              </div>
+              
+              <div className="mt-4">
+                <Button onClick={handleDownload} className="w-full">
+                  <Download className="mr-2" size={16} />
+                  Download Invitation
+                </Button>
+              </div>
             </div>
           </div>
         </div>
