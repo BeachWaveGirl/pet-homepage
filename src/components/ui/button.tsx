@@ -10,14 +10,14 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-transparent border-2 border-pastel-gold text-charcoal hover:bg-pastel-gold/10 hover:border-pastel-gold-dark",
+        default: "bg-pastel-pink border-2 border-pastel-gold text-charcoal hover:bg-pastel-pink/80 hover:border-pastel-gold-dark",
         destructive:
-          "bg-transparent border-2 border-destructive text-destructive hover:bg-destructive/10",
+          "bg-pastel-pink/50 border-2 border-destructive text-destructive hover:bg-pastel-pink/30",
         outline:
-          "border-2 border-pastel-gold bg-transparent text-charcoal hover:bg-pastel-gold/10",
+          "border-2 border-pastel-gold bg-pastel-pink text-charcoal hover:bg-pastel-pink/80",
         secondary:
-          "bg-transparent border-2 border-pastel-gold/60 text-charcoal hover:bg-pastel-gold/10 hover:border-pastel-gold",
-        ghost: "hover:bg-pastel-gold/10 text-charcoal border-2 border-transparent hover:border-pastel-gold/30",
+          "bg-pastel-pink/70 border-2 border-pastel-gold/60 text-charcoal hover:bg-pastel-pink/50 hover:border-pastel-gold",
+        ghost: "hover:bg-pastel-pink/50 text-charcoal border-2 border-transparent hover:border-pastel-gold/30",
         link: "text-charcoal underline-offset-4 hover:underline hover:text-pastel-gold-dark",
       },
       size: {

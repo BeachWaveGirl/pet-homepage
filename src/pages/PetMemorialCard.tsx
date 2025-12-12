@@ -259,7 +259,7 @@ const PetMemorialCard = () => {
           }}>
               <h1 style={{
               textShadow: '0 0 30px rgba(245, 241, 232, 0.9), 0 0 60px rgba(245, 241, 232, 0.7), 0 2px 4px rgba(0,0,0,0.1)'
-            }} className="font-playfair text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 text-foreground">
+            }} className="font-playfair text-3xl md:text-4xl xl:text-6xl font-bold mb-4 text-foreground lg:text-3xl">
                 Create a Personalized<br />Pet Memorial Card
               </h1>
               <p style={{
@@ -269,7 +269,7 @@ const PetMemorialCard = () => {
               </p>
               
               <div className="flex justify-center">
-                <Button className="bg-transparent border-2 border-pastel-gold text-charcoal hover:bg-pastel-gold/10 hover:border-pastel-gold-dark transition-colors px-8 py-5 text-base backdrop-blur-sm" style={{
+                <Button className="px-8 py-5 text-base backdrop-blur-sm" style={{
                 boxShadow: '0 0 20px rgba(245, 241, 232, 0.6), 0 4px 15px rgba(0,0,0,0.1)'
               }} onClick={() => document.getElementById('card-creator')?.scrollIntoView({
                 behavior: 'smooth'

@@ -83,6 +83,8 @@ export default {
 					peach: 'hsl(20 50% 85%)'
 				},
 				'pastel-gold': 'hsl(40 50% 75%)',
+				'pastel-gold-dark': 'hsl(40 50% 65%)',
+				'pastel-pink': 'hsl(350 45% 88%)',
 				charcoal: {
 					DEFAULT: 'hsl(25 30% 18%)',
 					light: 'hsl(25 20% 35%)'
