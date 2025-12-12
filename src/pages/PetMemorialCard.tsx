@@ -7,74 +7,181 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
-import { 
-  Accordion, 
-  AccordionContent, 
-  AccordionItem, 
-  AccordionTrigger 
-} from "@/components/ui/accordion";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Download, RotateCcw, ChevronLeft, Search } from "lucide-react";
 import { Link } from "react-router-dom";
 import { petTypes, getPetTypeById, PetBreed } from "@/data/petBreeds";
 
 // Default background - Sunset Pastels (always available)
-const defaultBackground = { id: "sunset-pastels", name: "Sunset Pastels", image: "/assets/backgrounds/sunset-pastels.jpg", category: "default" };
+const defaultBackground = {
+  id: "sunset-pastels",
+  name: "Sunset Pastels",
+  image: "/assets/backgrounds/sunset-pastels.jpg",
+  category: "default"
+};
 
 // Background options - Celestial (12 images)
-const celestialBackgrounds = [
-  { id: "starry-night", name: "Starry Night", image: "/assets/backgrounds/celestial/starry-night-sky.jpg", category: "celestial" },
-  { id: "cosmic-dreams", name: "Cosmic Dreams", image: "/assets/backgrounds/celestial/cosmic-peace.jpg", category: "celestial" },
-  { id: "galaxy-peace", name: "Galaxy Peace", image: "/assets/backgrounds/celestial/galaxy-dreams.jpg", category: "celestial" },
-  { id: "midnight-stars", name: "Midnight Stars", image: "/assets/backgrounds/celestial/midnight-garden.jpg", category: "celestial" },
-  { id: "northern-lights", name: "Northern Lights", image: "/assets/backgrounds/celestial/northern-lights.jpg", category: "celestial" },
-  { id: "heavenly-glow", name: "Heavenly Glow", image: "/assets/backgrounds/celestial/heavenly-glow.jpg", category: "celestial" },
-  { id: "golden-stars", name: "Golden Stars", image: "/assets/backgrounds/celestial/golden-stars.jpg", category: "celestial" },
-  { id: "moonlight", name: "Moonlight", image: "/assets/backgrounds/celestial/moonlight-memorial.jpg", category: "celestial" },
-  { id: "twilight-sky", name: "Twilight Sky", image: "/assets/backgrounds/celestial/twilight-stars.jpg", category: "celestial" },
-  { id: "angel-stars", name: "Angel Stars", image: "/assets/backgrounds/celestial/angel-stars.jpg", category: "celestial" },
-  { id: "forever-stars", name: "Forever Stars", image: "/assets/backgrounds/celestial/forever-stars.jpg", category: "celestial" },
-  { id: "constellation", name: "Constellation", image: "/assets/backgrounds/celestial/constellation-sky.jpg", category: "celestial" },
-];
+const celestialBackgrounds = [{
+  id: "starry-night",
+  name: "Starry Night",
+  image: "/assets/backgrounds/celestial/starry-night-sky.jpg",
+  category: "celestial"
+}, {
+  id: "cosmic-dreams",
+  name: "Cosmic Dreams",
+  image: "/assets/backgrounds/celestial/cosmic-peace.jpg",
+  category: "celestial"
+}, {
+  id: "galaxy-peace",
+  name: "Galaxy Peace",
+  image: "/assets/backgrounds/celestial/galaxy-dreams.jpg",
+  category: "celestial"
+}, {
+  id: "midnight-stars",
+  name: "Midnight Stars",
+  image: "/assets/backgrounds/celestial/midnight-garden.jpg",
+  category: "celestial"
+}, {
+  id: "northern-lights",
+  name: "Northern Lights",
+  image: "/assets/backgrounds/celestial/northern-lights.jpg",
+  category: "celestial"
+}, {
+  id: "heavenly-glow",
+  name: "Heavenly Glow",
+  image: "/assets/backgrounds/celestial/heavenly-glow.jpg",
+  category: "celestial"
+}, {
+  id: "golden-stars",
+  name: "Golden Stars",
+  image: "/assets/backgrounds/celestial/golden-stars.jpg",
+  category: "celestial"
+}, {
+  id: "moonlight",
+  name: "Moonlight",
+  image: "/assets/backgrounds/celestial/moonlight-memorial.jpg",
+  category: "celestial"
+}, {
+  id: "twilight-sky",
+  name: "Twilight Sky",
+  image: "/assets/backgrounds/celestial/twilight-stars.jpg",
+  category: "celestial"
+}, {
+  id: "angel-stars",
+  name: "Angel Stars",
+  image: "/assets/backgrounds/celestial/angel-stars.jpg",
+  category: "celestial"
+}, {
+  id: "forever-stars",
+  name: "Forever Stars",
+  image: "/assets/backgrounds/celestial/forever-stars.jpg",
+  category: "celestial"
+}, {
+  id: "constellation",
+  name: "Constellation",
+  image: "/assets/backgrounds/celestial/constellation-sky.jpg",
+  category: "celestial"
+}];
 
 // Background options - Nature (8 images)
-const natureBackgrounds = [
-  { id: "autumn-lake", name: "Autumn Lake", image: "/assets/backgrounds/nature/autumn-lake.png", category: "nature" },
-  { id: "mountain-vista", name: "Mountain Vista", image: "/assets/backgrounds/nature/mountain-lake.png", category: "nature" },
-  { id: "peaceful-meadow", name: "Peaceful Meadow", image: "/assets/backgrounds/nature/meadow-birds.png", category: "nature" },
-  { id: "misty-morning", name: "Misty Morning", image: "/assets/backgrounds/nature/misty-dock.png", category: "nature" },
-  { id: "rolling-hills", name: "Rolling Hills", image: "/assets/backgrounds/nature/floral-valley.png", category: "nature" },
-  { id: "riverside", name: "Riverside", image: "/assets/backgrounds/nature/riverside.png", category: "nature" },
-  { id: "sunset-field", name: "Sunset Field", image: "/assets/backgrounds/nature/wheat-field.png", category: "nature" },
-  { id: "flower-garden", name: "Flower Garden", image: "/assets/backgrounds/nature/dunes-sea.png", category: "nature" },
-];
+const natureBackgrounds = [{
+  id: "autumn-lake",
+  name: "Autumn Lake",
+  image: "/assets/backgrounds/nature/autumn-lake.png",
+  category: "nature"
+}, {
+  id: "mountain-vista",
+  name: "Mountain Vista",
+  image: "/assets/backgrounds/nature/mountain-lake.png",
+  category: "nature"
+}, {
+  id: "peaceful-meadow",
+  name: "Peaceful Meadow",
+  image: "/assets/backgrounds/nature/meadow-birds.png",
+  category: "nature"
+}, {
+  id: "misty-morning",
+  name: "Misty Morning",
+  image: "/assets/backgrounds/nature/misty-dock.png",
+  category: "nature"
+}, {
+  id: "rolling-hills",
+  name: "Rolling Hills",
+  image: "/assets/backgrounds/nature/floral-valley.png",
+  category: "nature"
+}, {
+  id: "riverside",
+  name: "Riverside",
+  image: "/assets/backgrounds/nature/riverside.png",
+  category: "nature"
+}, {
+  id: "sunset-field",
+  name: "Sunset Field",
+  image: "/assets/backgrounds/nature/wheat-field.png",
+  category: "nature"
+}, {
+  id: "flower-garden",
+  name: "Flower Garden",
+  image: "/assets/backgrounds/nature/dunes-sea.png",
+  category: "nature"
+}];
 
 // Background options - Watercolor (9 images)
-const watercolorBackgrounds = [
-  { id: "soft-meadow", name: "Soft Meadow", image: "/assets/backgrounds/watercolor/meadow-field.jpg", category: "watercolor" },
-  { id: "hillside-vista", name: "Hillside Vista", image: "/assets/backgrounds/watercolor/hillside-vista.jpg", category: "watercolor" },
-  { id: "daisy-field", name: "Daisy Field", image: "/assets/backgrounds/watercolor/daisy-meadow.jpg", category: "watercolor" },
-  { id: "lake-pines", name: "Lake Pines", image: "/assets/backgrounds/watercolor/misty-lake-pines.jpg", category: "watercolor" },
-  { id: "mountain-path", name: "Mountain Path", image: "/assets/backgrounds/watercolor/mountain-path.jpg", category: "watercolor" },
-  { id: "poppy-fields", name: "Poppy Fields", image: "/assets/backgrounds/watercolor/mountain-poppies.jpg", category: "watercolor" },
-  { id: "countryside", name: "Countryside", image: "/assets/backgrounds/watercolor/peaceful-countryside.jpg", category: "watercolor" },
-  { id: "rolling-hills-trees", name: "Rolling Hills", image: "/assets/backgrounds/watercolor/rolling-hills-trees.jpg", category: "watercolor" },
-  { id: "wildflowers", name: "Wildflowers", image: "/assets/backgrounds/watercolor/wildflower-hills.jpg", category: "watercolor" },
-];
+const watercolorBackgrounds = [{
+  id: "soft-meadow",
+  name: "Soft Meadow",
+  image: "/assets/backgrounds/watercolor/meadow-field.jpg",
+  category: "watercolor"
+}, {
+  id: "hillside-vista",
+  name: "Hillside Vista",
+  image: "/assets/backgrounds/watercolor/hillside-vista.jpg",
+  category: "watercolor"
+}, {
+  id: "daisy-field",
+  name: "Daisy Field",
+  image: "/assets/backgrounds/watercolor/daisy-meadow.jpg",
+  category: "watercolor"
+}, {
+  id: "lake-pines",
+  name: "Lake Pines",
+  image: "/assets/backgrounds/watercolor/misty-lake-pines.jpg",
+  category: "watercolor"
+}, {
+  id: "mountain-path",
+  name: "Mountain Path",
+  image: "/assets/backgrounds/watercolor/mountain-path.jpg",
+  category: "watercolor"
+}, {
+  id: "poppy-fields",
+  name: "Poppy Fields",
+  image: "/assets/backgrounds/watercolor/mountain-poppies.jpg",
+  category: "watercolor"
+}, {
+  id: "countryside",
+  name: "Countryside",
+  image: "/assets/backgrounds/watercolor/peaceful-countryside.jpg",
+  category: "watercolor"
+}, {
+  id: "rolling-hills-trees",
+  name: "Rolling Hills",
+  image: "/assets/backgrounds/watercolor/rolling-hills-trees.jpg",
+  category: "watercolor"
+}, {
+  id: "wildflowers",
+  name: "Wildflowers",
+  image: "/assets/backgrounds/watercolor/wildflower-hills.jpg",
+  category: "watercolor"
+}];
 
 // Combined backgrounds array - default first
-const backgrounds = [
-  defaultBackground,
-  ...celestialBackgrounds,
-  ...natureBackgrounds,
-  ...watercolorBackgrounds,
-];
-
+const backgrounds = [defaultBackground, ...celestialBackgrounds, ...natureBackgrounds, ...watercolorBackgrounds];
 const PetMemorialCard = () => {
   // Pet selection state
   const [selectedPetType, setSelectedPetType] = useState<string | null>(null);
   const [selectedBreed, setSelectedBreed] = useState<PetBreed | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
-  
+
   // Card details state
   const [petName, setPetName] = useState("Milo");
   const [birthYear, setBirthYear] = useState("2015");
@@ -83,7 +190,6 @@ const PetMemorialCard = () => {
   const [selectedBackground, setSelectedBackground] = useState("sunset-pastels");
   const [petSize, setPetSize] = useState([120]);
   const [openStep, setOpenStep] = useState("step-1");
-
   const selectedPetTypeData = selectedPetType ? getPetTypeById(selectedPetType) : null;
   const selectedBgData = backgrounds.find(b => b.id === selectedBackground);
 
@@ -91,11 +197,8 @@ const PetMemorialCard = () => {
   const filteredBreeds = useMemo(() => {
     if (!selectedPetTypeData) return [];
     if (!searchQuery.trim()) return selectedPetTypeData.breeds;
-    return selectedPetTypeData.breeds.filter(breed => 
-      breed.name.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    return selectedPetTypeData.breeds.filter(breed => breed.name.toLowerCase().includes(searchQuery.toLowerCase()));
   }, [selectedPetTypeData, searchQuery]);
-
   const handleReset = () => {
     setSelectedPetType(null);
     setSelectedBreed(null);
@@ -108,31 +211,26 @@ const PetMemorialCard = () => {
     setPetSize([120]);
     setOpenStep("step-1");
   };
-
   const handlePetTypeSelect = (petTypeId: string) => {
     setSelectedPetType(petTypeId);
     setSearchQuery("");
   };
-
   const handleBreedSelect = (breed: PetBreed) => {
     setSelectedBreed(breed);
   };
-
   const handleBackToTypes = () => {
     setSelectedPetType(null);
     setSearchQuery("");
   };
-
   const handleDownload = () => {
     console.log("Downloading card...");
   };
-
   const getBackgroundStyle = () => {
     if (selectedBgData?.image) {
       return {
         backgroundImage: `url("${selectedBgData.image}")`,
         backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        backgroundPosition: 'center'
       };
     }
     return {};
@@ -141,51 +239,46 @@ const PetMemorialCard = () => {
   // Celestial backgrounds should use light text
   const darkBackgrounds = celestialBackgrounds.map(b => b.id);
   const isLightBackground = !darkBackgrounds.includes(selectedBackground);
-  
+
   // Get the image to display in preview - default to white lop rabbit
   const defaultRabbitImage = "/assets/white-lop.png";
   const previewImage = selectedBreed?.image || selectedPetTypeData?.image || defaultRabbitImage;
-
-  return (
-    <div className="min-h-screen flex flex-col bg-aged-paper paper-texture">
+  return <div className="min-h-screen flex flex-col bg-aged-paper paper-texture">
       <Header />
       
       {/* Hero Section - Full width like homepage */}
       <section className="w-full pt-16 relative">
         {/* Hero image - full display at 100% opacity, edge-to-edge */}
         <div className="w-full relative">
-          <img 
-            src="/assets/banners/Pet_Memorial_Hero.png" 
-            alt="Pet Memorial - Ornate rococo frame with beloved pets" 
-            className="w-full h-auto object-contain"
-          />
+          <img src="/assets/banners/Pet_Memorial_Hero.png" alt="Pet Memorial - Ornate rococo frame with beloved pets" className="w-full h-auto object-contain" />
           
           {/* Text overlay centered within the image scene */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-center px-4 max-w-3xl" style={{ marginTop: '-5%' }}>
+            <div className="text-center px-4 max-w-3xl" style={{
+            marginTop: '-5%'
+          }}>
               <h1 style={{
-                textShadow: '0 0 30px rgba(245, 241, 232, 0.9), 0 0 60px rgba(245, 241, 232, 0.7), 0 2px 4px rgba(0,0,0,0.1)'
-              }} className="font-playfair text-3xl md:text-4xl xl:text-6xl font-bold mb-4 text-foreground lg:text-3xl">
+              textShadow: '0 0 30px rgba(245, 241, 232, 0.9), 0 0 60px rgba(245, 241, 232, 0.7), 0 2px 4px rgba(0,0,0,0.1)'
+            }} className="font-playfair text-3xl md:text-4xl xl:text-6xl font-bold mb-4 text-foreground lg:text-3xl">
                 Create a Personalized<br />Pet Memorial Card
               </h1>
-              <p className="text-base md:text-lg lg:text-xl text-foreground/90 mb-6 max-w-2xl mx-auto leading-relaxed" style={{
-                textShadow: '0 0 20px rgba(245, 241, 232, 0.95), 0 0 40px rgba(245, 241, 232, 0.8)'
-              }}>
+              <p style={{
+              textShadow: '0 0 20px rgba(245, 241, 232, 0.95), 0 0 40px rgba(245, 241, 232, 0.8)'
+            }} className="text-base md:text-lg text-foreground/90 mb-6 max-w-2xl mx-auto leading-relaxed lg:text-lg">
                 A gentle way to honor your beloved companion<br />who crossed the Rainbow Bridge
               </p>
               
               <div className="flex gap-4 justify-center flex-wrap">
-                <Button 
-                  className="bg-transparent border-2 border-pastel-gold text-charcoal hover:bg-pastel-gold/10 hover:border-pastel-gold-dark transition-colors px-8 py-5 text-base backdrop-blur-sm"
-                  style={{ boxShadow: '0 0 20px rgba(245, 241, 232, 0.6), 0 4px 15px rgba(0,0,0,0.1)' }}
-                  onClick={() => document.getElementById('card-creator')?.scrollIntoView({ behavior: 'smooth' })}
-                >
+                <Button className="bg-transparent border-2 border-pastel-gold text-charcoal hover:bg-pastel-gold/10 hover:border-pastel-gold-dark transition-colors px-8 py-5 text-base backdrop-blur-sm" style={{
+                boxShadow: '0 0 20px rgba(245, 241, 232, 0.6), 0 4px 15px rgba(0,0,0,0.1)'
+              }} onClick={() => document.getElementById('card-creator')?.scrollIntoView({
+                behavior: 'smooth'
+              })}>
                   Create Memorial Card
                 </Button>
-                <Button 
-                  className="bg-transparent border-2 border-pastel-gold text-charcoal hover:bg-pastel-gold/10 hover:border-pastel-gold-dark transition-colors px-8 py-5 text-base backdrop-blur-sm"
-                  style={{ boxShadow: '0 0 20px rgba(245, 241, 232, 0.6), 0 4px 15px rgba(0,0,0,0.1)' }}
-                >
+                <Button className="bg-transparent border-2 border-pastel-gold text-charcoal hover:bg-pastel-gold/10 hover:border-pastel-gold-dark transition-colors px-8 py-5 text-base backdrop-blur-sm" style={{
+                boxShadow: '0 0 20px rgba(245, 241, 232, 0.6), 0 4px 15px rgba(0,0,0,0.1)'
+              }}>
                   View Card Gallery
                 </Button>
               </div>
@@ -211,31 +304,25 @@ const PetMemorialCard = () => {
           </div>
           
           <div className="grid md:grid-cols-3 gap-8 mb-8">
-            {[
-              {
-                step: 1,
-                title: "Choose Pet Type",
-                description: "Choose from dogs, cats, rabbits, and more. Beautiful illustrations that honor your beloved companion."
-              },
-              {
-                step: 2,
-                title: "Personalize Details",
-                description: "Add your pet's name, dates, and a heartfelt message. Create a keepsake for yourself or send sympathy to someone who's hurting."
-              },
-              {
-                step: 3,
-                title: "Choose a Background",
-                description: "Soft skies, peaceful rainbows, and starry nights. Preview your card live, then download instantly to print or share."
-              }
-            ].map((item) => (
-              <div key={item.step} className="text-center space-y-3">
+            {[{
+            step: 1,
+            title: "Choose Pet Type",
+            description: "Choose from dogs, cats, rabbits, and more. Beautiful illustrations that honor your beloved companion."
+          }, {
+            step: 2,
+            title: "Personalize Details",
+            description: "Add your pet's name, dates, and a heartfelt message. Create a keepsake for yourself or send sympathy to someone who's hurting."
+          }, {
+            step: 3,
+            title: "Choose a Background",
+            description: "Soft skies, peaceful rainbows, and starry nights. Preview your card live, then download instantly to print or share."
+          }].map(item => <div key={item.step} className="text-center space-y-3">
                 <div className="w-12 h-12 rounded-full bg-primary/20 border-2 border-primary/40 text-foreground flex items-center justify-center mx-auto">
                   <span className="text-base font-bold">{item.step}</span>
                 </div>
                 <h3 className="text-lg font-playfair font-bold text-foreground">{item.title}</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -249,11 +336,7 @@ const PetMemorialCard = () => {
               <h1 className="text-4xl font-playfair font-bold text-gray-900">
                 Create Your Pet Memorial Card
               </h1>
-              <Button 
-                variant="outline" 
-                size="sm"
-                onClick={handleReset}
-              >
+              <Button variant="outline" size="sm" onClick={handleReset}>
                 <RotateCcw className="w-4 h-4 mr-1" />
                 Reset
               </Button>
@@ -261,13 +344,7 @@ const PetMemorialCard = () => {
           </div>
           
           <div className="flex-1 overflow-y-auto px-4 pb-4">
-            <Accordion 
-              type="single" 
-              collapsible 
-              value={openStep}
-              onValueChange={setOpenStep}
-              className="space-y-2"
-            >
+            <Accordion type="single" collapsible value={openStep} onValueChange={setOpenStep} className="space-y-2">
               {/* Step 1: Choose Pet Type */}
               <AccordionItem value="step-1" className="border border-primary/20 rounded-lg px-4 bg-cream-light">
                 <AccordionTrigger className="hover:no-underline">
@@ -275,16 +352,10 @@ const PetMemorialCard = () => {
                 </AccordionTrigger>
                 <AccordionContent>
                   {/* Show breeds list when a pet type is selected */}
-                  {selectedPetType ? (
-                    <div className="py-4">
+                  {selectedPetType ? <div className="py-4">
                       {/* Back button and title */}
                       <div className="flex items-center gap-2 mb-2">
-                        <Button 
-                          variant="ghost" 
-                          size="sm" 
-                          onClick={handleBackToTypes}
-                          className="p-1 h-auto"
-                        >
+                        <Button variant="ghost" size="sm" onClick={handleBackToTypes} className="p-1 h-auto">
                           <ChevronLeft className="w-4 h-4" />
                           Back
                         </Button>
@@ -298,74 +369,35 @@ const PetMemorialCard = () => {
                       {/* Search bar */}
                       <div className="relative mb-4">
                         <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                        <Input 
-                          placeholder="Search for your pet..."
-                          value={searchQuery}
-                          onChange={(e) => setSearchQuery(e.target.value)}
-                          className="pl-10"
-                        />
+                        <Input placeholder="Search for your pet..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="pl-10" />
                       </div>
                       
                       {/* Breeds grid */}
                       <div className="grid grid-cols-3 gap-3 max-h-[400px] overflow-y-auto pr-2">
-                        {filteredBreeds.map((breed) => (
-                          <Card
-                            key={breed.id}
-                            onClick={() => handleBreedSelect(breed)}
-                            className={`p-3 cursor-pointer transition-all hover:shadow-lg text-center ${
-                              selectedBreed?.id === breed.id 
-                                ? 'ring-2 ring-gray-900' 
-                                : ''
-                            }`}
-                          >
+                        {filteredBreeds.map(breed => <Card key={breed.id} onClick={() => handleBreedSelect(breed)} className={`p-3 cursor-pointer transition-all hover:shadow-lg text-center ${selectedBreed?.id === breed.id ? 'ring-2 ring-gray-900' : ''}`}>
                             <div className="flex flex-col items-center gap-2">
                               <div className="w-16 h-16 flex items-center justify-center">
-                                <img 
-                                  src={breed.image} 
-                                  alt={breed.name}
-                                  className="w-full h-full object-contain"
-                                />
+                                <img src={breed.image} alt={breed.name} className="w-full h-full object-contain" />
                               </div>
                               <h3 className="font-medium text-xs text-center leading-tight text-gray-900">{breed.name}</h3>
                             </div>
-                          </Card>
-                        ))}
+                          </Card>)}
                       </div>
-                    </div>
-                  ) : (
-                    /* Show main pet types */
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 py-4">
-                      {petTypes.map((pet) => (
-                        <Card
-                          key={pet.id}
-                          onClick={() => handlePetTypeSelect(pet.id)}
-                          className="p-4 cursor-pointer transition-all hover:shadow-lg hover:scale-105 text-center"
-                        >
+                    </div> : (/* Show main pet types */
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 py-4">
+                      {petTypes.map(pet => <Card key={pet.id} onClick={() => handlePetTypeSelect(pet.id)} className="p-4 cursor-pointer transition-all hover:shadow-lg hover:scale-105 text-center">
                           <div className="flex flex-col items-center gap-3">
                             <div className="w-24 h-24 flex items-center justify-center">
-                              <img 
-                                src={pet.image} 
-                                alt={`${pet.name} watercolor illustration`}
-                                className="w-full h-full object-contain"
-                              />
+                              <img src={pet.image} alt={`${pet.name} watercolor illustration`} className="w-full h-full object-contain" />
                             </div>
                             <h3 className="font-semibold text-lg text-gray-900">{pet.name}</h3>
                           </div>
-                        </Card>
-                      ))}
-                    </div>
-                  )}
+                        </Card>)}
+                    </div>)}
                   
                   <div className="mt-6 pt-6 border-t space-y-3">
                     <Label className="text-sm font-medium text-gray-900">Adjust Pet Size</Label>
-                    <Slider
-                      value={petSize}
-                      onValueChange={setPetSize}
-                      min={80}
-                      max={300}
-                      step={1}
-                      className="w-full"
-                    />
+                    <Slider value={petSize} onValueChange={setPetSize} min={80} max={300} step={1} className="w-full" />
                     <div className="flex justify-between text-xs text-gray-500">
                       <span>Small</span>
                       <span>Large</span>
@@ -375,10 +407,7 @@ const PetMemorialCard = () => {
                     </p>
                   </div>
                   
-                  <Button 
-                    className="w-full mt-4 bg-transparent border-2 border-pastel-gold text-charcoal hover:bg-pastel-gold/10"
-                    onClick={() => setOpenStep("step-2")}
-                  >
+                  <Button className="w-full mt-4 bg-transparent border-2 border-pastel-gold text-charcoal hover:bg-pastel-gold/10" onClick={() => setOpenStep("step-2")}>
                     Save All Changes
                   </Button>
                 </AccordionContent>
@@ -393,53 +422,26 @@ const PetMemorialCard = () => {
                   <div className="space-y-4 py-4">
                     <div>
                       <Label htmlFor="petName">Pet Name</Label>
-                      <Input 
-                        id="petName"
-                        value={petName}
-                        onChange={(e) => setPetName(e.target.value)}
-                        placeholder="Enter pet's name"
-                        className="mt-1"
-                      />
+                      <Input id="petName" value={petName} onChange={e => setPetName(e.target.value)} placeholder="Enter pet's name" className="mt-1" />
                     </div>
                     
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <Label htmlFor="birthYear">Birth Year</Label>
-                        <Input 
-                          id="birthYear"
-                          value={birthYear}
-                          onChange={(e) => setBirthYear(e.target.value)}
-                          placeholder="e.g., 2015"
-                          className="mt-1"
-                        />
+                        <Input id="birthYear" value={birthYear} onChange={e => setBirthYear(e.target.value)} placeholder="e.g., 2015" className="mt-1" />
                       </div>
                       <div>
                         <Label htmlFor="passingYear">Passing Year</Label>
-                        <Input 
-                          id="passingYear"
-                          value={passingYear}
-                          onChange={(e) => setPassingYear(e.target.value)}
-                          placeholder="e.g., 2025"
-                          className="mt-1"
-                        />
+                        <Input id="passingYear" value={passingYear} onChange={e => setPassingYear(e.target.value)} placeholder="e.g., 2025" className="mt-1" />
                       </div>
                     </div>
                     
                     <div>
                       <Label htmlFor="message">Memorial Message</Label>
-                      <Textarea 
-                        id="message"
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
-                        placeholder="Write a heartfelt message..."
-                        className="mt-1 min-h-[120px]"
-                      />
+                      <Textarea id="message" value={message} onChange={e => setMessage(e.target.value)} placeholder="Write a heartfelt message..." className="mt-1 min-h-[120px]" />
                     </div>
                     
-                    <Button 
-                      className="w-full bg-transparent border-2 border-pastel-gold text-charcoal hover:bg-pastel-gold/10"
-                      onClick={() => setOpenStep("step-3")}
-                    >
+                    <Button className="w-full bg-transparent border-2 border-pastel-gold text-charcoal hover:bg-pastel-gold/10" onClick={() => setOpenStep("step-3")}>
                       Save All Changes
                     </Button>
                   </div>
@@ -453,25 +455,12 @@ const PetMemorialCard = () => {
                 </AccordionTrigger>
                 <AccordionContent>
                   <div className="grid grid-cols-5 gap-3 py-4">
-                    {backgrounds.map((bg) => (
-                      <button
-                        key={bg.id}
-                        onClick={() => setSelectedBackground(bg.id)}
-                        className={`aspect-square rounded-lg border-2 transition-all overflow-hidden ${
-                          selectedBackground === bg.id 
-                            ? 'border-gray-900 ring-2 ring-gray-400' 
-                            : 'border-gray-200 hover:border-gray-300'
-                        }`}
-                        title={bg.name}
-                      >
+                    {backgrounds.map(bg => <button key={bg.id} onClick={() => setSelectedBackground(bg.id)} className={`aspect-square rounded-lg border-2 transition-all overflow-hidden ${selectedBackground === bg.id ? 'border-gray-900 ring-2 ring-gray-400' : 'border-gray-200 hover:border-gray-300'}`} title={bg.name}>
                         <img src={bg.image} alt={bg.name} className="w-full h-full object-cover" />
-                      </button>
-                    ))}
+                      </button>)}
                   </div>
                   
-                  <Button 
-                    className="w-full mt-4 bg-gray-900 hover:bg-gray-800 text-white"
-                  >
+                  <Button className="w-full mt-4 bg-gray-900 hover:bg-gray-800 text-white">
                     Save All Changes
                   </Button>
                 </AccordionContent>
@@ -487,104 +476,70 @@ const PetMemorialCard = () => {
               <h2 className="text-xl font-playfair font-bold text-center mb-4 flex-shrink-0">Live Preview</h2>
               
               <div className="flex-1 flex items-center justify-center min-h-0">
-                <div 
-                  id="memorial-card-preview"
-                  className="relative bg-white rounded-2xl overflow-hidden shadow-xl w-full"
-                  style={{ 
-                    aspectRatio: '5/7',
-                    maxHeight: 'calc(100vh - 200px)',
-                  }}
-                >
+                <div id="memorial-card-preview" className="relative bg-white rounded-2xl overflow-hidden shadow-xl w-full" style={{
+                aspectRatio: '5/7',
+                maxHeight: 'calc(100vh - 200px)'
+              }}>
                 {/* Background */}
-                <div 
-                  className="absolute inset-0"
-                  style={getBackgroundStyle()}
-                />
+                <div className="absolute inset-0" style={getBackgroundStyle()} />
                 
                 {/* Vignette overlay */}
-                <div 
-                  className="absolute inset-0 pointer-events-none"
-                  style={{
-                    background: 'radial-gradient(transparent 30%, rgba(255,255,255,0.4) 70%, rgba(255,255,255,0.9) 100%)'
-                  }}
-                />
+                <div className="absolute inset-0 pointer-events-none" style={{
+                  background: 'radial-gradient(transparent 30%, rgba(255,255,255,0.4) 70%, rgba(255,255,255,0.9) 100%)'
+                }} />
                 
                 {/* Bottom fade for text */}
-                <div 
-                  className="absolute inset-0 pointer-events-none"
-                  style={{
-                    background: 'linear-gradient(transparent 55%, rgba(255,255,255,0.95) 78%, white 100%)'
-                  }}
-                />
+                <div className="absolute inset-0 pointer-events-none" style={{
+                  background: 'linear-gradient(transparent 55%, rgba(255,255,255,0.95) 78%, white 100%)'
+                }} />
                 
                 {/* Card Content */}
-                <div 
-                  className="relative h-full flex flex-col items-center justify-between px-8 pointer-events-none select-none"
-                  style={{ paddingTop: '60px', paddingBottom: '40px' }}
-                >
+                <div className="relative h-full flex flex-col items-center justify-between px-8 pointer-events-none select-none" style={{
+                  paddingTop: '60px',
+                  paddingBottom: '40px'
+                }}>
                   {/* "In Loving Memory of" and Pet Name */}
                   <div className="w-full text-center space-y-2 z-30">
-                    <p 
-                      className="text-lg tracking-wide"
-                      style={{ 
-                        color: isLightBackground ? '#000' : '#fff',
-                        textShadow: isLightBackground ? '0 1px 2px rgba(255,255,255,0.8)' : '0 1px 2px rgba(0,0,0,0.5)'
-                      }}
-                    >
+                    <p className="text-lg tracking-wide" style={{
+                      color: isLightBackground ? '#000' : '#fff',
+                      textShadow: isLightBackground ? '0 1px 2px rgba(255,255,255,0.8)' : '0 1px 2px rgba(0,0,0,0.5)'
+                    }}>
                       In Loving Memory of
                     </p>
-                    <h3 
-                      className="text-5xl md:text-6xl font-playfair"
-                      style={{ 
-                        color: isLightBackground ? '#000' : '#fff',
-                        textShadow: isLightBackground ? '0 2px 4px rgba(255,255,255,0.8)' : '0 2px 4px rgba(0,0,0,0.5)'
-                      }}
-                    >
+                    <h3 className="text-5xl md:text-6xl font-playfair" style={{
+                      color: isLightBackground ? '#000' : '#fff',
+                      textShadow: isLightBackground ? '0 2px 4px rgba(255,255,255,0.8)' : '0 2px 4px rgba(0,0,0,0.5)'
+                    }}>
                       {petName || "Pet Name"}
                     </h3>
                   </div>
                   
                   {/* Message */}
                   <div className="w-full text-center z-30 max-w-[70%] mx-auto mt-4">
-                    <p 
-                      className="text-sm md:text-base leading-relaxed whitespace-pre-line italic"
-                      style={{ 
-                        color: isLightBackground ? '#000' : '#fff',
-                        textShadow: isLightBackground ? '0 1px 2px rgba(255,255,255,0.8)' : '0 1px 2px rgba(0,0,0,0.5)'
-                      }}
-                    >
+                    <p className="text-sm md:text-base leading-relaxed whitespace-pre-line italic" style={{
+                      color: isLightBackground ? '#000' : '#fff',
+                      textShadow: isLightBackground ? '0 1px 2px rgba(255,255,255,0.8)' : '0 1px 2px rgba(0,0,0,0.5)'
+                    }}>
                       {message || "Your memorial message will appear here..."}
                     </p>
                   </div>
                   
                   {/* Pet Image */}
-                  <div 
-                    className="absolute z-20"
-                    style={{ 
-                      bottom: '8%',
-                      left: '50%',
-                      transform: 'translateX(-50%)',
-                      width: `${petSize[0]}px`,
-                    }}
-                  >
-                    <img 
-                      src={previewImage}
-                      alt={petName}
-                      className="w-full object-contain drop-shadow-lg"
-                    />
+                  <div className="absolute z-20" style={{
+                    bottom: '8%',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    width: `${petSize[0]}px`
+                  }}>
+                    <img src={previewImage} alt={petName} className="w-full object-contain drop-shadow-lg" />
                   </div>
                   
                   {/* Dates at bottom */}
-                  <div 
-                    className="absolute bottom-4 left-0 right-0 text-center z-30"
-                  >
-                    <p 
-                      className="text-lg font-medium tracking-wide"
-                      style={{ 
-                        color: isLightBackground ? '#000' : '#fff',
-                        textShadow: isLightBackground ? '0 1px 2px rgba(255,255,255,0.8)' : '0 1px 2px rgba(0,0,0,0.5)'
-                      }}
-                    >
+                  <div className="absolute bottom-4 left-0 right-0 text-center z-30">
+                    <p className="text-lg font-medium tracking-wide" style={{
+                      color: isLightBackground ? '#000' : '#fff',
+                      textShadow: isLightBackground ? '0 1px 2px rgba(255,255,255,0.8)' : '0 1px 2px rgba(0,0,0,0.5)'
+                    }}>
                       {birthYear && passingYear ? `${birthYear} - ${passingYear}` : "Birth Year - Passing Year"}
                     </p>
                   </div>
@@ -597,10 +552,7 @@ const PetMemorialCard = () => {
                   Updates in real-time as you edit
                 </p>
                 
-                <Button 
-                  onClick={handleDownload}
-                  className="w-full bg-transparent border-2 border-pastel-gold text-charcoal hover:bg-pastel-gold/10 py-5"
-                >
+                <Button onClick={handleDownload} className="w-full bg-transparent border-2 border-pastel-gold text-charcoal hover:bg-pastel-gold/10 py-5">
                   <Download className="w-4 h-4 mr-2" />
                   Download Card: <span className="line-through mx-2 opacity-60">$3.99</span> FREE for a limited time!
                 </Button>
@@ -616,12 +568,7 @@ const PetMemorialCard = () => {
           <h2 className="text-2xl font-playfair font-bold text-charcoal">
             Create Your Pet Memorial Card
           </h2>
-          <Button 
-            variant="ghost" 
-            size="sm"
-            onClick={handleReset}
-            className="mt-2"
-          >
+          <Button variant="ghost" size="sm" onClick={handleReset} className="mt-2">
             <RotateCcw className="w-4 h-4 mr-1" />
             Reset
           </Button>
@@ -629,39 +576,45 @@ const PetMemorialCard = () => {
         
         {/* Live Preview - Mobile */}
         <div className="mb-8">
-          <div 
-            className="relative bg-white rounded-2xl overflow-hidden shadow-xl mx-auto"
-            style={{ 
-              aspectRatio: '5/7',
-              maxWidth: '300px',
-            }}
-          >
+          <div className="relative bg-white rounded-2xl overflow-hidden shadow-xl mx-auto" style={{
+          aspectRatio: '5/7',
+          maxWidth: '300px'
+        }}>
             <div className="absolute inset-0" style={getBackgroundStyle()} />
-            <div 
-              className="absolute inset-0 pointer-events-none"
-              style={{ background: 'linear-gradient(transparent 55%, rgba(255,255,255,0.95) 78%, white 100%)' }}
-            />
+            <div className="absolute inset-0 pointer-events-none" style={{
+            background: 'linear-gradient(transparent 55%, rgba(255,255,255,0.95) 78%, white 100%)'
+          }} />
             <div className="relative h-full flex flex-col items-center justify-between px-4 py-6">
               <div className="text-center space-y-1 z-30">
-                <p className="text-xs" style={{ color: isLightBackground ? '#000' : '#fff' }}>
+                <p className="text-xs" style={{
+                color: isLightBackground ? '#000' : '#fff'
+              }}>
                   In Loving Memory of
                 </p>
-                <h3 className="text-2xl font-playfair" style={{ color: isLightBackground ? '#000' : '#fff' }}>
+                <h3 className="text-2xl font-playfair" style={{
+                color: isLightBackground ? '#000' : '#fff'
+              }}>
                   {petName || "Pet Name"}
                 </h3>
               </div>
               <div className="text-center z-30 max-w-[80%]">
-                <p className="text-xs italic whitespace-pre-line" style={{ color: isLightBackground ? '#000' : '#fff' }}>
+                <p className="text-xs italic whitespace-pre-line" style={{
+                color: isLightBackground ? '#000' : '#fff'
+              }}>
                   {message || "Your message here..."}
                 </p>
               </div>
-              <div 
-                className="absolute z-20"
-                style={{ bottom: '12%', left: '50%', transform: 'translateX(-50%)', width: `${petSize[0] * 0.5}px` }}
-              >
+              <div className="absolute z-20" style={{
+              bottom: '12%',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              width: `${petSize[0] * 0.5}px`
+            }}>
                 <img src={previewImage} alt={petName} className="w-full object-contain" />
               </div>
-              <p className="absolute bottom-2 text-xs" style={{ color: isLightBackground ? '#000' : '#fff' }}>
+              <p className="absolute bottom-2 text-xs" style={{
+              color: isLightBackground ? '#000' : '#fff'
+            }}>
                 {birthYear && passingYear ? `${birthYear} - ${passingYear}` : ""}
               </p>
             </div>
@@ -669,58 +622,29 @@ const PetMemorialCard = () => {
         </div>
         
         {/* Mobile Accordion */}
-        <Accordion 
-          type="single" 
-          collapsible 
-          value={openStep}
-          onValueChange={setOpenStep}
-          className="space-y-2"
-        >
+        <Accordion type="single" collapsible value={openStep} onValueChange={setOpenStep} className="space-y-2">
           <AccordionItem value="step-1" className="border border-primary/20 rounded-lg px-4 bg-cream-light">
             <AccordionTrigger className="hover:no-underline">
               <span className="font-semibold text-sm text-charcoal">Step 1: Choose Pet Type</span>
             </AccordionTrigger>
             <AccordionContent>
-              {selectedPetType ? (
-                <div className="py-4">
+              {selectedPetType ? <div className="py-4">
                   <Button variant="ghost" size="sm" onClick={handleBackToTypes} className="mb-2">
                     <ChevronLeft className="w-4 h-4 mr-1" /> Back
                   </Button>
-                  <Input 
-                    placeholder="Search..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="mb-3"
-                  />
+                  <Input placeholder="Search..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="mb-3" />
                   <div className="grid grid-cols-3 gap-2 max-h-[300px] overflow-y-auto">
-                    {filteredBreeds.map((breed) => (
-                      <button
-                        key={breed.id}
-                        onClick={() => handleBreedSelect(breed)}
-                        className={`p-2 rounded-lg border text-center ${
-                          selectedBreed?.id === breed.id ? 'border-gray-900 bg-gray-50' : 'border-gray-200'
-                        }`}
-                      >
+                    {filteredBreeds.map(breed => <button key={breed.id} onClick={() => handleBreedSelect(breed)} className={`p-2 rounded-lg border text-center ${selectedBreed?.id === breed.id ? 'border-gray-900 bg-gray-50' : 'border-gray-200'}`}>
                         <img src={breed.image} alt={breed.name} className="w-10 h-10 mx-auto object-contain" />
                         <p className="text-xs mt-1 leading-tight">{breed.name}</p>
-                      </button>
-                    ))}
+                      </button>)}
                   </div>
-                </div>
-              ) : (
-                <div className="grid grid-cols-3 gap-2 py-4">
-                  {petTypes.map((pet) => (
-                    <button
-                      key={pet.id}
-                      onClick={() => handlePetTypeSelect(pet.id)}
-                      className="p-2 rounded-lg border border-gray-200 text-center hover:shadow"
-                    >
+                </div> : <div className="grid grid-cols-3 gap-2 py-4">
+                  {petTypes.map(pet => <button key={pet.id} onClick={() => handlePetTypeSelect(pet.id)} className="p-2 rounded-lg border border-gray-200 text-center hover:shadow">
                       <img src={pet.image} alt={pet.name} className="w-12 h-12 mx-auto object-contain" />
                       <p className="text-xs mt-1">{pet.name}</p>
-                    </button>
-                  ))}
-                </div>
-              )}
+                    </button>)}
+                </div>}
             </AccordionContent>
           </AccordionItem>
           
@@ -732,26 +656,21 @@ const PetMemorialCard = () => {
               <div className="space-y-3 py-4">
                 <div>
                   <Label htmlFor="petName-mobile" className="text-sm">Pet Name</Label>
-                  <Input 
-                    id="petName-mobile"
-                    value={petName}
-                    onChange={(e) => setPetName(e.target.value)}
-                    className="mt-1"
-                  />
+                  <Input id="petName-mobile" value={petName} onChange={e => setPetName(e.target.value)} className="mt-1" />
                 </div>
                 <div className="grid grid-cols-2 gap-2">
                   <div>
                     <Label className="text-sm">Birth Year</Label>
-                    <Input value={birthYear} onChange={(e) => setBirthYear(e.target.value)} className="mt-1" />
+                    <Input value={birthYear} onChange={e => setBirthYear(e.target.value)} className="mt-1" />
                   </div>
                   <div>
                     <Label className="text-sm">Passing Year</Label>
-                    <Input value={passingYear} onChange={(e) => setPassingYear(e.target.value)} className="mt-1" />
+                    <Input value={passingYear} onChange={e => setPassingYear(e.target.value)} className="mt-1" />
                   </div>
                 </div>
                 <div>
                   <Label className="text-sm">Memorial Message</Label>
-                  <Textarea value={message} onChange={(e) => setMessage(e.target.value)} className="mt-1 min-h-[80px]" />
+                  <Textarea value={message} onChange={e => setMessage(e.target.value)} className="mt-1 min-h-[80px]" />
                 </div>
               </div>
             </AccordionContent>
@@ -763,34 +682,21 @@ const PetMemorialCard = () => {
             </AccordionTrigger>
             <AccordionContent>
               <div className="grid grid-cols-5 gap-2 py-4">
-                {backgrounds.map((bg) => (
-                  <button
-                    key={bg.id}
-                    onClick={() => setSelectedBackground(bg.id)}
-                    className={`aspect-square rounded-lg border-2 overflow-hidden ${
-                      selectedBackground === bg.id ? 'border-gray-900' : 'border-gray-200'
-                    }`}
-                  >
+                {backgrounds.map(bg => <button key={bg.id} onClick={() => setSelectedBackground(bg.id)} className={`aspect-square rounded-lg border-2 overflow-hidden ${selectedBackground === bg.id ? 'border-gray-900' : 'border-gray-200'}`}>
                     <img src={bg.image} alt={bg.name} className="w-full h-full object-cover" />
-                  </button>
-                ))}
+                  </button>)}
               </div>
             </AccordionContent>
           </AccordionItem>
         </Accordion>
         
-        <Button 
-          onClick={handleDownload}
-          className="w-full mt-6 bg-transparent border-2 border-pastel-gold text-charcoal hover:bg-pastel-gold/10 py-6"
-        >
+        <Button onClick={handleDownload} className="w-full mt-6 bg-transparent border-2 border-pastel-gold text-charcoal hover:bg-pastel-gold/10 py-6">
           <Download className="w-4 h-4 mr-2" />
           Download Card: FREE!
         </Button>
       </section>
       
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default PetMemorialCard;
