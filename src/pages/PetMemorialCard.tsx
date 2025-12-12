@@ -151,36 +151,42 @@ const PetMemorialCard = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
-        <div 
-          className="absolute inset-0 z-0"
-          style={{ 
-            backgroundImage: 'url("/assets/hero-memorial.png")',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-white/30 to-white/80" />
-        </div>
-        
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto animate-fade-in">
-          <h1 className="text-5xl md:text-6xl font-playfair font-bold mb-6 text-gray-900">
-            Create a Personalized Pet Memorial Card
-          </h1>
-          <p className="text-xl md:text-2xl mb-8 text-gray-600 max-w-2xl mx-auto">
-            A gentle way to honor your beloved companion who crossed the Rainbow Bridge, or send comfort to someone who's grieving.
-          </p>
+      <section className="relative py-16 flex items-center justify-center overflow-hidden">
+        <div className="container mx-auto max-w-5xl px-4">
+          {/* Hero Image - full display */}
+          <div className="relative mb-8">
+            <img 
+              src="/assets/banners/Pet_Memorial_Hero.png" 
+              alt="Pet Memorial - Ornate rococo frame with beloved pets" 
+              className="w-full h-auto object-contain"
+            />
+            
+            {/* Text overlay centered within the frame */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="text-center px-8 max-w-2xl">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-playfair font-bold mb-4 text-charcoal" style={{
+                  textShadow: '0 0 30px rgba(245, 241, 232, 0.9), 0 0 60px rgba(245, 241, 232, 0.7)'
+                }}>
+                  Create a Personalized Pet Memorial Card
+                </h1>
+                <p className="text-base md:text-lg mb-6 text-charcoal/80 max-w-xl mx-auto" style={{
+                  textShadow: '0 0 20px rgba(245, 241, 232, 0.95)'
+                }}>
+                  A gentle way to honor your beloved companion who crossed the Rainbow Bridge
+                </p>
+              </div>
+            </div>
+          </div>
           
           <div className="flex gap-4 justify-center flex-wrap">
             <Button 
-              className="bg-gray-900 hover:bg-gray-800 text-white text-lg px-8 py-6"
+              className="bg-transparent border-2 border-pastel-gold text-charcoal hover:bg-pastel-gold/10 text-lg px-8 py-6"
               onClick={() => document.getElementById('card-creator')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Create Memorial Card
             </Button>
             <Button 
-              variant="outline" 
-              className="border-gray-300 text-gray-800 text-lg px-8 py-6 bg-white hover:bg-gray-50"
+              className="bg-transparent border-2 border-pastel-gold text-charcoal hover:bg-pastel-gold/10 text-lg px-8 py-6"
             >
               View Card Gallery
             </Button>
@@ -189,16 +195,16 @@ const PetMemorialCard = () => {
       </section>
       
       {/* How It Works Section */}
-      <section className="py-32 px-4 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-5xl md:text-6xl font-playfair font-bold text-center mb-6 text-gray-900">
+      <section className="py-16 px-4 bg-aged-paper paper-texture">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-playfair font-bold text-center mb-4 text-charcoal">
             Create Your Pet Memorial Card
           </h2>
-          <p className="text-center text-gray-600 text-lg mb-24 max-w-2xl mx-auto">
+          <p className="text-center text-muted-foreground text-base mb-12 max-w-2xl mx-auto">
             A gentle way to honor your companion who crossed the Rainbow Bridge.
           </p>
           
-          <div className="grid md:grid-cols-3 gap-16 mb-32">
+          <div className="grid md:grid-cols-3 gap-8 mb-16">
             {[
               {
                 step: 1,
@@ -216,12 +222,12 @@ const PetMemorialCard = () => {
                 description: "Soft skies, peaceful rainbows, and starry nights. Preview your card live, then download instantly to print or share."
               }
             ].map((item) => (
-              <div key={item.step} className="text-center space-y-6">
-                <div className="w-20 h-20 rounded-full bg-gray-900 text-white flex items-center justify-center mx-auto">
-                  <span className="text-3xl font-bold">{item.step}</span>
+              <div key={item.step} className="text-center space-y-4">
+                <div className="w-14 h-14 rounded-full bg-charcoal text-cream flex items-center justify-center mx-auto">
+                  <span className="text-xl font-bold">{item.step}</span>
                 </div>
-                <h3 className="text-3xl font-playfair font-bold text-gray-900">{item.title}</h3>
-                <p className="text-gray-600 text-lg leading-relaxed">{item.description}</p>
+                <h3 className="text-xl font-playfair font-bold text-charcoal">{item.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
               </div>
             ))}
           </div>
@@ -229,9 +235,9 @@ const PetMemorialCard = () => {
       </section>
       
       {/* Card Creator Section - Desktop */}
-      <section id="card-creator" className="hidden md:flex min-h-screen overflow-hidden border-t">
+      <section id="card-creator" className="hidden md:flex min-h-screen overflow-hidden border-t border-primary/20">
         {/* Left Panel - Form */}
-        <div className="w-2/5 border-r bg-white flex flex-col h-screen">
+        <div className="w-2/5 border-r border-primary/20 bg-aged-paper paper-texture flex flex-col h-screen">
           <div className="flex-shrink-0 p-4">
             <div className="flex items-center justify-between mb-6">
               <h1 className="text-4xl font-playfair font-bold text-gray-900">
@@ -257,9 +263,9 @@ const PetMemorialCard = () => {
               className="space-y-2"
             >
               {/* Step 1: Choose Pet Type */}
-              <AccordionItem value="step-1" className="border rounded-lg px-4 bg-white">
+              <AccordionItem value="step-1" className="border border-primary/20 rounded-lg px-4 bg-cream-light">
                 <AccordionTrigger className="hover:no-underline">
-                  <span className="font-semibold text-gray-900">Step 1: Choose Pet Type</span>
+                  <span className="font-semibold text-charcoal">Step 1: Choose Pet Type</span>
                 </AccordionTrigger>
                 <AccordionContent>
                   {/* Show breeds list when a pet type is selected */}
@@ -364,7 +370,7 @@ const PetMemorialCard = () => {
                   </div>
                   
                   <Button 
-                    className="w-full mt-4 bg-gray-900 hover:bg-gray-800 text-white"
+                    className="w-full mt-4 bg-transparent border-2 border-pastel-gold text-charcoal hover:bg-pastel-gold/10"
                     onClick={() => setOpenStep("step-2")}
                   >
                     Save All Changes
@@ -373,9 +379,9 @@ const PetMemorialCard = () => {
               </AccordionItem>
               
               {/* Step 2: Personalize Details */}
-              <AccordionItem value="step-2" className="border rounded-lg px-4 bg-white">
+              <AccordionItem value="step-2" className="border border-primary/20 rounded-lg px-4 bg-cream-light">
                 <AccordionTrigger className="hover:no-underline">
-                  <span className="font-semibold text-gray-900">Step 2: Personalize Details</span>
+                  <span className="font-semibold text-charcoal">Step 2: Personalize Details</span>
                 </AccordionTrigger>
                 <AccordionContent>
                   <div className="space-y-4 py-4">
@@ -425,7 +431,7 @@ const PetMemorialCard = () => {
                     </div>
                     
                     <Button 
-                      className="w-full bg-gray-900 hover:bg-gray-800 text-white"
+                      className="w-full bg-transparent border-2 border-pastel-gold text-charcoal hover:bg-pastel-gold/10"
                       onClick={() => setOpenStep("step-3")}
                     >
                       Save All Changes
@@ -435,9 +441,9 @@ const PetMemorialCard = () => {
               </AccordionItem>
               
               {/* Step 3: Choose Background */}
-              <AccordionItem value="step-3" className="border rounded-lg px-4 bg-white">
+              <AccordionItem value="step-3" className="border border-primary/20 rounded-lg px-4 bg-cream-light">
                 <AccordionTrigger className="hover:no-underline">
-                  <span className="font-semibold text-gray-900">Step 3: Choose Background</span>
+                  <span className="font-semibold text-charcoal">Step 3: Choose Background</span>
                 </AccordionTrigger>
                 <AccordionContent>
                   <div className="grid grid-cols-5 gap-3 py-4">
@@ -578,13 +584,13 @@ const PetMemorialCard = () => {
                 </div>
               </div>
               
-              <p className="text-sm text-gray-500 text-center mt-4">
+              <p className="text-sm text-muted-foreground text-center mt-4">
                 Updates in real-time as you edit
               </p>
               
               <Button 
                 onClick={handleDownload}
-                className="w-full mt-4 bg-gray-900 hover:bg-gray-800 text-white py-6"
+                className="w-full mt-4 bg-transparent border-2 border-pastel-gold text-charcoal hover:bg-pastel-gold/10 py-6"
               >
                 <Download className="w-4 h-4 mr-2" />
                 Download Card: <span className="line-through mx-2 opacity-60">$3.99</span> FREE for a limited time!
@@ -595,9 +601,9 @@ const PetMemorialCard = () => {
       </section>
       
       {/* Card Creator Section - Mobile */}
-      <section id="card-creator-mobile" className="md:hidden py-8 px-4 bg-white">
+      <section id="card-creator-mobile" className="md:hidden py-8 px-4 bg-aged-paper paper-texture">
         <div className="text-center mb-6">
-          <h2 className="text-2xl font-playfair font-bold text-gray-900">
+          <h2 className="text-2xl font-playfair font-bold text-charcoal">
             Create Your Pet Memorial Card
           </h2>
           <Button 
@@ -660,9 +666,9 @@ const PetMemorialCard = () => {
           onValueChange={setOpenStep}
           className="space-y-2"
         >
-          <AccordionItem value="step-1" className="border rounded-lg px-4 bg-white">
+          <AccordionItem value="step-1" className="border border-primary/20 rounded-lg px-4 bg-cream-light">
             <AccordionTrigger className="hover:no-underline">
-              <span className="font-semibold text-sm text-gray-900">Step 1: Choose Pet Type</span>
+              <span className="font-semibold text-sm text-charcoal">Step 1: Choose Pet Type</span>
             </AccordionTrigger>
             <AccordionContent>
               {selectedPetType ? (
@@ -708,9 +714,9 @@ const PetMemorialCard = () => {
             </AccordionContent>
           </AccordionItem>
           
-          <AccordionItem value="step-2" className="border rounded-lg px-4 bg-white">
+          <AccordionItem value="step-2" className="border border-primary/20 rounded-lg px-4 bg-cream-light">
             <AccordionTrigger className="hover:no-underline">
-              <span className="font-semibold text-sm text-gray-900">Step 2: Personalize Details</span>
+              <span className="font-semibold text-sm text-charcoal">Step 2: Personalize Details</span>
             </AccordionTrigger>
             <AccordionContent>
               <div className="space-y-3 py-4">
@@ -741,9 +747,9 @@ const PetMemorialCard = () => {
             </AccordionContent>
           </AccordionItem>
           
-          <AccordionItem value="step-3" className="border rounded-lg px-4 bg-white">
+          <AccordionItem value="step-3" className="border border-primary/20 rounded-lg px-4 bg-cream-light">
             <AccordionTrigger className="hover:no-underline">
-              <span className="font-semibold text-sm text-gray-900">Step 3: Choose Background</span>
+              <span className="font-semibold text-sm text-charcoal">Step 3: Choose Background</span>
             </AccordionTrigger>
             <AccordionContent>
               <div className="grid grid-cols-5 gap-2 py-4">
@@ -765,7 +771,7 @@ const PetMemorialCard = () => {
         
         <Button 
           onClick={handleDownload}
-          className="w-full mt-6 bg-gray-900 hover:bg-gray-800 text-white py-6"
+          className="w-full mt-6 bg-transparent border-2 border-pastel-gold text-charcoal hover:bg-pastel-gold/10 py-6"
         >
           <Download className="w-4 h-4 mr-2" />
           Download Card: FREE!
