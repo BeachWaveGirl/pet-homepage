@@ -151,10 +151,10 @@ const PetMemorialCard = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative py-16 flex items-center justify-center overflow-hidden">
-        <div className="container mx-auto max-w-5xl px-4">
-          {/* Hero Image - full display */}
-          <div className="relative mb-8">
+      <section className="relative py-8 flex flex-col items-center justify-center overflow-hidden">
+        <div className="container mx-auto max-w-6xl px-4">
+          {/* Hero Image - full display from left to right */}
+          <div className="relative w-full">
             <img 
               src="/assets/banners/Pet_Memorial_Hero.png" 
               alt="Pet Memorial - Ornate rococo frame with beloved pets" 
@@ -162,14 +162,14 @@ const PetMemorialCard = () => {
             />
             
             {/* Text overlay centered within the frame */}
-            <div className="absolute inset-0 flex items-center justify-center">
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <div className="text-center px-8 max-w-2xl">
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-playfair font-bold mb-4 text-charcoal" style={{
+                <h1 className="text-2xl md:text-3xl lg:text-4xl font-playfair font-bold mb-3 text-charcoal" style={{
                   textShadow: '0 0 30px rgba(245, 241, 232, 0.9), 0 0 60px rgba(245, 241, 232, 0.7)'
                 }}>
                   Create a Personalized Pet Memorial Card
                 </h1>
-                <p className="text-base md:text-lg mb-6 text-charcoal/80 max-w-xl mx-auto" style={{
+                <p className="text-sm md:text-base text-charcoal/80 max-w-xl mx-auto" style={{
                   textShadow: '0 0 20px rgba(245, 241, 232, 0.95)'
                 }}>
                   A gentle way to honor your beloved companion who crossed the Rainbow Bridge
@@ -178,15 +178,16 @@ const PetMemorialCard = () => {
             </div>
           </div>
           
-          <div className="flex gap-4 justify-center flex-wrap">
+          {/* Buttons below the image */}
+          <div className="flex gap-4 justify-center flex-wrap mt-6">
             <Button 
-              className="bg-transparent border-2 border-pastel-gold text-charcoal hover:bg-pastel-gold/10 text-lg px-8 py-6"
+              className="bg-transparent border-2 border-pastel-gold text-charcoal hover:bg-pastel-gold/10 text-base px-6 py-5"
               onClick={() => document.getElementById('card-creator')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Create Memorial Card
             </Button>
             <Button 
-              className="bg-transparent border-2 border-pastel-gold text-charcoal hover:bg-pastel-gold/10 text-lg px-8 py-6"
+              className="bg-transparent border-2 border-pastel-gold text-charcoal hover:bg-pastel-gold/10 text-base px-6 py-5"
             >
               View Card Gallery
             </Button>
@@ -195,16 +196,16 @@ const PetMemorialCard = () => {
       </section>
       
       {/* How It Works Section */}
-      <section className="py-16 px-4 bg-aged-paper paper-texture">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-playfair font-bold text-center mb-4 text-charcoal">
+      <section className="py-8 px-4 bg-aged-paper paper-texture">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-playfair font-bold text-center mb-2 text-charcoal">
             Create Your Pet Memorial Card
           </h2>
-          <p className="text-center text-muted-foreground text-base mb-12 max-w-2xl mx-auto">
+          <p className="text-center text-muted-foreground text-sm mb-6 max-w-xl mx-auto">
             A gentle way to honor your companion who crossed the Rainbow Bridge.
           </p>
           
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
+          <div className="grid md:grid-cols-3 gap-6 mb-8">
             {[
               {
                 step: 1,
@@ -222,12 +223,12 @@ const PetMemorialCard = () => {
                 description: "Soft skies, peaceful rainbows, and starry nights. Preview your card live, then download instantly to print or share."
               }
             ].map((item) => (
-              <div key={item.step} className="text-center space-y-4">
-                <div className="w-14 h-14 rounded-full bg-charcoal text-cream flex items-center justify-center mx-auto">
-                  <span className="text-xl font-bold">{item.step}</span>
+              <div key={item.step} className="text-center space-y-2">
+                <div className="w-10 h-10 rounded-full bg-charcoal text-cream flex items-center justify-center mx-auto">
+                  <span className="text-sm font-bold">{item.step}</span>
                 </div>
-                <h3 className="text-xl font-playfair font-bold text-charcoal">{item.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
+                <h3 className="text-base font-playfair font-bold text-charcoal">{item.title}</h3>
+                <p className="text-muted-foreground text-xs leading-relaxed">{item.description}</p>
               </div>
             ))}
           </div>
@@ -475,19 +476,20 @@ const PetMemorialCard = () => {
         </div>
         
         {/* Right Panel - Live Preview */}
-        <div className="w-3/5 bg-gray-50 p-8 h-screen overflow-y-auto">
-          <div className="sticky top-0 pb-8">
-            <div className="max-w-2xl mx-auto">
-              <h2 className="text-2xl font-playfair font-bold text-center mb-6">Live Preview</h2>
+        <div className="w-3/5 bg-gray-50 p-6 h-screen overflow-hidden flex flex-col">
+          <div className="flex-1 flex flex-col min-h-0">
+            <div className="max-w-xl mx-auto w-full flex flex-col h-full">
+              <h2 className="text-xl font-playfair font-bold text-center mb-4 flex-shrink-0">Live Preview</h2>
               
-              <div 
-                id="memorial-card-preview"
-                className="relative bg-white rounded-2xl overflow-hidden shadow-xl"
-                style={{ 
-                  aspectRatio: '5/7',
-                  minHeight: '600px',
-                }}
-              >
+              <div className="flex-1 flex items-center justify-center min-h-0">
+                <div 
+                  id="memorial-card-preview"
+                  className="relative bg-white rounded-2xl overflow-hidden shadow-xl w-full"
+                  style={{ 
+                    aspectRatio: '5/7',
+                    maxHeight: 'calc(100vh - 200px)',
+                  }}
+                >
                 {/* Background */}
                 <div 
                   className="absolute inset-0"
@@ -583,18 +585,21 @@ const PetMemorialCard = () => {
                   </div>
                 </div>
               </div>
+              </div>
               
-              <p className="text-sm text-muted-foreground text-center mt-4">
-                Updates in real-time as you edit
-              </p>
-              
-              <Button 
-                onClick={handleDownload}
-                className="w-full mt-4 bg-transparent border-2 border-pastel-gold text-charcoal hover:bg-pastel-gold/10 py-6"
-              >
-                <Download className="w-4 h-4 mr-2" />
-                Download Card: <span className="line-through mx-2 opacity-60">$3.99</span> FREE for a limited time!
-              </Button>
+              <div className="flex-shrink-0 mt-4">
+                <p className="text-xs text-muted-foreground text-center mb-3">
+                  Updates in real-time as you edit
+                </p>
+                
+                <Button 
+                  onClick={handleDownload}
+                  className="w-full bg-transparent border-2 border-pastel-gold text-charcoal hover:bg-pastel-gold/10 py-5"
+                >
+                  <Download className="w-4 h-4 mr-2" />
+                  Download Card: <span className="line-through mx-2 opacity-60">$3.99</span> FREE for a limited time!
+                </Button>
+              </div>
             </div>
           </div>
         </div>
