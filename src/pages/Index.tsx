@@ -82,7 +82,7 @@ const Index = () => {
               </p>
               
               <Link to="/memorial-card">
-                <Button className="bg-primary hover:bg-pastel-blue-dark text-primary-foreground transition-colors shadow-rococo px-8 py-5 text-base" style={{
+                <Button className="bg-transparent border-2 border-pastel-gold text-charcoal hover:bg-pastel-gold/10 hover:border-pastel-gold-dark transition-colors px-8 py-5 text-base backdrop-blur-sm" style={{
                 boxShadow: '0 0 20px rgba(245, 241, 232, 0.6), 0 4px 15px rgba(0,0,0,0.1)'
               }}>
                   Create a Memorial
@@ -114,30 +114,27 @@ const Index = () => {
                   <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-primary/40 rounded-tl-xl z-20"></div>
                   <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-primary/40 rounded-tr-xl z-20"></div>
                   
-                  {/* Full image container with text overlay */}
-                  <div className="relative bg-cream/30">
-                    {/* Full image - object-contain to show entire illustration */}
+                  {/* Full image container - no text overlay */}
+                  <div className="bg-cream/30">
                     <img src={offering.imageUrl} alt={offering.title} className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-[1.02]" />
-                    
-                    {/* Copy overlay panel at top of image */}
-                    <div className="absolute top-0 left-0 right-0 p-4 z-10">
-                      <div className="bg-gradient-to-b from-cream/95 via-cream/90 to-transparent p-4 pb-8 rounded-t-lg">
-                        {/* Decorative line */}
-                        <div className="h-px w-full bg-gradient-to-r from-primary/30 via-pastel-gold/40 to-primary/30 mb-3"></div>
-                        <h3 className="font-playfair text-lg font-medium mb-2 text-foreground group-hover:text-primary transition-colors leading-tight">
-                          {offering.title}
-                        </h3>
-                        <p className="text-muted-foreground mb-3 text-xs leading-relaxed line-clamp-3">
-                          {offering.description}
-                        </p>
-                        <div className="flex flex-wrap gap-1.5">
-                          {offering.keywords.slice(0, 2).map((keyword, i) => <Badge key={i} variant="outline" className="text-[10px] border-primary/50 text-primary bg-primary/10 rounded-full px-2 py-0.5">
-                              {keyword}
-                            </Badge>)}
-                        </div>
-                      </div>
-                    </div>
                   </div>
+                  
+                  {/* Text content below image */}
+                  <CardContent className="p-4 pt-3">
+                    {/* Decorative line */}
+                    <div className="h-px w-full bg-gradient-to-r from-primary/30 via-pastel-gold/40 to-primary/30 mb-3"></div>
+                    <h3 className="font-playfair text-lg font-medium mb-2 text-foreground group-hover:text-primary transition-colors leading-tight">
+                      {offering.title}
+                    </h3>
+                    <p className="text-muted-foreground mb-3 text-sm leading-relaxed">
+                      {offering.description}
+                    </p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {offering.keywords.slice(0, 2).map((keyword, i) => <Badge key={i} variant="outline" className="text-[10px] border-primary/50 text-primary bg-primary/10 rounded-full px-2 py-0.5">
+                          {keyword}
+                        </Badge>)}
+                    </div>
+                  </CardContent>
                   
                   {/* Bottom ornate corners */}
                   <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-primary/40 rounded-bl-xl z-20"></div>
