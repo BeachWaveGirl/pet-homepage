@@ -23,41 +23,95 @@ const PetPoems = () => {
   };
   
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col bg-aged-paper paper-texture">
       <Header />
       
-      <main className="flex-1 py-12 px-4">
-        <div className="container mx-auto max-w-4xl">
-          <h1 className="font-playfair text-4xl md:text-5xl font-bold mb-6 text-center">
-            Rainbow Bridge Poem Print
-          </h1>
+      {/* Hero Section - Full width with image */}
+      <section className="w-full pt-16 relative">
+        <div className="w-full relative">
+          <img 
+            src="/assets/banners/Poem_LP.png" 
+            alt="Rainbow Bridge Poem Print - Ornate rococo frame with beloved pet" 
+            className="w-full h-auto object-contain"
+          />
           
-          <p className="text-xl text-gray-700 mb-10 text-center max-w-2xl mx-auto">
-            Create a beautiful, personalized poem to honor and remember your beloved pet companion
-          </p>
+          {/* Text overlay centered within the image scene */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="text-center px-4 max-w-3xl" style={{ marginTop: '25%' }}>
+              <h1 
+                style={{
+                  textShadow: '0 0 30px rgba(245, 241, 232, 0.9), 0 0 60px rgba(245, 241, 232, 0.7), 0 2px 4px rgba(0,0,0,0.1)'
+                }} 
+                className="font-playfair text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 text-foreground"
+              >
+                Rainbow Bridge<br />Poem Print
+              </h1>
+              <p 
+                style={{
+                  textShadow: '0 0 20px rgba(245, 241, 232, 0.95), 0 0 40px rgba(245, 241, 232, 0.8)'
+                }} 
+                className="text-base md:text-lg text-foreground/90 mb-6 max-w-2xl mx-auto leading-relaxed lg:text-lg"
+              >
+                Create a beautiful, personalized poem to honor<br />and remember your beloved pet companion
+              </p>
+              
+              <div className="flex justify-center">
+                <Button 
+                  className="bg-transparent border-2 border-pastel-gold text-charcoal hover:bg-pastel-gold/10 hover:border-pastel-gold-dark transition-colors px-8 py-5 text-base backdrop-blur-sm" 
+                  style={{
+                    boxShadow: '0 0 20px rgba(245, 241, 232, 0.6), 0 4px 15px rgba(0,0,0,0.1)'
+                  }} 
+                  onClick={() => document.getElementById('poem-creator')?.scrollIntoView({
+                    behavior: 'smooth'
+                  })}
+                >
+                  Create Your Poem
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* Poem Creator Section */}
+      <section id="poem-creator" className="w-full py-16 px-4 bg-aged-paper paper-texture paper-vignette relative">
+        <div className="container mx-auto max-w-4xl relative z-10">
+          {/* Decorative header */}
+          <div className="text-center mb-12">
+            <div className="inline-block mb-4">
+              <div className="h-px w-24 bg-gradient-to-r from-transparent via-primary/60 to-transparent mx-auto mb-2"></div>
+            </div>
+            <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-4 text-foreground">
+              Create Your Pet Poem
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              Our AI generates unique poems inspired by your beloved pet
+            </p>
+            <div className="h-px w-32 bg-gradient-to-r from-transparent via-pastel-gold/50 to-transparent mx-auto mt-6"></div>
+          </div>
           
-          <Card className="bg-white border-gray-200 shadow-md mb-8">
+          <Card className="bg-cream-light/80 border-pastel-gold/30 shadow-md mb-8">
             <CardHeader>
-              <CardTitle className="text-2xl font-playfair">Create Your Pet Poem</CardTitle>
+              <CardTitle className="text-2xl font-playfair text-foreground">Personalize Your Poem</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-5">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-sm font-medium mb-1">Pet's Name</label>
+                    <label className="block text-sm font-medium mb-1 text-foreground">Pet's Name</label>
                     <input 
                       type="text"
-                      className="w-full p-2 border rounded-md"
+                      className="w-full p-2 border border-pastel-gold/30 rounded-md bg-cream-light text-foreground"
                       value={petName}
                       onChange={(e) => setPetName(e.target.value)}
                       placeholder="Enter your pet's name"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-1">Type of Pet</label>
+                    <label className="block text-sm font-medium mb-1 text-foreground">Type of Pet</label>
                     <input 
                       type="text"
-                      className="w-full p-2 border rounded-md"
+                      className="w-full p-2 border border-pastel-gold/30 rounded-md bg-cream-light text-foreground"
                       value={petType}
                       onChange={(e) => setPetType(e.target.value)}
                       placeholder="Dog, cat, rabbit, etc."
@@ -68,20 +122,23 @@ const PetPoems = () => {
                 <div className="pt-3">
                   <Button
                     onClick={handleGeneratePoem}
-                    className="w-full bg-black hover:bg-gray-800 text-white"
+                    className="w-full bg-transparent border-2 border-pastel-gold text-charcoal hover:bg-pastel-gold/10 hover:border-pastel-gold-dark transition-colors py-5"
                   >
                     Generate Poem
                   </Button>
                 </div>
                 
                 {generatedPoem && (
-                  <div className="mt-6 p-5 bg-gray-50 rounded-lg border">
-                    <h3 className="font-medium mb-2 text-lg">Your Memorial Poem</h3>
-                    <div className="font-playfair italic text-gray-800 whitespace-pre-line">
+                  <div className="mt-6 p-5 bg-cream-light rounded-lg border border-pastel-gold/30">
+                    <h3 className="font-medium mb-2 text-lg text-foreground">Your Memorial Poem</h3>
+                    <div className="font-playfair italic text-foreground/90 whitespace-pre-line">
                       {generatedPoem}
                     </div>
                     <div className="mt-4 flex justify-end">
-                      <Button variant="outline">
+                      <Button 
+                        variant="outline"
+                        className="border-pastel-gold/50 text-charcoal hover:bg-pastel-gold/10"
+                      >
                         Download Poem
                       </Button>
                     </div>
@@ -92,15 +149,12 @@ const PetPoems = () => {
           </Card>
           
           <div className="text-center mt-8">
-            <p className="text-gray-600 mb-2">
-              Our AI generates unique poems inspired by your beloved pet
-            </p>
-            <p className="text-sm text-gray-500">
+            <p className="text-muted-foreground mb-2">
               Download and print your poem to keep or share with loved ones
             </p>
           </div>
         </div>
-      </main>
+      </section>
       
       <Footer />
     </div>

@@ -259,7 +259,7 @@ const PetMemorialCard = () => {
           }}>
               <h1 style={{
               textShadow: '0 0 30px rgba(245, 241, 232, 0.9), 0 0 60px rgba(245, 241, 232, 0.7), 0 2px 4px rgba(0,0,0,0.1)'
-            }} className="font-playfair text-3xl md:text-4xl xl:text-6xl font-bold mb-4 text-foreground lg:text-3xl">
+            }} className="font-playfair text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 text-foreground">
                 Create a Personalized<br />Pet Memorial Card
               </h1>
               <p style={{
