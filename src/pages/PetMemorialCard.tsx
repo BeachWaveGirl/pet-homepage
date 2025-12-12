@@ -268,18 +268,13 @@ const PetMemorialCard = () => {
                 A gentle way to honor your beloved companion<br />who crossed the Rainbow Bridge
               </p>
               
-              <div className="flex gap-4 justify-center flex-wrap">
+              <div className="flex justify-center">
                 <Button className="bg-transparent border-2 border-pastel-gold text-charcoal hover:bg-pastel-gold/10 hover:border-pastel-gold-dark transition-colors px-8 py-5 text-base backdrop-blur-sm" style={{
                 boxShadow: '0 0 20px rgba(245, 241, 232, 0.6), 0 4px 15px rgba(0,0,0,0.1)'
               }} onClick={() => document.getElementById('card-creator')?.scrollIntoView({
                 behavior: 'smooth'
               })}>
                   Create Memorial Card
-                </Button>
-                <Button className="bg-transparent border-2 border-pastel-gold text-charcoal hover:bg-pastel-gold/10 hover:border-pastel-gold-dark transition-colors px-8 py-5 text-base backdrop-blur-sm" style={{
-                boxShadow: '0 0 20px rgba(245, 241, 232, 0.6), 0 4px 15px rgba(0,0,0,0.1)'
-              }}>
-                  View Card Gallery
                 </Button>
               </div>
             </div>
@@ -328,152 +323,209 @@ const PetMemorialCard = () => {
       </section>
       
       {/* Card Creator Section - Desktop */}
-      <section id="card-creator" className="hidden md:flex min-h-screen overflow-hidden border-t border-primary/20">
+      <section id="card-creator" className="hidden md:flex min-h-screen overflow-hidden">
         {/* Left Panel - Form */}
-        <div className="w-2/5 border-r border-primary/20 bg-aged-paper paper-texture flex flex-col h-screen">
-          <div className="flex-shrink-0 p-4">
-            <div className="flex items-center justify-between mb-6">
-              <h1 className="text-4xl font-playfair font-bold text-gray-900">
-                Create Your Pet Memorial Card
+        <div className="w-2/5 bg-aged-paper paper-texture flex flex-col h-screen relative">
+          {/* Decorative top border */}
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-pastel-gold/60 to-transparent"></div>
+          
+          {/* Decorative right border */}
+          <div className="absolute top-0 right-0 bottom-0 w-px bg-gradient-to-b from-pastel-gold/30 via-pastel-gold/60 to-pastel-gold/30"></div>
+          
+          <div className="flex-shrink-0 p-6">
+            {/* Decorative header divider */}
+            <div className="flex items-center gap-4 mb-6">
+              <div className="h-px flex-1 bg-gradient-to-r from-transparent via-pastel-gold/40 to-pastel-gold/60"></div>
+              <div className="w-2 h-2 rotate-45 border border-pastel-gold/60 bg-cream-light"></div>
+              <div className="h-px flex-1 bg-gradient-to-l from-transparent via-pastel-gold/40 to-pastel-gold/60"></div>
+            </div>
+            
+            <div className="flex items-center justify-between mb-4">
+              <h1 className="text-2xl font-playfair font-bold text-foreground">
+                Create Your Memorial
               </h1>
-              <Button variant="outline" size="sm" onClick={handleReset}>
+              <Button variant="ghost" size="sm" onClick={handleReset} className="text-muted-foreground hover:text-foreground">
                 <RotateCcw className="w-4 h-4 mr-1" />
                 Reset
               </Button>
             </div>
+            
+            {/* Decorative divider below title */}
+            <div className="h-px w-full bg-gradient-to-r from-pastel-gold/60 via-pastel-gold/30 to-transparent"></div>
           </div>
           
-          <div className="flex-1 overflow-y-auto px-4 pb-4">
-            <Accordion type="single" collapsible value={openStep} onValueChange={setOpenStep} className="space-y-2">
+          <div className="flex-1 overflow-y-auto px-6 pb-6">
+            <Accordion type="single" collapsible value={openStep} onValueChange={setOpenStep} className="space-y-4">
               {/* Step 1: Choose Pet Type */}
-              <AccordionItem value="step-1" className="border border-primary/20 rounded-lg px-4 bg-cream-light">
-                <AccordionTrigger className="hover:no-underline">
-                  <span className="font-semibold text-charcoal">Step 1: Choose Pet Type</span>
+              <AccordionItem value="step-1" className="border border-pastel-gold/30 rounded-xl px-5 py-1 bg-cream-light/80 shadow-sm">
+                <AccordionTrigger className="hover:no-underline py-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-full bg-primary/15 border border-primary/30 flex items-center justify-center">
+                      <span className="text-sm font-bold text-foreground">1</span>
+                    </div>
+                    <span className="font-playfair font-semibold text-foreground">Choose Pet Type</span>
+                  </div>
                 </AccordionTrigger>
                 <AccordionContent>
+                  {/* Decorative divider */}
+                  <div className="h-px w-full bg-gradient-to-r from-transparent via-pastel-gold/40 to-transparent mb-4"></div>
+                  
                   {/* Show breeds list when a pet type is selected */}
-                  {selectedPetType ? <div className="py-4">
+                  {selectedPetType ? <div className="py-2">
                       {/* Back button and title */}
                       <div className="flex items-center gap-2 mb-2">
-                        <Button variant="ghost" size="sm" onClick={handleBackToTypes} className="p-1 h-auto">
+                        <Button variant="ghost" size="sm" onClick={handleBackToTypes} className="p-1 h-auto text-muted-foreground hover:text-foreground">
                           <ChevronLeft className="w-4 h-4" />
                           Back
                         </Button>
-                        <span className="font-semibold text-gray-900">Choose Your {selectedPetTypeData?.name}</span>
+                        <span className="font-semibold text-foreground">Choose Your {selectedPetTypeData?.name}</span>
                       </div>
                       
-                      <p className="text-sm text-gray-500 mb-4">
+                      <p className="text-sm text-muted-foreground mb-4">
                         {selectedPetTypeData?.breeds.length} {selectedPetTypeData?.name} Breeds Available
                       </p>
                       
                       {/* Search bar */}
                       <div className="relative mb-4">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                        <Input placeholder="Search for your pet..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="pl-10" />
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                        <Input placeholder="Search for your pet..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="pl-10 border-pastel-gold/30 bg-cream-light" />
                       </div>
                       
                       {/* Breeds grid */}
                       <div className="grid grid-cols-3 gap-3 max-h-[400px] overflow-y-auto pr-2">
-                        {filteredBreeds.map(breed => <Card key={breed.id} onClick={() => handleBreedSelect(breed)} className={`p-3 cursor-pointer transition-all hover:shadow-lg text-center ${selectedBreed?.id === breed.id ? 'ring-2 ring-gray-900' : ''}`}>
+                        {filteredBreeds.map(breed => <Card key={breed.id} onClick={() => handleBreedSelect(breed)} className={`p-3 cursor-pointer transition-all hover:shadow-lg text-center border-pastel-gold/20 bg-cream-light/50 ${selectedBreed?.id === breed.id ? 'ring-2 ring-pastel-gold border-pastel-gold' : ''}`}>
                             <div className="flex flex-col items-center gap-2">
                               <div className="w-16 h-16 flex items-center justify-center">
                                 <img src={breed.image} alt={breed.name} className="w-full h-full object-contain" />
                               </div>
-                              <h3 className="font-medium text-xs text-center leading-tight text-gray-900">{breed.name}</h3>
+                              <h3 className="font-medium text-xs text-center leading-tight text-foreground">{breed.name}</h3>
                             </div>
                           </Card>)}
                       </div>
                     </div> : (/* Show main pet types */
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 py-4">
-                      {petTypes.map(pet => <Card key={pet.id} onClick={() => handlePetTypeSelect(pet.id)} className="p-4 cursor-pointer transition-all hover:shadow-lg hover:scale-105 text-center">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 py-2">
+                      {petTypes.map(pet => <Card key={pet.id} onClick={() => handlePetTypeSelect(pet.id)} className="p-4 cursor-pointer transition-all hover:shadow-lg hover:scale-105 text-center border-pastel-gold/20 bg-cream-light/50">
                           <div className="flex flex-col items-center gap-3">
-                            <div className="w-24 h-24 flex items-center justify-center">
+                            <div className="w-20 h-20 flex items-center justify-center">
                               <img src={pet.image} alt={`${pet.name} watercolor illustration`} className="w-full h-full object-contain" />
                             </div>
-                            <h3 className="font-semibold text-lg text-gray-900">{pet.name}</h3>
+                            <h3 className="font-semibold text-base text-foreground">{pet.name}</h3>
                           </div>
                         </Card>)}
                     </div>)}
                   
-                  <div className="mt-6 pt-6 border-t space-y-3">
-                    <Label className="text-sm font-medium text-gray-900">Adjust Pet Size</Label>
+                  {/* Decorative divider */}
+                  <div className="h-px w-full bg-gradient-to-r from-transparent via-pastel-gold/40 to-transparent my-4"></div>
+                  
+                  <div className="space-y-3">
+                    <Label className="text-sm font-medium text-foreground">Adjust Pet Size</Label>
                     <Slider value={petSize} onValueChange={setPetSize} min={80} max={300} step={1} className="w-full" />
-                    <div className="flex justify-between text-xs text-gray-500">
+                    <div className="flex justify-between text-xs text-muted-foreground">
                       <span>Small</span>
                       <span>Large</span>
                     </div>
-                    <p className="text-xs text-gray-500">
-                      You can also drag corners on the preview to resize
-                    </p>
                   </div>
                   
-                  <Button className="w-full mt-4 bg-transparent border-2 border-pastel-gold text-charcoal hover:bg-pastel-gold/10" onClick={() => setOpenStep("step-2")}>
-                    Save All Changes
+                  <Button className="w-full mt-4 bg-transparent border-2 border-pastel-gold text-foreground hover:bg-pastel-gold/10" onClick={() => setOpenStep("step-2")}>
+                    Continue to Step 2
                   </Button>
                 </AccordionContent>
               </AccordionItem>
               
               {/* Step 2: Personalize Details */}
-              <AccordionItem value="step-2" className="border border-primary/20 rounded-lg px-4 bg-cream-light">
-                <AccordionTrigger className="hover:no-underline">
-                  <span className="font-semibold text-charcoal">Step 2: Personalize Details</span>
+              <AccordionItem value="step-2" className="border border-pastel-gold/30 rounded-xl px-5 py-1 bg-cream-light/80 shadow-sm">
+                <AccordionTrigger className="hover:no-underline py-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-full bg-primary/15 border border-primary/30 flex items-center justify-center">
+                      <span className="text-sm font-bold text-foreground">2</span>
+                    </div>
+                    <span className="font-playfair font-semibold text-foreground">Personalize Details</span>
+                  </div>
                 </AccordionTrigger>
                 <AccordionContent>
-                  <div className="space-y-4 py-4">
+                  {/* Decorative divider */}
+                  <div className="h-px w-full bg-gradient-to-r from-transparent via-pastel-gold/40 to-transparent mb-4"></div>
+                  
+                  <div className="space-y-4 py-2">
                     <div>
-                      <Label htmlFor="petName">Pet Name</Label>
-                      <Input id="petName" value={petName} onChange={e => setPetName(e.target.value)} placeholder="Enter pet's name" className="mt-1" />
+                      <Label htmlFor="petName" className="text-foreground">Pet Name</Label>
+                      <Input id="petName" value={petName} onChange={e => setPetName(e.target.value)} placeholder="Enter pet's name" className="mt-1 border-pastel-gold/30 bg-cream-light" />
                     </div>
                     
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <Label htmlFor="birthYear">Birth Year</Label>
-                        <Input id="birthYear" value={birthYear} onChange={e => setBirthYear(e.target.value)} placeholder="e.g., 2015" className="mt-1" />
+                        <Label htmlFor="birthYear" className="text-foreground">Birth Year</Label>
+                        <Input id="birthYear" value={birthYear} onChange={e => setBirthYear(e.target.value)} placeholder="e.g., 2015" className="mt-1 border-pastel-gold/30 bg-cream-light" />
                       </div>
                       <div>
-                        <Label htmlFor="passingYear">Passing Year</Label>
-                        <Input id="passingYear" value={passingYear} onChange={e => setPassingYear(e.target.value)} placeholder="e.g., 2025" className="mt-1" />
+                        <Label htmlFor="passingYear" className="text-foreground">Passing Year</Label>
+                        <Input id="passingYear" value={passingYear} onChange={e => setPassingYear(e.target.value)} placeholder="e.g., 2025" className="mt-1 border-pastel-gold/30 bg-cream-light" />
                       </div>
                     </div>
                     
                     <div>
-                      <Label htmlFor="message">Memorial Message</Label>
-                      <Textarea id="message" value={message} onChange={e => setMessage(e.target.value)} placeholder="Write a heartfelt message..." className="mt-1 min-h-[120px]" />
+                      <Label htmlFor="message" className="text-foreground">Memorial Message</Label>
+                      <Textarea id="message" value={message} onChange={e => setMessage(e.target.value)} placeholder="Write a heartfelt message..." className="mt-1 min-h-[120px] border-pastel-gold/30 bg-cream-light" />
                     </div>
                     
-                    <Button className="w-full bg-transparent border-2 border-pastel-gold text-charcoal hover:bg-pastel-gold/10" onClick={() => setOpenStep("step-3")}>
-                      Save All Changes
+                    <Button className="w-full bg-transparent border-2 border-pastel-gold text-foreground hover:bg-pastel-gold/10" onClick={() => setOpenStep("step-3")}>
+                      Continue to Step 3
                     </Button>
                   </div>
                 </AccordionContent>
               </AccordionItem>
               
               {/* Step 3: Choose Background */}
-              <AccordionItem value="step-3" className="border border-primary/20 rounded-lg px-4 bg-cream-light">
-                <AccordionTrigger className="hover:no-underline">
-                  <span className="font-semibold text-charcoal">Step 3: Choose Background</span>
+              <AccordionItem value="step-3" className="border border-pastel-gold/30 rounded-xl px-5 py-1 bg-cream-light/80 shadow-sm">
+                <AccordionTrigger className="hover:no-underline py-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-full bg-primary/15 border border-primary/30 flex items-center justify-center">
+                      <span className="text-sm font-bold text-foreground">3</span>
+                    </div>
+                    <span className="font-playfair font-semibold text-foreground">Choose Background</span>
+                  </div>
                 </AccordionTrigger>
                 <AccordionContent>
-                  <div className="grid grid-cols-5 gap-3 py-4">
-                    {backgrounds.map(bg => <button key={bg.id} onClick={() => setSelectedBackground(bg.id)} className={`aspect-square rounded-lg border-2 transition-all overflow-hidden ${selectedBackground === bg.id ? 'border-gray-900 ring-2 ring-gray-400' : 'border-gray-200 hover:border-gray-300'}`} title={bg.name}>
+                  {/* Decorative divider */}
+                  <div className="h-px w-full bg-gradient-to-r from-transparent via-pastel-gold/40 to-transparent mb-4"></div>
+                  
+                  <div className="grid grid-cols-5 gap-3 py-2">
+                    {backgrounds.map(bg => <button key={bg.id} onClick={() => setSelectedBackground(bg.id)} className={`aspect-square rounded-lg border-2 transition-all overflow-hidden ${selectedBackground === bg.id ? 'border-pastel-gold ring-2 ring-pastel-gold/40' : 'border-pastel-gold/20 hover:border-pastel-gold/50'}`} title={bg.name}>
                         <img src={bg.image} alt={bg.name} className="w-full h-full object-cover" />
                       </button>)}
                   </div>
                   
-                  <Button className="w-full mt-4 bg-gray-900 hover:bg-gray-800 text-white">
-                    Save All Changes
+                  <Button className="w-full mt-4 bg-transparent border-2 border-pastel-gold text-foreground hover:bg-pastel-gold/10">
+                    Finalize Card
                   </Button>
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
+            
+            {/* Decorative bottom flourish */}
+            <div className="flex items-center gap-4 mt-8">
+              <div className="h-px flex-1 bg-gradient-to-r from-transparent via-pastel-gold/30 to-pastel-gold/50"></div>
+              <div className="w-1.5 h-1.5 rotate-45 bg-pastel-gold/40"></div>
+              <div className="h-px flex-1 bg-gradient-to-l from-transparent via-pastel-gold/30 to-pastel-gold/50"></div>
+            </div>
           </div>
         </div>
         
         {/* Right Panel - Live Preview */}
-        <div className="w-3/5 bg-gray-50 p-6 h-screen overflow-hidden flex flex-col">
+        <div className="w-3/5 bg-aged-paper/50 paper-texture p-6 h-screen overflow-hidden flex flex-col relative">
+          {/* Decorative left border */}
+          <div className="absolute top-0 left-0 bottom-0 w-px bg-gradient-to-b from-pastel-gold/30 via-pastel-gold/60 to-pastel-gold/30"></div>
+          
           <div className="flex-1 flex flex-col min-h-0">
             <div className="max-w-xl mx-auto w-full flex flex-col h-full">
-              <h2 className="text-xl font-playfair font-bold text-center mb-4 flex-shrink-0">Live Preview</h2>
+              {/* Preview header with decorative elements */}
+              <div className="flex-shrink-0 mb-4">
+                <div className="flex items-center gap-4">
+                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-pastel-gold/40 to-pastel-gold/60"></div>
+                  <h2 className="text-lg font-playfair font-bold text-foreground">Live Preview</h2>
+                  <div className="h-px flex-1 bg-gradient-to-l from-transparent via-pastel-gold/40 to-pastel-gold/60"></div>
+                </div>
+              </div>
               
               <div className="flex-1 flex items-center justify-center min-h-0">
                 <div id="memorial-card-preview" className="relative bg-white rounded-2xl overflow-hidden shadow-xl w-full" style={{
@@ -564,11 +616,18 @@ const PetMemorialCard = () => {
       
       {/* Card Creator Section - Mobile */}
       <section id="card-creator-mobile" className="md:hidden py-8 px-4 bg-aged-paper paper-texture">
+        {/* Decorative header */}
+        <div className="flex items-center gap-4 mb-6">
+          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-pastel-gold/40 to-pastel-gold/60"></div>
+          <div className="w-2 h-2 rotate-45 border border-pastel-gold/60 bg-cream-light"></div>
+          <div className="h-px flex-1 bg-gradient-to-l from-transparent via-pastel-gold/40 to-pastel-gold/60"></div>
+        </div>
+        
         <div className="text-center mb-6">
-          <h2 className="text-2xl font-playfair font-bold text-charcoal">
-            Create Your Pet Memorial Card
+          <h2 className="text-2xl font-playfair font-bold text-foreground">
+            Create Your Memorial
           </h2>
-          <Button variant="ghost" size="sm" onClick={handleReset} className="mt-2">
+          <Button variant="ghost" size="sm" onClick={handleReset} className="mt-2 text-muted-foreground">
             <RotateCcw className="w-4 h-4 mr-1" />
             Reset
           </Button>
