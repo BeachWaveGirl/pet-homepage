@@ -166,12 +166,12 @@ const PetMemorialCard = () => {
               <h1 style={{
                 textShadow: '0 0 30px rgba(245, 241, 232, 0.9), 0 0 60px rgba(245, 241, 232, 0.7), 0 2px 4px rgba(0,0,0,0.1)'
               }} className="font-playfair text-3xl md:text-4xl xl:text-6xl font-bold mb-4 text-foreground lg:text-3xl">
-                Create a Personalized Pet Memorial Card
+                Create a Personalized<br />Pet Memorial Card
               </h1>
               <p className="text-base md:text-lg lg:text-xl text-foreground/90 mb-6 max-w-2xl mx-auto leading-relaxed" style={{
                 textShadow: '0 0 20px rgba(245, 241, 232, 0.95), 0 0 40px rgba(245, 241, 232, 0.8)'
               }}>
-                A gentle way to honor your beloved companion who crossed the Rainbow Bridge
+                A gentle way to honor your beloved companion<br />who crossed the Rainbow Bridge
               </p>
               
               <div className="flex gap-4 justify-center flex-wrap">
@@ -194,17 +194,23 @@ const PetMemorialCard = () => {
         </div>
       </section>
       
-      {/* How It Works Section */}
-      <section className="py-8 px-4 bg-aged-paper paper-texture">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-playfair font-bold text-center mb-2 text-charcoal">
-            Create Your Pet Memorial Card
-          </h2>
-          <p className="text-center text-muted-foreground text-sm mb-6 max-w-xl mx-auto">
-            A gentle way to honor your companion who crossed the Rainbow Bridge.
-          </p>
+      {/* How It Works Section - Matching homepage styling */}
+      <section className="w-full py-16 px-4 bg-aged-paper paper-texture paper-vignette relative">
+        <div className="container mx-auto max-w-6xl relative z-10">
+          <div className="text-center mb-12">
+            <div className="inline-block mb-4">
+              <div className="h-px w-24 bg-gradient-to-r from-transparent via-primary/60 to-transparent mx-auto mb-2"></div>
+            </div>
+            <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-4 text-foreground">
+              Create Your Pet Memorial Card
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              A gentle way to honor your companion who crossed the Rainbow Bridge
+            </p>
+            <div className="h-px w-32 bg-gradient-to-r from-transparent via-pastel-gold/50 to-transparent mx-auto mt-6"></div>
+          </div>
           
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
+          <div className="grid md:grid-cols-3 gap-8 mb-8">
             {[
               {
                 step: 1,
@@ -222,12 +228,12 @@ const PetMemorialCard = () => {
                 description: "Soft skies, peaceful rainbows, and starry nights. Preview your card live, then download instantly to print or share."
               }
             ].map((item) => (
-              <div key={item.step} className="text-center space-y-2">
-                <div className="w-10 h-10 rounded-full bg-charcoal text-cream flex items-center justify-center mx-auto">
-                  <span className="text-sm font-bold">{item.step}</span>
+              <div key={item.step} className="text-center space-y-3">
+                <div className="w-12 h-12 rounded-full bg-primary/20 border-2 border-primary/40 text-foreground flex items-center justify-center mx-auto">
+                  <span className="text-base font-bold">{item.step}</span>
                 </div>
-                <h3 className="text-base font-playfair font-bold text-charcoal">{item.title}</h3>
-                <p className="text-muted-foreground text-xs leading-relaxed">{item.description}</p>
+                <h3 className="text-lg font-playfair font-bold text-foreground">{item.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
               </div>
             ))}
           </div>
