@@ -111,7 +111,7 @@ const Header = () => {
                     
                     <Link to="/star-memorial" onClick={() => setIsMenuOpen(false)}>
                       <Button
-                        className="w-full bg-primary text-primary-foreground hover:bg-pastel-blue-dark transition-colors mt-4"
+                        className="w-full bg-[hsl(43,50%,60%)] text-white hover:bg-[hsl(43,50%,50%)] transition-colors mt-4"
                       >
                         Create a Memorial
                       </Button>
@@ -140,7 +140,7 @@ const Header = () => {
           </Link>
           <Link to="/star-memorial">
             <Button 
-              className="bg-primary text-primary-foreground hover:bg-pastel-blue-dark transition-colors hidden md:flex shadow-rococo rounded-lg"
+              className="bg-[hsl(43,50%,60%)] text-white hover:bg-[hsl(43,50%,50%)] transition-colors hidden md:flex shadow-rococo rounded-lg"
             >
               Create a Memorial
             </Button>
