@@ -10,15 +10,15 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-[hsl(43,60%,55%)] text-white hover:bg-[hsl(43,60%,45%)]",
+        default: "bg-[hsl(35,30%,85%)] text-[hsl(25,30%,25%)] border border-[hsl(35,30%,70%)] hover:bg-[hsl(35,30%,80%)]",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
-          "border-2 border-[hsl(43,60%,55%)] bg-[hsl(43,60%,55%)] text-white hover:bg-[hsl(43,60%,45%)]",
+          "border-2 border-[hsl(35,30%,70%)] bg-transparent text-[hsl(25,30%,25%)] hover:bg-[hsl(35,30%,90%)]",
         secondary:
-          "bg-[hsl(43,60%,55%)] text-white hover:bg-[hsl(43,60%,45%)]",
-        ghost: "hover:bg-[hsl(43,60%,55%)]/20 text-[hsl(43,60%,45%)] hover:text-[hsl(43,60%,35%)]",
-        link: "text-[hsl(43,60%,45%)] underline-offset-4 hover:underline hover:text-[hsl(43,60%,35%)]",
+          "bg-[hsl(35,30%,85%)] text-[hsl(25,30%,25%)] border border-[hsl(35,30%,70%)] hover:bg-[hsl(35,30%,80%)]",
+        ghost: "hover:bg-[hsl(35,30%,90%)] text-[hsl(25,30%,35%)] hover:text-[hsl(25,30%,25%)]",
+        link: "text-[hsl(25,30%,35%)] underline-offset-4 hover:underline hover:text-[hsl(25,30%,25%)]",
       },
       size: {
         default: "h-10 px-6 py-2",

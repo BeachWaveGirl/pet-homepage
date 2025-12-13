@@ -238,7 +238,6 @@ const PetFuneral = () => {
                     style={{ borderColor: 'rgba(62, 47, 47, 0.25)' }}
                   >
                     <div className="flex items-center justify-center mb-1">
-                      <Calendar size={12} className="mr-1" style={{ color: '#5c4a4a' }} />
                       <span 
                         className="text-xs md:text-sm"
                         style={{ fontFamily: "'Cormorant Garamond', serif", color: '#3e2f2f' }}
@@ -256,7 +255,6 @@ const PetFuneral = () => {
                     </div>
                     
                     <div className="flex items-center justify-center mb-1">
-                      <Clock size={12} className="mr-1" style={{ color: '#5c4a4a' }} />
                       <span 
                         className="text-xs md:text-sm"
                         style={{ fontFamily: "'Cormorant Garamond', serif", color: '#3e2f2f' }}
@@ -266,7 +264,6 @@ const PetFuneral = () => {
                     </div>
                     
                     <div className="flex items-center justify-center">
-                      <MapPin size={12} className="mr-1" style={{ color: '#5c4a4a' }} />
                       <span 
                         className="text-xs md:text-sm"
                         style={{ fontFamily: "'Cormorant Garamond', serif", color: '#3e2f2f' }}

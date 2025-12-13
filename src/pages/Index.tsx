@@ -71,8 +71,9 @@ const Index = () => {
             marginTop: '-5%'
           }}>
               <h1 style={{
-              textShadow: '0 0 30px rgba(245, 241, 232, 0.9), 0 0 60px rgba(245, 241, 232, 0.7), 0 2px 4px rgba(0,0,0,0.1)'
-            }} className="font-playfair text-3xl md:text-4xl xl:text-6xl font-bold mb-4 text-foreground lg:text-3xl">
+              textShadow: '0 0 30px rgba(245, 241, 232, 0.9), 0 0 60px rgba(245, 241, 232, 0.7), 0 2px 4px rgba(0,0,0,0.1)',
+              whiteSpace: 'nowrap'
+            }} className="font-playfair text-xl md:text-2xl xl:text-3xl font-bold mb-4 text-foreground">
                 A soft place for hard goodbyes
               </h1>
               <p className="text-base md:text-lg lg:text-xl text-foreground/90 mb-6 max-w-2xl mx-auto leading-relaxed" style={{
