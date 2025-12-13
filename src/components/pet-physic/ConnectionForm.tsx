@@ -66,7 +66,7 @@ const ConnectionForm = ({
           <div className="mt-auto pt-4">
             <Button 
               onClick={onConnect} 
-              className="w-full bg-black text-white hover:bg-gray-800"
+              className="w-full bg-[hsl(43,50%,60%)] text-white hover:bg-[hsl(43,50%,50%)]"
               disabled={!petName.trim() || !question.trim()}
             >
               Connect with {petName || "your pet"}

@@ -36,7 +36,16 @@ const PetPhysicReading = () => {
     <div className="min-h-screen flex flex-col bg-aged-paper paper-texture">
       <Header />
       
-      <main className="flex-1 py-12 px-4">
+      <main className="flex-1 pt-20 px-4">
+        {/* Hero Image Section */}
+        <div className="w-full flex justify-center mb-8">
+          <img 
+            src="/assets/banners/Chat_LP.png" 
+            alt="Pet Spirit Connection" 
+            className="w-full max-w-3xl h-auto object-contain"
+          />
+        </div>
+        
         <div className="container mx-auto max-w-4xl">
           <PageTitle 
             title="Pet Spirit Connection Chat"

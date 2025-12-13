@@ -107,7 +107,7 @@ const ChatBox = ({
           <Button 
             onClick={onSendMessage}
             disabled={!currentQuestion.trim() || !petName.trim()}
-            className="bg-gray-800"
+            className="bg-[hsl(35,30%,85%)] text-[hsl(25,30%,25%)] hover:bg-[hsl(35,30%,80%)]"
           >
             <SendHorizontal className="h-5 w-5" />
           </Button>
