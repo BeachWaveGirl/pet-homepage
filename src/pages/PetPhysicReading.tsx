@@ -10,7 +10,8 @@ import usePetResponseGenerator from "@/hooks/usePetResponseGenerator";
 
 const PetPhysicReading = () => {
   const [petName, setPetName] = useState("");
-  const [question, setQuestion] = useState("");
+  const [petPersonality, setPetPersonality] = useState("");
+  const [favoriteMemories, setFavoriteMemories] = useState("");
   const [petPhoto, setPetPhoto] = useState("");
   
   const {
@@ -27,11 +28,6 @@ const PetPhysicReading = () => {
     }
   };
 
-  const handleConnect = () => {
-    setCurrentQuestion(question);
-    handleSubmitQuestion();
-  };
-
   return (
     <div className="min-h-screen flex flex-col bg-aged-paper paper-texture">
       <Header />
@@ -46,7 +42,7 @@ const PetPhysicReading = () => {
           />
         </div>
         
-        <div className="container mx-auto max-w-4xl px-4 py-8">
+        <div className="container mx-auto max-w-5xl px-4 py-8">
           <PageTitle 
             title="Pet Spirit Connection Chat"
             description="A gentle AI chat experience to feel spiritually connected to your pet. Receive comforting messages that can help during the grieving process."
@@ -54,10 +50,10 @@ const PetPhysicReading = () => {
           />
           
           <div className="text-center mb-8">
-            <p className="text-gray-700 max-w-2xl mx-auto">
+            <p className="text-[hsl(25,30%,40%)] max-w-2xl mx-auto">
               This is a safe space to remember and feel connected to your pet. Share your thoughts and receive comfort in return.
             </p>
-            <p className="text-sm text-gray-500 mt-2 italic">
+            <p className="text-sm text-[hsl(25,30%,55%)] mt-2 italic">
               Note: This is an entertainment experience powered by AI. It is not a replacement for professional support or therapy.
             </p>
           </div>
@@ -67,11 +63,12 @@ const PetPhysicReading = () => {
               <ConnectionForm
                 petName={petName}
                 setPetName={setPetName}
-                question={question}
-                setQuestion={setQuestion}
+                petPersonality={petPersonality}
+                setPetPersonality={setPetPersonality}
+                favoriteMemories={favoriteMemories}
+                setFavoriteMemories={setFavoriteMemories}
                 petPhoto={petPhoto}
                 setPetPhoto={setPetPhoto}
-                onConnect={handleConnect}
               />
             </div>
             
