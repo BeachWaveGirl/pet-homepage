@@ -36,17 +36,17 @@ const PetPhysicReading = () => {
     <div className="min-h-screen flex flex-col bg-aged-paper paper-texture">
       <Header />
       
-      <main className="flex-1 pt-20 px-4">
-        {/* Hero Image Section */}
-        <div className="w-full flex justify-center mb-8">
+      <main className="flex-1 pt-20">
+        {/* Hero Image Section - Full Width */}
+        <div className="w-full">
           <img 
             src="/assets/banners/Chat_LP.png" 
             alt="Pet Spirit Connection" 
-            className="w-full max-w-3xl h-auto object-contain"
+            className="w-full h-auto object-cover"
           />
         </div>
         
-        <div className="container mx-auto max-w-4xl">
+        <div className="container mx-auto max-w-4xl px-4 py-8">
           <PageTitle 
             title="Pet Spirit Connection Chat"
             description="A gentle AI chat experience to feel spiritually connected to your pet. Receive comforting messages that can help during the grieving process."
